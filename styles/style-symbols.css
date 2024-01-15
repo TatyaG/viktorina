@@ -1,0 +1,110 @@
+input {
+    padding: 0;
+    margin: 0;
+}
+
+.symbols .game__right {
+    grid-column: 6 span;
+}
+
+.game.symbols {
+    background-image: url(img/background-symbols.webp);
+}
+
+.symbols__item {
+    padding: 40px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(img/symbol-border.webp);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.symbols__form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 30px;
+    width: 100%;
+}
+
+.symbol__block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.symbol__input {
+    display: none;
+}
+
+.symbol__radio {
+    padding: 15px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Comfortaa;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    border-radius: 100px;
+    border: 2px solid #814073;
+    background: linear-gradient(90deg, #6333BA 0.08%, #7444D3 49.87%, #7F50E3 97.99%), #FFF;
+    color: white;
+    border-image: url(img/border-btn.webp);
+    border-image-slice: 40%;
+    border-image-width: 100%;
+    cursor: pointer;
+}
+
+.symbol__img {
+    width: 35%;
+}
+
+
+@media (max-width: 1400px) {
+    .symbols .game__right {
+        grid-column: 1;
+    }
+
+    .symbols__form {
+        gap: 20px;
+    }
+
+    .game.symbols {
+        background-image: url(img/background-symbols-tablet.webp);
+    }
+}
+
+@media (max-width: 768px) {
+    .symbols__form {
+        grid-template-columns: 1fr;
+    }
+
+    .symbols__item {
+        padding: 60px 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .symbols .game__btn {
+        position: absolute;
+        bottom: 20px;
+        z-index: 2;
+    }
+
+    .game__block {
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+  }
+  
+  .game__block::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+  }
+}
+
