@@ -980,13 +980,9 @@ table {
     margin-bottom: 10px;
   }
 
-  /* .rules-slider_1 {
-    opacity: 0;
-  }
-
   .rules-slider_2 {
     opacity: 1;
-  } */
+  }
 }
 
 @media (max-width: 576px) {
