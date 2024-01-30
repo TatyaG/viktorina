@@ -89,6 +89,24 @@ body {
   filter: blur(10px);
 }
 
+.points_img__shine {
+  left: -60% !important;
+  animation-name: shine;
+  animation-duration: 4s;
+}
+
+@keyframes shine {
+  0% {
+    filter: drop-shadow(0px 1px 0px #a08719)
+      drop-shadow(0px 0px 40px rgba(249, 195, 37, 0.5))
+      drop-shadow(0px 0px 20px rgba(249, 195, 37, 0.5))
+      drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
+  }
+  100% {
+    filter: none;
+  }
+}
+
 .game-crossword {
   position: relative;
 }
@@ -627,9 +645,8 @@ table {
     height: 60px;
   }
 
-  .points_img__shine svg {
-    width: 110px;
-    height: 110px;
+  .points_img__shine {
+    left: -65% !important;
   }
 
   .fail_name,
@@ -825,7 +842,7 @@ table {
   }
 
   .fail-crossword,
-  .success-crossword{
+  .success-crossword {
     width: 100%;
     height: 100%;
     margin-top: 0;
@@ -882,7 +899,7 @@ table {
   .askBtn-wrap {
     gap: 12px;
     left: 5%;
-    bottom: 60.5%;
+    bottom: 59.5%;
   }
 
   .ask {
@@ -935,9 +952,8 @@ table {
     top: -2px;
   }
 
-  .points_img__shine svg {
-    width: 75px;
-    height: 75px;
+  .points_img__shine {
+    left: -55% !important;
   }
 
   .points_abs {
