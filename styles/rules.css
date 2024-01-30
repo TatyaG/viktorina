@@ -39,6 +39,10 @@ ul {
   font-display: swap;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   position: relative;
   background-image: url(../img/rules_background_desktop.webp);
