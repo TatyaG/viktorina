@@ -1,4 +1,4 @@
-export function createCrossword() {
+function createCrossword() {
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
@@ -14,7 +14,7 @@ export function createCrossword() {
   // Правила для мобилки
 
   const rulesBtnImg = document.createElement("svg");
-  rulesBtnImg.classList.add("rules-img-btn");
+  rulesBtnImg.classList.add("rules-img-btn", "hidden");
   rulesBtnImg.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" fill="url(#paint0_linear_608_5149)"/>
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" stroke="#9382C2" stroke-width="1.5"/>
@@ -160,7 +160,11 @@ export function createCrossword() {
   gameLeft.classList.add("game-crossword__left", "flex");
   gameCenter.classList.add("game-crossword__center");
   gameRight.classList.add("game-crossword__right");
-  gameBtnSkip.classList.add("game-crossword__btn", "game-crossword__btn--skip", "btn-reset");
+  gameBtnSkip.classList.add(
+    "game-crossword__btn",
+    "game-crossword__btn--skip",
+    "btn-reset"
+  );
   gameBtnNext.classList.add(
     "game-crossword__btn",
     "game-crossword__btn--next",
@@ -743,52 +747,21 @@ export function createCrossword() {
   const mediaQuery3 = window.matchMedia("(max-width: 768px)");
   function handleTabletChange3(e) {
     if (e.matches) {
-      // Делаем слайдер
-
-      const slider = document.createElement("div");
-      const sliderWrapper = document.createElement("div");
       const slide1 = document.createElement("div");
-      const slideBtn = document.createElement("div");
       const slide2 = document.createElement("div");
+      const slideBtn = document.createElement("button");
 
-      slider.classList.add("swiper", "mySwiper");
-      sliderWrapper.classList.add("swiper-wrapper");
-      slide1.classList.add("swiper-slide");
-      slideBtn.classList.add("swiper-button-next");
-      slide2.classList.add("swiper-slide", "slide2", "flex");
-      gameLeft.classList.add("hidden");
-      questionList.classList.remove("question_list-scroll");
-
-      gameBlock.append(slider);
-      slider.append(sliderWrapper);
-      sliderWrapper.append(slide1, slide2);
+      gameBlock.append(slide1, slide2);
       slide1.append(assistantPerrot);
       assistantPerrot.append(slideBtn);
       slide2.append(questionWrap, gameCenter, gameBtnSkip, gameBtnAccept);
       document.body.append(fail, success, gameBtnNext);
-
-      // кнопка правил на втором слайде
-
       game.append(rulesBtnImg);
-      // const swiper = new Swiper(".swiper", {
-      //   // allowTouchMove: false,
-      // });
 
-      // при листании сенсорно
-
-      // swiper.on("slideChange", function () {
-      //   rulesBtnImg.classList.add(
-      //     "rules-img-btn",
-      //     "opacity",
-      //     `rules-slider_${swiper.realIndex + 1}`
-      //   ); //В зависимости от того, на каком по счёту слайде сейчас находимся
-      // });
-
-      // при листании кнопкой
-
-      // slideBtn.onclick = function () {
-      //   rulesBtnImg.classList.remove("opacity");
-      // };
+      slide2.classList.add("slide2", "flex", "hidden");
+      slideBtn.classList.add("btn-reset", "btn-slide");
+      gameLeft.classList.add("hidden");
+      questionList.classList.remove("question_list-scroll");
 
       // -------
 
@@ -797,6 +770,12 @@ export function createCrossword() {
       successImg.src = "img/deniska-funny_mobile.png";
       failImg.src = "img/deniska_sed_mobile.png";
       askImg.src = "img/deniska-question_mobile.png";
+
+      slideBtn.onclick = () => {
+        slide1.classList.add("hidden");
+        slide2.classList.remove("hidden");
+        rulesBtnImg.classList.remove("hidden");
+      };
 
       askText1.textContent =
         "При переходе к следующей игре ты, к сожалению, не получишь балл.";
@@ -922,3 +901,4 @@ export function createCrossword() {
   return game;
 }
 
+createCrossword();
