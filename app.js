@@ -21,8 +21,9 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.head').forEach(el => {
                 if (el.classList.contains('active')) el.classList.remove('active')
             })
-            el.classList.add('active');
+            
             if ((!headIlempi.src) || (headIlempi.src && !dressIlempi.src || !shoesIlempi.src)) {
+                el.classList.add('active');
                 choiceOfClothes('head', el, document.querySelector('.girl__head'));
             } else if (headIlempi.src && dressIlempi.src && shoesIlempi.src) return false
 
@@ -48,8 +49,9 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.dress').forEach(el => {
                 if (el.classList.contains('active')) el.classList.remove('active')
             })
-            el.classList.add('active');
+            
             if ((!dressIlempi.src) || (dressIlempi.src && !headIlempi.src || !shoesIlempi.src)) {
+                el.classList.add('active');
                 choiceOfClothes('dress', el, document.querySelector('.girl__dress'));
             } else if (headIlempi.src && dressIlempi.src && shoesIlempi.src) return false
 
@@ -71,8 +73,9 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.shoes').forEach(el => {
                 if (el.classList.contains('active')) el.classList.remove('active')
             })
-            el.classList.add('active');
+           
             if ((!shoesIlempi.src) || (shoesIlempi.src && !headIlempi.src || !dressIlempi.src)) {
+                el.classList.add('active');
                 choiceOfClothes('shoes', el, document.querySelector('.girl__shoes'));
             } else if (headIlempi.src && dressIlempi.src && shoesIlempi.src) return false
 
