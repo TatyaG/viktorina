@@ -900,8 +900,3 @@ function createCrossword() {
 
   return game;
 }
-<<<<<<< HEAD
-=======
-
-createCrossword();
->>>>>>> ac89d3cbfe45d41cd79f43dd1d08aab03f9306a7
