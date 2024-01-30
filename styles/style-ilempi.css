@@ -79,6 +79,8 @@ body {
     margin: 0;
 }
 
+
+
 .game {
     position: relative;
     display: flex;
@@ -86,6 +88,10 @@ body {
     padding: 40px 50px;
     height: 100vh;
     overflow: hidden;
+}
+
+.game-blur {
+    filter: blur(10px);
 }
 
 .game__btns {
@@ -499,7 +505,16 @@ body {
 .shoes {
     cursor: pointer;
     z-index: 3;
+    transition: opacity .3s ease-in-out;
 }
+
+.dress.active,
+.head.active,
+.shoes.active {
+    opacity: 0;
+    animation: ilempi 3s ;
+}
+
 
 .girl__head,
 .girl__dress,
@@ -615,6 +630,34 @@ body {
     box-shadow: 4px 4px 2px 0px #F7F9FF inset, -4px 2px 2px 0px #E0CCFE inset, -4px -4px 2px 0px #CFB6FE inset;
     max-width: 100%;
     cursor: pointer;
+}
+
+.game__btn--yes,
+.game__btn--no {
+    display: block;
+    width: 50%;
+}
+
+.btns-group {
+    padding-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.game-blur ~ .deniska .game__rules {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+    right: auto;
+
+}
+
+.game-blur ~ .deniska .game__rules .rules__img {
+    bottom: 104%;
 }
 
 @media (max-width: 1600px) {
@@ -938,6 +981,10 @@ body {
         display: block;
     }
 
+    .game-blur ~ .deniska > .game__btn {
+        display: none;
+    }
+
     .deniska .rules__btn {
         display: none;
     }
@@ -952,6 +999,10 @@ body {
         top: -41px;
         padding-top: 18px;
         font-size: 18px;
+    }
+
+    .game-blur ~ .deniska .game__rules {
+        top: 20%;
     }
 
 

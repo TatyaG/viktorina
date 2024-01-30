@@ -3,7 +3,7 @@ import createLockerTablet from './lockerTablet.js';
 import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createRulesTablet from './rules-tablet.js';
-import {createGameSymbols} from './symbols.js';
+import { createGameSymbols } from './symbols.js';
 import createPoint from './point.js';
 
 export function createGameIlempi() {
@@ -187,9 +187,39 @@ export function createGameIlempi() {
 
     gameBtnSkip.addEventListener('click', (e) => {
         e.preventDefault();
+
+        const deniska = createDeniska('При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?');
+        document.body.append(deniska.deniska);
+        deniska.rulesDeniska.src = 'img/deniska-sad.webp';
+    game.classList.add('game-blur');
+        const btns = document.createElement('div'); 
+    const yesBtn = document.createElement('button');
+    const noBtn = document.createElement('button');
+
+    yesBtn.textContent = 'Да';
+    noBtn.textContent = 'Нет';
+
+    btns.classList.add('btns-group');
+    yesBtn.classList.add('btn-reset', 'game__btn', 'game__btn--yes', 'game__btn--next');
+    noBtn.classList.add('btn-reset', 'game__btn', 'game__btn--no', 'game__btn--next');
+    btns.append(yesBtn, noBtn);
+    deniska.rulesText.append(btns);
+
+    yesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         document.body.innerHTML = '';
         createGameSymbols();
     })
+
+    noBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        deniska.deniska.remove();
+        game.classList.remove('game-blur');
+    })
+
+})
+
+
 
 
 

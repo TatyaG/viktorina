@@ -81,7 +81,8 @@ function createDeniska(text) {
     return {
         deniska,
         rulesBtn,
-        rulesDeniska
+        rulesDeniska,
+        rulesText
     };
 
 }

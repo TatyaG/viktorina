@@ -20,22 +20,76 @@ export function createGameSymbols() {
         {
             id: 1,
             img: 'img/symbol-1.svg',
-            inputs: ['Солнце, лад, созвучие', 'Братская помощь, солидарность', 'Небесный свод, вселенная']
+            inputs: [
+                {
+                    correct: false,
+                    name: 'Солнце, лад, созвучие',
+                },
+                {
+                    correct: true,
+                    name: 'Братская помощь, солидарность',
+                },
+                {
+                    correct: false,
+                    name: 'Небесный свод, вселенная',
+                },
+            ]
+
         },
         {
             id: 2,
             img: 'img/symbol-2.svg',
-            inputs: ['Духовная и родовая связь', 'Дом, кров, домашний приют', 'Эпоха, период, течение времени']
+            inputs: [
+                {
+                    correct: true,
+                    name: 'Духовная и родовая связь',
+                },
+                {
+                    correct: false,
+                    name: 'Дом, кров, домашний приют'
+                },
+                {
+                    correct: false,
+                    name: 'Эпоха, период, течение времени'
+                },
+
+            ]
         },
         {
             id: 3,
             img: 'img/symbol-3.svg',
-            inputs: ['Верность, единство, любовь', 'Жизненный путь, уклад', 'Мысль, знание']
+            inputs: [
+                {
+                    correct: false,
+                    name: 'Верность, единство, любовь',
+                },
+                {
+                    correct: false,
+                    name: 'Жизненный путь, уклад',
+                },
+                {
+                    correct: true,
+                    name: 'Мысль, знание',
+                },
+            ]
         },
         {
             id: 4,
             img: 'img/symbol-4.svg',
-            inputs: ['Сила семьи, дух нации', 'Мера грехов и доброты', 'Равенство, понимание и принятие']
+            inputs: [
+                {
+                    correct: true,
+                    name: 'Сила семьи, дух нации',
+                },
+                {
+                    correct: false,
+                    name: 'Мера грехов и доброты',
+                },
+                {
+                    correct: false,
+                    name: 'Равенство, понимание и принятие',
+                },
+            ]
         }
     ]
 
@@ -49,29 +103,97 @@ export function createGameSymbols() {
         symbolImg.classList.add('symbol__img');
 
         symbolImg.src = item.img;
-        
 
         item.inputs.forEach(el => {
             const label = document.createElement('label');
             const input = document.createElement('input');
             const button = document.createElement('span');
 
-            button.textContent = el
+            button.textContent = el.name
 
             label.classList.add('symbol__label');
             input.classList.add('symbol__input');
             button.classList.add('symbol__radio');
 
+            if (el.correct == true) input.classList.add('symbol__input--true');
+            if (el.correct == false) input.classList.add('symbol__input--false');
+
             input.type = 'radio';
             input.name = `symbol-${item.id}`;
             symbolItemBlock.append(label);
             label.append(input, button);
+
+            input.addEventListener('change', (e) => {
+                input.classList.add('checked')
+                const attr = input.getAttribute('name');
+                const symbols = document.querySelectorAll(`[name="${attr}"]`);
+                symbols.forEach(el => el.disabled = true)
+
+                const inputs = document.querySelectorAll('.symbol__input.checked');
+
+                if (inputs.length == 4) {
+                    const inputsTrue = document.querySelectorAll('.symbol__input.checked.symbol__input--true');
+                    if (inputsTrue.length < 1) {
+                        const deniska = createDeniska('К сожалению, угаданы не не все значения символов!');
+                        setTimeout(() => {
+                            document.body.append(deniska.deniska);
+                        }, 800)
+                       
+                    }
+                    else {
+                        const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
+                        setTimeout(() => {
+                            document.body.append(deniska.deniska);
+                        }, 800)
+                    
+                       
+                    }
+              
+                }
+
+                console.log(inputs)
+            })        
         })
+
+      
 
         symbolsBlock.append(symbolItem);
         symbolItem.append(symbolImg, symbolItemBlock);
     })
 
+    
+    gameBtnSkip.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const deniska = createDeniska('При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?');
+        document.body.append(deniska.deniska);
+        deniska.rulesDeniska.src = 'img/deniska-sad.webp';
+    game.classList.add('game-blur');
+        const btns = document.createElement('div'); 
+    const yesBtn = document.createElement('button');
+    const noBtn = document.createElement('button');
+
+    yesBtn.textContent = 'Да';
+    noBtn.textContent = 'Нет';
+
+    btns.classList.add('btns-group');
+    yesBtn.classList.add('btn-reset', 'game__btn', 'game__btn--yes', 'game__btn--next');
+    noBtn.classList.add('btn-reset', 'game__btn', 'game__btn--no', 'game__btn--next');
+    btns.append(yesBtn, noBtn);
+    deniska.rulesText.append(btns);
+
+    yesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.innerHTML = '';
+    })
+
+    noBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        deniska.deniska.remove();
+        game.classList.remove('game-blur');
+    })
+
+})
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
@@ -110,6 +232,7 @@ export function createGameSymbols() {
         gameBlock.style.paddingBottom = '0';
         gameBlock.style.marginTop = '0';
         gameLeft.style.paddingTop = '0';
+        gameBlock.style.overflowY = 'scroll';
 
     })
 
