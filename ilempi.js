@@ -5,7 +5,7 @@ import createDeniska from './deniska.js';
 import createRulesTablet from './rules-tablet.js';
 import { createGameSymbols } from './symbols.js';
 import createPoint from './point.js';
-import createCrossword from './crossword.js'
+import {createCrossword} from './crossword.js'
 
 export function createGameIlempi() {
     const game = document.createElement('section');
