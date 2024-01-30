@@ -144,14 +144,14 @@ body {
     color: #FFF;
 }
 
-.game__block {
+.ilempi .game__block {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 70px;
     margin-top: auto;
 }
 
-.game__left {
+.ilempi .game__left {
     padding-top: 100px;
     display: flex;
     justify-content: center;
@@ -161,7 +161,7 @@ body {
     grid-column: 3 span;
 }
 
-.game__right {
+.ilempi .game__right {
     position: relative;
     display: flex;
     grid-column: 8 span;
@@ -661,11 +661,11 @@ body {
 }
 
 @media (max-width: 1600px) {
-    .game__right {
+    .ilempi .game__right {
         grid-column: 9 span;
     }
 
-    .game__block {
+    .ilempi .game__block {
         gap: 50px;
     }
 
@@ -680,17 +680,17 @@ body {
         height: auto;
     }
 
-    .game__block {
+    .ilempi .game__block {
         padding-top: 130px;
         grid-template-columns: 1fr;
     }
 
-    .game__left {
+    .ilempi .game__left {
         align-items: center;
         grid-column: 1;
     }
 
-    .game__right {
+    .ilempi .game__right {
         grid-column: 1;
         grid-row: 2;
     }
@@ -865,7 +865,7 @@ body {
         font-size: 14px;
     }
 
-    .game__right {
+    .ilempi .game__right {
         display: none;
     }
 
@@ -874,7 +874,7 @@ body {
         height: 100vh;
     }
 
-    .game__block {
+    .ilempi .game__block {
         padding-bottom: 86px;
         padding-top: 0;
         gap: 15px;
@@ -897,11 +897,11 @@ body {
         font-size: 14px;
     }
 
-    .game__left {
+    .ilempi .game__left {
         grid-row: 2;
     }
 
-    .game__right {
+    .ilempi .game__right {
         grid-row: 1;
     }
 
