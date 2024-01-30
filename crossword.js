@@ -1,3 +1,4 @@
+
 import {createGameSymbols} from './symbols.js';
 
 export function createCrossword() {

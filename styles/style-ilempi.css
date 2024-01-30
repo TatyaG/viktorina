@@ -566,7 +566,7 @@ body {
 }
 
 .girl__dress[data-code="dress-three"] {
-    left: -2px;
+    left: 0;
     top: 29%;
     width: 97%;
 }
@@ -584,7 +584,7 @@ body {
 }
 
 .girl__head[data-code="head-three"] {
-    left: 11px;
+    left: 6px;
     top: -16%;
     width: 90%;
 }
@@ -796,8 +796,8 @@ body {
 
 
     .girl__dress[data-code="dress-two"] {
-        left: 8%;
-        top: 29.5%;
+        left: 9%;
+        top: 30.5%;
     }
 
     .girl__dress[data-code="dress-one"] {
@@ -956,7 +956,7 @@ body {
     }
 
     .ilempi .game__right {
-        height: 65vh;
+        height: 60vh;
     }
 
     .girl__head[data-code="head-two"] {
@@ -1042,7 +1042,7 @@ body {
 
 @media (max-width: 470px) {
     .game__girl {
-        bottom: -23px;
+        bottom: -13px;
     }
 
     .game__locker {
