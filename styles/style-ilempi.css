@@ -11,8 +11,8 @@
 
 @font-face {
     font-family: 'Comfortaa';
-    src: url('fonts/Comfortaa-Medium.woff2') format('woff2'),
-        url('fonts/Comfortaa-Medium.woff') format('woff');
+    src: url('../fonts/Comfortaa-Medium.woff2') format('woff2'),
+        url('../fonts/Comfortaa-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -20,8 +20,8 @@
 
 @font-face {
     font-family: 'Comfortaa';
-    src: url('fonts/Comfortaa-Bold.woff2') format('woff2'),
-        url('fonts/Comfortaa-Bold.woff') format('woff');
+    src: url('../fonts/Comfortaa-Bold.woff2') format('woff2'),
+        url('../fonts/Comfortaa-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -29,8 +29,8 @@
 
 @font-face {
     font-family: 'Mak';
-    src: url('fonts/Mak-Light.woff2') format('woff2'),
-        url('fonts/Mak-Light.woff') format('woff');
+    src: url('../fonts/Mak-Light.woff2') format('woff2'),
+        url('../fonts/Mak-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -38,8 +38,8 @@
 
 @font-face {
     font-family: 'Mak';
-    src: url('fonts/Mak-Bold.woff2') format('woff2'),
-        url('fonts/Mak-Bold.woff') format('woff');
+    src: url('../fonts/Mak-Bold.woff2') format('woff2'),
+        url('../fonts/Mak-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -70,7 +70,7 @@ button {
     right: 8px;
     width: 20px;
     height: 20px;
-    background-image: url(img/close.svg);
+    background-image: url(../img/close.svg);
     background-repeat: no-repeat;
     background-size: 20px;
 }
@@ -109,7 +109,7 @@ body {
 
 
 .game.ilempi {
-    background-image: url(img/background-ilempi.webp);
+    background-image: url(../img/background-ilempi.webp);
 
 }
 
@@ -190,7 +190,7 @@ body {
 .rules__btn--tablet {
     width: 32px;
     height: 32px;
-    background-image: url(img/rules.svg);
+    background-image: url(../img/rules.svg);
     background-size: 32px;
     background-repeat: no-repeat;
 }
@@ -240,7 +240,7 @@ body {
     height: 100px;
     top: -34px;
     left: -22px;
-    background-image: url(img/rules-top.webp);
+    background-image: url(../img/rules-top.webp);
     background-repeat: no-repeat;
     background-position: center top;
     background-size: contain;
@@ -263,7 +263,7 @@ body {
     font-weight: 300;
     line-height: normal;
     letter-spacing: 2.52px;
-    background-image: url(img/ribbon.svg);
+    background-image: url(../img/ribbon.svg);
     background-repeat: no-repeat;
     background-position: center top;
     background-size: contain;
@@ -277,7 +277,7 @@ body {
     height: 60px;
     bottom: -20px;
     left: -10px;
-    background-image: url(img/rules-bottom.webp);
+    background-image: url(../img/rules-bottom.webp);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: contain;
@@ -491,7 +491,7 @@ body {
     top: -25%;
     width: 80px;
     height: 80px;
-    background-image: url(img/point.svg);
+    background-image: url(../img/point.svg);
 }
 
 .dress,
@@ -657,7 +657,7 @@ body {
     }
 
     .game.ilempi {
-        background-image: url(img/background-ilempi-tablet.webp);
+        background-image: url(../img/background-ilempi-tablet.webp);
     }
 
     .game__title {
@@ -691,7 +691,7 @@ body {
         top: -38px;
         font-size: 20px;
         height: 82px;
-        background-image: url(img/ribbon-tablet.svg);
+        background-image: url(../img/ribbon-tablet.svg);
     }
 
     .game__point {
@@ -801,7 +801,7 @@ body {
 @media (max-width: 576px) {
 
     .game.ilempi {
-        background-image: url(img/background-ilempi-phone.webp);
+        background-image: url(../img/background-ilempi-phone.webp);
     }
 
     .rules--tablet {

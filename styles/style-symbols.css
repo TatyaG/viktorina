@@ -8,7 +8,7 @@ input {
 }
 
 .game.symbols {
-    background-image: url(img/background-symbols.webp);
+    background-image: url(../img/background-symbols.webp);
 }
 
 .symbols__item {
@@ -17,7 +17,7 @@ input {
     gap: 20px;
     flex-direction: column;
     align-items: center;
-    background-image: url(img/symbol-border.webp);
+    background-image: url(../img/symbol-border.webp);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -54,7 +54,7 @@ input {
     border: 2px solid #814073;
     background: linear-gradient(90deg, #6333BA 0.08%, #7444D3 49.87%, #7F50E3 97.99%), #FFF;
     color: white;
-    border-image: url(img/border-btn.webp);
+    border-image: url(../img/border-btn.webp);
     border-image-slice: 40%;
     border-image-width: 100%;
     cursor: pointer;
@@ -75,7 +75,7 @@ input {
     }
 
     .game.symbols {
-        background-image: url(img/background-symbols-tablet.webp);
+        background-image: url(../img/background-symbols-tablet.webp);
     }
 }
 
