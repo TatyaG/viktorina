@@ -60,6 +60,24 @@ input {
     cursor: pointer;
 }
 
+.symbol__input--true:checked~.symbol__radio {
+    border: 2px solid #6E9D73;
+    border-image: url(../img/border-btn-true.webp);
+    border-image-slice: 40%;
+    border-image-width: 100%;
+    background: linear-gradient(90deg, #20C27E 0.08%, #22A465 49.87%, #2DB743 97.99%), #FFF;
+    box-shadow: 6px 11px 4px 0px #2FA75F inset, -6px -10px 4px 0px #96FFC0 inset;
+}
+
+.symbol__input--false:checked~.symbol__radio {
+    border: 2px solid #882F4F;
+    border-image: url(../img/border-btn-false.webp);
+    border-image-slice: 40%;
+    border-image-width: 100%;
+    background: linear-gradient(90deg, #E83480 0.08%, #EB503B 49.87%, #C22047 97.99%), #FFF;
+    box-shadow: 6px 11px 4px 0px #A72F2F inset, -6px -10px 4px 0px #FF9696 inset;
+}
+
 .symbol__img {
     width: 35%;
 }
@@ -96,15 +114,14 @@ input {
         z-index: 2;
     }
 
-    .game__block {
-        overflow-y: scroll;
+    .symbols .game__block {
+        /* overflow-y: scroll; */
         -ms-overflow-style: none;
         scrollbar-width: none;
-  }
-  
-  .game__block::-webkit-scrollbar {
+    }
+
+    .game__block::-webkit-scrollbar {
         width: 0;
         height: 0;
-  }
+    }
 }
-
