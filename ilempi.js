@@ -36,7 +36,7 @@ export function createGameIlempi() {
 
     
 
-    const mediaQuery = window.matchMedia('(min-width: 577px)')
+    const mediaQuery = window.matchMedia('(min-width: 769px)')
     function handleTabletChange(e) {
         if (e.matches) {
             const lockerBlock = createLocker();

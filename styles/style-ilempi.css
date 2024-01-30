@@ -865,9 +865,6 @@ body {
     .game__girl {
         bottom: -20px;
     }
-}
-
-@media (max-width: 576px) {
 
     .game.ilempi {
         background-image: url(../img/background-ilempi-phone.webp);
@@ -933,8 +930,9 @@ body {
 
 
     .game__podium {
-        left: 22%;
-        width: 58%;
+        left: 50%;
+        width: 42%;
+        transform: translateX(-50%);
     }
 
     .podium {
@@ -950,8 +948,15 @@ body {
         position: relative;
         display: flex;
         justify-content: center;
+        height: 100%;
+        width: 94vw;
         z-index: 1;
 
+
+    }
+
+    .ilempi .game__right {
+        height: 65vh;
     }
 
     .girl__head[data-code="head-two"] {
@@ -1031,11 +1036,16 @@ body {
         top: 20%;
     }
 
-
 }
+
+
 
 @media (max-width: 470px) {
     .game__girl {
         bottom: -23px;
+    }
+
+    .game__locker {
+        width: 90vw;
     }
 }
