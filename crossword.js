@@ -1,4 +1,7 @@
-function createCrossword() {
+
+import {createGameSymbols} from './symbols.js'
+
+export function createCrossword() {
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
@@ -299,6 +302,15 @@ function createCrossword() {
   document.body.append(ask);
   ask.append(askImg, askName, askText1, askText2, askButtonsWrap);
   askButtonsWrap.append(askButtonYes, askButtonNo);
+
+
+  askButtonsWrap.addEventListener('click', (e) => {
+    document.body.innerHTML = '';
+    const symbols = createGameSymbols()
+    document.body.append(symbols);
+  }
+ 
+  )
 
   // Кроссворд
 
@@ -731,5 +743,3 @@ function createCrossword() {
 
   return game;
 }
-
-createCrossword();
