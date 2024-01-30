@@ -956,7 +956,7 @@ body {
     }
 
     .ilempi .game__right {
-        height: 65vh;
+        height: 60vh;
     }
 
     .girl__head[data-code="head-two"] {
@@ -1042,7 +1042,7 @@ body {
 
 @media (max-width: 470px) {
     .game__girl {
-        bottom: -23px;
+        bottom: -13px;
     }
 
     .game__locker {
