@@ -922,4 +922,3 @@ export function createCrossword() {
   return game;
 }
 
-createCrossword();
