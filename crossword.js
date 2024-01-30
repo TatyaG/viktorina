@@ -14,7 +14,7 @@ export function createCrossword() {
   // Правила для мобилки
 
   const rulesBtnImg = document.createElement("svg");
-  rulesBtnImg.classList.add("rules-img-btn", "opacity");
+  rulesBtnImg.classList.add("rules-img-btn");
   rulesBtnImg.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" fill="url(#paint0_linear_608_5149)"/>
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" stroke="#9382C2" stroke-width="1.5"/>
@@ -770,25 +770,25 @@ export function createCrossword() {
       // кнопка правил на втором слайде
 
       game.append(rulesBtnImg);
-      const swiper = new Swiper(".swiper", {
-        // allowTouchMove: false,
-      });
+      // const swiper = new Swiper(".swiper", {
+      //   // allowTouchMove: false,
+      // });
 
       // при листании сенсорно
 
-      swiper.on("slideChange", function () {
-        rulesBtnImg.classList.add(
-          "rules-img-btn",
-          "opacity",
-          `rules-slider_${swiper.realIndex + 1}`
-        ); //В зависимости от того, на каком по счёту слайде сейчас находимся
-      });
+      // swiper.on("slideChange", function () {
+      //   rulesBtnImg.classList.add(
+      //     "rules-img-btn",
+      //     "opacity",
+      //     `rules-slider_${swiper.realIndex + 1}`
+      //   ); //В зависимости от того, на каком по счёту слайде сейчас находимся
+      // });
 
       // при листании кнопкой
 
-      slideBtn.onclick = function () {
-        rulesBtnImg.classList.remove("opacity");
-      };
+      // slideBtn.onclick = function () {
+      //   rulesBtnImg.classList.remove("opacity");
+      // };
 
       // -------
 
