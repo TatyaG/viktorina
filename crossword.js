@@ -1,4 +1,4 @@
-export function createCrossword() {
+function createCrossword() {
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
@@ -900,3 +900,8 @@ export function createCrossword() {
 
   return game;
 }
+<<<<<<< HEAD
+=======
+
+createCrossword();
+>>>>>>> ac89d3cbfe45d41cd79f43dd1d08aab03f9306a7
