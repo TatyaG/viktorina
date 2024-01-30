@@ -191,6 +191,14 @@ body {
 
 .rules__btn {
     display: none;
+    width: 60px;
+    height: 47px;
+    background-image: url(../img/next.svg);
+    transition: background-image .3s ease-in-out;
+}
+
+.rules__btn:hover {
+    background-image: url(../img/next-hover.svg);
 }
 
 .rules__btn--tablet {
@@ -494,7 +502,6 @@ body {
 
 .game__point.animation::before {
     animation: point-shadow 3s linear;
-    animation-delay: 2s;
 }
 
 @keyframes point-shadow {
