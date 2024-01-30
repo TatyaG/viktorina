@@ -1,13 +1,11 @@
 import {createGameIlempi, choiceOfClothes, checkIlempi} from './ilempi.js';
 
-
 let points = 0;
-
+localStorage.setItem('points', points);
 
 window.addEventListener('DOMContentLoaded', () => {
 
     createGameIlempi();
-    document.querySelector('.game__point').textContent = points;
     const headIlempi = document.querySelector('.girl__head');
     const dressIlempi = document.querySelector('.girl__dress');
     const shoesIlempi = document.querySelector('.girl__shoes');
@@ -29,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const result = checkIlempi();
             if (result == true) {
-                points = points + 1;
+                localStorage.setItem('points', points + 1)
                 const point = document.querySelector('.game__point');
                 point.textContent = points;
               
@@ -57,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const result = checkIlempi();
             if (result == true) {
-                points = points + 1;
+                localStorage.setItem('points', points + 1)
                 const point = document.querySelector('.game__point');
                 point.textContent = points;
               
@@ -81,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const result = checkIlempi();
             if (result == true) {
-                points = points + 1;
+                localStorage.setItem('points', points + 1)
                 const point = document.querySelector('.game__point');
                 point.textContent = points;
               
