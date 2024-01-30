@@ -185,6 +185,13 @@ export function createGameIlempi() {
         clothBlock.classList.add('open');
     })
 
+    gameBtnNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.innerHTML = '';
+        const crossword = createCrossword();
+        document.body.append(crossword);
+    })
+
 
     gameBtnSkip.addEventListener('click', (e) => {
         e.preventDefault();
