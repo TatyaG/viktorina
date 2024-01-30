@@ -1,5 +1,4 @@
-
-import {createGameSymbols} from './symbols.js'
+import {createGameSymbols} from './symbols.js';
 
 export function createCrossword() {
   const game = document.createElement("section");
@@ -303,14 +302,11 @@ export function createCrossword() {
   ask.append(askImg, askName, askText1, askText2, askButtonsWrap);
   askButtonsWrap.append(askButtonYes, askButtonNo);
 
-
-  askButtonsWrap.addEventListener('click', (e) => {
+  askButtonYes.addEventListener('click', (e) => {
     document.body.innerHTML = '';
     const symbols = createGameSymbols()
     document.body.append(symbols);
-  }
- 
-  )
+  })
 
   // Кроссворд
 
