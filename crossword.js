@@ -1,4 +1,4 @@
-export function createCrossword() {
+function createCrossword() {
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
@@ -153,24 +153,24 @@ export function createCrossword() {
   answer3.textContent = "Правильный ответ: Сувар";
   answer4.textContent = "Правильный ответ: Утка";
 
-  game.classList.add("game", "crossword");
-  gameTitle.classList.add("game__title");
-  gameSubtitle.classList.add("game__subtitle");
-  gameBlock.classList.add("game__block", "flex");
-  gameLeft.classList.add("game__left", "flex");
-  gameCenter.classList.add("game__center");
-  gameRight.classList.add("game__right");
-  gameBtnSkip.classList.add("game__btn", "game__btn--skip", "btn-reset");
+  game.classList.add("game-crossword", "crossword");
+  gameTitle.classList.add("game-crossword__title");
+  gameSubtitle.classList.add("game-crossword__subtitle");
+  gameBlock.classList.add("game-crossword__block", "flex");
+  gameLeft.classList.add("game-crossword__left", "flex");
+  gameCenter.classList.add("game-crossword__center");
+  gameRight.classList.add("game-crossword__right");
+  gameBtnSkip.classList.add("game-crossword__btn", "game-crossword__btn--skip", "btn-reset");
   gameBtnNext.classList.add(
-    "game__btn",
-    "game__btn--next",
-    "game__btn--next_mobile",
+    "game-crossword__btn",
+    "game-crossword__btn--next",
+    "game-crossword__btn--next_mobile",
     "btn-reset",
     "hidden"
   );
   gameBtnAccept.classList.add(
-    "game__btn",
-    "game__btn--next",
+    "game-crossword__btn",
+    "game-crossword__btn--next",
     "btn-reset",
     "hidden"
   );
@@ -235,7 +235,7 @@ export function createCrossword() {
 
   successImg.src = "img/deniska-funny.png";
 
-  success.classList.add("success", "hidden");
+  success.classList.add("success-crossword", "hidden");
   successName.classList.add("success_name", "assistent-name");
   successText.classList.add("success_text", "assistent-text");
 
@@ -254,7 +254,7 @@ export function createCrossword() {
 
   failImg.src = "img/deniska_sedd.png";
 
-  fail.classList.add("fail", "hidden");
+  fail.classList.add("fail-crossword", "hidden");
   failName.classList.add("fail_name", "assistent-name");
   failText.classList.add("fail_text", "assistent-text");
 
@@ -282,8 +282,8 @@ export function createCrossword() {
   askText1.classList.add("ask_text1", "assistent-text");
   askText2.classList.add("ask_text2", "assistent-text");
   askButtonsWrap.classList.add("askBtn-wrap");
-  askButtonYes.classList.add("game__btn", "btn-yes", "btn-reset");
-  askButtonNo.classList.add("game__btn", "btn-no", "btn-reset");
+  askButtonYes.classList.add("game-crossword__btn", "btn-yes", "btn-reset");
+  askButtonNo.classList.add("game-crossword__btn", "btn-no", "btn-reset");
 
   askName.textContent = "Дениска";
   askText1.textContent =
