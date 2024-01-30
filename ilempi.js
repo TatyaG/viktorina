@@ -34,11 +34,9 @@ export function createGameIlempi() {
 
     const closeClothes = document.createElement('button');
 
-    const rulesBlock = createRulesTablet('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и одеть их на Илемпи.');
+    
 
-    game.append(rulesBlock);
-
-    const mediaQuery = window.matchMedia('(min-width: 577px)')
+    const mediaQuery = window.matchMedia('(min-width: 769px)')
     function handleTabletChange(e) {
         if (e.matches) {
             const lockerBlock = createLocker();
@@ -135,6 +133,9 @@ export function createGameIlempi() {
 
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        const rulesBlock = createRulesTablet('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и одеть их на Илемпи.');
+
+    game.append(rulesBlock);
         gameRight.style.display = 'block';
         gameRules.gameRules.style.display = 'none';
         gameBtnSkip.style.display = 'block';
@@ -183,6 +184,13 @@ export function createGameIlempi() {
         })
         shoesIlempi.style.display = 'grid';
         clothBlock.classList.add('open');
+    })
+
+    gameBtnNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.innerHTML = '';
+        const crossword = createCrossword();
+        document.body.append(crossword);
     })
 
 
