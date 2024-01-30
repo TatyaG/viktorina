@@ -488,18 +488,25 @@ body {
     border: 1px solid #9382C2;
     background: linear-gradient(180deg, #EEDBFD 0.03%, #DBDEFD 26.58%, #E4D8FC 78.4%, #D9B4EA 99.97%);
     color: var(--dark-blue);
+    
 }
 
+
 .game__point.animation::before {
-    animation: point-shadow 3s;
+    animation: point-shadow 3s linear;
+    animation-delay: 2s;
 }
 
 @keyframes point-shadow {
-    0% {}
-
-    100% {
+    0% {
         filter: drop-shadow(0px 1px 0px #A08719) drop-shadow(0px 0px 40px rgba(249, 195, 37, 0.50)) drop-shadow(0px 0px 20px rgba(249, 195, 37, 0.50)) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.50));
     }
+
+    100% {
+        filter: none;
+    }
+
+    
 }
 
 .game__point::before {
