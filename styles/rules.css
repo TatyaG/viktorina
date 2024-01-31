@@ -541,11 +541,13 @@ body {
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 375px) {
   body {
     background-image: url(../img/rules_background_mobile.webp);
   }
+}
 
+@media (max-width: 360px) {
   .rules_img2 {
     border-right: 0px solid #45c2ca;
     border-left: 0px solid #45c2ca;

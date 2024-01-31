@@ -843,12 +843,12 @@ table {
 
   .fail-crossword,
   .success-crossword {
-    width: 100%;
-    height: 100%;
+    width: 322px;
+    height: 251px;
     margin-top: 0;
     position: fixed;
-    left: 77%;
-    top: 70%;
+    left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
@@ -857,76 +857,57 @@ table {
   .game-crossword__btn--next_mobile {
     position: fixed;
     left: 50%;
-    top: 59%;
+    bottom: 177px;
     transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
   }
 
-  .fail_name {
-    top: 35%;
+  .fail_name, .success_name {
+    top: 45.5%;
+    left: 36%;
   }
 
-  .success_name {
-    top: 15%;
-    left: 16.5%;
-  }
-
-  .success_text {
-    bottom: 73%;
-    left: 5%;
-    text-align: start;
-    font-size: 14px;
-  }
-
-  .fail_text {
-    bottom: 36%;
-    text-align: start;
-  }
-
-  .fail_name {
-    top: 15%;
-    left: 17%;
-  }
-
-  .fail_text {
+  .fail_text, .success_text {
     max-width: 290px;
-    bottom: 73%;
-    left: 5%;
+    bottom: 16%;
+    left: 11%;
     font-size: 14px;
+    text-align: start;
   }
 
   .askBtn-wrap {
     gap: 12px;
-    left: 5%;
-    bottom: 59.5%;
+    left: 9%;
+    bottom: 5%;
   }
 
   .ask {
-    left: 78%;
-    top: 70%;
-    width: 100%;
-    height: 100%;
+    left: 50%;
+    top: 50%;
+    width: 335px;
+    height: 345px;
   }
 
   .ask_name {
-    top: 15.5%;
-    left: 16.5%;
+    top: 36%;
+    left: 36%;
   }
 
   .ask_text1 {
-    top: 23%;
-    left: 5%;
+    top: 53%;
+    left: 9%;
   }
 
   .ask_text2 {
-    top: 30%;
-    left: 5%;
+    height: fit-content;
+    top: 70%;
+    left: 9%;
   }
 
   .btn-yes,
   .btn-no {
-    padding: 12px 40px;
+    padding: 10px 40px;
     width: 132.5px;
     height: 46px;
     font-size: 20px;
@@ -1015,38 +996,6 @@ table {
     height: 50px;
   }
 
-  .fail-crossword,
-  .success-crossword {
-    left: 67%;
-  }
-
-  .fail_name,
-  .success_name {
-    left: 21.5%;
-  }
-
-  .success_text,
-  .fail_text {
-    left: 8%;
-  }
-
-  .ask {
-    left: 70%;
-  }
-
-  .ask_name {
-    left: 22%;
-  }
-
-  .ask_text1,
-  .ask_text2 {
-    left: 6%;
-  }
-
-  .askBtn-wrap {
-    left: 6%;
-  }
-
   .input_top {
     border-radius: 4px 4px 0px 0px;
   }
@@ -1062,33 +1011,15 @@ table {
   .input_right {
     border-radius: 0px 4px 4px 0px;
   }
-
-  .game-crossword__btn--next_mobile {
-    left: 47%;
-  }
 }
 
 @media (max-width: 480px) {
+  body {
+    background-image: url(../img/background-crossword_mobile.webp);
+  }
+
   .assistant-perrot {
     top: 57px;
-  }
-
-  .ask {
-    left: 63%;
-  }
-
-  .ask_name {
-    left: 26%;
-  }
-
-  .fail-crossword,
-  .success-crossword {
-    left: 62%;
-  }
-
-  .fail_name,
-  .success_name {
-    left: 26%;
   }
 
   .crossword_input {
@@ -1118,79 +1049,25 @@ table {
 }
 
 @media (max-width: 420px) {
-  .fail-crossword,
-  .success-crossword {
-    left: 59%;
-  }
-
-  .success_name {
-    left: 31%;
-  }
-
-  .fail_name {
-    top: 15%;
-    left: 30%;
-  }
-
-  .fail_text {
-    bottom: 73%;
-    left: 8%;
-  }
-
-  .ask {
-    left: 59%;
-  }
-
-  .ask_name {
-    left: 30%;
-  }
-
-  .ask_text1,
-  .ask_text2 {
-    height: fit-content;
-    left: 8%;
-  }
-
-  .askBtn-wrap {
-    left: 8%;
-  }
-
   .game-crossword__btn--next_mobile {
     width: 233px;
     padding: 16px 34px;
-    left: 50%;
   }
 }
 
 @media (max-width: 400px) {
-  body {
-    background-image: url(../img/background-crossword_mobile.webp);
-  }
-
   .assistant-perrot {
     left: 0%;
   }
 
-  .ask {
-    left: 55%;
-  }
-
+  .ask,
   .fail-crossword,
   .success-crossword {
-    left: 55%;
-  }
-
-  .fail_name,
-  .success_name {
-    left: 31%;
-  }
-
-  .fail_text,
-  .success_text {
-    left: 9%;
+    top: 40%;
   }
 
   .game-crossword__btn--next_mobile {
+    bottom: 29%;
     padding: 16px 34px;
     width: 222px;
     height: 48px;
@@ -1217,15 +1094,8 @@ table {
 
   .askBtn-wrap,
   .ask_text1,
-  .ask_text2,
-  .fail_text,
-  .success_text {
+  .ask_text2 {
     left: 10%;
-  }
-
-  .fail_name,
-  .success_name {
-    left: 33%;
   }
 
   .game-crossword__btn--next_mobile {
@@ -1256,16 +1126,5 @@ table {
   .perrot_name {
     left: 36%;
     top: 38%;
-  }
-
-  .ask,
-  .fail-crossword,
-  .success-crossword {
-    left: 52%;
-  }
-
-  .fail_name,
-  .success_name {
-    left: 35%;
   }
 }

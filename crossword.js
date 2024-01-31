@@ -295,7 +295,7 @@ export function createCrossword() {
   askName.textContent = "Дениска";
   askText1.textContent =
     "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру.";
-  askText2.textContent = "Продолжать?";
+  askText2.textContent = "Продолжить?";
   askButtonYes.textContent = "Да";
   askButtonNo.textContent = "Нет";
 
