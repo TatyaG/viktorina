@@ -271,12 +271,10 @@ body {
     top: -46px;
     width: 110%;
     height: 100px;
-    font-family: Mak;
     font-size: 28px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
-    letter-spacing: 2.52px;
     background-image: url(../img/ribbon.svg);
     background-repeat: no-repeat;
     background-position: center top;
