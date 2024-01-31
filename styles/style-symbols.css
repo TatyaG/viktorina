@@ -3,6 +3,16 @@ input {
     margin: 0;
 }
 
+.symbols .game__left {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 60px;
+    grid-column: 3 span;
+}
+
 .symbols .game__right {
     grid-column: 6 span;
 }
@@ -27,6 +37,13 @@ input {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px 30px;
     width: 100%;
+}
+
+.symbols .game__block {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 70px;
+    margin-top: auto;
 }
 
 .symbol__block {
@@ -82,6 +99,14 @@ input {
     width: 35%;
 }
 
+@media (max-width: 1600px) {
+    .symbols .game__block {
+        gap: 50px;
+    }
+}
+
+
+
 
 @media (max-width: 1400px) {
     .symbols .game__right {
@@ -95,6 +120,17 @@ input {
     .game.symbols {
         background-image: url(../img/background-symbols-tablet.webp);
     }
+
+    .symbols .game__left {
+        align-items: center;
+        grid-column: 1;
+    }
+
+    .symbols .game__block {
+        padding-top: 130px;
+        grid-template-columns: 1fr;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -104,6 +140,20 @@ input {
 
     .symbols__item {
         padding: 60px 40px;
+    }
+
+    .symbols .game__right {
+        display: none;
+    }
+
+    .symbols .game__left {
+        grid-row: 2;
+    }
+
+    .symbols .game__block {
+        padding-bottom: 86px;
+        padding-top: 0;
+        gap: 15px;
     }
 }
 

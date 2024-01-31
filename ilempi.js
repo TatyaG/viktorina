@@ -34,24 +34,9 @@ export function createGameIlempi() {
 
     const closeClothes = document.createElement('button');
 
-    const rulesBlock = createRulesTablet('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и одеть их на Илемпи.');
+    
 
-    game.append(rulesBlock);
-
-    const mediaQuery = window.matchMedia('(min-width: 577px)')
-    function handleTabletChange(e) {
-        if (e.matches) {
-            const lockerBlock = createLocker();
-            return lockerBlock
-        }
-        else {
-            const lockerBlock = createLockerTablet();
-            return lockerBlock
-        }
-    }
-    mediaQuery.addListener(handleTabletChange)
-    const lockerBlock = handleTabletChange(mediaQuery)
-    const pointBlock = createPoint();
+   
 
     gameTitle.textContent = 'Краеведческий калейдоскоп';
     gameSubtitle.innerHTML = `Наряди <span class="blue-text">Илемпи</span> в чувашский национальный костюм`;
@@ -70,7 +55,7 @@ export function createGameIlempi() {
     gameBlock.classList.add('game__block');
     gameLeft.classList.add('game__left');
     gameRight.classList.add('game__right');
-    lockerBlock.classList.add('game__locker');
+    
     fittingBlock.classList.add('game__fitting');
     gameBtnSkip.classList.add('game__btn', 'game__btn--skip', 'btn-reset');
     gameBtnNext.classList.add('game__btn', 'game__btn--next', 'btn-reset');
@@ -123,18 +108,44 @@ export function createGameIlempi() {
     const gameRules = createTalker('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и надеть их на Илемпи.');
 
     document.body.append(game);
-    game.append(gameTitle, gameSubtitle, gameBlock, pointBlock, clothBtns, clothBlock);
+    game.append(gameTitle, gameSubtitle, gameBlock, clothBtns, clothBlock);
     gameBlock.append(gameLeft, gameRight);
     gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
-    gameRight.append(lockerBlock, shine);
-    lockerBlock.append(girlPodium);
+    gameRight.append(shine);
+ 
     girlPodium.append(girlBlock, podium);
     girlBlock.append(girl, headGirl, dressGirl, shoesGirl);
     clothBtns.append(headBtn, dressBtn, shoesBtn);
     clothBlock.append(closeClothes, headIlempi, dressIlempi, shoesIlempi);
 
+
+    const mediaQuery = window.matchMedia('(min-width: 769px)')
+    function handleTabletChange(e) {
+        if (e.matches) {
+            const lockerBlock = createLocker();
+            return lockerBlock
+        }
+        else {
+            gameBtnNext.remove()
+            const lockerBlock = createLockerTablet();
+            return lockerBlock
+        }
+    }
+    mediaQuery.addListener(handleTabletChange)
+    const lockerBlock = handleTabletChange(mediaQuery)
+    const pointBlock = createPoint();
+
+    game.append(pointBlock);
+    gameRight.append(lockerBlock);
+
+    lockerBlock.classList.add('game__locker');
+    lockerBlock.append(girlPodium);
+
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        const rulesBlock = createRulesTablet('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и одеть их на Илемпи.');
+
+    game.append(rulesBlock);
         gameRight.style.display = 'block';
         gameRules.gameRules.style.display = 'none';
         gameBtnSkip.style.display = 'block';
@@ -185,6 +196,8 @@ export function createGameIlempi() {
         clothBlock.classList.add('open');
     })
 
+    
+
 
     gameBtnSkip.addEventListener('click', (e) => {
         e.preventDefault();
@@ -221,6 +234,13 @@ export function createGameIlempi() {
 
 })
 
+
+gameBtnNext.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.innerHTML = '';
+    const crossword = createCrossword();
+    document.body.append(crossword);
+})
 
 
 
@@ -588,6 +608,12 @@ function createShine() {
 function errorIlempi() {
     const deniska = createDeniska('К сожалению, элементы костюма Илемпи выбраны неправильно.');
     document.body.append(deniska.deniska);
+    deniska.gameBtnNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.innerHTML = '';
+        const crossword = createCrossword();
+        document.body.append(crossword);
+    })
     deniska.rulesDeniska.src = 'img/deniska-sad.webp';
     document.querySelector('.game__clothes').classList.remove('open');
     document.querySelector('.game__btn--skip').style.display = 'none';
@@ -872,6 +898,12 @@ function errorIlempi() {
 function successIlempi() {
     const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
     document.body.append(deniska.deniska);
+    deniska.gameBtnNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.innerHTML = '';
+        const crossword = createCrossword();
+        document.body.append(crossword);
+    })
     document.querySelector('.podium').classList.add('success');
     document.querySelector('.game__btn--skip').style.display = 'none';
     document.querySelector('.game__btn--next').style.display = 'block';
