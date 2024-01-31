@@ -139,10 +139,14 @@ export function createGameSymbols() {
 
                 if (inputs.length == 4) {
                     const inputsTrue = document.querySelectorAll('.symbol__input.checked.symbol__input--true');
-                    if (inputsTrue.length < 1) {
+                    if (inputsTrue.length < 2) {
                         const deniska = createDeniska('К сожалению, угаданы не не все значения символов!');
+                        deniska.rulesDeniska.src = 'img/deniska-sad.webp';
+                        
                         setTimeout(() => {
                             document.body.append(deniska.deniska);
+                            document.querySelector('.game__btn--skip').style.display = 'none';
+                            document.querySelector('.game__btn--next').style.display = 'block';
                         }, 800)
                        
                     }
@@ -155,6 +159,7 @@ export function createGameSymbols() {
                         point.classList.add('animation');
               
                         const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
+                      
                         setTimeout(() => {
                             document.querySelector('.game__btn--skip').style.display = 'none';
                             document.querySelector('.game__btn--next').style.display = 'block';
@@ -253,6 +258,7 @@ export function createGameSymbols() {
         gameBlock.style.overflowY = 'scroll';
 
     })
+
 
     return game;
 }
