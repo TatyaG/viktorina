@@ -75,7 +75,9 @@ export function createCrossword() {
   const pointsNumber = document.createElement("div");
   const pointsScore = document.createElement("p");
 
-  pointsScore.textContent = "0";
+  let pointsSucsess = JSON.parse(localStorage.getItem('points'));
+  pointsScore.textContent = pointsSucsess;
+
   pointsImg.innerHTML = `<svg width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_dii_1478_2236)">
 <path d="M58.7879 0L40 20L21.2121 0V20H0L21.2121 39.3939L0 60H21.2121V80L40 60L58.7879 80V60H80L58.7879 39.3939L80 20H58.7879V0Z" fill="url(#paint0_linear_1478_2236)"/>
@@ -310,7 +312,6 @@ export function createCrossword() {
   })
 
   // Кроссворд
-
   const answers = ["шартан", "купас", "сувар", "утка"];
 
   const grid = [
@@ -536,7 +537,11 @@ export function createCrossword() {
       }, 2000);
     } else {
       pointsImg.classList.add("points_img__shine");
-      pointsScore.textContent = Number(pointsScore.textContent) + 1;
+
+      let pointsSucsess = JSON.parse(localStorage.getItem('points'));           
+        pointsSucsess += 1;
+        localStorage.setItem('points', pointsSucsess);
+        pointsScore.textContent = pointsSucsess;
 
       setTimeout(() => {
         success.classList.remove("hidden");
@@ -624,7 +629,11 @@ export function createCrossword() {
           }, 2000);
         } else {
           pointsImg.classList.add("points_img__shine");
-          pointsScore.textContent = Number(pointsScore.textContent) + 1;
+          
+          let pointsSucsess = JSON.parse(localStorage.getItem('points'));           
+            pointsSucsess += 1;
+            localStorage.setItem('points', pointsSucsess);
+            pointsScore.textContent = pointsSucsess;        
 
           setTimeout(() => {
             success.classList.remove("hidden");
@@ -721,9 +730,14 @@ export function createCrossword() {
             gameBtnNext.classList.remove("hidden");
           }, 4000);
         } else {
-          pointsImg.classList.add("points_img__shine");
-          pointsScore.textContent = Number(pointsScore.textContent) + 1;
+          
+          let pointsSucsess = JSON.parse(localStorage.getItem('points'));           
+              pointsSucsess += 1;
+              localStorage.setItem('points', pointsSucsess);
+              pointsScore.textContent = pointsSucsess;
 
+          pointsImg.classList.add("points_img__shine");        
+       
           setTimeout(() => {
             success.classList.remove("hidden");
             game.classList.add("blur");
