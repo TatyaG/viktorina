@@ -1,6 +1,7 @@
 import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createPoint from './point.js';
+import createRulesTablet from './rules-tablet.js';
 
 export function createGameSymbols() {
     const game = document.createElement('section');
@@ -240,6 +241,9 @@ export function createGameSymbols() {
 
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
+
+        game.append(rulesBlock);
         gameRight.style.display = 'block';
         gameRules.gameRules.style.display = 'none';
         gameBtnSkip.style.display = 'block';
