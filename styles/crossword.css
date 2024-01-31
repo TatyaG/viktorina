@@ -90,7 +90,7 @@ body {
 }
 
 .points_img__shine {
-  left: -60% !important;
+  left: -46% !important;
   animation-name: shine;
   animation-duration: 4s;
 }
@@ -636,7 +636,7 @@ table {
   }
 
   .points_img {
-    left: -55%;
+    left: -39px;
     top: -10px;
   }
 
@@ -646,7 +646,7 @@ table {
   }
 
   .points_img__shine {
-    left: -65% !important;
+    left: -39px !important;
   }
 
   .fail_name,
