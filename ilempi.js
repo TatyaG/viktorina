@@ -145,7 +145,7 @@ export function createGameIlempi() {
         e.preventDefault();
         const rulesBlock = createRulesTablet('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и одеть их на Илемпи.');
 
-    game.append(rulesBlock);
+        game.append(rulesBlock);
         gameRight.style.display = 'block';
         gameRules.gameRules.style.display = 'none';
         gameBtnSkip.style.display = 'block';
@@ -300,7 +300,7 @@ export function checkIlempi() {
     const dress = document.querySelector('.girl__dress');
     const shoes = document.querySelector('.girl__shoes');
     if (head.getAttribute('data-code') && dress.getAttribute('data-code') && shoes.getAttribute('data-code')) {
-        if (head.getAttribute('data-code') == 'head-three' && dress.getAttribute('data-code') == 'dress-three' && shoes.getAttribute('data-code')) {
+        if (head.getAttribute('data-code') == 'head-three' && dress.getAttribute('data-code') == 'dress-three' && shoes.getAttribute('data-code') == 'shoes-three') {
             result = true;
             setTimeout(() => {
                 successIlempi();

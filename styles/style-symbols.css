@@ -47,9 +47,13 @@ input {
 }
 
 .symbol__block {
+    padding: 0 15px;
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 10px;
+    
+
 }
 
 .symbol__input {
@@ -174,4 +178,9 @@ input {
         width: 0;
         height: 0;
     }
+
+    .symbols__item {
+        padding: 60px 28px;
+    }
+
 }

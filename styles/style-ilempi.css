@@ -242,9 +242,9 @@ body {
 
 .deniska .rules__img {
     position: absolute;
-    bottom: 110%;
-    left: 17%;
-    width: 60%;
+    bottom: 102%;
+    left: 10%;
+    width: 79%;
     z-index: 1;
 }
 
@@ -559,7 +559,7 @@ body {
 
 .girl__dress[data-code="dress-two"] {
     left: 15px;
-    top: 30.5%;
+    top: 29.5%;
     width: 83%;
 }
 
