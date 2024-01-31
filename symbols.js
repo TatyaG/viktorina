@@ -143,6 +143,8 @@ export function createGameSymbols() {
                     else {
                         const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
                         setTimeout(() => {
+                            document.querySelector('.game__btn--skip').style.display = 'none';
+                            document.querySelector('.game__btn--next').style.display = 'block';
                             document.body.append(deniska.deniska);
                         }, 800)
                     
