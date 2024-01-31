@@ -15,6 +15,11 @@ export function createGameSymbols() {
 
     const pointBlock = createPoint();
 
+    let points = JSON.parse(localStorage.getItem('points'));
+    pointBlock.textContent = points;
+   
+
+
 
     const items = [
         {
@@ -141,6 +146,13 @@ export function createGameSymbols() {
                        
                     }
                     else {
+                        let points = JSON.parse(localStorage.getItem('points'));
+                        points += 1;
+                        localStorage.setItem('points', points)
+                        const point = document.querySelector('.game__point');
+                        point.textContent = points;
+                        point.classList.add('animation');
+              
                         const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
                         setTimeout(() => {
                             document.querySelector('.game__btn--skip').style.display = 'none';

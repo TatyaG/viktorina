@@ -559,7 +559,7 @@ body {
 
 .girl__dress[data-code="dress-two"] {
     left: 15px;
-    top: 29.5%;
+    top: 30.5%;
     width: 83%;
 }
 
@@ -582,7 +582,7 @@ body {
 }
 
 .girl__head[data-code="head-three"] {
-    left: 6px;
+    left: 12px;
     top: -16%;
     width: 90%;
 }

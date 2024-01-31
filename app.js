@@ -26,8 +26,10 @@ window.addEventListener('DOMContentLoaded', () => {
             } else if (headIlempi.src && dressIlempi.src && shoesIlempi.src) return false
 
             const result = checkIlempi();
-            if (result == true) {
-                localStorage.setItem('points', points + 1)
+            if (result) {
+                let points = JSON.parse(localStorage.getItem('points'));
+                points += 1;
+                localStorage.setItem('points', points)
                 const point = document.querySelector('.game__point');
                 point.textContent = points;
               
@@ -54,8 +56,10 @@ window.addEventListener('DOMContentLoaded', () => {
             } else if (headIlempi.src && dressIlempi.src && shoesIlempi.src) return false
 
             const result = checkIlempi();
-            if (result == true) {
-                localStorage.setItem('points', points + 1)
+            if (result) {
+                let points = JSON.parse(localStorage.getItem('points'));
+                points += 1;
+                localStorage.setItem('points', points)
                 const point = document.querySelector('.game__point');
                 point.textContent = points;
               
@@ -78,8 +82,10 @@ window.addEventListener('DOMContentLoaded', () => {
             } else if (headIlempi.src && dressIlempi.src && shoesIlempi.src) return false
 
             const result = checkIlempi();
-            if (result == true) {
-                localStorage.setItem('points', points + 1)
+            if (result) {
+                let points = JSON.parse(localStorage.getItem('points'));
+                points += 1;
+                localStorage.setItem('points', points)
                 const point = document.querySelector('.game__point');
                 point.textContent = points;
               
