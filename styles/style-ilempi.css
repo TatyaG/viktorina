@@ -144,6 +144,8 @@ body {
     color: #FFF;
 }
 
+
+
 .ilempi .game__block {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -193,13 +195,9 @@ body {
     display: none;
     width: 60px;
     height: 47px;
-    background-image: url(../img/next.svg);
-    transition: background-image .3s ease-in-out;
+    background-image: url(../img/button_arrow.png);
 }
 
-.rules__btn:hover {
-    background-image: url(../img/next-hover.svg);
-}
 
 .rules__btn--tablet {
     width: 32px;
@@ -250,15 +248,16 @@ body {
 
 .rules__top {
     position: absolute;
-    width: 110%;
+    width: 109%;
     height: 100px;
     top: -34px;
-    left: -22px;
+    left: 49%;
     background-image: url(../img/rules-top.webp);
     background-repeat: no-repeat;
     background-position: center top;
     background-size: contain;
     z-index: 3;
+    transform: translateX(-50%);
 }
 
 
@@ -285,15 +284,16 @@ body {
 
 .rules__bottom {
     position: absolute;
-    width: 105%;
+    width: 103%;
     height: 60px;
     bottom: -20px;
-    left: -10px;
+    left: 50%;
     background-image: url(../img/rules-bottom.webp);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: contain;
     z-index: 3;
+    transform: translateX(-50%);
 }
 
 .game__btn {
@@ -307,6 +307,12 @@ body {
     line-height: normal;
     letter-spacing: 1.8px;
     color: #fff;
+}
+
+
+.deniska .game__btn {
+     padding: 16px 30px;
+    
 }
 
 .game__btn--skip {
@@ -747,12 +753,15 @@ body {
         padding: 16px 40px;
         font-size: 20px;
     }
+    
+   
 
     .rules__text {
         padding-top: 45px;
         padding-bottom: 23px;
         font-size: 16px;
     }
+    
 
     .rules__ribbon {
         top: -38px;
@@ -854,7 +863,7 @@ body {
 
     .game__point::before {
         top: -15%;
-        left: -50%;
+        left: -53%;
         width: 40px;
         height: 40px;
         background-size: 40px;
@@ -896,7 +905,7 @@ body {
     }
 
     .ilempi .game__block {
-        padding-bottom: 86px;
+        padding-bottom: 200px;
         padding-top: 0;
         gap: 15px;
     }
@@ -914,7 +923,7 @@ body {
 
     .game__btn {
         display: none;
-        padding: 16px 40px;
+        padding: 16px 30px;
         font-size: 14px;
     }
 
@@ -986,10 +995,10 @@ body {
 
 
     .deniska {
-        padding-bottom: 150px;
+    
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: center;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -997,7 +1006,13 @@ body {
         left: 0;
         background: rgba(255, 255, 255, 0.10);
         backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
         z-index: 10;
+            -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    will-change: transform
     }
 
     .deniska .game__rules {
@@ -1008,6 +1023,7 @@ body {
 
     .deniska .game__btn {
         display: block;
+        font-size: 20px;
     }
 
     .game-blur~.deniska>.game__btn {
@@ -1033,6 +1049,10 @@ body {
     .game-blur~.deniska .game__rules {
         top: 20%;
     }
+    
+    .girl__head[data-code="head-three"] {
+        left: 7px;
+    }
 
 }
 
@@ -1046,4 +1066,8 @@ body {
     .game__locker {
         width: 90vw;
     }
+    
+    .game__podium {
+        width: 55%;
+}
 }

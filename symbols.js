@@ -18,6 +18,9 @@ export function createGameSymbols() {
 
     let points = JSON.parse(localStorage.getItem('points'));
     pointBlock.textContent = points;
+    
+    
+ 
    
 
 
@@ -162,7 +165,7 @@ export function createGameSymbols() {
                       
                         setTimeout(() => {
                             document.querySelector('.game__btn--skip').style.display = 'none';
-                            document.querySelector('.game__btn--next').style.display = 'block';
+                            // document.querySelector('.game__btn--next').style.display = 'block';
                             document.body.append(deniska.deniska);
                         }, 800)
                     
@@ -171,7 +174,6 @@ export function createGameSymbols() {
               
                 }
 
-                console.log(inputs)
             })        
         })
 
@@ -244,8 +246,12 @@ export function createGameSymbols() {
     gameRight.append(symbolsBlock);
 
 
+
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
+
+            gameBtnNext.remove()
+ 
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
         game.append(rulesBlock);
