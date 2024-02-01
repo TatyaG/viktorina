@@ -154,10 +154,16 @@ input {
         grid-row: 2;
     }
 
+    
     .symbols .game__block {
         padding-bottom: 86px;
         padding-top: 0;
         gap: 15px;
+    }
+    
+    .symbols .game__block {
+        padding-bottom: 200px;
+        padding-top: 0;
     }
 }
 
