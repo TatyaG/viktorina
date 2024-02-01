@@ -541,6 +541,10 @@ body {
 }
 
 @media (max-width: 375px) {
+  .title_container {
+    left: 8px;
+  }
+
   .title {
     left: 5%;
     top: 26%;
@@ -584,5 +588,9 @@ body {
 @media (max-width: 360px) {
   body {
     background-image: url(../img/background_1_mobile.webp);
+  }
+
+  .title_container {
+    left: 2px;
   }
 }

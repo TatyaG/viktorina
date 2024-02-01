@@ -151,8 +151,8 @@ body {
 }
 
 .assistant-item {
-  padding-left: 23px;
-  background-image: url(../img/home_btn.svg);
+  padding: 3px 0 6px 23px;
+  background-image: url(../img/home_btn.png);
   background-repeat: no-repeat;
   color: #232962;
   font-size: 14px;
@@ -162,7 +162,7 @@ body {
 }
 
 .assistant-item:not(:last-child) {
-  margin-bottom: 13px;
+  margin-bottom: 6px;
 }
 
 .assistant-text_part1 {
@@ -173,7 +173,7 @@ body {
 
 .assistant-list {
   position: absolute;
-  top: 48%;
+  top: 47.3%;
   left: 10%;
 }
 
@@ -345,11 +345,11 @@ body {
   }
 
   .assistant-item:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 3px;
   }
 
   .assistant-list {
-    top: 51.5%;
+    top: 50%;
     left: 6%;
   }
 
@@ -498,8 +498,12 @@ body {
   }
 
   .assistant-list {
-    top: 46%;
+    top: 45.2%;
     left: 12%;
+  }
+
+  .assistant-item:not(:last-child) {
+    margin-bottom: 2px;
   }
 
   .assistant-text_part3 {
@@ -533,7 +537,7 @@ body {
 
   .assistant-boy_slide {
     right: 5.5%;
-    top: 10%;
+    top: 13.4%;
   }
 
   .swiper-button-next_2::after {
@@ -541,13 +545,11 @@ body {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 360px) {
   body {
     background-image: url(../img/rules_background_mobile.webp);
   }
-}
 
-@media (max-width: 360px) {
   .rules_img2 {
     border-right: 0px solid #45c2ca;
     border-left: 0px solid #45c2ca;

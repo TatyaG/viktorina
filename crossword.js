@@ -216,6 +216,12 @@ export function createCrossword() {
   questionItem3.append(answer3);
   questionItem4.append(answer4);
 
+  gameBtnNext.addEventListener('click', (e) => {
+    document.body.innerHTML = '';
+    const symbols = createGameSymbols()
+    document.body.append(symbols);
+  })
+
   // Говоруша
   const assistantPerrot = document.createElement("div");
   const perrotImg = document.createElement("img");
@@ -534,7 +540,7 @@ export function createCrossword() {
 
       setTimeout(() => {
         fail.classList.remove("hidden");
-      }, 2000);
+      }, 4000);
     } else {
       pointsImg.classList.add("points_img__shine");
 
@@ -545,13 +551,16 @@ export function createCrossword() {
 
       setTimeout(() => {
         success.classList.remove("hidden");
-      }, 2000);
+      }, 4000);
     }
     // Показываем кнопку "Перейти к следующей игре"
     gameBtnNext.classList.remove("hidden");
 
     // Скрываем кнопку "Принять ответы"
     gameBtnAccept.classList.add("hidden");
+
+    // запрет на внесение изменений после принятия ответов
+    // inputs.setAttribute("readonly", "readonly");
   };
 
   gameBtnSkip.onclick = () => {
@@ -626,7 +635,7 @@ export function createCrossword() {
 
           setTimeout(() => {
             fail.classList.remove("hidden");
-          }, 2000);
+          }, 4000);
         } else {
           pointsImg.classList.add("points_img__shine");
           
@@ -637,7 +646,7 @@ export function createCrossword() {
 
           setTimeout(() => {
             success.classList.remove("hidden");
-          }, 2000);
+          }, 4000);
         }
         // Показываем кнопку "Перейти к следующей игре"
         gameBtnNext.classList.remove("hidden");
