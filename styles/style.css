@@ -107,6 +107,8 @@ body {
 .game {
   margin-bottom: 20px;
   position: relative;
+  justify-content: center;
+  align-items: center;
   margin-top: -54px;
   cursor: pointer;
   z-index: 1;
@@ -123,8 +125,6 @@ body {
 
 .btn_game {
   position: absolute;
-  top: 35%;
-  right: 25%;
   max-width: 155px;
   text-align: center;
   color: #fff;
@@ -241,17 +241,13 @@ body {
   .title {
     right: 17%;
   }
-
-  .btn_game {
-    right: 28%;
-  }
 }
 
 @media (max-width: 1600px) {
   .title {
     width: 920px;
     right: 22%;
-    top: 8%;
+    top: 15%;
   }
 
   .img_left {
@@ -260,10 +256,6 @@ body {
 
   .game {
     margin-top: -100px;
-  }
-
-  .btn_game {
-    right: 23.5%;
   }
 }
 
@@ -279,10 +271,6 @@ body {
 
   .title {
     right: 10%;
-  }
-
-  .btn_game {
-    right: 19%;
   }
 
   .boy__img {
@@ -309,8 +297,11 @@ body {
   }
 
   .title {
-    right: 5%;
-    top: 11%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    right: 0;
+    top: 13%;
   }
 
   .boy {
@@ -324,12 +315,6 @@ body {
 
   .IT-logo__title {
     font-size: 14px;
-  }
-}
-
-@media (max-width: 1110px) {
-  .btn_game {
-    right: 13%;
   }
 }
 
@@ -347,9 +332,7 @@ body {
   }
 
   .title {
-    width: auto;
     right: 0;
-    left: 15%;
     top: 11%;
   }
 
@@ -372,11 +355,6 @@ body {
     min-height: 244px;
   }
 
-  .btn_game {
-    right: 14%;
-    top: 32%;
-  }
-
   .footer {
     padding-bottom: 14px;
   }
@@ -393,20 +371,16 @@ body {
 }
 
 @media (max-width: 992px) {
+  .title {
+    top: 14%;
+  }
+
   .btn_game {
-    right: 11%;
-    top: 37%;
     font-size: 26px;
   }
 
   .game__img:hover {
     transform: rotate(0);
-  }
-}
-
-@media (max-width: 880px) {
-  .btn_game {
-    right: 5%;
   }
 }
 
@@ -421,7 +395,7 @@ body {
   }
 
   .title {
-    left: 5%;
+    left: 2.5%;
   }
 
   .content {
@@ -430,16 +404,6 @@ body {
 
   .content__right {
     width: 30%;
-  }
-
-  .btn_game {
-    right: 15%;
-  }
-}
-
-@media (max-width: 640px) {
-  .btn_game {
-    right: 3%;
   }
 }
 
@@ -466,8 +430,8 @@ body {
   }
 
   .title {
-    width: 320px;
-    left: 13%;
+    top: 12.5%;
+    left: 0;
   }
 
   .title_h1 {
@@ -477,7 +441,8 @@ body {
   }
 
   .content__right {
-    margin-bottom: 48px;
+    margin-top: -100px;
+    margin-bottom: 25px;
     gap: 8px;
     flex-direction: row-reverse;
   }
@@ -488,10 +453,6 @@ body {
     width: 157px;
     height: 157px;
     align-items: center;
-  }
-
-  .btn_game {
-    right: 0;
   }
 
   .boy__img {
@@ -538,15 +499,23 @@ body {
   .IT-logo__column {
     align-items: center;
   }
+
+  .btn_game {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 375px) {
+  body {
+    height: 100vh;
+  }
+
   .title_container {
     left: 8px;
   }
 
   .title {
-    left: 5%;
+    left: -2%;
     top: 26%;
   }
 
@@ -572,12 +541,8 @@ body {
   .content__right {
     margin-bottom: 0;
     position: absolute;
-    bottom: 15%;
+    bottom: 19%;
     left: 0;
-  }
-
-  .btn_game {
-    font-size: 20px;
   }
 
   .IT-logo__text {
