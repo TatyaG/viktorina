@@ -482,9 +482,8 @@ body {
   }
 
   .btn_rules__slider {
-    position: absolute;
-    bottom: 10%;
-    left: 30%;
+    bottom: 15%;
+    left: auto;
   }
 }
 
@@ -536,10 +535,6 @@ body {
   .assistant-boy_slide {
     top: 15%;
   }
-
-  .btn_rules__slider {
-    left: 24%;
-  }
 }
 
 @media (max-width: 375px) {
@@ -584,6 +579,5 @@ body {
   .btn_rules__slider {
     max-width: 194px;
     left: 23%;
-    bottom: 11%;
   }
 }
