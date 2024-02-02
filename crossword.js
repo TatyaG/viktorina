@@ -558,9 +558,6 @@ export function createCrossword() {
 
     // Скрываем кнопку "Принять ответы"
     gameBtnAccept.classList.add("hidden");
-
-    // запрет на внесение изменений после принятия ответов
-    // inputs.setAttribute("readonly", "readonly");
   };
 
   gameBtnSkip.onclick = () => {
