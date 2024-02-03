@@ -18,13 +18,6 @@ export function createGameSymbols() {
 
     let points = JSON.parse(localStorage.getItem('points'));
     pointBlock.textContent = points;
-    
-    
- 
-   
-
-
-
     const items = [
         {
             id: 1,
@@ -145,13 +138,13 @@ export function createGameSymbols() {
                     if (inputsTrue.length < 2) {
                         const deniska = createDeniska('К сожалению, угаданы не не все значения символов!');
                         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
-                        
+
                         setTimeout(() => {
                             document.body.append(deniska.deniska);
                             document.querySelector('.game__btn--skip').style.display = 'none';
                             document.querySelector('.game__btn--next').style.display = 'block';
                         }, 800)
-                       
+
                     }
                     else {
                         let points = JSON.parse(localStorage.getItem('points'));
@@ -160,30 +153,30 @@ export function createGameSymbols() {
                         const point = document.querySelector('.game__point');
                         point.textContent = points;
                         point.classList.add('animation');
-              
+
                         const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
-                      
+
                         setTimeout(() => {
                             document.querySelector('.game__btn--skip').style.display = 'none';
                             // document.querySelector('.game__btn--next').style.display = 'block';
                             document.body.append(deniska.deniska);
                         }, 800)
-                    
-                       
+
+
                     }
-              
+
                 }
 
-            })        
+            })
         })
 
-      
+
 
         symbolsBlock.append(symbolItem);
         symbolItem.append(symbolImg, symbolItemBlock);
     })
 
-    
+
     gameBtnSkip.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -191,7 +184,7 @@ export function createGameSymbols() {
         document.body.append(deniska.deniska);
         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
     game.classList.add('game-blur');
-        const btns = document.createElement('div'); 
+        const btns = document.createElement('div');
     const yesBtn = document.createElement('button');
     const noBtn = document.createElement('button');
 
@@ -251,7 +244,7 @@ export function createGameSymbols() {
         e.preventDefault();
 
             gameBtnNext.remove()
- 
+
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
         game.append(rulesBlock);
