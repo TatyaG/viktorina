@@ -63,8 +63,6 @@ export function createGameQuestion() {
     play.classList.add('tv__play', 'btn-reset');
 
 
-
-
     gameTitle.textContent = 'Таланты Чувашской земли';
     gameSubtitle.innerHTML = 'Вопрос от школьника';
     gameBtnSkip.textContent = 'Пропустить игру';

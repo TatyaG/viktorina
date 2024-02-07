@@ -8,7 +8,7 @@
 }
 
 .game.question {
-    background-image: url(../img/question.webp);
+    background-image: url(../img/background-question.webp);
 }
 
 .game__center {
@@ -40,17 +40,35 @@
 
 .tv__play {
     position: absolute;
-    right: 3%;
-    top: 26%;
-    width: 82px;
-    height: 82px;
+    right: 5%;
+    top: 33%;
+    width: 8%;
+    aspect-ratio: 1;
     background-image: url(../img/play.webp);
     background-position: center;
-    background-size: 82px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.tv__play:hover {
+    background-image: url(../img/play-hover.webp);
+}
+
+
+.tv__play:active {
+    background-image: url(../img/play-press.webp);
 }
 
 .tv__play.active {
     background-image: url(../img/play-active.webp);
+}
+
+.tv__play.active:hover {
+    background-image: url(../img/play-active-hover.webp);
+}
+
+.tv__play.active:active {
+    background-image: url(../img/play-active-press.webp);
 }
 
 .question__form {
@@ -61,7 +79,7 @@
     padding: 80px 40px;
     border-radius: 100px 100px 40px 40px;
     background: linear-gradient(302.1deg, #E2CAFE 7.54%, #E5E0FE 89.23%);
-
+    box-shadow: 15px 12px 10px 0px rgba(247, 249, 255, 1) inset, 8px 4px 10px 0px rgba(218, 193, 255, 1) inset, -24px -14px 10px 0px rgba(205, 179, 252, 1) inset;
 
 }
 
@@ -118,7 +136,7 @@
 }
 
 .question__input--false:checked~.question__radio::before {
-    background: linear-gradient(180deg, #C3ACDA 0%, #3E3E3E 100%), linear-gradient(180deg, #F75A76 0%, #A82513 100%);   
+    background: linear-gradient(180deg, #C3ACDA 0%, #3E3E3E 100%), linear-gradient(180deg, #F75A76 0%, #A82513 100%);
 }
 
 
@@ -150,12 +168,19 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .game.question {
+        background-image: url(../img/background-question-tablet.webp);
+    }
+}
+
 
 @media (max-width: 768px) {
     .question .game__center {
         display: none;
         grid-column: 1;
         grid-row: 1;
+        max-width: 600px;
     }
 
     .question .game__block {
@@ -170,7 +195,7 @@
         grid-column: 1;
         justify-self: center;
         grid-row: 3;
-     
+
     }
 
     .question .game__right {
@@ -188,5 +213,28 @@
     .question__radio {
         padding: 10px;
         font-size: 14px;
+    }
+
+    .question .game__subtitle {
+        margin-bottom: 28px;
+    }
+
+
+
+}
+
+@media (max-width: 576px) {
+    .question .game__center {
+        margin-bottom: 56px;
+    }
+
+    .game.question {
+        background-image: url(../img/background-question-phone.webp);
+    }
+}
+
+@media (max-width: 470px) {
+    .question .game__center {
+        margin-bottom: 32px;
     }
 }
