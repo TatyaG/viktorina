@@ -104,7 +104,7 @@ export function createGameIlempi() {
     const gameRules = createTalker('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и надеть их на Илемпи.');
 
     document.body.append(game);
-    game.append(gameTitle, gameSubtitle, gameBlock, clothBtns, clothBlock);
+    game.append(gameTitle, gameSubtitle, gameBlock, clothBtns);
     gameBlock.append(gameLeft, gameRight);
     gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
     gameRight.append(shine);
@@ -125,6 +125,7 @@ export function createGameIlempi() {
         else {
             gameBtnNext.remove()
             const lockerBlock = createLockerTablet();
+            game.append(clothBlock);
             return lockerBlock
         }
     }
