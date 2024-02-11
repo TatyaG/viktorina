@@ -1,7 +1,6 @@
-// import {createGameSymbols} from './symbols.js';
+import {createGameSymbols} from './symbols.js';
 
-// export
-function createCrossword() {
+export function createCrossword() {
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
@@ -773,4 +772,4 @@ function createCrossword() {
   return game;
 }
 
-createCrossword();
+// createCrossword();
