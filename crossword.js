@@ -1,7 +1,7 @@
+// import {createGameSymbols} from './symbols.js';
 
-import {createGameSymbols} from './symbols.js';
-
-export function createCrossword() {
+// export
+function createCrossword() {
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
@@ -75,7 +75,7 @@ export function createCrossword() {
   const pointsNumber = document.createElement("div");
   const pointsScore = document.createElement("p");
 
-  let pointsSucsess = JSON.parse(localStorage.getItem('points'));
+  let pointsSucsess = JSON.parse(localStorage.getItem("points"));
   pointsScore.textContent = pointsSucsess;
 
   pointsImg.innerHTML = `<svg width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -216,11 +216,11 @@ export function createCrossword() {
   questionItem3.append(answer3);
   questionItem4.append(answer4);
 
-  gameBtnNext.addEventListener('click', (e) => {
-    document.body.innerHTML = '';
-    const symbols = createGameSymbols()
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const symbols = createGameSymbols();
     document.body.append(symbols);
-  })
+  });
 
   // Говоруша
   const assistantPerrot = document.createElement("div");
@@ -311,11 +311,11 @@ export function createCrossword() {
   ask.append(askImg, askName, askText1, askText2, askButtonsWrap);
   askButtonsWrap.append(askButtonYes, askButtonNo);
 
-  askButtonYes.addEventListener('click', (e) => {
-    document.body.innerHTML = '';
-    const symbols = createGameSymbols()
+  askButtonYes.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const symbols = createGameSymbols();
     document.body.append(symbols);
-  })
+  });
 
   // Кроссворд
   const answers = ["шартан", "купас", "сувар", "утка"];
@@ -402,12 +402,10 @@ export function createCrossword() {
   };
 
   const inputKeyDown = (event) => {
-    event.preventDefault();
+    const key = event.target.value.at(-1);
 
-    if (event.key === "Backspace") {
-      event.target.value = "";
-    } else if (/[а-яё]/i.test(event.key)) {
-      event.target.value = event.key.toUpperCase();
+    if (/[а-яё]/i.test(key)) {
+      event.target.value = key.toUpperCase();
 
       const nextItem = getNextItem();
 
@@ -417,6 +415,8 @@ export function createCrossword() {
 
         document.querySelector(`[data-id='${nextItem.join(",")}']`)?.focus();
       }
+    } else {
+      event.target.value = "";
     }
 
     const inputs = [...document.querySelectorAll(".crossword_input")];
@@ -449,7 +449,7 @@ export function createCrossword() {
         input.setAttribute("data-ids", item.ids.join(","));
         input.classList.add("crossword_input", item.class);
         input.onfocus = inputFocus;
-        input.onkeydown = inputKeyDown;
+        input.onkeyup = inputKeyDown;
 
         if (item.start) {
           input.setAttribute("data-start", item.start);
@@ -544,10 +544,10 @@ export function createCrossword() {
     } else {
       pointsImg.classList.add("points_img__shine");
 
-      let pointsSucsess = JSON.parse(localStorage.getItem('points'));           
-        pointsSucsess += 1;
-        localStorage.setItem('points', pointsSucsess);
-        pointsScore.textContent = pointsSucsess;
+      let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+      pointsSucsess += 1;
+      localStorage.setItem("points", pointsSucsess);
+      pointsScore.textContent = pointsSucsess;
 
       setTimeout(() => {
         success.classList.remove("hidden");
@@ -558,6 +558,9 @@ export function createCrossword() {
 
     // Скрываем кнопку "Принять ответы"
     gameBtnAccept.classList.add("hidden");
+
+
+    setDisabled()
   };
 
   gameBtnSkip.onclick = () => {
@@ -569,6 +572,12 @@ export function createCrossword() {
     ask.classList.add("hidden");
     game.classList.remove("blur");
   };
+
+  function setDisabled() {
+    document.querySelectorAll("input").forEach((input) => {
+      input.disabled = true
+    })
+  }
 
   // Адаптив
 
@@ -635,11 +644,11 @@ export function createCrossword() {
           }, 4000);
         } else {
           pointsImg.classList.add("points_img__shine");
-          
-          let pointsSucsess = JSON.parse(localStorage.getItem('points'));           
-            pointsSucsess += 1;
-            localStorage.setItem('points', pointsSucsess);
-            pointsScore.textContent = pointsSucsess;        
+
+          let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+          pointsSucsess += 1;
+          localStorage.setItem("points", pointsSucsess);
+          pointsScore.textContent = pointsSucsess;
 
           setTimeout(() => {
             success.classList.remove("hidden");
@@ -650,6 +659,8 @@ export function createCrossword() {
 
         // Скрываем кнопку "Принять ответы"
         gameBtnAccept.classList.add("hidden");
+
+        setDisabled()
       };
     }
   }
@@ -736,14 +747,13 @@ export function createCrossword() {
             gameBtnNext.classList.remove("hidden");
           }, 4000);
         } else {
-          
-          let pointsSucsess = JSON.parse(localStorage.getItem('points'));           
-              pointsSucsess += 1;
-              localStorage.setItem('points', pointsSucsess);
-              pointsScore.textContent = pointsSucsess;
+          let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+          pointsSucsess += 1;
+          localStorage.setItem("points", pointsSucsess);
+          pointsScore.textContent = pointsSucsess;
 
-          pointsImg.classList.add("points_img__shine");        
-       
+          pointsImg.classList.add("points_img__shine");
+
           setTimeout(() => {
             success.classList.remove("hidden");
             game.classList.add("blur");
@@ -752,6 +762,8 @@ export function createCrossword() {
         }
 
         gameBtnAccept.classList.add("opacity");
+
+        setDisabled()
       };
     }
   }
@@ -760,3 +772,5 @@ export function createCrossword() {
 
   return game;
 }
+
+createCrossword();
