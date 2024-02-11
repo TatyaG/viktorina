@@ -2,6 +2,7 @@ import createPoint from "./point";
 import createDeniska from "./deniska";
 import createTalker from "./talker";
 import createRulesTablet from "./rules-tablet";
+import {createFindExtra} from './find-extra.js';
 
 
 let puzzleGame = () => {
@@ -108,6 +109,8 @@ export const createPuzzleGame = () => {
         yesBtn.addEventListener('click', (e) => {
             e.preventDefault();
             document.body.innerHTML = '';
+            const findExtra = createFindExtra();
+            document.body.append(findExtra);
         })
 
         noBtn.addEventListener('click', (e) => {
@@ -133,6 +136,13 @@ export const createPuzzleGame = () => {
     gameSubtitle.innerHTML = `Символы <span class="blue-text">Чувашии</span> и их значение`;
     gameBtnSkip.textContent = 'Пропустить игру';
     gameBtnNext.textContent = 'Следующая игра';
+
+
+    gameBtnNext.addEventListener("click", (e) => {
+        document.body.innerHTML = "";
+        const findExtra = createFindExtra();
+        document.body.append(findExtra);
+      });
 
 
     game.classList.add('game', 'symbols')
