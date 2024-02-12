@@ -2,6 +2,7 @@ import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
+// import createPuzzleGame from './puzzle.js';
 
 export function createGameSymbols() {
     const game = document.createElement('section');
@@ -208,7 +209,17 @@ export function createGameSymbols() {
         game.classList.remove('game-blur');
     })
 
+
+
 })
+
+
+// gameBtnNext.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     document.body.innerHTML = '';
+//     const puzzle = createPuzzleGame();
+//     document.body.append(puzzle);
+// })
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
