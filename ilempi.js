@@ -3,7 +3,6 @@ import createLockerTablet from './lockerTablet.js';
 import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createRulesTablet from './rules-tablet.js';
-import { createGameSymbols } from './symbols.js';
 import createPoint from './point.js';
 import {createCrossword} from './crossword.js'
 
@@ -104,7 +103,7 @@ export function createGameIlempi() {
     const gameRules = createTalker('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и надеть их на Илемпи.');
 
     document.body.append(game);
-    game.append(gameTitle, gameSubtitle, gameBlock, clothBtns);
+    game.append(gameTitle, gameSubtitle, gameBlock, clothBtns, clothBlock);
     gameBlock.append(gameLeft, gameRight);
     gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
     gameRight.append(shine);
@@ -123,9 +122,8 @@ export function createGameIlempi() {
             return lockerBlock
         }
         else {
-            gameBtnNext.remove()
+            gameBtnNext.remove();
             const lockerBlock = createLockerTablet();
-            game.append(clothBlock);
             return lockerBlock
         }
     }
