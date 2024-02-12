@@ -160,7 +160,6 @@ export const createPuzzleGame = () => {
 
     })
     puzzleGame()
-    console.log('adasda')
 }
 createPuzzleGame()
 
