@@ -434,6 +434,7 @@ export function createFindExtra() {
         gameRight.append(btnWrap);
       });
 
+
       gameBtnAccept.addEventListener("click", (e) => {
         e.preventDefault();
     
@@ -472,10 +473,6 @@ export function createFindExtra() {
           checkMark.forEach((element) => {
             element.classList.remove("hidden");
           });
-    
-          const deniskaSuccess = createDeniska(
-            "Отлично! Задание выполнено. Тебе начислен 1 балл."
-          );
 
             // Очки
             let points = JSON.parse(localStorage.getItem('points'));
@@ -484,6 +481,10 @@ export function createFindExtra() {
             const point = document.querySelector('.game__point');
             point.textContent = points;
             point.classList.add('animation');
+
+            const deniskaSuccess = createDeniska(
+              "Отлично! Задание выполнено. Тебе начислен 1 балл."
+            );
     
           setTimeout(() => {
             document.body.append(deniskaSuccess.deniska);
