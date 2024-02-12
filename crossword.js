@@ -1,4 +1,3 @@
-
 import {createGameSymbols} from './symbols.js';
 
 export function createCrossword() {
@@ -75,7 +74,9 @@ export function createCrossword() {
   const pointsNumber = document.createElement("div");
   const pointsScore = document.createElement("p");
 
-  pointsScore.textContent = "0";
+  let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+  pointsScore.textContent = pointsSucsess;
+
   pointsImg.innerHTML = `<svg width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_dii_1478_2236)">
 <path d="M58.7879 0L40 20L21.2121 0V20H0L21.2121 39.3939L0 60H21.2121V80L40 60L58.7879 80V60H80L58.7879 39.3939L80 20H58.7879V0Z" fill="url(#paint0_linear_1478_2236)"/>
@@ -214,6 +215,12 @@ export function createCrossword() {
   questionItem3.append(answer3);
   questionItem4.append(answer4);
 
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const symbols = createGameSymbols();
+    document.body.append(symbols);
+  });
+
   // Говоруша
   const assistantPerrot = document.createElement("div");
   const perrotImg = document.createElement("img");
@@ -295,7 +302,7 @@ export function createCrossword() {
   askName.textContent = "Дениска";
   askText1.textContent =
     "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру.";
-  askText2.textContent = "Продолжать?";
+  askText2.textContent = "Продолжить?";
   askButtonYes.textContent = "Да";
   askButtonNo.textContent = "Нет";
 
@@ -303,17 +310,13 @@ export function createCrossword() {
   ask.append(askImg, askName, askText1, askText2, askButtonsWrap);
   askButtonsWrap.append(askButtonYes, askButtonNo);
 
-
-  askButtonsWrap.addEventListener('click', (e) => {
-    document.body.innerHTML = '';
-    const symbols = createGameSymbols()
+  askButtonYes.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const symbols = createGameSymbols();
     document.body.append(symbols);
-  }
- 
-  )
+  });
 
   // Кроссворд
-
   const answers = ["шартан", "купас", "сувар", "утка"];
 
   const grid = [
@@ -398,12 +401,10 @@ export function createCrossword() {
   };
 
   const inputKeyDown = (event) => {
-    event.preventDefault();
+    const key = event.target.value.at(-1);
 
-    if (event.key === "Backspace") {
-      event.target.value = "";
-    } else if (/[а-яё]/i.test(event.key)) {
-      event.target.value = event.key.toUpperCase();
+    if (/[а-яё]/i.test(key)) {
+      event.target.value = key.toUpperCase();
 
       const nextItem = getNextItem();
 
@@ -413,6 +414,8 @@ export function createCrossword() {
 
         document.querySelector(`[data-id='${nextItem.join(",")}']`)?.focus();
       }
+    } else {
+      event.target.value = "";
     }
 
     const inputs = [...document.querySelectorAll(".crossword_input")];
@@ -445,7 +448,7 @@ export function createCrossword() {
         input.setAttribute("data-ids", item.ids.join(","));
         input.classList.add("crossword_input", item.class);
         input.onfocus = inputFocus;
-        input.onkeydown = inputKeyDown;
+        input.onkeyup = inputKeyDown;
 
         if (item.start) {
           input.setAttribute("data-start", item.start);
@@ -536,75 +539,27 @@ export function createCrossword() {
 
       setTimeout(() => {
         fail.classList.remove("hidden");
-      }, 2000);
+      }, 4000);
     } else {
-      pointsImg.innerHTML = `<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_ddddii_1478_2274)">
-    <path d="M61.2121 120L80 100L98.7879 120L98.7879 100L120 100L98.7879 80.6061L120 60L98.7879 60L98.7879 40L80 60L61.2121 40L61.2121 60L40 60L61.2121 80.6061L40 100L61.2121 100L61.2121 120Z" fill="url(#paint0_linear_1478_2274)"/>
-    </g>
-    <defs>
-    <filter id="filter0_ddddii_1478_2274" x="0" y="0" width="160" height="160" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-    <feOffset dy="1"/>
-    <feComposite in2="hardAlpha" operator="out"/>
-    <feColorMatrix type="matrix" values="0 0 0 0 0.629167 0 0 0 0 0.531058 0 0 0 0 0.0969965 0 0 0 1 0"/>
-    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1478_2274"/>
-    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-    <feOffset/>
-    <feGaussianBlur stdDeviation="20"/>
-    <feComposite in2="hardAlpha" operator="out"/>
-    <feColorMatrix type="matrix" values="0 0 0 0 0.976471 0 0 0 0 0.764706 0 0 0 0 0.145098 0 0 0 0.5 0"/>
-    <feBlend mode="normal" in2="effect1_dropShadow_1478_2274" result="effect2_dropShadow_1478_2274"/>
-    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-    <feOffset/>
-    <feGaussianBlur stdDeviation="10"/>
-    <feComposite in2="hardAlpha" operator="out"/>
-    <feColorMatrix type="matrix" values="0 0 0 0 0.976471 0 0 0 0 0.764706 0 0 0 0 0.145098 0 0 0 0.5 0"/>
-    <feBlend mode="normal" in2="effect2_dropShadow_1478_2274" result="effect3_dropShadow_1478_2274"/>
-    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-    <feOffset/>
-    <feGaussianBlur stdDeviation="5"/>
-    <feComposite in2="hardAlpha" operator="out"/>
-    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
-    <feBlend mode="normal" in2="effect3_dropShadow_1478_2274" result="effect4_dropShadow_1478_2274"/>
-    <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_1478_2274" result="shape"/>
-    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-    <feOffset dx="2"/>
-    <feGaussianBlur stdDeviation="1"/>
-    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-    <feBlend mode="normal" in2="shape" result="effect5_innerShadow_1478_2274"/>
-    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-    <feOffset dx="-2"/>
-    <feGaussianBlur stdDeviation="1"/>
-    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-    <feBlend mode="normal" in2="effect5_innerShadow_1478_2274" result="effect6_innerShadow_1478_2274"/>
-    </filter>
-    <linearGradient id="paint0_linear_1478_2274" x1="78.3699" y1="40" x2="78.3699" y2="120" gradientUnits="userSpaceOnUse">
-    <stop stop-color="#DB850F"/>
-    <stop offset="0.0491384" stop-color="#DB850F"/>
-    <stop offset="0.111143" stop-color="#E89C0F"/>
-    <stop offset="0.522424" stop-color="#F7B510"/>
-    <stop offset="0.604167" stop-color="#F9C223"/>
-    <stop offset="1" stop-color="#FFE560"/>
-    </linearGradient>
-    </defs>
-    </svg>`;
+      pointsImg.classList.add("points_img__shine");
 
-      pointsImg.style.left = "-100%";
-      pointsScore.textContent = Number(pointsScore.textContent) + 1;
+      let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+      pointsSucsess += 1;
+      localStorage.setItem("points", pointsSucsess);
+      pointsScore.textContent = pointsSucsess;
 
       setTimeout(() => {
         success.classList.remove("hidden");
-      }, 2000);
+      }, 4000);
     }
     // Показываем кнопку "Перейти к следующей игре"
     gameBtnNext.classList.remove("hidden");
 
     // Скрываем кнопку "Принять ответы"
     gameBtnAccept.classList.add("hidden");
+
+
+    setDisabled()
   };
 
   gameBtnSkip.onclick = () => {
@@ -616,6 +571,12 @@ export function createCrossword() {
     ask.classList.add("hidden");
     game.classList.remove("blur");
   };
+
+  function setDisabled() {
+    document.querySelectorAll("input").forEach((input) => {
+      input.disabled = true
+    })
+  }
 
   // Адаптив
 
@@ -679,77 +640,26 @@ export function createCrossword() {
 
           setTimeout(() => {
             fail.classList.remove("hidden");
-          }, 2000);
+          }, 4000);
         } else {
-          pointsImg.innerHTML = `<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_ddddii_1478_2274)">
-        <path d="M61.2121 120L80 100L98.7879 120L98.7879 100L120 100L98.7879 80.6061L120 60L98.7879 60L98.7879 40L80 60L61.2121 40L61.2121 60L40 60L61.2121 80.6061L40 100L61.2121 100L61.2121 120Z" fill="url(#paint0_linear_1478_2274)"/>
-        </g>
-        <defs>
-        <filter id="filter0_ddddii_1478_2274" x="0" y="0" width="160" height="160" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dy="1"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0.629167 0 0 0 0 0.531058 0 0 0 0 0.0969965 0 0 0 1 0"/>
-        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset/>
-        <feGaussianBlur stdDeviation="20"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0.976471 0 0 0 0 0.764706 0 0 0 0 0.145098 0 0 0 0.5 0"/>
-        <feBlend mode="normal" in2="effect1_dropShadow_1478_2274" result="effect2_dropShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset/>
-        <feGaussianBlur stdDeviation="10"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0.976471 0 0 0 0 0.764706 0 0 0 0 0.145098 0 0 0 0.5 0"/>
-        <feBlend mode="normal" in2="effect2_dropShadow_1478_2274" result="effect3_dropShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset/>
-        <feGaussianBlur stdDeviation="5"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
-        <feBlend mode="normal" in2="effect3_dropShadow_1478_2274" result="effect4_dropShadow_1478_2274"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_1478_2274" result="shape"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dx="2"/>
-        <feGaussianBlur stdDeviation="1"/>
-        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-        <feBlend mode="normal" in2="shape" result="effect5_innerShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dx="-2"/>
-        <feGaussianBlur stdDeviation="1"/>
-        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-        <feBlend mode="normal" in2="effect5_innerShadow_1478_2274" result="effect6_innerShadow_1478_2274"/>
-        </filter>
-        <linearGradient id="paint0_linear_1478_2274" x1="78.3699" y1="40" x2="78.3699" y2="120" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#DB850F"/>
-        <stop offset="0.0491384" stop-color="#DB850F"/>
-        <stop offset="0.111143" stop-color="#E89C0F"/>
-        <stop offset="0.522424" stop-color="#F7B510"/>
-        <stop offset="0.604167" stop-color="#F9C223"/>
-        <stop offset="1" stop-color="#FFE560"/>
-        </linearGradient>
-        </defs>
-        </svg>`;
-
           pointsImg.classList.add("points_img__shine");
-          pointsImg.style.left = "-62px";
-          pointsImg.style.top = "-37px";
-          pointsScore.textContent = Number(pointsScore.textContent) + 1;
+
+          let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+          pointsSucsess += 1;
+          localStorage.setItem("points", pointsSucsess);
+          pointsScore.textContent = pointsSucsess;
 
           setTimeout(() => {
             success.classList.remove("hidden");
-          }, 2000);
+          }, 4000);
         }
         // Показываем кнопку "Перейти к следующей игре"
         gameBtnNext.classList.remove("hidden");
 
         // Скрываем кнопку "Принять ответы"
         gameBtnAccept.classList.add("hidden");
+
+        setDisabled()
       };
     }
   }
@@ -836,65 +746,12 @@ export function createCrossword() {
             gameBtnNext.classList.remove("hidden");
           }, 4000);
         } else {
-          pointsImg.innerHTML = `<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_ddddii_1478_2274)">
-        <path d="M61.2121 120L80 100L98.7879 120L98.7879 100L120 100L98.7879 80.6061L120 60L98.7879 60L98.7879 40L80 60L61.2121 40L61.2121 60L40 60L61.2121 80.6061L40 100L61.2121 100L61.2121 120Z" fill="url(#paint0_linear_1478_2274)"/>
-        </g>
-        <defs>
-        <filter id="filter0_ddddii_1478_2274" x="0" y="0" width="160" height="160" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dy="1"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0.629167 0 0 0 0 0.531058 0 0 0 0 0.0969965 0 0 0 1 0"/>
-        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset/>
-        <feGaussianBlur stdDeviation="20"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0.976471 0 0 0 0 0.764706 0 0 0 0 0.145098 0 0 0 0.5 0"/>
-        <feBlend mode="normal" in2="effect1_dropShadow_1478_2274" result="effect2_dropShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset/>
-        <feGaussianBlur stdDeviation="10"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0.976471 0 0 0 0 0.764706 0 0 0 0 0.145098 0 0 0 0.5 0"/>
-        <feBlend mode="normal" in2="effect2_dropShadow_1478_2274" result="effect3_dropShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset/>
-        <feGaussianBlur stdDeviation="5"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
-        <feBlend mode="normal" in2="effect3_dropShadow_1478_2274" result="effect4_dropShadow_1478_2274"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_1478_2274" result="shape"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dx="2"/>
-        <feGaussianBlur stdDeviation="1"/>
-        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-        <feBlend mode="normal" in2="shape" result="effect5_innerShadow_1478_2274"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dx="-2"/>
-        <feGaussianBlur stdDeviation="1"/>
-        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-        <feBlend mode="normal" in2="effect5_innerShadow_1478_2274" result="effect6_innerShadow_1478_2274"/>
-        </filter>
-        <linearGradient id="paint0_linear_1478_2274" x1="78.3699" y1="40" x2="78.3699" y2="120" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#DB850F"/>
-        <stop offset="0.0491384" stop-color="#DB850F"/>
-        <stop offset="0.111143" stop-color="#E89C0F"/>
-        <stop offset="0.522424" stop-color="#F7B510"/>
-        <stop offset="0.604167" stop-color="#F9C223"/>
-        <stop offset="1" stop-color="#FFE560"/>
-        </linearGradient>
-        </defs>
-        </svg>`;
+          let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+          pointsSucsess += 1;
+          localStorage.setItem("points", pointsSucsess);
+          pointsScore.textContent = pointsSucsess;
 
           pointsImg.classList.add("points_img__shine");
-          pointsImg.style.left = "-44px";
-          pointsImg.style.top = "-21px";
-          pointsScore.textContent = Number(pointsScore.textContent) + 1;
 
           setTimeout(() => {
             success.classList.remove("hidden");
@@ -904,6 +761,8 @@ export function createCrossword() {
         }
 
         gameBtnAccept.classList.add("opacity");
+
+        setDisabled()
       };
     }
   }
@@ -913,3 +772,4 @@ export function createCrossword() {
   return game;
 }
 
+// createCrossword();

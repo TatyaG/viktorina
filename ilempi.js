@@ -33,8 +33,6 @@ export function createGameIlempi() {
 
     const closeClothes = document.createElement('button');
 
-   
-
     gameTitle.textContent = 'Краеведческий калейдоскоп';
     gameSubtitle.innerHTML = `Наряди <span class="blue-text">Илемпи</span> в чувашский национальный костюм`;
     gameBtnSkip.textContent = 'Пропустить игру';
@@ -52,7 +50,7 @@ export function createGameIlempi() {
     gameBlock.classList.add('game__block');
     gameLeft.classList.add('game__left');
     gameRight.classList.add('game__right');
-    
+
     fittingBlock.classList.add('game__fitting');
     gameBtnSkip.classList.add('game__btn', 'game__btn--skip', 'btn-reset');
     gameBtnNext.classList.add('game__btn', 'game__btn--next', 'btn-reset');
@@ -109,7 +107,7 @@ export function createGameIlempi() {
     gameBlock.append(gameLeft, gameRight);
     gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
     gameRight.append(shine);
- 
+
     girlPodium.append(girlBlock, podium);
     girlBlock.append(girl, headGirl, dressGirl, shoesGirl);
     clothBtns.append(headBtn, dressBtn, shoesBtn);
@@ -119,7 +117,7 @@ export function createGameIlempi() {
     const mediaQuery = window.matchMedia('(min-width: 769px)')
     function handleTabletChange(e) {
         if (e.matches) {
-         
+
             const lockerBlock = createLocker();
             return lockerBlock
         }
@@ -194,7 +192,7 @@ export function createGameIlempi() {
         clothBlock.classList.add('open');
     })
 
-    
+
 
 
     gameBtnSkip.addEventListener('click', (e) => {
@@ -204,7 +202,7 @@ export function createGameIlempi() {
         document.body.append(deniska.deniska);
         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
     game.classList.add('game-blur');
-        const btns = document.createElement('div'); 
+        const btns = document.createElement('div');
     const yesBtn = document.createElement('button');
     const noBtn = document.createElement('button');
 
@@ -239,10 +237,6 @@ gameBtnNext.addEventListener('click', (e) => {
     const crossword = createCrossword();
     document.body.append(crossword);
 })
-
-
-
-
     return game;
 }
 
