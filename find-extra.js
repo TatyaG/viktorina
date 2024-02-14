@@ -11,7 +11,7 @@ export function createFindExtra() {
   const gameLeft = document.createElement("div");
   const gameRight = document.createElement("div");
   const pointBlock = createPoint();
-  let points = JSON.parse(localStorage.getItem('points'));
+  let points = JSON.parse(localStorage.getItem("points") ?? 0);
   pointBlock.textContent = points;
 
   gameTitle.textContent = "Художественная галерея";
@@ -219,6 +219,7 @@ export function createFindExtra() {
     correctImg4Wrap,
     correctImg5Wrap,
   ];
+
   const answersInBox = [
     findAnswer1,
     findAnswer2,
@@ -237,20 +238,100 @@ export function createFindExtra() {
 
   const errorsImg = [errorImg1, errorImg2, errorImg3, errorImg4, errorImg5];
 
-  errorsImg.forEach((item) => {
+  const tabletMediaQueryList = window.matchMedia("(max-width: 1750px)");
+  const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
+
+  const handleAccept = (event) => {
+    event.preventDefault();
+
     for (let i = 0; i < answers.length; i++) {
-      errorsImg[i].addEventListener("click", (e) => {
-        e.preventDefault();
-        errorsImg[i].classList.add("hidden");
-        answers[i].classList.remove("hidden");
+      if (!answers[i].classList.contains("hidden")) {
+        answersInBox[i].classList.remove("hidden");
+        checkMark[i].classList.remove("hidden");
+      }
+
+      if (answers[i].classList.contains("hidden")) {
+        errorsImg[i].style.pointerEvents = "none";
+      }
+    }
+
+    if (
+      Array.from(answers).every((element) => {
+        return element.classList.contains("hidden");
+      })
+    ) {
+      answersInBox.forEach((element) => {
+        element.classList.remove("hidden");
+      });
+      checkMark.forEach((element) => {
+        element.classList.remove("hidden");
       });
     }
-  });
 
-  //   Пропустить игру
+    if (
+      Array.from(answers).every((element) => {
+        return !element.classList.contains("hidden");
+      })
+    ) {
+      answersInBox.forEach((element) => {
+        element.classList.remove("hidden");
+      });
+      checkMark.forEach((element) => {
+        element.classList.remove("hidden");
+      });
 
-  gameBtnSkip.addEventListener("click", (e) => {
-    e.preventDefault();
+      const deniskaSuccess = createDeniska(
+        "Отлично! Задание выполнено. Тебе начислен 1 балл."
+      );
+
+      // Очки
+      let points = JSON.parse(localStorage.getItem("points"));
+      points += 1;
+      localStorage.setItem("points", points);
+      const point = document.querySelector(".game__point");
+      point.textContent = points;
+      point.classList.add("animation");
+
+      setTimeout(() => {
+        if (mobileMediaQueryList.matches) {
+          document.body.append(deniskaSuccess.deniska);
+          deniskaSuccess.deniska.append(gameBtnNext);
+          gameBtnNext.classList.remove("hidden");
+          gameBtnNext.style.marginTop = "40px";
+          game.classList.add("blur");
+        } else {
+          gameRight.append(deniskaSuccess.deniska);
+        }
+      }, 4000);
+    } else {
+      const deniskaFail = createDeniska(
+        "К сожалению, не найдены все лишние элементы."
+      );
+      deniskaFail.rulesDeniska.src = "img/deniska-sad.webp";
+
+      setTimeout(() => {
+        if (mobileMediaQueryList.matches) {
+          document.body.append(deniskaFail.deniska);
+          deniskaFail.deniska.append(gameBtnNext);
+          gameBtnNext.classList.remove("hidden");
+          gameBtnNext.style.marginTop = "40px";
+          game.classList.add("blur");
+        } else {
+          gameRight.append(deniskaFail.deniska);
+        }
+      }, 4000);
+    }
+    gameBtnAccept.classList.add("hidden");
+    gameBtnSkip.classList.add("hidden");
+    gameBtnNext.classList.remove("hidden");
+
+    if (mobileMediaQueryList.matches) {
+      gameBtnNext.classList.add("hidden");
+    }
+  };
+
+  const handleSkip = (event) => {
+    event.preventDefault();
 
     // Дениска спрашивает
 
@@ -296,226 +377,95 @@ export function createFindExtra() {
       deniska.deniska.remove();
       game.classList.remove("blur");
     });
+  };
+
+  const handleRules = (event) => {
+    event.preventDefault();
+
+    const rulesBlock = createRulesTablet(
+      "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик». Мы спрятали на ней 5 лишних элементов. Найди их и получи монету."
+    );
+    game.append(rulesBlock);
+
+    gameLeft.classList.add("hidden");
+    gameRight.classList.remove("hidden");
+    gameBtnSkip.classList.remove("hidden");
+    gameBtnAccept.classList.remove("hidden");
+    gameRight.append(btnWrap);
+  };
+
+  errorsImg.forEach((errorItem, index) => {
+    errorItem.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      errorItem.classList.add("hidden");
+      answers[index].classList.remove("hidden");
+    });
   });
+
+  // Пропустить игру
+
+  gameBtnSkip.addEventListener("click", handleSkip);
 
   // Проверка ответов
 
-  gameBtnAccept.addEventListener("click", (e) => {
-    e.preventDefault();
+  gameBtnAccept.addEventListener("click", handleAccept);
 
-    for (let i = 0; i < answers.length; i++) {
-      if (!answers[i].classList.contains("hidden")) {
-        answersInBox[i].classList.remove("hidden");
-        checkMark[i].classList.remove("hidden");
-      }
+  // Принятие правил
 
-      if (answers[i].classList.contains("hidden")) {
-        errorsImg[i].style.pointerEvents = "none";
-      }
-    }
+  document.querySelector(".rules__btn").addEventListener("click", handleRules);
 
-    if (
-      Array.from(answers).every((element) => {
-        return element.classList.contains("hidden");
-      })
-    ) {
-      answersInBox.forEach((element) => {
-        element.classList.remove("hidden");
-      });
-      checkMark.forEach((element) => {
-        element.classList.remove("hidden");
-      });
-    }
+  //#region Адаптив
 
-    if (
-      Array.from(answers).every((element) => {
-        return !element.classList.contains("hidden");
-      })
-    ) {
-      answersInBox.forEach((element) => {
-        element.classList.remove("hidden");
-      });
-      checkMark.forEach((element) => {
-        element.classList.remove("hidden");
-      });
+  const handleTablet = () => {
+    findImg.src = "img/img-tablet.webp";
 
-      const deniskaSuccess = createDeniska(
-        "Отлично! Задание выполнено. Тебе начислен 1 балл."
-      );
+    errorImg1.src = "img/extra1_tablet.png";
+    errorImg2.src = "img/extra2_tablet.png";
+    errorImg3.src = "img/extra3_tablet.png";
+    errorImg4.src = "img/extra4_tablet.png";
+    errorImg5.src = "img/extra5_tablet.png";
 
-      // Очки
-      let points = JSON.parse(localStorage.getItem('points'));
-      points += 1;
-      localStorage.setItem('points', points)
-      const point = document.querySelector('.game__point');
-      point.textContent = points;
-      point.classList.add('animation');
+    findAnswer1.src = "img/answer-in-box1_tablet.png";
+    findAnswer2.src = "img/answer-in-box2_tablet.png";
+    findAnswer3.src = "img/answer-in-box3_tablet.png";
+    findAnswer4.src = "img/answer-in-box4_tablet.png";
+    findAnswer5.src = "img/answer-in-box5_tablet.png";
 
-      setTimeout(() => {
-        gameRight.append(deniskaSuccess.deniska);
-      }, 4000);
+    checkMark1.src = "img/check-mark_tablet.png";
+    checkMark2.src = "img/check-mark_tablet.png";
+    checkMark3.src = "img/check-mark_tablet.png";
+    checkMark4.src = "img/check-mark_tablet.png";
+    checkMark5.src = "img/check-mark_tablet.png";
+  };
 
-    } else {
-
-      const deniskaFail = createDeniska(
-        "К сожалению, не найдены все лишние элементы."
-      );
-      deniskaFail.rulesDeniska.src = "img/deniska-sad.webp";
-      setTimeout(() => {
-        gameRight.append(deniskaFail.deniska);
-      }, 4000);
-    }
-
-    gameBtnAccept.classList.add("hidden");
+  const handleMobile = () => {
+    gameRight.classList.add("hidden");
     gameBtnSkip.classList.add("hidden");
-    gameBtnNext.classList.remove("hidden");
+    gameBtnAccept.classList.add("hidden");
+  };
+
+  if (tabletMediaQueryList.matches) {
+    handleTablet();
+  }
+
+  if (mobileMediaQueryList.matches) {
+    handleMobile();
+  }
+
+  tabletMediaQueryList.addEventListener("change", ({ matches }) => {
+    if (matches) {
+      handleTablet();
+    }
   });
 
-  // Адаптив
-
-  const mediaQuery = window.matchMedia("(max-width: 1750px)");
-  function handleTabletChange(e) {
-    if (e.matches) {
-      findImg.src = "img/img-tablet.webp";
-
-      errorImg1.src = "img/extra1_tablet.png";
-      errorImg2.src = "img/extra2_tablet.png";
-      errorImg3.src = "img/extra3_tablet.png";
-      errorImg4.src = "img/extra4_tablet.png";
-      errorImg5.src = "img/extra5_tablet.png";
-
-      findAnswer1.src = "img/answer-in-box1_tablet.png";
-      findAnswer2.src = "img/answer-in-box2_tablet.png";
-      findAnswer3.src = "img/answer-in-box3_tablet.png";
-      findAnswer4.src = "img/answer-in-box4_tablet.png";
-      findAnswer5.src = "img/answer-in-box5_tablet.png";
-
-      checkMark1.src = "img/check-mark_tablet.png";
-      checkMark2.src = "img/check-mark_tablet.png";
-      checkMark3.src = "img/check-mark_tablet.png";
-      checkMark4.src = "img/check-mark_tablet.png";
-      checkMark5.src = "img/check-mark_tablet.png";
-
-      errorsImg.forEach((item) => {
-        for (let i = 0; i < answers.length; i++) {
-          errorsImg[i].addEventListener("click", (e) => {
-            e.preventDefault();
-            errorsImg[i].classList.add("hidden");
-            answers[i].classList.remove("hidden");
-          });
-        }
-      });
+  mobileMediaQueryList.addEventListener("change", ({ matches }) => {
+    if (matches) {
+      handleMobile();
     }
-  }
-  mediaQuery.addListener(handleTabletChange);
-  handleTabletChange(mediaQuery);
+  });
 
-
-  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
-  function handleTabletChange2(e) {
-    if (e.matches) {
-      gameRight.classList.add("hidden");
-      gameBtnSkip.classList.add("hidden");
-      gameBtnAccept.classList.add("hidden");
-
-      const rulesBtn = document.querySelector(".rules__btn");
-
-      rulesBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const rulesBlock = createRulesTablet(
-          "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик». Мы спрятали на ней 5 лишних элементов. Найди их и получи монету."
-        );
-        game.append(rulesBlock);
-
-        gameLeft.classList.add("hidden");
-        gameRight.classList.remove("hidden");
-        gameBtnSkip.classList.remove("hidden");
-        gameBtnAccept.classList.remove("hidden");
-        gameRight.append(btnWrap);
-      });
-
-      gameBtnAccept.addEventListener("click", (e) => {
-        e.preventDefault();
-    
-        for (let i = 0; i < answers.length; i++) {
-          if (!answers[i].classList.contains("hidden")) {
-            answersInBox[i].classList.remove("hidden");
-            checkMark[i].classList.remove("hidden");
-          }
-    
-          if (answers[i].classList.contains("hidden")) {
-            errorsImg[i].style.pointerEvents = "none";
-          }
-        }
-    
-        if (
-          Array.from(answers).every((element) => {
-            return element.classList.contains("hidden");
-          })
-        ) {
-          answersInBox.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-          checkMark.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-        }
-    
-        if (
-          Array.from(answers).every((element) => {
-            return !element.classList.contains("hidden");
-          })
-        ) {
-          answersInBox.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-          checkMark.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-    
-          const deniskaSuccess = createDeniska(
-            "Отлично! Задание выполнено. Тебе начислен 1 балл."
-          );
-
-            // Очки
-            let points = JSON.parse(localStorage.getItem('points'));
-            points += 1;
-            localStorage.setItem('points', points)
-            const point = document.querySelector('.game__point');
-            point.textContent = points;
-            point.classList.add('animation');
-    
-          setTimeout(() => {
-            document.body.append(deniskaSuccess.deniska);
-            deniskaSuccess.deniska.append(gameBtnNext);
-            gameBtnNext.classList.remove("hidden");
-            gameBtnNext.style.marginTop = '40px';
-            game.classList.add("blur");
-          }, 4000);
-
-        } else {
-
-          const deniskaFail = createDeniska(
-            "К сожалению, не найдены все лишние элементы."
-          );
-          deniskaFail.rulesDeniska.src = "img/deniska-sad.webp";
-          setTimeout(() => {            
-            document.body.append(deniskaFail.deniska);            
-            deniskaFail.deniska.append(gameBtnNext);
-            gameBtnNext.classList.remove("hidden");
-            gameBtnNext.style.marginTop = '40px';
-            game.classList.add("blur");
-          }, 4000);
-        }
-    
-        gameBtnAccept.classList.remove("hidden");
-        gameBtnSkip.classList.remove("hidden");
-        gameBtnNext.classList.add("hidden");
-      });
-    }
-  }
-  mediaQuery2.addListener(handleTabletChange2);
-  handleTabletChange2(mediaQuery2);
+  //#endregion
 }
 
-createFindExtra();
+// createFindExtra();

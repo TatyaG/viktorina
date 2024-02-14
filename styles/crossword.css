@@ -563,7 +563,7 @@ table {
   .perrot_text {
     top: 45%;
     max-width: 256px;
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .fail-crossword,
@@ -591,6 +591,10 @@ table {
 @media (max-width: 1200px) {
   body {
     background-image: url(../img/background-crossword_tablet.webp);
+  }
+
+  .crossword {
+    padding: 40px;
   }
 
   .game-crossword__title {
@@ -718,9 +722,9 @@ table {
     font-size: 14px;
   }
 
-  .game-crossword {
+  /* .game-crossword {
     padding: 56px 15px;
-  }
+  } */
 }
 
 @media (max-width: 768px) {
@@ -761,7 +765,7 @@ table {
   }
 
   .game-crossword__title {
-    margin-top: -35px;
+    margin-top: -60px;
   }
 
   .game-crossword__subtitle {
@@ -866,12 +870,14 @@ table {
     text-align: center;
   }
 
-  .fail_name, .success_name {
+  .fail_name,
+  .success_name {
     top: 45.5%;
     left: 36%;
   }
 
-  .fail_text, .success_text {
+  .fail_text,
+  .success_text {
     max-width: 290px;
     bottom: 16%;
     left: 11%;
