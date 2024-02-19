@@ -1,3 +1,4 @@
+// import { createFinal } from "./final.js";
 import createTalker from "./talker.js";
 import createDeniska from "./deniska.js";
 import createRulesTablet from "./rules-tablet.js";
@@ -65,6 +66,12 @@ export function createFindExtra() {
 
   gameLeft.append(assistantPerrot.gameRules, btnWrap);
   btnWrap.append(gameBtnSkip, gameBtnAccept, gameBtnNext);
+
+  // gameBtnNext.addEventListener("click", (e) => {
+  //   document.body.innerHTML = "";
+  //   const final = createFinal();
+  //   document.body.append(final);
+  // });
 
   // Справа
 
@@ -465,7 +472,7 @@ export function createFindExtra() {
     }
   });
 
-  //#endregion
+  return game;
 }
 
 // createFindExtra();

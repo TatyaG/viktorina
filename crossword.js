@@ -1,4 +1,5 @@
 import {createGameSymbols} from './symbols.js';
+// import { createFinal } from "./final.js";
 
 export function createCrossword() {
   const game = document.createElement("section");
@@ -211,6 +212,8 @@ export function createCrossword() {
     document.body.innerHTML = "";
     const symbols = createGameSymbols();
     document.body.append(symbols);
+    // const final = createFinal();
+    // document.body.append(final);
   });
 
   // Говоруша
