@@ -26,7 +26,8 @@ function createTalker(text) {
 
     return {
         gameRules,
-        rulesBtn
+        rulesBtn,
+        rulesBottom
     };
 
 }

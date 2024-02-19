@@ -268,7 +268,7 @@ h2 {
     display: flex;
     flex-direction: row;
   }
-  .rules__bottom {
+  .rules-bottom_picture {
     top: 9rem;
   }
   .question_wrap {
@@ -316,7 +316,7 @@ h2 {
 }
 
 @media (max-width: 1400px) {
-  .rules__bottom {
+  .rules-bottom_picture {
     top: 31%;
   }
   .modal_border {
@@ -555,13 +555,13 @@ h2 {
     left: 43%;
   }
 
-  .fail_text {
+  .fail-name-picture {
     bottom: 27%;
     left: 32%;
     width: 277px;
   }
 
-  .success_text {
+  .success_text-picture {
     bottom: 25%;
     left: 32%;
     width: 277px;
@@ -590,16 +590,16 @@ h2 {
 }
 
 @media (max-width: 640px) {
-  .fail_text,
-  .success_text {
+  .fail_text-picture,
+  .success_text-picture {
     left: 29%;
     /* top: 54%; */
   }
 }
 
 @media (max-width: 570px) {
-  .fail_text,
-  .success_text {
+  .fail_text-picture,
+  .success_text-picture {
     left: 25%;
     /* top: 54%; */
   }
@@ -611,8 +611,8 @@ h2 {
 }
 
 @media (max-width: 450px) {
-  .fail_text,
-  .success_text {
+  .fail-name-picture,
+  .success_text-picture {
     left: 20%;
     /* top: 54%; */
   }
@@ -624,8 +624,8 @@ h2 {
     left: 40%;
     /* top: 55%; */
   }
-  .fail_text,
-  .success_text {
+  .fail-name-picture,
+  .success_text-picture {
     left: 16%;
     /* top: 54%; */
   }

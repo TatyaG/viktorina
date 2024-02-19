@@ -858,7 +858,7 @@ body {
 
     .game__point::before {
         top: -15%;
-        left: -53%;
+        left: -53% !;
         width: 40px;
         height: 40px;
         background-size: 40px;

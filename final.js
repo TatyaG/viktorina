@@ -72,6 +72,7 @@ export function createFinal() {
 //   let points = JSON.parse(localStorage.getItem("points") ?? 0);
   let points = 4;
   pointBlock.textContent = points + ` из 9`;
+  pointBlock.classList.add('game__point_final');
 
   const centerButtons = document.createElement("div");
   const gameBtnTakePrize = document.createElement("button");
@@ -85,11 +86,13 @@ export function createFinal() {
   centerText.classList.add("center_text");
   centerButtons.classList.add("center_buttons", "flex");
   gameBtnTakePrize.classList.add(
+    "final-btns",
     "game-crossword__btn",
     "game-crossword__btn--next",
     "btn-reset"
   );
   gameBtnPlayAgain.classList.add(
+    "final-btns",
     "game-crossword__btn",
     "game-crossword__btn--skip",
     "btn-reset"
