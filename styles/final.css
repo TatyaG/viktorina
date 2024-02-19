@@ -42,6 +42,8 @@ body {
 }
 
 .final_assistent-name {
+  top: 34.5%;
+  left: 34.5%;
   color: #f7eafc;
   font-size: 24px;
   font-style: normal;
@@ -50,6 +52,8 @@ body {
 }
 
 .final_assistent-text {
+  top: 50%;
+  left: 15%;
   max-width: 312px;
   color: #232962;
   font-size: 20px;
@@ -60,16 +64,6 @@ body {
 .final_assistant-perrot {
   position: relative;
   top: -35%;
-}
-
-.perrot_name {
-  top: 34.5%;
-  left: 34.5%;
-}
-
-.perrot_text {
-  top: 50%;
-  left: 15%;
 }
 
 .perrot-btn {
@@ -116,7 +110,7 @@ body {
   z-index: 1;
 }
 
-.game__point {
+.game__point_final {
   width: fit-content;
   top: 28%;
   left: 30px;
@@ -142,7 +136,7 @@ body {
   gap: 20px;
 }
 
-.game__point::before {
+.game__point_final::before {
   left: -30%;
 }
 
@@ -205,7 +199,7 @@ body {
 }
 
 @media (max-width: 1750px) {
-  .game-crossword__btn {
+  .final-btns {
     font-size: 24px;
   }
 }
@@ -219,17 +213,17 @@ body {
     width: 45%;
   }
 
-  .game-crossword__btn {
+  .final-btns {
     padding: 12px 63px;
     font-size: 20px;
   }
 
-  .game__point {
+  .game__point_final {
     padding: 4px 24px;
     font-size: 24px;
   }
 
-  .game__point::before {
+  .game__point_final::before {
     width: 60px;
     height: 60px;
     top: -33.5%;
@@ -240,17 +234,14 @@ body {
     font-size: 18px;
   }
 
-  .perrot_name {
+  .final_assistent-name {
     left: 35%;
   }
 
   .final_assistent-text {
+    left: 12%;
     max-width: 256px;
     font-size: 16px;
-  }
-
-  .perrot_text {
-    left: 12%;
   }
 
   .perrot-btn {
@@ -288,7 +279,7 @@ body {
     text-align: center;
   }
 
-  .game__point {
+  .game__point_final {
     top: 53%;
   }
 
@@ -315,7 +306,7 @@ body {
     width: 50%;
   }
 
-  .perrot_name {
+  .final_assistent-name {
     left: 34%;
   }
 
@@ -389,7 +380,7 @@ body {
     padding-top: 286px;
   }
 
-  .game__point {
+  .game__point_final {
     top: 70%;
   }
 }

@@ -1,8 +1,8 @@
-// import { createFinal } from "./final.js";
 import createTalker from "./talker.js";
 import createDeniska from "./deniska.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
+// import {createPicture} from './picture.js';
 
 export function createFindExtra() {
   const game = document.createElement("section");
@@ -69,8 +69,8 @@ export function createFindExtra() {
 
   // gameBtnNext.addEventListener("click", (e) => {
   //   document.body.innerHTML = "";
-  //   const final = createFinal();
-  //   document.body.append(final);
+  //   const picture = createPicture();
+  //   document.body.append(picture);
   // });
 
   // Справа
@@ -361,13 +361,16 @@ export function createFindExtra() {
       "btn-reset",
       "game__btn",
       "game__btn--yes",
-      "game__btn--next"
+      "game__btn--next",
+      "extra-yes"
     );
     noBtn.classList.add(
       "btn-reset",
       "game__btn",
       "game__btn--no",
-      "game__btn--next"
+      "game__btn--next",
+      "game__btn--no",
+      "extra-no"
     );
     btns.append(yesBtn, noBtn);
     deniska.rulesText.append(btns);
@@ -375,8 +378,8 @@ export function createFindExtra() {
     // yesBtn.addEventListener("click", (e) => {
     //   e.preventDefault();
     //   document.body.innerHTML = "";
-    //   const crossword = createCrossword();
-    //   document.body.append(crossword);
+    //   const picture = createPicture();
+    //   document.body.append(picture);
     // });
 
     noBtn.addEventListener("click", (e) => {

@@ -209,6 +209,8 @@ export const picture = () => {
     "Ознакомься с описанием картины. Выбери правильный фрагмент."
   );
 
+  gameRules.rulesBottom.classList.add("rules-bottom_picture");
+
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 
   gameRules.rulesBtn.addEventListener("click", (e) => {
@@ -279,7 +281,7 @@ export const picture = () => {
   sadDeniskaName.textContent = "Дениска";
 
   const sadDeniskaText = document.createElement("p");
-  sadDeniskaText.classList.add("fail_text", "assistent-text");
+  sadDeniskaText.classList.add("fail_text", "fail_text-picture", "assistent-text");
   sadDeniskaText.textContent = "Увы, выбран неверный фрагмент.";
 
   gameRight.append(sadDeniska);
@@ -320,6 +322,8 @@ export const picture = () => {
   modalDescription.append(modalDescriptionText, modalDescriptionTextAuthor);
   modal.append(modalImgWrapper);
   modalImgWrapper.append(modalImg);
+
+  return game;
 };
 
 picture();
