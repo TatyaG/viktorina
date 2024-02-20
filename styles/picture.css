@@ -532,7 +532,7 @@ h2 {
     position: fixed;
     backdrop-filter: blur(9px);
     width: 100%;
-    height: 100%;
+    height: 120%;
     padding-top: 11rem;
   }
   .fail-name-picture,
@@ -551,18 +551,21 @@ h2 {
     /* top: 34%; */
     padding-top: 18px;
     font-size: 18px;
-    top: 55%;
+    top: 47%;
     left: 43%;
   }
 
   .fail-name-picture {
     bottom: 27%;
-    left: 32%;
+    left: 44%;
     width: 277px;
   }
-
+  .fail_text-picture {
+    left: 32%;
+    bottom: 38%;
+  }
   .success_text-picture {
-    bottom: 25%;
+    bottom: 36%;
     left: 32%;
     width: 277px;
   }
@@ -611,10 +614,14 @@ h2 {
 }
 
 @media (max-width: 450px) {
-  .fail-name-picture,
-  .success_text-picture {
-    left: 20%;
+  .fail-name-picture {
+    left: 40%;
     /* top: 54%; */
+  }
+
+  .success_text-picture,
+  .fail_text-picture {
+    left: 19%;
   }
 }
 
@@ -624,7 +631,7 @@ h2 {
     left: 40%;
     /* top: 55%; */
   }
-  .fail-name-picture,
+
   .success_text-picture {
     left: 16%;
     /* top: 54%; */
