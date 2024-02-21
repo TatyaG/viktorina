@@ -511,6 +511,10 @@ h2 {
   .modal_border {
     max-width: 320px;
   }
+
+  .game__title-picture {
+    margin-top: 18%;
+  }
   .modal-desc-img {
     width: 290px;
     height: 126px;

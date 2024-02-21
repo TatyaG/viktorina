@@ -209,7 +209,7 @@ export const createPicture = () => {
     "Ознакомься с описанием картины. Выбери правильный фрагмент."
   );
 
-  // gameRules.rulesBottom.classList.add("rules-bottom_picture");
+  gameRules.rulesBottom.classList.add("rules-bottom_picture");
 
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 
@@ -327,14 +327,10 @@ export const createPicture = () => {
   modal.append(modalImgWrapper);
   modalImgWrapper.append(modalImg);
 
-  return game;
-
-  // picture();
-
   // АДАПТИВ
 
   //Правила для планшета
-  const mediaQuery = window.matchMedia("(max-width: 1800px");
+  const mediaQuery = window.matchMedia("(max-width: 1800px)");
 
   //Напоминаем
   // const questionWrap = document.querySelector(".question_wrap-picture");
@@ -354,7 +350,7 @@ export const createPicture = () => {
   function handleTabletChange(e) {
     if (e.matches) {
       gameLeft.append(questionWrap);
-      gameRules.append(gameBtnSkip, gameBtnNext);
+      gameRules.gameRules.append(gameBtnSkip, gameBtnNext);
     }
   }
 
@@ -362,7 +358,7 @@ export const createPicture = () => {
   handleTabletChange(mediaQuery);
 
   //Правила для мобилки
-  const mediaQuery2 = window.matchMedia("(max-width: 768px");
+  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
 
   function handleTabletChange2(e) {
     if (e.matches) {
@@ -577,6 +573,8 @@ export const createPicture = () => {
 
   mediaQuery2.addListener(handleTabletChange);
   handleTabletChange2(mediaQuery2);
+
+  return game;
 };
 
 // picture();

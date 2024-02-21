@@ -69,8 +69,8 @@ export function createFindExtra() {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const picture = createPicture();
-    document.body.append(picture);
+    const pictureGame = createPicture();
+    document.body.append(pictureGame);
   });
 
   // Справа
@@ -378,8 +378,8 @@ export function createFindExtra() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const picture = createPicture();
-      document.body.append(picture);
+      const pictureGame = createPicture();
+      document.body.append(pictureGame);
     });
 
     noBtn.addEventListener("click", (e) => {
