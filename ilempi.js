@@ -158,7 +158,6 @@ export function createGameIlempi() {
         e.preventDefault();
         if (clothBlock.classList.contains('open')) {
             clothBlock.classList.remove('open');
-            clothBlock.lastChild.remove();
             document.querySelectorAll('.btns__item ').forEach(el => {
                 if (el.classList.contains('active')) el.classList.remove('active');
             })
