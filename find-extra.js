@@ -2,7 +2,7 @@ import createTalker from "./talker.js";
 import createDeniska from "./deniska.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
-// import {createPicture} from './picture.js';
+import {createPicture} from './picture.js';
 
 export function createFindExtra() {
   const game = document.createElement("section");
@@ -67,11 +67,11 @@ export function createFindExtra() {
   gameLeft.append(assistantPerrot.gameRules, btnWrap);
   btnWrap.append(gameBtnSkip, gameBtnAccept, gameBtnNext);
 
-  // gameBtnNext.addEventListener("click", (e) => {
-  //   document.body.innerHTML = "";
-  //   const picture = createPicture();
-  //   document.body.append(picture);
-  // });
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const picture = createPicture();
+    document.body.append(picture);
+  });
 
   // Справа
 
@@ -375,12 +375,12 @@ export function createFindExtra() {
     btns.append(yesBtn, noBtn);
     deniska.rulesText.append(btns);
 
-    // yesBtn.addEventListener("click", (e) => {
-    //   e.preventDefault();
-    //   document.body.innerHTML = "";
-    //   const picture = createPicture();
-    //   document.body.append(picture);
-    // });
+    yesBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.body.innerHTML = "";
+      const picture = createPicture();
+      document.body.append(picture);
+    });
 
     noBtn.addEventListener("click", (e) => {
       e.preventDefault();
