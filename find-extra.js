@@ -11,15 +11,15 @@ export function createFindExtra() {
   const gameBlock = document.createElement("div");
   const gameLeft = document.createElement("div");
   const gameRight = document.createElement("div");
-  const pointBlock = createPoint();
+  const pointDiv = createPoint();
   let points = JSON.parse(localStorage.getItem("points") ?? 0);
-  pointBlock.textContent = points;
+  pointDiv.textContent = points;
 
   gameTitle.textContent = "Художественная галерея";
   gameSubtitle.innerHTML = `Что лишнее?`;
 
   game.classList.add("game_find", "find-extra");
-  pointBlock.classList.add("points");
+  pointDiv.classList.add("points", "points_find-extra");
   gameTitle.classList.add("find-extra__title");
   gameSubtitle.classList.add("find-extra__subtitle");
   gameBlock.classList.add("find-extra__block", "flex");
@@ -27,7 +27,7 @@ export function createFindExtra() {
   gameRight.classList.add("find-extra__right", "flex");
 
   document.body.append(game);
-  game.append(pointBlock, gameTitle, gameSubtitle, gameBlock);
+  game.append(pointDiv, gameTitle, gameSubtitle, gameBlock);
   gameBlock.append(gameLeft, gameRight);
 
   //   Слева
@@ -290,6 +290,7 @@ export function createFindExtra() {
       const deniskaSuccess = createDeniska(
         "Отлично! Задание выполнено. Тебе начислен 1 балл."
       );
+      deniskaSuccess.gameRules.classList.add("game__rules_find-extra");
 
       // Очки
       let points = JSON.parse(localStorage.getItem("points"));
@@ -315,6 +316,7 @@ export function createFindExtra() {
         "К сожалению, не найдены все лишние элементы."
       );
       deniskaFail.rulesDeniska.src = "img/deniska-sad.webp";
+      deniskaFail.gameRules.classList.add("game__rules_find-extra");
 
       setTimeout(() => {
         if (mobileMediaQueryList.matches) {

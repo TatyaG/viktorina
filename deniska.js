@@ -83,7 +83,8 @@ function createDeniska(text) {
         rulesBtn,
         rulesDeniska,
         rulesText,
-        gameBtnNext
+        gameBtnNext,
+        gameRules,
     };
 
 }
