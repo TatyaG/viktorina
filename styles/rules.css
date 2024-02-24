@@ -17,8 +17,18 @@ ul {
 
 @font-face {
   font-family: "Mak";
-  src: local("Mak"), url("../fonts/MAK-bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Mak-Light.woff2") format("woff2"),
+    url("../fonts/Mak-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mak";
+  src: url("../fonts/Mak-Bold.woff2") format("woff2"),
+    url("../fonts/Mak-Bold.woff") format("woff");
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -401,9 +411,15 @@ body {
   }
 
   .assistant-perrot_slide {
-    position: absolute;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
     top: 40%;
-    left: 27.5%;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
   }
 
   .swiper-button-next::after {
@@ -436,9 +452,10 @@ body {
   }
 
   .assistant-boy_slide {
-    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
     top: 30%;
-    right: 28%;
   }
 
   .assistant-name_boy {
@@ -465,9 +482,8 @@ body {
   }
 
   .btn_rules__slider {
-    position: absolute;
-    bottom: 10%;
-    left: 30%;
+    bottom: 15%;
+    left: auto;
   }
 }
 
@@ -476,8 +492,9 @@ body {
     font-size: 32px;
   }
 
-  .assistant-perrot_slide {
-    left: 20%;
+  .rules_img2 {
+    height: 100vh;
+    object-fit: cover;
   }
 
   .assistant-text {
@@ -493,7 +510,6 @@ body {
   }
 
   .assistant-boy_slide {
-    right: 20%;
     top: 25%;
   }
 
@@ -516,27 +532,19 @@ body {
 }
 
 @media (max-width: 450px) {
-  .assistant-perrot_slide {
-    left: 9%;
-  }
-
   .assistant-boy_slide {
-    right: 11%;
     top: 15%;
-  }
-
-  .btn_rules__slider {
-    left: 24%;
   }
 }
 
 @media (max-width: 375px) {
   .assistant-perrot_slide {
-    left: 3.5%;
+    left: -1%;
+    top: 27%;
   }
 
   .assistant-boy_slide {
-    right: 5.5%;
+    left: -1.2%;
     top: 13.4%;
   }
 
@@ -550,16 +558,10 @@ body {
     background-image: url(../img/rules_background_mobile.webp);
   }
 
-  .rules_img2 {
+  /* .rules_img2 {
     border-right: 0px solid #45c2ca;
     border-left: 0px solid #45c2ca;
-  }
-
-  .assistant-perrot_slide {
-    max-width: 340px;
-    left: 2%;
-    top: 29%;
-  }
+  } */
 
   .assistant-text_parrot {
     left: 10%;
@@ -577,6 +579,5 @@ body {
   .btn_rules__slider {
     max-width: 194px;
     left: 23%;
-    bottom: 11%;
   }
 }
