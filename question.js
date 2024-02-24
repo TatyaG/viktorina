@@ -13,12 +13,14 @@ export function createGameQuestion() {
     const gameLeft = document.createElement('div');
     const gameRight = document.createElement('div');
     const gameCenter = document.createElement('div');
+    const videoBlock = document.createElement('div');
     const video = document.createElement('video');
     const gameBtnSkip = document.createElement('button');
     const gameBtnNext = document.createElement('button');
     const tv = document.createElement('img');
     const play = document.createElement('button');
     const questionBlock = document.createElement('form');
+    const name = document.createElement('p');
 
 
     const inputs = [
@@ -61,6 +63,10 @@ export function createGameQuestion() {
     questionBlock.classList.add('question__form');
     tv.classList.add('tv__img');
     play.classList.add('tv__play', 'btn-reset');
+    videoBlock.classList.add('video-block');
+    name.classList.add('tv__name');
+
+    name.textContent = 'Ксенофонтов Дмитрий, 4 класс';
 
 
     gameTitle.textContent = 'Таланты Чувашской земли';
@@ -78,7 +84,8 @@ export function createGameQuestion() {
     gameBlock.append(gameLeft, gameCenter, gameRight);
     gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
     gameRight.append(questionBlock);
-    gameCenter.append(video, tv, play);
+    gameCenter.append(videoBlock, tv, play);
+    videoBlock.append(video, name);
 
 
     inputs.forEach(el => {
@@ -109,24 +116,24 @@ export function createGameQuestion() {
 
             if (input.classList.contains('question__input--true')) {
                 let points = JSON.parse(localStorage.getItem('points'));
-                        points += 1;
-                        localStorage.setItem('points', points)
-                        const point = document.querySelector('.game__point');
-                        point.textContent = points;
-                        point.classList.add('animation');
-              
-                        const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
-                      
-                        setTimeout(() => {
-                            document.querySelector('.game__btn--skip').style.display = 'none';
-                            document.querySelector('.game__btn--next').style.display = 'block';
-                            document.body.append(deniska.deniska);
-                        }, 800)
+                points += 1;
+                localStorage.setItem('points', points)
+                const point = document.querySelector('.game__point');
+                point.textContent = points;
+                point.classList.add('animation');
+
+                const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
+
+                setTimeout(() => {
+                    document.querySelector('.game__btn--skip').style.display = 'none';
+                    // document.querySelector('.game__btn--next').style.display = 'block';
+                    document.body.append(deniska.deniska);
+                }, 800)
             }
             else {
                 const deniska = createDeniska('К сожалению, это неправильный ответ.');
                 deniska.rulesDeniska.src = 'img/deniska-sad.webp';
-                
+
                 setTimeout(() => {
                     document.body.append(deniska.deniska);
                     document.querySelector('.game__btn--skip').style.display = 'none';
@@ -155,56 +162,53 @@ export function createGameQuestion() {
         const deniska = createDeniska('При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?');
         document.body.append(deniska.deniska);
         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
-    game.classList.add('game-blur');
-        const btns = document.createElement('div'); 
-    const yesBtn = document.createElement('button');
-    const noBtn = document.createElement('button');
+        game.classList.add('game-blur');
+        const btns = document.createElement('div');
+        const yesBtn = document.createElement('button');
+        const noBtn = document.createElement('button');
 
-    yesBtn.textContent = 'Да';
-    noBtn.textContent = 'Нет';
+        yesBtn.textContent = 'Да';
+        noBtn.textContent = 'Нет';
 
-    btns.classList.add('btns-group');
-    yesBtn.classList.add('btn-reset', 'game__btn', 'game__btn--yes', 'game__btn--next');
-    noBtn.classList.add('btn-reset', 'game__btn', 'game__btn--no', 'game__btn--next');
-    btns.append(yesBtn, noBtn);
-    deniska.rulesText.append(btns);
+        btns.classList.add('btns-group');
+        yesBtn.classList.add('btn-reset', 'game__btn', 'game__btn--yes', 'game__btn--next');
+        noBtn.classList.add('btn-reset', 'game__btn', 'game__btn--no', 'game__btn--next');
+        btns.append(yesBtn, noBtn);
+        deniska.rulesText.append(btns);
 
-    yesBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.body.innerHTML = '';
+        yesBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.innerHTML = '';
+        })
+
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            deniska.deniska.remove();
+            game.classList.remove('game-blur');
+        })
+
     })
 
-    noBtn.addEventListener('click', (e) => {
+
+    gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        deniska.deniska.remove();
-        game.classList.remove('game-blur');
+
+        gameBtnNext.remove();
+
+        const rulesBlock = createRulesTablet('Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?');
+
+        game.append(rulesBlock);
+        gameRight.style.display = 'block';
+        gameCenter.style.display = 'block';
+        gameRules.gameRules.style.display = 'none';
+        gameBtnSkip.style.display = 'block';
+        gameBlock.style.paddingBottom = '0';
+        gameBlock.style.marginTop = '0';
+        gameLeft.style.paddingTop = '0';
+
     })
 
-})
 
-
-gameRules.rulesBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-        gameBtnNext.remove()
-
-    const rulesBlock = createRulesTablet('Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?');
-
-    game.append(rulesBlock);
-    gameRight.style.display = 'block';
-    gameCenter.style.display = 'block';
-    gameRules.gameRules.style.display = 'none';
-    gameBtnSkip.style.display = 'block';
-    gameBlock.style.paddingBottom = '0';
-    gameBlock.style.marginTop = '0';
-    gameLeft.style.paddingTop = '0';
-
-})
-
-
-
+    return game;
 
 }
-
-
-createGameQuestion()

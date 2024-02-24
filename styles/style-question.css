@@ -38,6 +38,10 @@
     width: 100%;
 }
 
+.tv__img img {
+    width: 100%;
+}
+
 .tv__play {
     position: absolute;
     right: 5%;
@@ -48,6 +52,7 @@
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
+    
 }
 
 .tv__play:hover {
@@ -139,6 +144,23 @@
     background: linear-gradient(180deg, #C3ACDA 0%, #3E3E3E 100%), linear-gradient(180deg, #F75A76 0%, #A82513 100%);
 }
 
+.video-block {
+    position: relative;
+}
+
+.tv__name {
+    position: absolute;
+    padding: 10px 60px;
+    padding-bottom: 20px;
+    bottom: 10px;
+    width: 90%;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    background: linear-gradient(174.5deg, rgba(129, 96, 171, 0.4) -12.72%, #350F53 95.61%);
+    color: white;
+}
+
 
 @media (max-width: 1400px) {
 
@@ -172,6 +194,8 @@
     .game.question {
         background-image: url(../img/background-question-tablet.webp);
     }
+
+    
 }
 
 
@@ -181,6 +205,7 @@
         grid-column: 1;
         grid-row: 1;
         max-width: 600px;
+
     }
 
     .question .game__block {
@@ -219,6 +244,21 @@
         margin-bottom: 28px;
     }
 
+    .tv__name {
+        padding: 8px 40px;
+        font-size: 12px;
+    }
+
+    .game__center video {
+        border-radius: 65px;
+    }
+
+    .tv__play {
+        right: 4%;
+        top: 31%;
+        width: 10%;
+    }
+
 
 
 }
@@ -236,5 +276,14 @@
 @media (max-width: 470px) {
     .question .game__center {
         margin-bottom: 32px;
+    }
+
+    .tv__name {
+        bottom: 7px;
+        padding: 4px 24px;
+    }
+
+    .game__center video {
+        border-radius: 60px;
     }
 }
