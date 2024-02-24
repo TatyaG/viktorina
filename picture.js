@@ -2,6 +2,7 @@ import createTalker from "./talker.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
+import {createGameQuestion} from './question.js';
 
 export const createPicture = () => {
   //Массив с игрой и картинами
@@ -179,6 +180,8 @@ export const createPicture = () => {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
+          const question = createGameQuestion();
+          document.body.append(question);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -535,6 +538,9 @@ export const createPicture = () => {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          console.log('aa')
+          const question = createGameQuestion();
+          document.body.append(question);
         });
 
         noBtn.addEventListener("click", (e) => {
