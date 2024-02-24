@@ -422,7 +422,7 @@ body {
   right: -8px;
 }
 
-.blur ~ .deniska .game__rules {
+.blur ~ .deniska .game__rules_find-extra {
   position: absolute;
   position: fixed;
   left: 50%;
@@ -432,7 +432,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.deniska .game__rules {
+.deniska .game__rules_find-extra {
   position: absolute;
   right: -129px;
   bottom: 0;
@@ -442,7 +442,7 @@ body {
 /* Адаптив */
 
 @media (max-width: 1880px) {
-  .deniska .game__rules {
+  .deniska .game__rules_find-extra {
     right: 10px;
     bottom: -90px;
   }
@@ -555,12 +555,12 @@ body {
     background-image: url(../img/ribbon-tablet.svg);
   }
 
-  .game__point {
+  .points_find-extra {
     padding: 4px 24px;
     font-size: 24px;
   }
 
-  .game__point::before {
+  .points_find-extra::before {
     top: -30%;
     left: -67%;
     width: 60px;
@@ -743,14 +743,14 @@ body {
     left: 89%;
   }
 
-  .game__point::before {
+  .points_find-extra::before {
     background-size: 40px;
     background-repeat: no-repeat;
     left: -51%;
     top: -13%;
   }
 
-  .game__point {
+  .points_find-extra {
     position: absolute;
     font-size: 20px;
     padding: 4px 20px;
@@ -943,7 +943,7 @@ body {
     font-size: 16px;
   }
 
-  .blur ~ .deniska .game__rules {
+  .blur ~ .deniska .game__rules_find-extra {
     position: relative;
     transform: translateX(-50%);
     top: 0;
@@ -962,10 +962,6 @@ body {
     display: block;
     bottom: 0;
   }
-
-  /* .deniska .game__btn--next {
-    bottom: -138px;
-  } */
 
   .shine {
     left: 10px;
@@ -986,7 +982,7 @@ body {
     z-index: 10;
   }
 
-  .deniska .game__rules {
+  .deniska .game__rules_find-extra {
     position: relative;
     transform: translateX(-50%);
     left: 50%;

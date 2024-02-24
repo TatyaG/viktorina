@@ -552,8 +552,8 @@ h2 {
     /* top: 34%; */
     padding-top: 18px;
     font-size: 18px;
-    top: 47%;
-    left: 43%;
+    top: 38%;
+    left: 44.5%;
   }
 
   .fail-name-picture {
@@ -563,10 +563,10 @@ h2 {
   }
   .fail_text-picture {
     left: 32%;
-    bottom: 38%;
+    bottom: 51%;
   }
   .success_text-picture {
-    bottom: 36%;
+    bottom: 49%;
     left: 32%;
     width: 277px;
   }
