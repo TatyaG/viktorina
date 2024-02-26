@@ -268,7 +268,7 @@ h2 {
     display: flex;
     flex-direction: row;
   }
-  .rules-bottom_picture {
+  .rules__bottom-picture {
     top: 9rem;
   }
   .question_wrap {
@@ -316,7 +316,7 @@ h2 {
 }
 
 @media (max-width: 1400px) {
-  .rules-bottom_picture {
+  .rules__bottom-picture {
     top: 31%;
   }
   .modal_border {
@@ -425,7 +425,7 @@ h2 {
     width: 289px;
   }
 
-  .rules__bottom {
+  .rules__bottom-picture {
     top: auto;
   }
   .question_img-picture {

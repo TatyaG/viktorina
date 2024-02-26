@@ -82,7 +82,7 @@ export const createPicture = () => {
   game.append(gameTitle, gameSubtitle, gameBlock);
   //Добавляем в div gameblock правый, центральный и левый блок
   gameBlock.append(gameLeft, gameCenter, gameRight);
-  //Добавляем в правый блок div с картинами
+  //Добавляем в центральный блок div с картинами
   gameCenter.append(pictureWrapper);
 
   //Создание шаблона одной карточки с картинкой
@@ -219,10 +219,6 @@ export const createPicture = () => {
   gameRules.rulesBtn.addEventListener("click", (e) => {
     e.preventDefault();
     gameBtnNext.remove();
-    // const rulesBlock = createRulesTablet(
-    //   "Что обозначают эти символы? Выбери правильный вариант ответа."
-    // );
-    // game.append(rulesBlock);
     gameCenter.style.display = "block";
     gameRules.gameRules.style.display = "none";
     gameBtnSkip.style.display = "block";
