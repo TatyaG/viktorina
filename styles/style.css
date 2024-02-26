@@ -80,6 +80,10 @@ body {
   padding-left: 32px;
 }
 
+.IT-logo__column {
+  align-items: center;
+}
+
 .content {
   gap: 82px;
 }
@@ -331,6 +335,10 @@ body {
     padding-left: 40px;
   }
 
+  .IT-logo img {
+    width: 62px;
+  }
+
   .title {
     right: 0;
     top: 11%;
@@ -500,8 +508,8 @@ body {
     align-items: end;
   }
 
-  .IT-logo__column {
-    align-items: center;
+  .IT-logo img {
+    width: 57px;
   }
 
   .btn_game {
@@ -509,11 +517,11 @@ body {
   }
 }
 
-@media (min-width: 376px) and (max-width: 575px) {
+/* @media (min-width: 376px) and (max-width: 575px) {
   body {
     height: 100vh;
   }
-}
+} */
 
 @media (max-width: 375px) {
   .title_container {

@@ -2,8 +2,9 @@ import createTalker from "./talker.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
+import {createGameQuestion} from './question.js';
 
-export const picture = () => {
+export const createPicture = () => {
   //Массив с игрой и картинами
   const pictureGame = [
     {
@@ -179,6 +180,8 @@ export const picture = () => {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
+          const question = createGameQuestion();
+          document.body.append(question);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -208,6 +211,8 @@ export const picture = () => {
   const gameRules = createTalker(
     "Ознакомься с описанием картины. Выбери правильный фрагмент."
   );
+
+  gameRules.rulesBottom.classList.add("rules-bottom_picture");
 
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 
@@ -275,7 +280,11 @@ export const picture = () => {
   sadDeniskaName.textContent = "Дениска";
 
   const sadDeniskaText = document.createElement("p");
-  sadDeniskaText.classList.add("fail_text", "assistent-text");
+  sadDeniskaText.classList.add(
+    "fail_text",
+    "fail_text-picture",
+    "assistent-text"
+  );
   sadDeniskaText.textContent = "Увы, выбран неверный фрагмент.";
 
   gameRight.append(sadDeniska);
@@ -316,55 +325,54 @@ export const picture = () => {
   modalDescription.append(modalDescriptionText, modalDescriptionTextAuthor);
   modal.append(modalImgWrapper);
   modalImgWrapper.append(modalImg);
-};
 
-picture();
+  // picture();
 
-// АДАПТИВ
+  // АДАПТИВ
 
-//Правила для планшета
-const mediaQuery = window.matchMedia("(max-width: 1800px");
+  //Правила для планшета
+  const mediaQuery = window.matchMedia("(max-width: 1800px)");
 
-//Напоминаем
-const questionWrap = document.querySelector(".question_wrap-picture");
-const gameLeft = document.querySelector(".game__left-picture");
-const gameRules = document.querySelector(".game__rules");
-const gameBtnSkip = document.querySelector(".game__btn--skip");
-const gameBtnNext = document.querySelector(".game__btn--next");
-const correctPicture = document.querySelectorAll(".picture_item");
-const modalWrapper = document.querySelector(".modal-wrapper-mobile");
-const gameBlock = document.querySelector(".game__block");
-const gameCenter = document.querySelector(".game__center");
-const sadDeniska = document.querySelector(".fail-picture");
-const happyDeniska = document.querySelector(".success-picture");
-const game = document.querySelector(".picture_game");
-const pictureWrapper = document.querySelector(".pictures_wrapper");
+  //Напоминаем
+  // const questionWrap = document.querySelector(".question_wrap-picture");
+  // const gameLeft = document.querySelector(".game__left-picture");
+  // const gameRules = document.querySelector(".game__rules");
+  // const gameBtnSkip = document.querySelector(".game__btn--skip");
+  // const gameBtnNext = document.querySelector(".game__btn--next");
+  // const correctPicture = document.querySelectorAll(".picture_item");
+  // const modalWrapper = document.querySelector(".modal-wrapper-mobile");
+  // const gameBlock = document.querySelector(".game__block");
+  // const gameCenter = document.querySelector(".game__center");
+  // const sadDeniska = document.querySelector(".fail-picture");
+  // const happyDeniska = document.querySelector(".success-picture");
+  // const game = document.querySelector(".picture_game");
+  // const pictureWrapper = document.querySelector(".pictures_wrapper");
 
-function handleTabletChange(e) {
-  if (e.matches) {
-    gameLeft.append(questionWrap);
-    gameRules.append(gameBtnSkip, gameBtnNext);
+  function handleTabletChange(e) {
+    if (e.matches) {
+      gameLeft.append(questionWrap);
+      gameRules.gameRules.append(gameBtnSkip, gameBtnNext);
+    }
   }
-}
 
-mediaQuery.addListener(handleTabletChange);
-handleTabletChange(mediaQuery);
+  mediaQuery.addListener(handleTabletChange);
+  handleTabletChange(mediaQuery);
 
-//Правила для мобилки
-const mediaQuery2 = window.matchMedia("(max-width: 768px");
+  //Правила для мобилки
+  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
 
-function handleTabletChange2(e) {
-  if (e.matches) {
-    const slideBtn = document.querySelector(".rules__btn");
+  function handleTabletChange2(e) {
+    if (e.matches) {
+      const slideBtn = document.querySelector(".rules__btn");
 
-    //Создаем кнопку стрелку на второй странице
-    const slide2Btn = document.createElement("button");
-    slide2Btn.classList.add("rules__btn", "rules__btn-picture");
+      //Создаем кнопку стрелку на второй странице
+      const slide2Btn = document.createElement("button");
+      slide2Btn.classList.add("rules__btn", "rules__btn-picture");
 
-    //Создаем значок с правилами
-    const rulesBtnImg = document.createElement("svg");
-    rulesBtnImg.classList.add("rules-img-btn", "hidden");
-    rulesBtnImg.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      //Создаем значок с правилами
+      const rulesBtnImg = document.createElement("svg");
+      rulesBtnImg.classList.add("rules-img-btn", "hidden");
+      rulesBtnImg.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" fill="url(#paint0_linear_608_5149)"/>
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" stroke="#9382C2" stroke-width="1.5"/>
     <path d="M13.9997 18.6667H22.6663H13.9997ZM9.33301 18.6667H9.99967H9.33301ZM9.33301 14H9.99967H9.33301ZM9.33301 23.3333H9.99967H9.33301ZM13.9997 14H22.6663H13.9997ZM13.9997 23.3333H22.6663H13.9997Z" fill="white"/>
@@ -385,38 +393,38 @@ function handleTabletChange2(e) {
     </linearGradient>
     </defs>
     </svg>`;
-    const rules = document.createElement("div");
-    const rulesBlock = document.createElement("div");
-    const rulesText = document.createElement("p");
-    const rulesBtnClose = document.createElement("svg");
+      const rules = document.createElement("div");
+      const rulesBlock = document.createElement("div");
+      const rulesText = document.createElement("p");
+      const rulesBtnClose = document.createElement("svg");
 
-    rules.classList.add("rules", "opacity", "rules-picture");
-    rulesBlock.classList.add("rules_block");
-    rulesText.classList.add("rules_text", "rules_text-picture");
-    rulesBtnClose.classList.add("rules_close");
+      rules.classList.add("rules", "opacity", "rules-picture");
+      rulesBlock.classList.add("rules_block");
+      rulesText.classList.add("rules_text", "rules_text-picture");
+      rulesBtnClose.classList.add("rules_close");
 
-    rulesText.textContent =
-      "Ознакомься с описанием картины. Выбери правильный фрагмент.";
-    rulesBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      rulesText.textContent =
+        "Ознакомься с описанием картины. Выбери правильный фрагмент.";
+      rulesBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15 5L5 15M5 5L15 15" stroke="#9382C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
-    game.append(rules, rulesBtnImg);
-    rules.append(rulesBlock);
-    rulesBlock.append(rulesText, rulesBtnClose);
+      game.append(rules, rulesBtnImg);
+      rules.append(rulesBlock);
+      rulesBlock.append(rulesText, rulesBtnClose);
 
-    rulesBtnImg.onclick = function () {
-      rules.classList.toggle("opacity");
-    };
+      rulesBtnImg.onclick = function () {
+        rules.classList.toggle("opacity");
+      };
 
-    rulesBtnClose.onclick = function () {
-      rules.classList.add("opacity");
-    };
+      rulesBtnClose.onclick = function () {
+        rules.classList.add("opacity");
+      };
 
-    //Создаем значок с инфо
-    const infoImg = document.createElement("svg");
-    infoImg.classList.add("info-img-btn", "hidden");
-    infoImg.innerHTML = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      //Создаем значок с инфо
+      const infoImg = document.createElement("svg");
+      infoImg.classList.add("info-img-btn", "hidden");
+      infoImg.innerHTML = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.75" y="0.75" width="26.5" height="26.5" rx="5.25" fill="url(#paint0_linear_1154_6434)"/>
 <rect x="0.75" y="0.75" width="26.5" height="26.5" rx="5.25" stroke="#9382C2" stroke-width="1.5"/>
 <mask id="path-2-inside-1_1154_6434" fill="white">
@@ -433,136 +441,142 @@ function handleTabletChange2(e) {
 </defs>
 </svg>`;
 
-    const infoWrap = document.createElement("div");
-    const infoBlock = document.createElement("div");
-    const infoText = document.createElement("p");
-    const infoBtnClose = document.createElement("svg");
+      const infoWrap = document.createElement("div");
+      const infoBlock = document.createElement("div");
+      const infoText = document.createElement("p");
+      const infoBtnClose = document.createElement("svg");
 
-    infoWrap.classList.add("opacity", "info");
-    infoBlock.classList.add("info_block");
-    infoText.classList.add("rules_text", "info_text_picture");
-    infoBtnClose.classList.add("rules_close");
+      infoWrap.classList.add("opacity", "info");
+      infoBlock.classList.add("info_block");
+      infoText.classList.add("rules_text", "info_text_picture");
+      infoBtnClose.classList.add("rules_close");
 
-    infoText.textContent =
-      "Картина повествует о временах, когда Древней Руси угрожало монголо-татарское иго. На ней изображены могучие, храбрые люди, защитники отечества. Они зорко смотрят вдаль, обозревают местность в поиске врага, который грозится напасть на Великую Русь.";
+      infoText.textContent =
+        "Картина повествует о временах, когда Древней Руси угрожало монголо-татарское иго. На ней изображены могучие, храбрые люди, защитники отечества. Они зорко смотрят вдаль, обозревают местность в поиске врага, который грозится напасть на Великую Русь.";
 
-    infoBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      infoBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M15 5L5 15M5 5L15 15" stroke="#9382C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`;
 
-    game.append(infoWrap, infoImg);
-    infoWrap.append(infoBlock);
-    infoBlock.append(infoText, infoBtnClose);
+      game.append(infoWrap, infoImg);
+      infoWrap.append(infoBlock);
+      infoBlock.append(infoText, infoBtnClose);
 
-    infoImg.onclick = function () {
-      infoWrap.classList.toggle("opacity");
-    };
+      infoImg.onclick = function () {
+        infoWrap.classList.toggle("opacity");
+      };
 
-    infoBtnClose.onclick = function () {
-      infoWrap.classList.add("opacity");
-    };
+      infoBtnClose.onclick = function () {
+        infoWrap.classList.add("opacity");
+      };
 
-    //Создаем кнопку "Пропустить игру" для мобилки
-    const gameBtnSkipMobile = document.createElement("button");
-    gameBtnSkipMobile.classList.add(
-      "game__btn",
-      "game__btn--skip",
-      "btn-reset",
-      "game__btn--skip-picture"
-    );
-    gameBtnSkipMobile.textContent = "Пропустить игру";
-
-    questionWrap.append(slide2Btn, gameBtnSkipMobile);
-
-    //Отображаем описание по клику на стрелку
-    slideBtn.addEventListener("click", () => {
-      questionWrap.style.display = "block";
-      gameBtnSkipMobile.style.display = "block";
-      rulesBtnImg.style.display = "block";
-    });
-
-    slide2Btn.addEventListener("click", () => {
-      pictureWrapper.style.display = "block";
-      questionWrap.style.display = "none";
-      pictureWrapper.append(gameBtnSkipMobile);
-      infoImg.style.display = "block";
-      gameBtnSkipMobile.style.position = "fixed";
-      gameBtnSkipMobile.style.bottom = "0";
-      // gameBtnSkipMobile.style.right = "20%";
-    });
-
-    //Добавляем правила открытия модалки 'пропустить игру'
-    gameBtnSkipMobile.addEventListener("click", (e) => {
-      e.preventDefault();
-      const deniska = createDeniska(
-        "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
-      );
-      document.body.append(deniska.deniska);
-      deniska.rulesDeniska.src = "img/deniska-sad.webp";
-      game.classList.add("game-blur");
-      const btns = document.createElement("div");
-      const yesBtn = document.createElement("button");
-      const noBtn = document.createElement("button");
-
-      yesBtn.textContent = "Да";
-      noBtn.textContent = "Нет";
-
-      btns.classList.add("btns-group");
-      yesBtn.classList.add(
-        "btn-reset",
+      //Создаем кнопку "Пропустить игру" для мобилки
+      const gameBtnSkipMobile = document.createElement("button");
+      gameBtnSkipMobile.classList.add(
         "game__btn",
-        "game__btn--yes",
-        "game__btn--next"
-      );
-      noBtn.classList.add(
+        "game__btn--skip",
         "btn-reset",
-        "game__btn",
-        "game__btn--no",
-        "game__btn--next"
+        "game__btn--skip-picture"
       );
-      btns.append(yesBtn, noBtn);
-      deniska.rulesText.append(btns);
+      gameBtnSkipMobile.textContent = "Пропустить игру";
 
-      yesBtn.addEventListener("click", (e) => {
+      questionWrap.append(slide2Btn, gameBtnSkipMobile);
+
+      //Отображаем описание по клику на стрелку
+      slideBtn.addEventListener("click", () => {
+        questionWrap.style.display = "block";
+        gameBtnSkipMobile.style.display = "block";
+        rulesBtnImg.style.display = "block";
+      });
+
+      slide2Btn.addEventListener("click", () => {
+        pictureWrapper.style.display = "block";
+        questionWrap.style.display = "none";
+        pictureWrapper.append(gameBtnSkipMobile);
+        infoImg.style.display = "block";
+        gameBtnSkipMobile.style.position = "fixed";
+        gameBtnSkipMobile.style.bottom = "0";
+        // gameBtnSkipMobile.style.right = "20%";
+      });
+
+      //Добавляем правила открытия модалки 'пропустить игру'
+      gameBtnSkipMobile.addEventListener("click", (e) => {
         e.preventDefault();
-        document.body.innerHTML = "";
+        const deniska = createDeniska(
+          "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+        );
+        document.body.append(deniska.deniska);
+        deniska.rulesDeniska.src = "img/deniska-sad.webp";
+        game.classList.add("game-blur");
+        const btns = document.createElement("div");
+        const yesBtn = document.createElement("button");
+        const noBtn = document.createElement("button");
+
+        yesBtn.textContent = "Да";
+        noBtn.textContent = "Нет";
+
+        btns.classList.add("btns-group");
+        yesBtn.classList.add(
+          "btn-reset",
+          "game__btn",
+          "game__btn--yes",
+          "game__btn--next"
+        );
+        noBtn.classList.add(
+          "btn-reset",
+          "game__btn",
+          "game__btn--no",
+          "game__btn--next"
+        );
+        btns.append(yesBtn, noBtn);
+        deniska.rulesText.append(btns);
+
+        yesBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+          console.log('aa')
+          const question = createGameQuestion();
+          document.body.append(question);
+        });
+
+        noBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          deniska.deniska.remove();
+          game.classList.remove("game-blur");
+        });
       });
 
-      noBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        deniska.deniska.remove();
-        game.classList.remove("game-blur");
+      correctPicture.forEach((item) => {
+        item.addEventListener("click", () => {
+          setTimeout(() => {
+            modalWrapper.style.display = "block";
+          }, 3000);
+
+          if (item.getAttribute("data-crt") === "true") {
+            item.parentElement.parentElement.classList.add("correct");
+            happyDeniska.append(gameBtnNext);
+          } else {
+            item.parentElement.parentElement.classList.add("incorrect");
+            sadDeniska.append(gameBtnNext);
+          }
+
+          setTimeout(() => {
+            pictureWrapper.style.display = "none";
+          }, 3000);
+
+          setTimeout(() => {
+            modalWrapper.style.display = "none";
+            pictureWrapper.style.display = "block";
+            gameBtnSkipMobile.style.display = "none";
+            gameBtnNext.style.display = "block";
+          }, 6000);
+        });
       });
-    });
-
-    correctPicture.forEach((item) => {
-      item.addEventListener("click", () => {
-        setTimeout(() => {
-          modalWrapper.style.display = "block";
-        }, 3000);
-
-        if (item.getAttribute("data-crt") === "true") {
-          item.parentElement.parentElement.classList.add("correct");
-          happyDeniska.append(gameBtnNext);
-        } else {
-          item.parentElement.parentElement.classList.add("incorrect");
-          sadDeniska.append(gameBtnNext);
-        }
-
-        setTimeout(() => {
-          pictureWrapper.style.display = "none";
-        }, 3000);
-
-        setTimeout(() => {
-          modalWrapper.style.display = "none";
-          pictureWrapper.style.display = "block";
-          gameBtnSkipMobile.style.display = "none";
-          gameBtnNext.style.display = "block";
-        }, 6000);
-      });
-    });
+    }
   }
-}
 
-mediaQuery2.addListener(handleTabletChange);
-handleTabletChange2(mediaQuery2);
+  mediaQuery2.addListener(handleTabletChange);
+  handleTabletChange2(mediaQuery2);
+
+  return game;
+};

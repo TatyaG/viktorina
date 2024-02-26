@@ -1,4 +1,5 @@
 import {createGameSymbols} from './symbols.js';
+// import { createFinal } from "./final.js";
 
 export function createCrossword() {
   const game = document.createElement("section");
@@ -44,7 +45,7 @@ export function createCrossword() {
   const rulesText = document.createElement("p");
   const rulesBtnClose = document.createElement("svg");
 
-  rules.classList.add("rules", "opacity");
+  rules.classList.add("rules", "hidden");
   rulesBlock.classList.add("rules_block");
   rulesText.classList.add("rules_text");
   rulesBtnClose.classList.add("rules_close");
@@ -58,14 +59,6 @@ export function createCrossword() {
   game.append(rules);
   rules.append(rulesBlock);
   rulesBlock.append(rulesText, rulesBtnClose);
-
-  rulesBtnImg.onclick = function () {
-    rules.classList.toggle("opacity");
-  };
-
-  rulesBtnClose.onclick = function () {
-    rules.classList.add("opacity");
-  };
 
   // Поле для начисления очков
   const pointsAbs = document.createElement("div");
@@ -219,6 +212,8 @@ export function createCrossword() {
     document.body.innerHTML = "";
     const symbols = createGameSymbols();
     document.body.append(symbols);
+    // const final = createFinal();
+    // document.body.append(final);
   });
 
   // Говоруша
@@ -701,6 +696,21 @@ export function createCrossword() {
 
       askText1.textContent =
         "При переходе к следующей игре ты, к сожалению, не получишь балл.";
+
+      // Правила
+
+      rules.classList.remove("hidden");
+      rules.classList.add("opacity");
+
+      rulesBtnImg.onclick = function () {
+        rules.classList.toggle("opacity");
+      };
+    
+      rulesBtnClose.onclick = function () {
+        rules.classList.add("opacity");
+      };    
+
+      // -------
 
       gameBtnAccept.onclick = () => {
         const errorWords = checkWords();

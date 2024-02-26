@@ -418,6 +418,7 @@ h2 {
   .game__title-picture {
     max-width: 320px;
     width: 320px;
+    margin-top: 18%;
   }
 
   .rules_text-picture {
@@ -532,7 +533,7 @@ h2 {
     position: fixed;
     backdrop-filter: blur(9px);
     width: 100%;
-    height: 100%;
+    height: 120%;
     padding-top: 11rem;
   }
   .fail-name-picture,
@@ -551,18 +552,21 @@ h2 {
     /* top: 34%; */
     padding-top: 18px;
     font-size: 18px;
-    top: 55%;
-    left: 43%;
+    top: 38%;
+    left: 44.5%;
   }
 
-  .fail_text {
+  .fail-name-picture {
     bottom: 27%;
-    left: 32%;
+    left: 44%;
     width: 277px;
   }
-
-  .success_text {
-    bottom: 25%;
+  .fail_text-picture {
+    left: 32%;
+    bottom: 51%;
+  }
+  .success_text-picture {
+    bottom: 49%;
     left: 32%;
     width: 277px;
   }
@@ -590,16 +594,16 @@ h2 {
 }
 
 @media (max-width: 640px) {
-  .fail_text,
-  .success_text {
+  .fail_text-picture,
+  .success_text-picture {
     left: 29%;
     /* top: 54%; */
   }
 }
 
 @media (max-width: 570px) {
-  .fail_text,
-  .success_text {
+  .fail_text-picture,
+  .success_text-picture {
     left: 25%;
     /* top: 54%; */
   }
@@ -611,10 +615,14 @@ h2 {
 }
 
 @media (max-width: 450px) {
-  .fail_text,
-  .success_text {
-    left: 20%;
+  .fail-name-picture {
+    left: 40%;
     /* top: 54%; */
+  }
+
+  .success_text-picture,
+  .fail_text-picture {
+    left: 19%;
   }
 }
 
@@ -624,8 +632,8 @@ h2 {
     left: 40%;
     /* top: 55%; */
   }
-  .fail_text,
-  .success_text {
+
+  .success_text-picture {
     left: 16%;
     /* top: 54%; */
   }

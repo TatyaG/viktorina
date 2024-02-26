@@ -22,10 +22,12 @@ function createTalker(text) {
   gameRules.append(rulesTop, rulesText, rulesTalker, rulesBottom, rulesRibbon);
   rulesText.append(rulesBtn);
 
-  return {
-    gameRules,
-    rulesBtn,
-  };
+    return {
+        gameRules,
+        rulesBtn,
+        rulesBottom
+    };
+
 }
 
 export default createTalker;

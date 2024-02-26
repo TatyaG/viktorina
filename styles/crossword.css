@@ -45,9 +45,6 @@ body {
   position: relative;
   font-family: "Comfortaa", sans-serif;
   font-weight: 500;
-  background-image: url(../img/background-crossword.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 /* global */
@@ -81,6 +78,9 @@ body {
   max-width: 1920px;
   padding: 50px 40px;
   margin: 0 auto;
+  background-image: url(../img/background-crossword.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* ----------- */
@@ -90,7 +90,7 @@ body {
 }
 
 .points_img__shine {
-  left: -46% !important;
+  /* left: -46% !important; */
   animation-name: shine;
   animation-duration: 4s;
 }
@@ -557,13 +557,25 @@ table {
   }
 
   .perrot_name {
-    top: 34%;
+    top: 33%;
   }
 
   .perrot_text {
     top: 45%;
     max-width: 256px;
-    font-size: 18px;
+    font-size: 17px;
+  }
+
+  .assistent-text {
+    font-size: 17px;
+  }
+
+  .ask_text1 {
+    bottom: 30%;
+  }
+
+  .ask_text2 {
+    bottom: 25%;
   }
 
   .fail-crossword,
@@ -589,8 +601,9 @@ table {
 }
 
 @media (max-width: 1200px) {
-  body {
+  .crossword {
     background-image: url(../img/background-crossword_tablet.webp);
+    padding: 40px;
   }
 
   .game-crossword__title {
@@ -609,8 +622,8 @@ table {
 
   .question_list {
     max-width: 310px;
-    top: 20%;
-    left: 17%;
+    top: 17%;
+    left: 15%;
   }
 
   .game-crossword__left {
@@ -718,9 +731,9 @@ table {
     font-size: 14px;
   }
 
-  .game-crossword {
+  /* .game-crossword {
     padding: 56px 15px;
-  }
+  } */
 }
 
 @media (max-width: 768px) {
@@ -761,7 +774,7 @@ table {
   }
 
   .game-crossword__title {
-    margin-top: -35px;
+    margin-top: -60px;
   }
 
   .game-crossword__subtitle {
@@ -866,12 +879,14 @@ table {
     text-align: center;
   }
 
-  .fail_name, .success_name {
+  .fail_name,
+  .success_name {
     top: 45.5%;
     left: 36%;
   }
 
-  .fail_text, .success_text {
+  .fail_text,
+  .success_text {
     max-width: 290px;
     bottom: 16%;
     left: 11%;
@@ -1017,7 +1032,7 @@ table {
 }
 
 @media (max-width: 480px) {
-  body {
+  .crossword {
     background-image: url(../img/background-crossword_mobile.webp);
   }
 
@@ -1049,9 +1064,7 @@ table {
   .crossword_input {
     font-size: 14px;
   }
-}
 
-@media (max-width: 420px) {
   .game-crossword__btn--next_mobile {
     width: 233px;
     padding: 16px 34px;
