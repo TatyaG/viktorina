@@ -552,7 +552,7 @@ h2 {
     -moz-transform: translate3d(0, 0, 0); */
     will-change: transform;
   }
-  /**** comment ********/
+ 
   .fail-name-picture,
   .success_name-picture {
     display: flex;
