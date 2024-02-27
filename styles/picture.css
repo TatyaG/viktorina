@@ -7,10 +7,11 @@
 img {
   max-width: 100%;
   display: block;
+}
+.picture_border img {
   cursor: pointer;
   border-radius: 20px;
 }
-
 p,
 h1,
 h2,
@@ -129,11 +130,11 @@ h2 {
   box-shadow: 2px 2px 8px #d72c2c inset !important;
 }
 
-.game__block {
+.game__block-picture {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5%;
+  margin-top: 28px;
 }
 
 .game__left {
@@ -166,6 +167,7 @@ h2 {
   line-height: 24px;
   text-align: left;
   max-width: 367px;
+  color: #232962;
 }
 
 .description {
@@ -178,7 +180,7 @@ h2 {
   top: -1rem;
   width: 110%;
   height: 100px;
-  font-size: 28px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
@@ -407,6 +409,14 @@ h2 {
     top: 6rem;
   }
 
+  .deniska {
+    height: 120%;
+  }
+
+  .pictures_wrapper {
+    margin-top: 7%;
+  }
+
   .wrap {
     padding: 20px;
     margin-bottom: 12px;
@@ -418,7 +428,7 @@ h2 {
   .game__title-picture {
     max-width: 320px;
     width: 320px;
-    margin-top: 18%;
+    /* margin-top: 18%; */
   }
 
   .rules_text-picture {
@@ -432,7 +442,7 @@ h2 {
     width: 320px;
   }
   .game__left-picture {
-    padding-top: 2rem;
+    padding-top: 6rem;
   }
   .game__block-picture {
     overflow-y: visible !important;
@@ -452,13 +462,13 @@ h2 {
   }
   .rules__btn-picture {
     position: absolute;
-    bottom: 8rem;
+    bottom: 15rem;
     right: 1rem;
     background-color: transparent;
     border: none;
   }
   .game__btn--skip-picture {
-    margin: 30px auto;
+    margin: 28% auto;
   }
   .rules__text {
     font-size: 16px;
@@ -535,7 +545,14 @@ h2 {
     width: 100%;
     height: 120%;
     padding-top: 11rem;
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 10;
+    /* -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -moz-transform: translate3d(0, 0, 0); */
+    will-change: transform;
   }
+  /**** comment ********/
   .fail-name-picture,
   .success_name-picture {
     display: flex;

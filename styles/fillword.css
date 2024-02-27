@@ -21,6 +21,10 @@ tr {
   box-shadow: -6px -6px 4px rgba(255, 255, 255, 0.6) inset;
 }
 
+.highlight {
+  background: green;
+}
+
 td {
   width: 100px;
   height: 100px;
