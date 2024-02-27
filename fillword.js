@@ -82,86 +82,186 @@ fillwordWrapper.classList.add("table-wrapper");
 const table = document.createElement("table");
 table.classList.add("table");
 
-// let correctGuessCount = 0;
+let correctGuessCount = 0;
+let isTouchDevice = "ontouchstart" in document.documentElement;
+let isActivelySelecting = false;
+let currHoverTarget = null;
 
-// window.onload = () => {
-//   let correctWords = ["павлова", "яковлев", "николаев"];
+window.onload = () => {
+  let correctWords = ["павлова", "яковлев", "николаев"];
 
-//   let isMouseDown = false;
-//   let str = "";
-//   let nodeAr = [];
+  let isMouseDown = false;
+  let str = "";
+  let nodeAr = [];
+  let countTouch = 0;
 
-//   for (let node of document.querySelectorAll("td")) {
-//     node.addEventListener("mousedown", function (event) {
-//       event.preventDefault();
-//       isMouseDown = true;
-//       toggleHighlight(node);
-//     });
-//     node.addEventListener("touchstart", function (event) {
-//       event.preventDefault();
-//       isMouseDown = true;
-//       toggleHighlight(node);
-//     });
+  if (isTouchDevice) {
+    for (let node of document.querySelectorAll("td")) {
+      node.addEventListener(
+        "touchstart",
+        (evt) => {
+          console.log("Touchstart event fired");
+          let target = evt.target;
 
-//     node.addEventListener("mouseover", function () {
-//       if (isMouseDown) {
-//         toggleHighlight(node);
-//       }
-//     });
+          isActivelySelecting = true;
+          currHoverTarget = target;
 
-//     node.addEventListener("mouseup", function () {
-//       if (correctWords.includes(str.toLowerCase())) {
-//         nodeAr.forEach((el) => {
-//           el.classList.add("right");
-//         });
-//         correctGuessCount++;
-//       } else {
-//         nodeAr.forEach((el) => {
-//           el.className = "wrong";
-//         });
-//       }
+          toggleHighlight(node);
 
-//       str = "";
-//       nodeAr = [];
-//       isMouseDown = false;
+          evt.preventDefault();
+        },
+        {
+          passive: false,
+        }
+      );
 
-//       if (correctGuessCount === 3) {
-//         answer1.classList.remove("hidden");
-//         answer2.classList.remove("hidden");
-//         answer3.classList.remove("hidden");
-//         questionImg.src = "img/Roll-tablet-fillword.png";
-//         pointBlock.classList.add("animation");
-//         let points = JSON.parse(localStorage.getItem("points"));
-//         points += 1;
-//         localStorage.setItem("points", points);
-//         pointBlock.textContent = points;
-//         const deniska = createDeniska(
-//           "Отлично! Задание выполнено. Тебе начислен 1 балл."
-//         );
-//         setTimeout(() => {
-//           document.body.append(deniska.deniska);
-//           document.querySelector(".game__btn--skip").style.display = "none";
-//           document.querySelector(".game__btn--next").style.display = "block";
-//         }, 800);
-//       } else {
-//         const deniska = createDeniska(
-//           "К сожалению, угаданы не не все значения символов!"
-//         );
-//         deniska.rulesDeniska.src = "img/deniska-sad.webp";
-//         setTimeout(() => {
-//           document.body.append(deniska.deniska);
-//           document.querySelector(".game__btn--skip").style.display = "none";
-//           document.querySelector(".game__btn--next").style.display = "block";
-//         }, 5000);
-//       }
-//     });
-//   }
+      node.addEventListener("touchmove", (evt) => {
+        if (isActivelySelecting) {
+          let target = evt.target;
 
-//   function toggleHighlight(node) {
-//     str += node.textContent;
-//     nodeAr.push(node);
-//   }
-// };
+          let x = evt.touches[0].clientX;
+          let y = evt.touches[0].clientY;
+
+          let hoveredElem = document.elementFromPoint(x, y);
+
+          if (hoveredElem !== currHoverTarget) {
+            currHoverTarget = hoveredElem;
+            toggleHighlight(hoveredElem);
+          }
+        }
+      });
+
+      node.addEventListener("touchend", () => {
+        countTouch++;
+        console.log("1");
+        if (correctWords.includes(str.toLowerCase())) {
+          nodeAr.forEach((el) => {
+            el.classList.add("right");
+          });
+          correctGuessCount++;
+        } else {
+          nodeAr.forEach((el) => {
+            el.className = "wrong";
+          });
+        }
+
+        isActivelySelecting = false;
+        currHoverTarget = false;
+        str = "";
+        nodeAr = [];
+        isMouseDown = false;
+        if (correctGuessCount === 3) {
+          answer1.classList.remove("hidden");
+          answer2.classList.remove("hidden");
+          answer3.classList.remove("hidden");
+
+          questionImg.src = "img/Roll-tablet-fillword.png";
+          pointBlock.classList.add("animation");
+          let points = JSON.parse(localStorage.getItem("points"));
+          points += 1;
+          localStorage.setItem("points", points);
+          pointBlock.textContent = points;
+
+          const deniska = createDeniska(
+            "Отлично! Задание выполнено. Тебе начислен 1 балл."
+          );
+          setTimeout(() => {
+            document.body.append(deniska.deniska);
+            document.querySelector(".game__btn--skip").style.display = "none";
+            document.querySelector(".game__btn--next").style.display = "block";
+          }, 800);
+          return;
+        } else {
+          if (countTouch === 3) {
+            const deniska = createDeniska(
+              "К сожалению, угаданы не не все значения символов!"
+            );
+            deniska.rulesDeniska.src = "img/deniska-sad.webp";
+            setTimeout(() => {
+              document.body.append(deniska.deniska);
+              document.querySelector(".game__btn--skip").style.display = "none";
+              document.querySelector(".game__btn--next").style.display =
+                "block";
+            }, 800);
+          }
+        }
+        return;
+      });
+    }
+  } else {
+    for (let node of document.querySelectorAll("td")) {
+      node.addEventListener("mousedown", function (event) {
+        console.log("PK");
+        event.preventDefault();
+        isMouseDown = true;
+        toggleHighlight(node);
+      });
+
+      node.addEventListener("mouseover", function () {
+        if (isMouseDown) {
+          toggleHighlight(node);
+        }
+      });
+
+      node.addEventListener("mouseup", function () {
+        countTouch++;
+        if (correctWords.includes(str.toLowerCase())) {
+          nodeAr.forEach((el) => {
+            el.classList.add("right");
+          });
+          correctGuessCount++;
+        } else {
+          nodeAr.forEach((el) => {
+            el.className = "wrong";
+          });
+        }
+
+        str = "";
+        nodeAr = [];
+        isMouseDown = false;
+
+        if (correctGuessCount === 3) {
+          answer1.classList.remove("hidden");
+          answer2.classList.remove("hidden");
+          answer3.classList.remove("hidden");
+          questionImg.src = "img/Roll-tablet-fillword.png";
+          pointBlock.classList.add("animation");
+          let points = JSON.parse(localStorage.getItem("points"));
+          points += 1;
+          localStorage.setItem("points", points);
+          pointBlock.textContent = points;
+          const deniska = createDeniska(
+            "Отлично! Задание выполнено. Тебе начислен 1 балл."
+          );
+          setTimeout(() => {
+            document.body.append(deniska.deniska);
+            document.querySelector(".game__btn--skip").style.display = "none";
+            document.querySelector(".game__btn--next").style.display = "block";
+          }, 800);
+          return;
+        } else {
+          if (countTouch === 3) {
+            const deniska = createDeniska(
+              "К сожалению, угаданы не не все значения символов!"
+            );
+            deniska.rulesDeniska.src = "img/deniska-sad.webp";
+            setTimeout(() => {
+              document.body.append(deniska.deniska);
+              document.querySelector(".game__btn--skip").style.display = "none";
+              document.querySelector(".game__btn--next").style.display =
+                "block";
+            }, 800);
+          }
+        }
+      });
+    }
+  }
+
+  function toggleHighlight(node) {
+    str += node.textContent;
+    nodeAr.push(node);
+  }
+};
 
 // let correctGuessCount = 0;
 
@@ -424,19 +524,6 @@ const mediaQuery2 = window.matchMedia("(max-width: 768px");
 
 function handleTabletChange2(e) {
   if (e.matches) {
-    let isTouchDevice = "ontouchstart" in document.documentElement;
-    let isActivelySelecting = false;
-    let currHoverTarget = null;
-
-    if (isTouchDevice) {
-      document.addEventListener("touchstart", (evt) => {
-        let target = evt.target;
-
-        isActivelySelecting = true;
-        currHoverTarget = target;
-      });
-    }
-
     const slideBtn = document.querySelector(".rules__btn");
 
     questionWrap.style.display = "none";
