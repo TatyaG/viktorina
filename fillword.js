@@ -4,51 +4,51 @@ import createDeniska from "./deniska.js";
 
 // Данные для заполнения таблицы
 const data = [
-    "Я",
-    "Б",
-    "И",
-    "Н",
-    "Н",
-    "В",
-    "Р",
-    "С",
-    "Е",
-    "К",
-    "А",
-    "Ж",
-    "Т",
-    "И",
-    "К",
-    "О",
-    "Л",
-    "А",
-    "О",
-    "Ф",
-    "Д",
-    "Е",
-    "У",
-    "Л",
-    "Е",
-    "Г",
-    "Е",
-    "В",
-    "П",
-    "А",
-    "В",
-    "Л",
-    "О",
-    "В",
-    "А",
-    "В",
-    "Л",
-    "Е",
-    "В",
-    "Ц",
-    "С",
-    "А",
-    "О",
-    "М",
-    "Н",
+  "Я",
+  "Б",
+  "И",
+  "Н",
+  "Н",
+  "В",
+  "Р",
+  "С",
+  "Е",
+  "К",
+  "А",
+  "Ж",
+  "Т",
+  "И",
+  "К",
+  "О",
+  "Л",
+  "А",
+  "О",
+  "Ф",
+  "Д",
+  "Е",
+  "У",
+  "Л",
+  "Е",
+  "Г",
+  "Е",
+  "В",
+  "П",
+  "А",
+  "В",
+  "Л",
+  "О",
+  "В",
+  "А",
+  "В",
+  "Л",
+  "Е",
+  "В",
+  "Ц",
+  "С",
+  "А",
+  "О",
+  "М",
+  "Н",
 ];
 
 //Создаем section game и присваиваем классы
@@ -82,98 +82,173 @@ fillwordWrapper.classList.add("table-wrapper");
 const table = document.createElement("table");
 table.classList.add("table");
 
-let correctGuessCount = 0;
+// let correctGuessCount = 0;
 
-window.onload = () => {
-    let correctWords = ["павлова", "яковлев", "николаев"];
+// window.onload = () => {
+//   let correctWords = ["павлова", "яковлев", "николаев"];
 
-    let isMouseDown = false;
-    let str = "";
-    let nodeAr = [];
+//   let isMouseDown = false;
+//   let str = "";
+//   let nodeAr = [];
 
-    for (let node of document.querySelectorAll("td")) {
-        node.addEventListener("mousedown", function (event) {
-            event.preventDefault();
-            isMouseDown = true;
-            toggleHighlight(node);
-        });
-        node.addEventListener("touchstart", function (event) {
-            event.preventDefault();
-            isMouseDown = true;
-            toggleHighlight(node);
-        });
+//   for (let node of document.querySelectorAll("td")) {
+//     node.addEventListener("mousedown", function (event) {
+//       event.preventDefault();
+//       isMouseDown = true;
+//       toggleHighlight(node);
+//     });
+//     node.addEventListener("touchstart", function (event) {
+//       event.preventDefault();
+//       isMouseDown = true;
+//       toggleHighlight(node);
+//     });
 
+//     node.addEventListener("mouseover", function () {
+//       if (isMouseDown) {
+//         toggleHighlight(node);
+//       }
+//     });
 
+//     node.addEventListener("mouseup", function () {
+//       if (correctWords.includes(str.toLowerCase())) {
+//         nodeAr.forEach((el) => {
+//           el.classList.add("right");
+//         });
+//         correctGuessCount++;
+//       } else {
+//         nodeAr.forEach((el) => {
+//           el.className = "wrong";
+//         });
+//       }
 
-        node.addEventListener("mouseover", function () {
-            if (isMouseDown) {
-                toggleHighlight(node);
-            }
-        });
+//       str = "";
+//       nodeAr = [];
+//       isMouseDown = false;
 
-        node.addEventListener("mouseup", function () {
-            if (correctWords.includes(str.toLowerCase())) {
-                nodeAr.forEach((el) => {
-                    el.classList.add("right");
-                });
-                correctGuessCount++;
-            } else {
-                nodeAr.forEach((el) => {
-                    el.className = "wrong";
-                });
-            }
+//       if (correctGuessCount === 3) {
+//         answer1.classList.remove("hidden");
+//         answer2.classList.remove("hidden");
+//         answer3.classList.remove("hidden");
+//         questionImg.src = "img/Roll-tablet-fillword.png";
+//         pointBlock.classList.add("animation");
+//         let points = JSON.parse(localStorage.getItem("points"));
+//         points += 1;
+//         localStorage.setItem("points", points);
+//         pointBlock.textContent = points;
+//         const deniska = createDeniska(
+//           "Отлично! Задание выполнено. Тебе начислен 1 балл."
+//         );
+//         setTimeout(() => {
+//           document.body.append(deniska.deniska);
+//           document.querySelector(".game__btn--skip").style.display = "none";
+//           document.querySelector(".game__btn--next").style.display = "block";
+//         }, 800);
+//       } else {
+//         const deniska = createDeniska(
+//           "К сожалению, угаданы не не все значения символов!"
+//         );
+//         deniska.rulesDeniska.src = "img/deniska-sad.webp";
+//         setTimeout(() => {
+//           document.body.append(deniska.deniska);
+//           document.querySelector(".game__btn--skip").style.display = "none";
+//           document.querySelector(".game__btn--next").style.display = "block";
+//         }, 5000);
+//       }
+//     });
+//   }
 
-            str = "";
-            nodeAr = [];
-            isMouseDown = false;
+//   function toggleHighlight(node) {
+//     str += node.textContent;
+//     nodeAr.push(node);
+//   }
+// };
 
-            if (correctGuessCount === 3) {
-                answer1.classList.remove("hidden");
-                answer2.classList.remove("hidden");
-                answer3.classList.remove("hidden");
-                questionImg.src = "img/Roll-tablet-fillword.png";
-                pointBlock.classList.add("animation");
-                let points = JSON.parse(localStorage.getItem("points"));
-                points += 1;
-                localStorage.setItem("points", points);
-                pointBlock.textContent = points;
-                const deniska = createDeniska(
-                    "Отлично! Задание выполнено. Тебе начислен 1 балл."
-                );
-                setTimeout(() => {
-                    document.body.append(deniska.deniska);
-                    document.querySelector(".game__btn--skip").style.display = "none";
-                    document.querySelector(".game__btn--next").style.display = "block";
-                }, 800);
-            } else {
-                const deniska = createDeniska(
-                    "К сожалению, угаданы не не все значения символов!"
-                );
-                deniska.rulesDeniska.src = "img/deniska-sad.webp";
-                setTimeout(() => {
-                    document.body.append(deniska.deniska);
-                    document.querySelector(".game__btn--skip").style.display = "none";
-                    document.querySelector(".game__btn--next").style.display = "block";
-                }, 5000);
-            }
-        });
-    }
+// let correctGuessCount = 0;
 
-    function toggleHighlight(node) {
-        str += node.textContent;
-        nodeAr.push(node);
-    }
-};
+// window.onload = () => {
+//   let correctWords = ["павлова", "яковлев", "николаев"];
+
+//   let isTouchActive = false;
+//   let str = "";
+//   let nodeAr = [];
+
+//   for (let node of document.querySelectorAll("td")) {
+//     node.addEventListener("mousedown", handleMouseDown);
+//     node.addEventListener("touchstart", handleTouchStart);
+//     node.addEventListener("mouseover", handleMouseOver);
+
+//     node.addEventListener("mouseup", handleMouseUp);
+//     node.addEventListener("touchend", handleTouchEnd);
+//   }
+
+//   function handleMouseDown(event) {
+//     event.preventDefault();
+//     isTouchActive = false;
+//     toggleHighlight(this);
+//   }
+
+//   function handleTouchStart(event) {
+//     event.preventDefault();
+//     isTouchActive = true;
+//     toggleHighlight(this);
+//   }
+
+//   function handleMouseOver() {
+//     if (isTouchActive) {
+//       toggleHighlight(this);
+//     }
+//   }
+
+//   function handleMouseUp() {
+//     handleInteractionEnd();
+//   }
+
+//   function handleTouchEnd() {
+//     if (isTouchActive) {
+//       handleInteractionEnd();
+//     }
+//   }
+
+//   function handleInteractionEnd() {
+//     if (correctWords.includes(str.toLowerCase())) {
+//       nodeAr.forEach((el) => {
+//         el.classList.add("right");
+//       });
+//       correctGuessCount++;
+//     } else {
+//       nodeAr.forEach((el) => {
+//         el.classList.add("wrong");
+//       });
+//     }
+
+//     str = "";
+//     nodeAr = [];
+//     isTouchActive = false;
+
+//     // Rest of the code (checking correctGuessCount, displaying messages, etc.)
+//   }
+
+//   function toggleHighlight(node) {
+//     str += node.textContent;
+//     nodeAr.push(node);
+//     if (isTouchActive) {
+//       // Highlight all touched nodes
+//       nodeAr.forEach((el) => {
+//         el.classList.add("highlight");
+//       });
+//     }
+//   }
+// };
 
 //Наполняем таблицу буквами
 for (let i = 0; i < 5; i++) {
-    const row = table.insertRow(i);
+  const row = table.insertRow(i);
 
-    for (var j = 0; j < 9; j++) {
-        const cell = row.insertCell(j);
-        const index = i * 9 + j;
-        cell.innerHTML = data[index];
-    }
+  for (var j = 0; j < 9; j++) {
+    const cell = row.insertCell(j);
+    const index = i * 9 + j;
+    cell.innerHTML = data[index];
+  }
 }
 
 //Добавляем в GAMECENTER div с филвордом
@@ -191,10 +266,10 @@ const questionImg = document.createElement("img");
 questionImg.classList.add("question_img", "question_img_fillword");
 const questionList = document.createElement("ol");
 questionList.classList.add(
-    "question_list",
-    "question_list-scroll",
-    "list-reset",
-    "question_list_fillword"
+  "question_list",
+  "question_list-scroll",
+  "list-reset",
+  "question_list_fillword"
 );
 const questionItem1 = document.createElement("li");
 questionItem1.classList.add("question_item");
@@ -214,11 +289,11 @@ questionImg.src = "img/questionWrapFillword.png";
 
 //Вопросы
 questionItem1.textContent =
-    "Создал чувашский алфавит, первый чувашский букварь, первую чувашскую школу. Был уверен, что только в сближении с русским народом чувашам удастся отстоять свою народность, национальность.";
+  "Создал чувашский алфавит, первый чувашский букварь, первую чувашскую школу. Был уверен, что только в сближении с русским народом чувашам удастся отстоять свою народность, национальность.";
 questionItem2.textContent =
-    "Третий космонавт СССР и пятый человек в космосе. Позывной «Сокол». Первый космонавт, работавший на орбите без скафандра.";
+  "Третий космонавт СССР и пятый человек в космосе. Позывной «Сокол». Первый космонавт, работавший на орбите без скафандра.";
 questionItem3.textContent =
-    " Известная балерина, которая начала свой творческий путь с хореографического кружка г. Чебоксары. В 1975 -  1992 годах  была солисткой Большого театра.";
+  " Известная балерина, которая начала свой творческий путь с хореографического кружка г. Чебоксары. В 1975 -  1992 годах  была солисткой Большого театра.";
 
 //Правильные ответы на вопросы
 answer1.textContent = "Правильный ответ: Яковлев";
@@ -236,7 +311,7 @@ gameBlock.append(gameLeft, gameCenter, gameRight);
 
 //ГОВОРУША GAMELEFT
 const gameRules = createTalker(
-    "Среди букв спрятались три  фамилии известных личностей Чувашии. Найди их и соедини буквы каждой фамилии линией."
+  "Среди букв спрятались три  фамилии известных личностей Чувашии. Найди их и соедини буквы каждой фамилии линией."
 );
 
 //Модалка пропустить игру
@@ -246,71 +321,71 @@ const gameBtnNext = document.createElement("button");
 gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 
 gameRules.rulesBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    gameBtnNext.remove();
-    gameCenter.style.display = "block";
-    gameRules.gameRules.style.display = "none";
-    gameBtnSkip.style.display = "block";
-    gameBlock.style.paddingBottom = "0";
-    gameBlock.style.marginTop = "0";
-    gameLeft.style.paddingTop = "0";
-    gameBlock.style.overflowY = "scroll";
+  e.preventDefault();
+  gameBtnNext.remove();
+  gameCenter.style.display = "block";
+  gameRules.gameRules.style.display = "none";
+  gameBtnSkip.style.display = "block";
+  gameBlock.style.paddingBottom = "0";
+  gameBlock.style.marginTop = "0";
+  gameLeft.style.paddingTop = "0";
+  gameBlock.style.overflowY = "scroll";
 });
 
 gameBtnSkip.addEventListener("click", (e) => {
+  e.preventDefault();
+  const deniska = createDeniska(
+    "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+  );
+  document.body.append(deniska.deniska);
+  deniska.rulesDeniska.src = "img/deniska-sad.webp";
+  game.classList.add("game-blur");
+  const btns = document.createElement("div");
+  const yesBtn = document.createElement("button");
+  const noBtn = document.createElement("button");
+
+  yesBtn.textContent = "Да";
+  noBtn.textContent = "Нет";
+
+  btns.classList.add("btns-group");
+  yesBtn.classList.add(
+    "btn-reset",
+    "game__btn",
+    "game__btn--yes",
+    "game__btn--next"
+  );
+  noBtn.classList.add(
+    "btn-reset",
+    "game__btn",
+    "game__btn--no",
+    "game__btn--next"
+  );
+  btns.append(yesBtn, noBtn);
+  deniska.rulesText.append(btns);
+
+  yesBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    const deniska = createDeniska(
-        "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
-    );
-    document.body.append(deniska.deniska);
-    deniska.rulesDeniska.src = "img/deniska-sad.webp";
-    game.classList.add("game-blur");
-    const btns = document.createElement("div");
-    const yesBtn = document.createElement("button");
-    const noBtn = document.createElement("button");
+    document.body.innerHTML = "";
+  });
 
-    yesBtn.textContent = "Да";
-    noBtn.textContent = "Нет";
-
-    btns.classList.add("btns-group");
-    yesBtn.classList.add(
-        "btn-reset",
-        "game__btn",
-        "game__btn--yes",
-        "game__btn--next"
-    );
-    noBtn.classList.add(
-        "btn-reset",
-        "game__btn",
-        "game__btn--no",
-        "game__btn--next"
-    );
-    btns.append(yesBtn, noBtn);
-    deniska.rulesText.append(btns);
-
-    yesBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        document.body.innerHTML = "";
-    });
-
-    noBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        deniska.deniska.remove();
-        game.classList.remove("game-blur");
-    });
+  noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    deniska.deniska.remove();
+    game.classList.remove("game-blur");
+  });
 });
 
 gameBtnSkip.classList.add(
-    "game__btn",
-    "game__btn--skip",
-    "btn-reset",
-    "game__btn--skip-picture"
+  "game__btn",
+  "game__btn--skip",
+  "btn-reset",
+  "game__btn--skip-picture"
 );
 gameBtnNext.classList.add(
-    "game__btn",
-    "game__btn--next",
-    "btn-reset",
-    "game__btn--next-picture"
+  "game__btn",
+  "game__btn--next",
+  "btn-reset",
+  "game__btn--next-picture"
 );
 
 gameBtnSkip.textContent = "Пропустить игру";
@@ -335,10 +410,10 @@ game.append(pointBlock);
 const mediaQuery = window.matchMedia("(max-width: 1800px");
 
 function handleTabletChange(e) {
-    if (e.matches) {
-        gameLeft.append(questionWrap);
-        gameRules.gameRules.append(gameBtnSkip, gameBtnNext);
-    }
+  if (e.matches) {
+    gameLeft.append(questionWrap);
+    gameRules.gameRules.append(gameBtnSkip, gameBtnNext);
+  }
 }
 
 mediaQuery.addListener(handleTabletChange);
@@ -348,20 +423,33 @@ handleTabletChange(mediaQuery);
 const mediaQuery2 = window.matchMedia("(max-width: 768px");
 
 function handleTabletChange2(e) {
-    if (e.matches) {
-        const slideBtn = document.querySelector(".rules__btn");
+  if (e.matches) {
+    let isTouchDevice = "ontouchstart" in document.documentElement;
+    let isActivelySelecting = false;
+    let currHoverTarget = null;
 
-        questionWrap.style.display = "none";
-        gameCenter.style.display = "none";
+    if (isTouchDevice) {
+      document.addEventListener("touchstart", (evt) => {
+        let target = evt.target;
 
-        //Создаем кнопку стрелку на второй странице
-        const slide2Btn = document.createElement("button");
-        slide2Btn.classList.add("rules__btn", "rules__btn-fillword", "btn-reset");
+        isActivelySelecting = true;
+        currHoverTarget = target;
+      });
+    }
 
-        //Создаем значок с правилами
-        const rulesBtnImg = document.createElement("svg");
-        rulesBtnImg.classList.add("rules-img-btn", "hidden");
-        rulesBtnImg.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    const slideBtn = document.querySelector(".rules__btn");
+
+    questionWrap.style.display = "none";
+    gameCenter.style.display = "none";
+
+    //Создаем кнопку стрелку на второй странице
+    const slide2Btn = document.createElement("button");
+    slide2Btn.classList.add("rules__btn", "rules__btn-fillword", "btn-reset");
+
+    //Создаем значок с правилами
+    const rulesBtnImg = document.createElement("svg");
+    rulesBtnImg.classList.add("rules-img-btn", "hidden");
+    rulesBtnImg.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" fill="url(#paint0_linear_608_5149)"/>
     <path d="M20 5.33618C22.9 5.35218 25.804 5.48152 26.828 6.50552C28 7.67752 28 9.56285 28 13.3335V21.3335C28 25.1055 28 26.9908 26.828 28.1628C25.6573 29.3335 23.7707 29.3335 20 29.3335H12C8.22933 29.3335 6.34267 29.3335 5.172 28.1628C4 26.9895 4 25.1055 4 21.3335V13.3335C4 9.56285 4 7.67752 5.172 6.50552C6.196 5.48152 9.1 5.35218 12 5.33618" stroke="#9382C2" stroke-width="1.5"/>
     <path d="M13.9997 18.6667H22.6663H13.9997ZM9.33301 18.6667H9.99967H9.33301ZM9.33301 14H9.99967H9.33301ZM9.33301 23.3333H9.99967H9.33301ZM13.9997 14H22.6663H13.9997ZM13.9997 23.3333H22.6663H13.9997Z" fill="white"/>
@@ -382,38 +470,38 @@ function handleTabletChange2(e) {
     </linearGradient>
     </defs>
     </svg>`;
-        const rules = document.createElement("div");
-        const rulesBlock = document.createElement("div");
-        const rulesText = document.createElement("p");
-        const rulesBtnClose = document.createElement("svg");
+    const rules = document.createElement("div");
+    const rulesBlock = document.createElement("div");
+    const rulesText = document.createElement("p");
+    const rulesBtnClose = document.createElement("svg");
 
-        rules.classList.add("rules", "opacity", "rules-picture");
-        rulesBlock.classList.add("rules_block");
-        rulesText.classList.add("rules_text", "rules_text-picture");
-        rulesBtnClose.classList.add("rules_close");
+    rules.classList.add("rules", "opacity", "rules-picture");
+    rulesBlock.classList.add("rules_block");
+    rulesText.classList.add("rules_text", "rules_text-picture");
+    rulesBtnClose.classList.add("rules_close");
 
-        rulesText.textContent =
-            "Среди букв спрятались три фамилии известных личностей Чувашии. Найди их и соедини буквы каждой фамилии линией.";
-        rulesBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    rulesText.textContent =
+      "Среди букв спрятались три фамилии известных личностей Чувашии. Найди их и соедини буквы каждой фамилии линией.";
+    rulesBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15 5L5 15M5 5L15 15" stroke="#9382C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
-        game.append(rules, rulesBtnImg);
-        rules.append(rulesBlock);
-        rulesBlock.append(rulesText, rulesBtnClose);
+    game.append(rules, rulesBtnImg);
+    rules.append(rulesBlock);
+    rulesBlock.append(rulesText, rulesBtnClose);
 
-        rulesBtnImg.onclick = function () {
-            rules.classList.toggle("opacity");
-        };
+    rulesBtnImg.onclick = function () {
+      rules.classList.toggle("opacity");
+    };
 
-        rulesBtnClose.onclick = function () {
-            rules.classList.add("opacity");
-        };
+    rulesBtnClose.onclick = function () {
+      rules.classList.add("opacity");
+    };
 
-        //Создаем значок с инфо
-        const infoImg = document.createElement("svg");
-        infoImg.classList.add("info-img-btn", "hidden");
-        infoImg.innerHTML = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //Создаем значок с инфо
+    const infoImg = document.createElement("svg");
+    infoImg.classList.add("info-img-btn", "hidden");
+    infoImg.innerHTML = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.75" y="0.75" width="26.5" height="26.5" rx="5.25" fill="url(#paint0_linear_1154_6434)"/>
 <rect x="0.75" y="0.75" width="26.5" height="26.5" rx="5.25" stroke="#9382C2" stroke-width="1.5"/>
 <mask id="path-2-inside-1_1154_6434" fill="white">
@@ -430,119 +518,119 @@ function handleTabletChange2(e) {
 </defs>
 </svg>`;
 
-        const infoWrap = document.createElement("div");
-        const infoBlock = document.createElement("div");
-        const infoText = document.createElement("ol");
-        const infoItem1 = document.createElement("li");
-        const infoItem2 = document.createElement("li");
-        const infoItem3 = document.createElement("li");
-        const infoBtnClose = document.createElement("svg");
+    const infoWrap = document.createElement("div");
+    const infoBlock = document.createElement("div");
+    const infoText = document.createElement("ol");
+    const infoItem1 = document.createElement("li");
+    const infoItem2 = document.createElement("li");
+    const infoItem3 = document.createElement("li");
+    const infoBtnClose = document.createElement("svg");
 
-        infoWrap.classList.add("opacity", "info");
-        infoBlock.classList.add("info_block", "info-block-fillword");
-        infoText.classList.add(
-            "rules_text",
-            "info_text_picture",
-            "info_text_fillword"
-        );
-        infoBtnClose.classList.add("rules_close");
+    infoWrap.classList.add("opacity", "info");
+    infoBlock.classList.add("info_block", "info-block-fillword");
+    infoText.classList.add(
+      "rules_text",
+      "info_text_picture",
+      "info_text_fillword"
+    );
+    infoBtnClose.classList.add("rules_close");
 
-        infoItem1.textContent =
-            "Создал чувашский алфавит, первый чувашский букварь, первую чувашскую школу. Был уверен, что только в сближении с русским народом чувашам удастся отстоять свою народность, национальность.";
-        infoItem2.textContent =
-            "Третий космонавт СССР и пятый человек в космосе. Позывной «Сокол». Первый космонавт, работавший на орбите без скафандра.";
-        infoItem3.textContent =
-            "Известная балерина, которая начала свой творческий путь с хореографического кружка г. Чебоксары. В 1975–1992 годах была солисткой Большого театра.";
+    infoItem1.textContent =
+      "Создал чувашский алфавит, первый чувашский букварь, первую чувашскую школу. Был уверен, что только в сближении с русским народом чувашам удастся отстоять свою народность, национальность.";
+    infoItem2.textContent =
+      "Третий космонавт СССР и пятый человек в космосе. Позывной «Сокол». Первый космонавт, работавший на орбите без скафандра.";
+    infoItem3.textContent =
+      "Известная балерина, которая начала свой творческий путь с хореографического кружка г. Чебоксары. В 1975–1992 годах была солисткой Большого театра.";
 
-        infoBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    infoBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M15 5L5 15M5 5L15 15" stroke="#9382C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`;
 
-        game.append(infoWrap, infoImg);
-        infoWrap.append(infoBlock);
-        infoBlock.append(infoText, infoBtnClose);
-        infoText.append(infoItem1, infoItem2, infoItem3);
+    game.append(infoWrap, infoImg);
+    infoWrap.append(infoBlock);
+    infoBlock.append(infoText, infoBtnClose);
+    infoText.append(infoItem1, infoItem2, infoItem3);
 
-        infoImg.onclick = function () {
-            infoWrap.classList.toggle("opacity");
-        };
+    infoImg.onclick = function () {
+      infoWrap.classList.toggle("opacity");
+    };
 
-        infoBtnClose.onclick = function () {
-            infoWrap.classList.add("opacity");
-        };
+    infoBtnClose.onclick = function () {
+      infoWrap.classList.add("opacity");
+    };
 
-        //Создаем кнопку "Пропустить игру" для мобилки
-        const gameBtnSkipMobile = document.createElement("button");
-        gameBtnSkipMobile.classList.add(
-            "game__btn",
-            "game__btn--skip",
-            "btn-reset",
-            "game__btn--skip-picture"
-        );
-        gameBtnSkipMobile.textContent = "Пропустить игру";
+    //Создаем кнопку "Пропустить игру" для мобилки
+    const gameBtnSkipMobile = document.createElement("button");
+    gameBtnSkipMobile.classList.add(
+      "game__btn",
+      "game__btn--skip",
+      "btn-reset",
+      "game__btn--skip-picture"
+    );
+    gameBtnSkipMobile.textContent = "Пропустить игру";
 
-        questionWrap.append(gameBtnSkipMobile);
+    questionWrap.append(gameBtnSkipMobile);
 
-        //Добавляем правила открытия модалки 'пропустить игру'
-        gameBtnSkipMobile.addEventListener("click", (e) => {
-            e.preventDefault();
-            const deniska = createDeniska(
-                "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
-            );
-            document.body.append(deniska.deniska);
-            deniska.rulesDeniska.src = "img/deniska-sad.webp";
-            game.classList.add("game-blur");
-            const btns = document.createElement("div");
-            const yesBtn = document.createElement("button");
-            const noBtn = document.createElement("button");
+    //Добавляем правила открытия модалки 'пропустить игру'
+    gameBtnSkipMobile.addEventListener("click", (e) => {
+      e.preventDefault();
+      const deniska = createDeniska(
+        "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+      );
+      document.body.append(deniska.deniska);
+      deniska.rulesDeniska.src = "img/deniska-sad.webp";
+      game.classList.add("game-blur");
+      const btns = document.createElement("div");
+      const yesBtn = document.createElement("button");
+      const noBtn = document.createElement("button");
 
-            yesBtn.textContent = "Да";
-            noBtn.textContent = "Нет";
+      yesBtn.textContent = "Да";
+      noBtn.textContent = "Нет";
 
-            btns.classList.add("btns-group");
-            yesBtn.classList.add(
-                "btn-reset",
-                "game__btn",
-                "game__btn--yes",
-                "game__btn--next"
-            );
-            noBtn.classList.add(
-                "btn-reset",
-                "game__btn",
-                "game__btn--no",
-                "game__btn--next"
-            );
-            btns.append(yesBtn, noBtn);
-            deniska.rulesText.append(btns);
+      btns.classList.add("btns-group");
+      yesBtn.classList.add(
+        "btn-reset",
+        "game__btn",
+        "game__btn--yes",
+        "game__btn--next"
+      );
+      noBtn.classList.add(
+        "btn-reset",
+        "game__btn",
+        "game__btn--no",
+        "game__btn--next"
+      );
+      btns.append(yesBtn, noBtn);
+      deniska.rulesText.append(btns);
 
-            yesBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                document.body.innerHTML = "";
-            });
+      yesBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.body.innerHTML = "";
+      });
 
-            noBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                deniska.deniska.remove();
-                game.classList.remove("game-blur");
-            });
-        });
+      noBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        deniska.deniska.remove();
+        game.classList.remove("game-blur");
+      });
+    });
 
-        slideBtn.addEventListener("click", () => {
-            questionWrap.style.display = "block";
-            gameCenter.style.display = "none";
-            gameBtnSkipMobile.style.display = "block";
-            questionList.classList.remove("question_list-scroll");
-            rulesBtnImg.style.display = "block";
-            questionWrap.append(slide2Btn);
-        });
+    slideBtn.addEventListener("click", () => {
+      questionWrap.style.display = "block";
+      gameCenter.style.display = "none";
+      gameBtnSkipMobile.style.display = "block";
+      questionList.classList.remove("question_list-scroll");
+      rulesBtnImg.style.display = "block";
+      questionWrap.append(slide2Btn);
+    });
 
-        slide2Btn.addEventListener("click", () => {
-            questionWrap.style.display = "none";
-            gameCenter.style.display = "block";
-            infoImg.style.display = "block";
-            gameCenter.append(gameBtnSkipMobile);
-        });
-    }
+    slide2Btn.addEventListener("click", () => {
+      questionWrap.style.display = "none";
+      gameCenter.style.display = "block";
+      infoImg.style.display = "block";
+      gameCenter.append(gameBtnSkipMobile);
+    });
+  }
 }
 
 mediaQuery2.addListener(handleTabletChange);
