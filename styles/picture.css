@@ -547,9 +547,9 @@ h2 {
     padding-top: 11rem;
     -webkit-backdrop-filter: blur(6px);
     z-index: 10;
-    -webkit-backface-visibility: hidden;
+    /* -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
-    -moz-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0); */
     will-change: transform;
   }
   .fail-name-picture,
