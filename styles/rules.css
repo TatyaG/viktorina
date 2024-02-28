@@ -58,6 +58,7 @@ body {
   background-image: url(../img/rules_background_desktop.webp);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   font-family: "Comfortaa", sans-serif;
   font-weight: 500;
 }
@@ -493,7 +494,7 @@ body {
   }
 
   .rules_img2 {
-    height: 100vh;
+    /* height: 100vh; */
     object-fit: cover;
   }
 
@@ -538,6 +539,10 @@ body {
 }
 
 @media (max-width: 375px) {
+  body {
+    background-image: url(../img/rules_background_mobile.webp);
+  }
+
   .assistant-perrot_slide {
     left: -1%;
     top: 27%;
@@ -551,18 +556,13 @@ body {
   .swiper-button-next_2::after {
     top: 485%;
   }
+
+  .rules_img2 {
+    height: 102%;
+  }
 }
 
 @media (max-width: 360px) {
-  body {
-    background-image: url(../img/rules_background_mobile.webp);
-  }
-
-  /* .rules_img2 {
-    border-right: 0px solid #45c2ca;
-    border-left: 0px solid #45c2ca;
-  } */
-
   .assistant-text_parrot {
     left: 10%;
   }
@@ -579,5 +579,9 @@ body {
   .btn_rules__slider {
     max-width: 194px;
     left: 23%;
+  }
+
+  .rules_img2 {
+    height: 101%;
   }
 }

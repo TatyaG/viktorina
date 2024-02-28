@@ -1,5 +1,4 @@
 import {createGameSymbols} from './symbols.js';
-// import { createFinal } from "./final.js";
 
 export function createCrossword() {
   const game = document.createElement("section");
