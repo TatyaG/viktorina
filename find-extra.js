@@ -44,6 +44,9 @@ export function createFindExtra() {
   gameBtnNext.textContent = "Следующая игра";
   gameBtnAccept.textContent = "Принять ответ";
 
+  assistantPerrot.rulesText.classList.add("rules__text_find-extra");
+  assistantPerrot.rulesBtn.classList.add("rules__btn_find-extra");
+
   btnWrap.classList.add("btn-wrap", "flex");
   gameBtnSkip.classList.add(
     "find-extra__btn",
@@ -480,4 +483,4 @@ export function createFindExtra() {
   return game;
 }
 
-createFindExtra();
+// createFindExtra();

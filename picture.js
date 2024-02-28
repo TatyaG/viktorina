@@ -213,6 +213,7 @@ export const createPicture = () => {
   );
 
   gameRules.rulesBottom.classList.add("rules-bottom_picture");
+  gameRules.rulesText.classList.add("rules__text_picture");
 
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 

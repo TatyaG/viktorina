@@ -45,11 +45,11 @@ body {
 
 /* global */
 
-.list-reset {
+/* .list-reset {
   margin: 0;
   padding: 0;
   list-style: none;
-}
+} */
 
 .find-btn-reset {
   padding: 0;
@@ -314,6 +314,7 @@ body {
   position: absolute;
   bottom: 346px;
   left: 459px;
+  border-radius: 0;
 }
 
 .error-img3 {
@@ -368,7 +369,6 @@ body {
       rgba(103, 228, 100, 0.08) 95.59%
     ),
     linear-gradient(271.36deg, #55d55a 1.16%, #e6ffea 98.89%);
-  border-radius: 16px;
   border-image-source: linear-gradient(
     265.22deg,
     #50bb36 2.81%,
@@ -382,26 +382,31 @@ body {
 .correct-img1_wrap {
   bottom: 132px;
   left: 331px;
+  border-radius: 16px;
 }
 
 .correct-img2_wrap {
   bottom: 333px;
   left: 447px;
+  border-radius: 6px;
 }
 
 .correct-img3_wrap {
   top: 190px;
   left: 300px;
+  border-radius: 10px;
 }
 
 .correct-img4_wrap {
   bottom: 300px;
   left: 155px;
+  border-radius: 10px;
 }
 
 .correct-img5_wrap {
   top: 273px;
   right: 161px;
+  border-radius: 20px;
 }
 
 .answer-wrap {
@@ -513,7 +518,7 @@ body {
   }
 
   .correct-img5_wrap {
-    border-radius: 6px;
+    border-radius: 10px;
     top: 192px;
     right: 153px;
   }
@@ -746,7 +751,7 @@ body {
   .points_find-extra::before {
     background-size: 40px;
     background-repeat: no-repeat;
-    left: -51%;
+    left: -54%;
     top: -13%;
   }
 
@@ -801,7 +806,6 @@ body {
 
   .find-extra__title {
     margin-bottom: 8px;
-    font-size: 20px;
   }
 
   .find-extra__subtitle {
@@ -865,6 +869,7 @@ body {
   .correct-img2_wrap {
     bottom: 99px;
     left: 134px;
+    border-radius: 4px;
   }
 
   .correct-img3 {
@@ -874,6 +879,7 @@ body {
   .correct-img3_wrap {
     top: 55px;
     left: 92.4px;
+    border-radius: 4px;
   }
 
   .correct-img4 {
@@ -883,6 +889,7 @@ body {
   .correct-img4_wrap {
     bottom: 86px;
     left: 44px;
+    border-radius: 4px;
   }
 
   .correct-img5 {
@@ -999,6 +1006,19 @@ body {
     padding-top: 18px;
     font-size: 18px;
   }
+
+  .find-extra__left {
+    padding-top: 137px;
+  }
+
+  .rules__text_find-extra {
+    padding: 41px 12px 10px 12px;
+    gap: 0;
+  }
+
+  .rules__btn_find-extra {
+    margin-bottom: 11px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1018,6 +1038,10 @@ body {
 @media (max-width: 480px) {
   .rules--tablet .rules__text {
     width: 295px;
+  }
+
+  .find-extra__title {
+    font-size: 20px;
   }
 }
 
