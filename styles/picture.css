@@ -409,9 +409,9 @@ h2 {
     top: 6rem;
   }
 
-  .deniska {
+  /* ..deniska {
     height: 120%;
-  }
+  } */
 
   .pictures_wrapper {
     margin-top: 7%;
@@ -547,12 +547,20 @@ h2 {
     padding-top: 11rem;
     -webkit-backdrop-filter: blur(6px);
     z-index: 10;
-    /* -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
-    -moz-transform: translate3d(0, 0, 0); */
+    -moz-transform: translate3d(0, 0, 0);
     will-change: transform;
   }
- 
+
+  @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .backdrop-blur {
+      background-color: rgba(255, 255, 255, 0.1);
+      -webkit-backdrop-filter: blur(9px);
+      backdrop-filter: blur(9px);
+    }
+  }
+
   .fail-name-picture,
   .success_name-picture {
     display: flex;
@@ -569,21 +577,21 @@ h2 {
     /* top: 34%; */
     padding-top: 18px;
     font-size: 18px;
-    top: 38%;
-    left: 44.5%;
+    top: 46%;
+    left: 43.5%;
   }
 
-  .fail-name-picture {
+  /* .fail-name-picture {
     bottom: 27%;
     left: 44%;
     width: 277px;
-  }
+  } */
   .fail_text-picture {
     left: 32%;
-    bottom: 51%;
+    bottom: 39%;
   }
   .success_text-picture {
-    bottom: 49%;
+    bottom: 37%;
     left: 32%;
     width: 277px;
   }
