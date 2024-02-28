@@ -710,4 +710,4 @@ export const createFillword = () => {
   return game;
 };
 
-// createFillword();
+createFillword();
