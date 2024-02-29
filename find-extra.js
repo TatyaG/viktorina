@@ -361,6 +361,7 @@ export function createFindExtra() {
     yesBtn.textContent = "Да";
     noBtn.textContent = "Нет";
 
+    deniska.gameRules.classList.add("game__rules_find-extra");
     btns.classList.add("btns-group");
     yesBtn.classList.add(
       "btn-reset",

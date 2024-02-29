@@ -144,7 +144,7 @@ body {
 }
 
 .game-crossword__btn--skip {
-  text-shadow: -1px -1px 0 #653982, 2px -1px 0 #653982, -1px 1px 0 #653982,
+  text-shadow: -1px -1px 0 #653982, 1px -1px 0 #653982, -1px 1px 0 #653982,
     1px 1px 0 #653982, #2633a1 0em 0.1em 0.1em;
   border-radius: 100px;
   background: radial-gradient(
@@ -561,10 +561,6 @@ table {
     margin-bottom: 40px;
   }
 
-  .assistent-name {
-    font-size: 20px;
-  }
-
   .game-crossword__btn {
     font-size: 20px;
   }
@@ -579,25 +575,21 @@ table {
     font-size: 17px;
   }
 
-  .assistent-text {
+  /* .assistent-text {
     font-size: 17px;
-  }
+  } */
 
-  .ask_text1 {
+  /* .ask_text1 {
     bottom: 30%;
   }
 
   .ask_text2 {
     bottom: 25%;
-  }
+  } */
 
   .fail-crossword,
   .success-crossword {
     left: 100%;
-  }
-
-  .ask_name {
-    left: 38%;
   }
 }
 
@@ -651,6 +643,10 @@ table {
     font-size: 16px;
   }
 
+  .ask_name {
+    left: 38%;
+  }
+
   .points_score {
     padding: 4px 24px;
     font-size: 24px;
@@ -674,6 +670,10 @@ table {
     left: -39px !important;
   }
 
+  .assistent-name {
+    font-size: 20px;
+  }
+
   .fail_name,
   .success_name {
     top: 46%;
@@ -691,6 +691,9 @@ table {
 
   .btn-no,
   .btn-yes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 122px;
     height: 46px;
   }
@@ -1122,9 +1125,9 @@ table {
     margin-bottom: 8px;
   }
 
-  .ask_name {
+  /* .ask_name {
     left: 33%;
-  }
+  } */
 
   .askBtn-wrap,
   .ask_text1,
