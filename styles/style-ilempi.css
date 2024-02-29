@@ -830,12 +830,12 @@ body {
     font-size: 16px;
   }
 
-  .rules__ribbon {
-    top: -38px;
-    font-size: 20px;
-    height: 82px;
-    background-image: url(../img/ribbon-tablet.svg);
-  }
+    .rules__ribbon {
+        top: -38px;
+        font-size: 20px;
+        height: 82px;
+        background-image: url(../img/ribbon-tablet.svg);
+    }
 
   .game__point {
     padding: 4px 24px;
@@ -982,11 +982,12 @@ body {
     align-self: end;
   }
 
-  .game__btn {
-    display: none;
-    padding: 16px 30px;
-    font-size: 14px;
-  }
+    .game__btn {
+        display: none;
+        padding: 16px 30px;
+        font-size: 14px;
+        z-index: 2;
+    }
 
   .ilempi .game__left {
     grid-row: 2;
@@ -996,11 +997,11 @@ body {
     grid-row: 1;
   }
 
-  .game__podium {
-    left: 50%;
-    width: 42%;
-    transform: translateX(-50%);
-  }
+    .game__podium {
+        left: 50%;
+        width: 38%;
+        transform: translateX(-50%);
+    }
 
   .podium {
     width: 54%;
