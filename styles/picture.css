@@ -54,7 +54,7 @@ ol {
   background: url(../img/background_picture_desktop.png) no-repeat center center
     fixed;
   background-size: cover;
-  /* height: 100vh; */
+  height: 141vh;
 }
 img {
   max-width: 100%;
@@ -271,6 +271,9 @@ h2 {
     flex-wrap: nowrap;
     max-width: fit-content;
   }
+  .rules-bottom_picture {
+    bottom: 7rem;
+  }
   .game__block-picture {
     flex-direction: column;
   }
@@ -413,13 +416,17 @@ h2 {
   .pictures_wrapper {
     display: none;
   }
-  .game__rules {
+  .game__rules-picture {
     top: 6rem;
   }
 
-  .picture_game {
-    height: auto;
+  .rules-bottom_picture {
+    bottom: -1rem;
   }
+
+  /* .picture_game {
+    height: auto;
+  } */
 
   /* ..deniska {
     height: 120%;
@@ -458,6 +465,7 @@ h2 {
   }
   .game__block-picture {
     overflow-y: visible !important;
+    margin-top: 11rem;
   }
   .description {
     background-size: 257px;
@@ -659,7 +667,7 @@ h2 {
 
   .success_text-picture,
   .fail_text-picture {
-    left: 19%;
+    left: 18%;
   }
 }
 

@@ -220,6 +220,7 @@ export const createPicture = () => {
 
   gameRules.rulesBottom.classList.add("rules-bottom_picture");
   gameRules.rulesText.classList.add("rules__text_picture");
+ 
 
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 
@@ -564,7 +565,6 @@ export const createPicture = () => {
         // gameCenter.append(gameBtnSkipMobile2);
         gameBtnSkipMobile2.style.display = "block";
       });
-  
 
       //Добавляем правила открытия модалки 'пропустить игру'
       gameBtnSkipMobile.addEventListener("click", (e) => {
@@ -648,4 +648,4 @@ export const createPicture = () => {
   return game;
 };
 
-// createPicture();
+createPicture();
