@@ -727,4 +727,4 @@ export function createFillword() {
   return game;
 }
 
-// createFillword();
+createFillword();

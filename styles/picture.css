@@ -281,7 +281,7 @@ h2 {
   .rules__bottom-picture {
     top: 9rem;
   }
-  .question_wrap {
+  .question_wrap-picture {
     margin-bottom: 7rem;
   }
   .game__btn--skip-picture,
@@ -482,7 +482,7 @@ h2 {
   .game__btn--skip-picture {
     margin: 28% auto;
   }
-  .rules__text {
+  .rules__text_picture {
     font-size: 16px;
   }
   .hidden {

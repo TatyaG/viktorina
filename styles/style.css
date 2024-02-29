@@ -547,11 +547,7 @@ body {
   }
 }
 
-@media (max-width: 360px) {
-  body {
-    background-image: url(../img/background_1_mobile.webp);
-  }
-
+@media (max-width: 375px) {
   .title {
     left: -2%;
     top: 26%;
@@ -572,5 +568,11 @@ body {
 
   .title_container {
     left: 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    background-image: url(../img/background_1_mobile.webp);
   }
 }

@@ -13,7 +13,7 @@ function createTalker(text) {
 
   gameRules.classList.add("game__rules", "rules", "talker");
   rulesTop.classList.add("rules__top");
-  rulesBottom.classList.add("rules__bottom", "rules__bottom-picture");
+  rulesBottom.classList.add("rules__bottom");
   rulesTalker.classList.add("rules__img");
   rulesRibbon.classList.add("rules__ribbon");
   rulesText.classList.add("rules__text");
@@ -25,7 +25,8 @@ function createTalker(text) {
     return {
         gameRules,
         rulesBtn,
-        rulesBottom
+        rulesBottom,
+        rulesText,
     };
 
 }
