@@ -3,7 +3,7 @@ import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
 import {createFindExtra} from './find-extra.js';
-// import createPuzzleGame from './puzzle.js';
+
 
 export function createGameSymbols() {
     const game = document.createElement('section');
@@ -259,7 +259,7 @@ gameBtnNext.addEventListener('click', (e) => {
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-            gameBtnNext.remove()
+            // gameBtnNext.remove()
 
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
