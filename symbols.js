@@ -3,6 +3,7 @@ import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
 // import createPuzzleGame from './puzzle.js';
+// import {createFindExtra} from './find-extra.js';
 
 export function createGameSymbols() {
     const game = document.createElement('section');
@@ -217,8 +218,8 @@ export function createGameSymbols() {
 // gameBtnNext.addEventListener('click', (e) => {
 //     e.preventDefault();
 //     document.body.innerHTML = '';
-//     const puzzle = createPuzzleGame();
-//     document.body.append(puzzle);
+//     const find = createFindExtra();
+//     document.body.append(find);
 // })
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
@@ -254,7 +255,7 @@ export function createGameSymbols() {
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-            gameBtnNext.remove()
+            // gameBtnNext.remove()
 
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
