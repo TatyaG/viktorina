@@ -313,11 +313,11 @@ export function createFillword() {
     "question_list_fillword"
   );
   const questionItem1 = document.createElement("li");
-  questionItem1.classList.add("question_item");
+  questionItem1.classList.add("question_item-fillword");
   const questionItem2 = document.createElement("li");
-  questionItem2.classList.add("question_item");
+  questionItem2.classList.add("question_item-fillword");
   const questionItem3 = document.createElement("li");
-  questionItem3.classList.add("question_item");
+  questionItem3.classList.add("question_item-fillword");
   const answer1 = document.createElement("p");
   answer1.classList.add("question_answer", "hidden");
   const answer2 = document.createElement("p");
