@@ -178,11 +178,10 @@ export function createFillword() {
                 "block";
               document
                 .querySelector(".game__btn--next")
-                .classList.add("game__btn--next-picture");
+                .classList.add("game__btn--next-fillword");
             }, 800);
             return;
           } else {
-            console.log("click");
             if (countTouch === 3) {
               const deniska = createDeniska("Очень жаль, ответ не подходит.");
               deniska.rulesDeniska.src = "img/deniska-sad.webp";
@@ -194,7 +193,7 @@ export function createFillword() {
                   "block";
                 document
                   .querySelector(".game__btn--next")
-                  .classList.add("game__btn--next-picture");
+                  .classList.add("game__btn--next-fillword");
               }, 800);
             }
           }
@@ -202,6 +201,7 @@ export function createFillword() {
         });
       }
     } else {
+      console.log("click");
       for (let node of document.querySelectorAll(".cells")) {
         node.addEventListener("mousedown", function (event) {
           console.log("PK");
@@ -263,7 +263,7 @@ export function createFillword() {
                   "none";
                 document.querySelector(".game__btn--next").style.display =
                   "block";
-                gameBtnNext.classList.add("game__btn--next-picture");
+                gameBtnNext.classList.add("game__btn--next-fillword");
                 console.log();
               }, 800);
             }
@@ -313,11 +313,11 @@ export function createFillword() {
     "question_list_fillword"
   );
   const questionItem1 = document.createElement("li");
-  questionItem1.classList.add("question_item-fillword");
+  questionItem1.classList.add("question_item", "question_item-fillword");
   const questionItem2 = document.createElement("li");
-  questionItem2.classList.add("question_item-fillword");
+  questionItem2.classList.add("question_item", "question_item-fillword");
   const questionItem3 = document.createElement("li");
-  questionItem3.classList.add("question_item-fillword");
+  questionItem3.classList.add("question_item", "question_item-fillword");
   const answer1 = document.createElement("p");
   answer1.classList.add("question_answer", "hidden");
   const answer2 = document.createElement("p");
@@ -373,6 +373,8 @@ export function createFillword() {
     gameBlock.style.overflowY = "scroll";
   });
 
+  gameRules.rulesBottom.classList.add("rules__bottom-fillword");
+
   gameBtnSkip.addEventListener("click", (e) => {
     e.preventDefault();
     const deniska = createDeniska(
@@ -427,7 +429,7 @@ export function createFillword() {
     "game__btn",
     "game__btn--next",
     "btn-reset",
-    "game__btn--next-picture"
+    "game__btn--next-fillword"
   );
   console.log(gameBtnNext);
 
