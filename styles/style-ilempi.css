@@ -753,6 +753,7 @@ body {
     .game__btn {
         padding: 16px 40px;
         font-size: 20px;
+       
     }
     
    
@@ -769,6 +770,7 @@ body {
         font-size: 20px;
         height: 82px;
         background-image: url(../img/ribbon-tablet.svg);
+       
     }
 
     .game__point {
@@ -924,11 +926,11 @@ body {
         display: none;
         padding: 16px 30px;
         font-size: 14px;
+        z-index: 2;
     }
 
     .ilempi .game__left {
         grid-row: 2;
-        z-index: 4;
     }
 
     .ilempi .game__right {
