@@ -647,4 +647,4 @@ export const createPicture = () => {
   return game;
 };
 
-createPicture();
+// createPicture();

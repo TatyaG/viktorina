@@ -41,12 +41,20 @@ ol {
   font-style: normal;
   font-display: swap;
 }
-body {
+/* body {
   margin: 0;
   position: relative;
   background: url(../img/background_picture_desktop.png) no-repeat center center
     fixed;
   background-size: cover;
+} */
+.picture_game {
+  margin: 0;
+  position: relative;
+  background: url(../img/background_picture_desktop.png) no-repeat center center
+    fixed;
+  background-size: cover;
+  /* height: 100vh; */
 }
 img {
   max-width: 100%;
@@ -407,6 +415,10 @@ h2 {
   }
   .game__rules {
     top: 6rem;
+  }
+
+  .picture_game {
+    height: auto;
   }
 
   /* ..deniska {
