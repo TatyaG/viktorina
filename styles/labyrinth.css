@@ -1,0 +1,6 @@
+body {
+  margin: 0;
+  position: relative;
+  background: url(../img/background_labyrinth.png) no-repeat center center fixed;
+  background-size: 100% 100%;
+}

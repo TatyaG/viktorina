@@ -2,6 +2,7 @@ import createTalker from "./talker.js";
 import createDeniska from "./deniska.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
+import {createPicture} from './picture.js';
 
 export function createFindExtra() {
   const game = document.createElement("section");
@@ -10,15 +11,15 @@ export function createFindExtra() {
   const gameBlock = document.createElement("div");
   const gameLeft = document.createElement("div");
   const gameRight = document.createElement("div");
-  const pointBlock = createPoint();
-  let points = JSON.parse(localStorage.getItem('points'));
-  pointBlock.textContent = points;
+  const pointDiv = createPoint();
+  let points = JSON.parse(localStorage.getItem("points") ?? 0);
+  pointDiv.textContent = points;
 
   gameTitle.textContent = "Художественная галерея";
   gameSubtitle.innerHTML = `Что лишнее?`;
 
   game.classList.add("game_find", "find-extra");
-  pointBlock.classList.add("points");
+  pointDiv.classList.add("points", "points_find-extra");
   gameTitle.classList.add("find-extra__title");
   gameSubtitle.classList.add("find-extra__subtitle");
   gameBlock.classList.add("find-extra__block", "flex");
@@ -26,7 +27,7 @@ export function createFindExtra() {
   gameRight.classList.add("find-extra__right", "flex");
 
   document.body.append(game);
-  game.append(pointBlock, gameTitle, gameSubtitle, gameBlock);
+  game.append(pointDiv, gameTitle, gameSubtitle, gameBlock);
   gameBlock.append(gameLeft, gameRight);
 
   //   Слева
@@ -42,6 +43,9 @@ export function createFindExtra() {
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
   gameBtnAccept.textContent = "Принять ответ";
+
+  assistantPerrot.rulesText.classList.add("rules__text_find-extra");
+  assistantPerrot.rulesBtn.classList.add("rules__btn_find-extra");
 
   btnWrap.classList.add("btn-wrap", "flex");
   gameBtnSkip.classList.add(
@@ -65,6 +69,12 @@ export function createFindExtra() {
 
   gameLeft.append(assistantPerrot.gameRules, btnWrap);
   btnWrap.append(gameBtnSkip, gameBtnAccept, gameBtnNext);
+
+   gameBtnNext.addEventListener("click", (e) => {
+     document.body.innerHTML = "";
+     const picture = createPicture();
+     document.body.append(picture);
+   });
 
   // Справа
 
@@ -219,6 +229,7 @@ export function createFindExtra() {
     correctImg4Wrap,
     correctImg5Wrap,
   ];
+
   const answersInBox = [
     findAnswer1,
     findAnswer2,
@@ -237,71 +248,11 @@ export function createFindExtra() {
 
   const errorsImg = [errorImg1, errorImg2, errorImg3, errorImg4, errorImg5];
 
-  errorsImg.forEach((item) => {
-    for (let i = 0; i < answers.length; i++) {
-      errorsImg[i].addEventListener("click", (e) => {
-        e.preventDefault();
-        errorsImg[i].classList.add("hidden");
-        answers[i].classList.remove("hidden");
-      });
-    }
-  });
+  const tabletMediaQueryList = window.matchMedia("(max-width: 1750px)");
+  const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
 
-  //   Пропустить игру
-
-  gameBtnSkip.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    // Дениска спрашивает
-
-    const deniska = createDeniska(
-      "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
-    );
-
-    document.body.append(deniska.deniska);
-    deniska.rulesDeniska.src = "img/deniska-sad.webp";
-    game.classList.add("blur");
-    const btns = document.createElement("div");
-    const yesBtn = document.createElement("button");
-    const noBtn = document.createElement("button");
-
-    yesBtn.textContent = "Да";
-    noBtn.textContent = "Нет";
-
-    btns.classList.add("btns-group");
-    yesBtn.classList.add(
-      "btn-reset",
-      "game__btn",
-      "game__btn--yes",
-      "game__btn--next"
-    );
-    noBtn.classList.add(
-      "btn-reset",
-      "game__btn",
-      "game__btn--no",
-      "game__btn--next"
-    );
-    btns.append(yesBtn, noBtn);
-    deniska.rulesText.append(btns);
-
-    // yesBtn.addEventListener("click", (e) => {
-    //   e.preventDefault();
-    //   document.body.innerHTML = "";
-    //   const crossword = createCrossword();
-    //   document.body.append(crossword);
-    // });
-
-    noBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      deniska.deniska.remove();
-      game.classList.remove("blur");
-    });
-  });
-
-  // Проверка ответов
-
-  gameBtnAccept.addEventListener("click", (e) => {
-    e.preventDefault();
+  const handleAccept = (event) => {
+    event.preventDefault();
 
     for (let i = 0; i < answers.length; i++) {
       if (!answers[i].classList.contains("hidden")) {
@@ -342,180 +293,194 @@ export function createFindExtra() {
       const deniskaSuccess = createDeniska(
         "Отлично! Задание выполнено. Тебе начислен 1 балл."
       );
+      deniskaSuccess.gameRules.classList.add("game__rules_find-extra");
 
       // Очки
-      let points = JSON.parse(localStorage.getItem('points'));
+      let points = JSON.parse(localStorage.getItem("points"));
       points += 1;
-      localStorage.setItem('points', points)
-      const point = document.querySelector('.game__point');
+      localStorage.setItem("points", points);
+      const point = document.querySelector(".game__point");
       point.textContent = points;
-      point.classList.add('animation');
+      point.classList.add("animation");
 
       setTimeout(() => {
-        gameRight.append(deniskaSuccess.deniska);
+        if (mobileMediaQueryList.matches) {
+          document.body.append(deniskaSuccess.deniska);
+          deniskaSuccess.deniska.append(gameBtnNext);
+          gameBtnNext.classList.remove("hidden");
+          gameBtnNext.style.marginTop = "40px";
+          game.classList.add("blur");
+        } else {
+          gameRight.append(deniskaSuccess.deniska);
+        }
       }, 4000);
-
     } else {
-
       const deniskaFail = createDeniska(
         "К сожалению, не найдены все лишние элементы."
       );
       deniskaFail.rulesDeniska.src = "img/deniska-sad.webp";
+      deniskaFail.gameRules.classList.add("game__rules_find-extra");
+
       setTimeout(() => {
-        gameRight.append(deniskaFail.deniska);
+        if (mobileMediaQueryList.matches) {
+          document.body.append(deniskaFail.deniska);
+          deniskaFail.deniska.append(gameBtnNext);
+          gameBtnNext.classList.remove("hidden");
+          gameBtnNext.style.marginTop = "40px";
+          game.classList.add("blur");
+        } else {
+          gameRight.append(deniskaFail.deniska);
+        }
       }, 4000);
     }
-
     gameBtnAccept.classList.add("hidden");
     gameBtnSkip.classList.add("hidden");
     gameBtnNext.classList.remove("hidden");
+
+    if (mobileMediaQueryList.matches) {
+      gameBtnNext.classList.add("hidden");
+    }
+  };
+
+  const handleSkip = (event) => {
+    event.preventDefault();
+
+    // Дениска спрашивает
+
+    const deniska = createDeniska(
+      "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+    );
+
+    document.body.append(deniska.deniska);
+    deniska.rulesDeniska.src = "img/deniska-sad.webp";
+    game.classList.add("blur");
+    const btns = document.createElement("div");
+    const yesBtn = document.createElement("button");
+    const noBtn = document.createElement("button");
+
+    yesBtn.textContent = "Да";
+    noBtn.textContent = "Нет";
+
+    btns.classList.add("btns-group");
+    yesBtn.classList.add(
+      "btn-reset",
+      "game__btn",
+      "game__btn--yes",
+      "game__btn--next",
+      "extra-yes"
+    );
+    noBtn.classList.add(
+      "btn-reset",
+      "game__btn",
+      "game__btn--no",
+      "game__btn--next",
+      "game__btn--no",
+      "extra-no"
+    );
+    btns.append(yesBtn, noBtn);
+    deniska.rulesText.append(btns);
+
+     yesBtn.addEventListener("click", (e) => {
+       e.preventDefault();
+       document.body.innerHTML = "";
+       const picture = createPicture();
+       document.body.append(picture);
+     });
+
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      deniska.deniska.remove();
+      game.classList.remove("blur");
+    });
+  };
+
+  const handleRules = (event) => {
+    event.preventDefault();
+
+    const rulesBlock = createRulesTablet(
+      "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик». Мы спрятали на ней 5 лишних элементов. Найди их и получи монету."
+    );
+    game.append(rulesBlock);
+
+    gameLeft.classList.add("hidden");
+    gameRight.classList.remove("hidden");
+    gameBtnSkip.classList.remove("hidden");
+    gameBtnAccept.classList.remove("hidden");
+    gameRight.append(btnWrap);
+  };
+
+  errorsImg.forEach((errorItem, index) => {
+    errorItem.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      errorItem.classList.add("hidden");
+      answers[index].classList.remove("hidden");
+    });
   });
 
-  // Адаптив
+  // Пропустить игру
 
-  const mediaQuery = window.matchMedia("(max-width: 1750px)");
-  function handleTabletChange(e) {
-    if (e.matches) {
-      findImg.src = "img/img-tablet.webp";
+  gameBtnSkip.addEventListener("click", handleSkip);
 
-      errorImg1.src = "img/extra1_tablet.png";
-      errorImg2.src = "img/extra2_tablet.png";
-      errorImg3.src = "img/extra3_tablet.png";
-      errorImg4.src = "img/extra4_tablet.png";
-      errorImg5.src = "img/extra5_tablet.png";
+  // Проверка ответов
 
-      findAnswer1.src = "img/answer-in-box1_tablet.png";
-      findAnswer2.src = "img/answer-in-box2_tablet.png";
-      findAnswer3.src = "img/answer-in-box3_tablet.png";
-      findAnswer4.src = "img/answer-in-box4_tablet.png";
-      findAnswer5.src = "img/answer-in-box5_tablet.png";
+  gameBtnAccept.addEventListener("click", handleAccept);
 
-      checkMark1.src = "img/check-mark_tablet.png";
-      checkMark2.src = "img/check-mark_tablet.png";
-      checkMark3.src = "img/check-mark_tablet.png";
-      checkMark4.src = "img/check-mark_tablet.png";
-      checkMark5.src = "img/check-mark_tablet.png";
+  // Принятие правил
 
-      errorsImg.forEach((item) => {
-        for (let i = 0; i < answers.length; i++) {
-          errorsImg[i].addEventListener("click", (e) => {
-            e.preventDefault();
-            errorsImg[i].classList.add("hidden");
-            answers[i].classList.remove("hidden");
-          });
-        }
-      });
-    }
+  document.querySelector(".rules__btn").addEventListener("click", handleRules);
+
+  //#region Адаптив
+
+  const handleTablet = () => {
+    findImg.src = "img/img-tablet.webp";
+
+    errorImg1.src = "img/extra1_tablet.png";
+    errorImg2.src = "img/extra2_tablet.png";
+    errorImg3.src = "img/extra3_tablet.png";
+    errorImg4.src = "img/extra4_tablet.png";
+    errorImg5.src = "img/extra5_tablet.png";
+
+    findAnswer1.src = "img/answer-in-box1_tablet.png";
+    findAnswer2.src = "img/answer-in-box2_tablet.png";
+    findAnswer3.src = "img/answer-in-box3_tablet.png";
+    findAnswer4.src = "img/answer-in-box4_tablet.png";
+    findAnswer5.src = "img/answer-in-box5_tablet.png";
+
+    checkMark1.src = "img/check-mark_tablet.png";
+    checkMark2.src = "img/check-mark_tablet.png";
+    checkMark3.src = "img/check-mark_tablet.png";
+    checkMark4.src = "img/check-mark_tablet.png";
+    checkMark5.src = "img/check-mark_tablet.png";
+  };
+
+  const handleMobile = () => {
+    gameRight.classList.add("hidden");
+    gameBtnSkip.classList.add("hidden");
+    gameBtnAccept.classList.add("hidden");
+  };
+
+  if (tabletMediaQueryList.matches) {
+    handleTablet();
   }
-  mediaQuery.addListener(handleTabletChange);
-  handleTabletChange(mediaQuery);
 
-
-  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
-  function handleTabletChange2(e) {
-    if (e.matches) {
-      gameRight.classList.add("hidden");
-      gameBtnSkip.classList.add("hidden");
-      gameBtnAccept.classList.add("hidden");
-
-      const rulesBtn = document.querySelector(".rules__btn");
-
-      rulesBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const rulesBlock = createRulesTablet(
-          "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик». Мы спрятали на ней 5 лишних элементов. Найди их и получи монету."
-        );
-        game.append(rulesBlock);
-
-        gameLeft.classList.add("hidden");
-        gameRight.classList.remove("hidden");
-        gameBtnSkip.classList.remove("hidden");
-        gameBtnAccept.classList.remove("hidden");
-        gameRight.append(btnWrap);
-      });
-
-      gameBtnAccept.addEventListener("click", (e) => {
-        e.preventDefault();
-    
-        for (let i = 0; i < answers.length; i++) {
-          if (!answers[i].classList.contains("hidden")) {
-            answersInBox[i].classList.remove("hidden");
-            checkMark[i].classList.remove("hidden");
-          }
-    
-          if (answers[i].classList.contains("hidden")) {
-            errorsImg[i].style.pointerEvents = "none";
-          }
-        }
-    
-        if (
-          Array.from(answers).every((element) => {
-            return element.classList.contains("hidden");
-          })
-        ) {
-          answersInBox.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-          checkMark.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-        }
-    
-        if (
-          Array.from(answers).every((element) => {
-            return !element.classList.contains("hidden");
-          })
-        ) {
-          answersInBox.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-          checkMark.forEach((element) => {
-            element.classList.remove("hidden");
-          });
-    
-          const deniskaSuccess = createDeniska(
-            "Отлично! Задание выполнено. Тебе начислен 1 балл."
-          );
-
-            // Очки
-            let points = JSON.parse(localStorage.getItem('points'));
-            points += 1;
-            localStorage.setItem('points', points)
-            const point = document.querySelector('.game__point');
-            point.textContent = points;
-            point.classList.add('animation');
-    
-          setTimeout(() => {
-            document.body.append(deniskaSuccess.deniska);
-            deniskaSuccess.deniska.append(gameBtnNext);
-            gameBtnNext.classList.remove("hidden");
-            gameBtnNext.style.marginTop = '40px';
-            game.classList.add("blur");
-          }, 4000);
-
-        } else {
-
-          const deniskaFail = createDeniska(
-            "К сожалению, не найдены все лишние элементы."
-          );
-          deniskaFail.rulesDeniska.src = "img/deniska-sad.webp";
-          setTimeout(() => {            
-            document.body.append(deniskaFail.deniska);            
-            deniskaFail.deniska.append(gameBtnNext);
-            gameBtnNext.classList.remove("hidden");
-            gameBtnNext.style.marginTop = '40px';
-            game.classList.add("blur");
-          }, 4000);
-        }
-    
-        gameBtnAccept.classList.remove("hidden");
-        gameBtnSkip.classList.remove("hidden");
-        gameBtnNext.classList.add("hidden");
-      });
-    }
+  if (mobileMediaQueryList.matches) {
+    handleMobile();
   }
-  mediaQuery2.addListener(handleTabletChange2);
-  handleTabletChange2(mediaQuery2);
+
+  tabletMediaQueryList.addEventListener("change", ({ matches }) => {
+    if (matches) {
+      handleTablet();
+    }
+  });
+
+  mobileMediaQueryList.addEventListener("change", ({ matches }) => {
+    if (matches) {
+      handleMobile();
+    }
+  });
+
+  return game;
 }
 
-createFindExtra();
+// createFindExtra();

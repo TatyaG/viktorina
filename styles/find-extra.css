@@ -45,11 +45,11 @@ body {
 
 /* global */
 
-.list-reset {
+/* .list-reset {
   margin: 0;
   padding: 0;
   list-style: none;
-}
+} */
 
 .find-btn-reset {
   padding: 0;
@@ -94,7 +94,7 @@ body {
 }
 
 .points_img__shine {
-  left: -46% !important;
+  /* left: -46% !important; */
   animation-name: shine;
   animation-duration: 4s;
 }
@@ -192,10 +192,14 @@ body {
   box-shadow: 0px 10px 0px 0px #ae87c8, 0px 2px 6px 0px #f1dffd;
 }
 
+.extra-yes,
+.extra-no {
+  padding: 16px 51px;
+}
+
 .find-extra__btn--next,
 .btn-yes,
 .btn-no {
-  padding: 16px 51px;
   text-shadow: -1px -1px 0 #019cd4, 1px -1px 0 #019cd4, -1px 1px 0 #019cd4,
     1px 1px 0 #019cd4, #2633a1 0em 0.1em 0.1em;
   border-radius: 100px;
@@ -310,6 +314,7 @@ body {
   position: absolute;
   bottom: 346px;
   left: 459px;
+  border-radius: 0;
 }
 
 .error-img3 {
@@ -364,7 +369,6 @@ body {
       rgba(103, 228, 100, 0.08) 95.59%
     ),
     linear-gradient(271.36deg, #55d55a 1.16%, #e6ffea 98.89%);
-  border-radius: 16px;
   border-image-source: linear-gradient(
     265.22deg,
     #50bb36 2.81%,
@@ -378,26 +382,31 @@ body {
 .correct-img1_wrap {
   bottom: 132px;
   left: 331px;
+  border-radius: 16px;
 }
 
 .correct-img2_wrap {
   bottom: 333px;
   left: 447px;
+  border-radius: 6px;
 }
 
 .correct-img3_wrap {
   top: 190px;
   left: 300px;
+  border-radius: 10px;
 }
 
 .correct-img4_wrap {
   bottom: 300px;
   left: 155px;
+  border-radius: 10px;
 }
 
 .correct-img5_wrap {
   top: 273px;
   right: 161px;
+  border-radius: 20px;
 }
 
 .answer-wrap {
@@ -418,7 +427,7 @@ body {
   right: -8px;
 }
 
-.blur ~ .deniska .game__rules {
+.blur ~ .deniska .game__rules_find-extra {
   position: absolute;
   position: fixed;
   left: 50%;
@@ -428,7 +437,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.deniska .game__rules {
+.deniska .game__rules_find-extra {
   position: absolute;
   right: -129px;
   bottom: 0;
@@ -438,7 +447,7 @@ body {
 /* Адаптив */
 
 @media (max-width: 1880px) {
-  .deniska .game__rules {
+  .deniska .game__rules_find-extra {
     right: 10px;
     bottom: -90px;
   }
@@ -509,7 +518,7 @@ body {
   }
 
   .correct-img5_wrap {
-    border-radius: 6px;
+    border-radius: 10px;
     top: 192px;
     right: 153px;
   }
@@ -551,12 +560,12 @@ body {
     background-image: url(../img/ribbon-tablet.svg);
   }
 
-  .game__point {
+  .points_find-extra {
     padding: 4px 24px;
     font-size: 24px;
   }
 
-  .game__point::before {
+  .points_find-extra::before {
     top: -30%;
     left: -67%;
     width: 60px;
@@ -739,14 +748,14 @@ body {
     left: 89%;
   }
 
-  .game__point::before {
+  .points_find-extra::before {
     background-size: 40px;
     background-repeat: no-repeat;
-    left: -51%;
+    left: -54%;
     top: -13%;
   }
 
-  .game__point {
+  .points_find-extra {
     position: absolute;
     font-size: 20px;
     padding: 4px 20px;
@@ -797,7 +806,6 @@ body {
 
   .find-extra__title {
     margin-bottom: 8px;
-    font-size: 20px;
   }
 
   .find-extra__subtitle {
@@ -861,6 +869,7 @@ body {
   .correct-img2_wrap {
     bottom: 99px;
     left: 134px;
+    border-radius: 4px;
   }
 
   .correct-img3 {
@@ -870,6 +879,7 @@ body {
   .correct-img3_wrap {
     top: 55px;
     left: 92.4px;
+    border-radius: 4px;
   }
 
   .correct-img4 {
@@ -879,6 +889,7 @@ body {
   .correct-img4_wrap {
     bottom: 86px;
     left: 44px;
+    border-radius: 4px;
   }
 
   .correct-img5 {
@@ -939,7 +950,7 @@ body {
     font-size: 16px;
   }
 
-  .blur ~ .deniska .game__rules {
+  .blur ~ .deniska .game__rules_find-extra {
     position: relative;
     transform: translateX(-50%);
     top: 0;
@@ -957,10 +968,6 @@ body {
   .blur ~ .deniska .game__btn--no {
     display: block;
     bottom: 0;
-  }
-
-  .deniska .game__btn--next {
-    bottom: -138px;
   }
 
   .shine {
@@ -982,7 +989,7 @@ body {
     z-index: 10;
   }
 
-  .deniska .game__rules {
+  .deniska .game__rules_find-extra {
     position: relative;
     transform: translateX(-50%);
     left: 50%;
@@ -998,6 +1005,19 @@ body {
     top: -41px;
     padding-top: 18px;
     font-size: 18px;
+  }
+
+  .find-extra__left {
+    padding-top: 137px;
+  }
+
+  .rules__text_find-extra {
+    padding: 41px 12px 10px 12px;
+    gap: 0;
+  }
+
+  .rules__btn_find-extra {
+    margin-bottom: 11px;
   }
 }
 
@@ -1018,6 +1038,10 @@ body {
 @media (max-width: 480px) {
   .rules--tablet .rules__text {
     width: 295px;
+  }
+
+  .find-extra__title {
+    font-size: 20px;
   }
 }
 

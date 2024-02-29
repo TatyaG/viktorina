@@ -2,8 +2,8 @@ import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
-// import createPuzzleGame from './puzzle.js';
-// import {createFindExtra} from './find-extra.js';
+import {createFindExtra} from './find-extra.js';
+
 
 export function createGameSymbols() {
     const game = document.createElement('section');
@@ -202,6 +202,8 @@ export function createGameSymbols() {
     yesBtn.addEventListener('click', (e) => {
         e.preventDefault();
         document.body.innerHTML = '';
+        const findExtra = createFindExtra();
+        document.body.append(findExtra);
     })
 
     noBtn.addEventListener('click', (e) => {
@@ -215,12 +217,14 @@ export function createGameSymbols() {
 })
 
 
-// gameBtnNext.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     document.body.innerHTML = '';
-//     const find = createFindExtra();
-//     document.body.append(find);
-// })
+gameBtnNext.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.innerHTML = '';
+    // const puzzle = createPuzzleGame();
+    // document.body.append(puzzle);
+    const findExtra = createFindExtra();
+    document.body.append(findExtra);
+})
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
