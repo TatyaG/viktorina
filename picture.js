@@ -220,7 +220,6 @@ export const createPicture = () => {
 
   gameRules.rulesBottom.classList.add("rules-bottom_picture");
   gameRules.rulesText.classList.add("rules__text_picture");
- 
 
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 
@@ -372,6 +371,8 @@ export const createPicture = () => {
   function handleTabletChange2(e) {
     if (e.matches) {
       const slideBtn = document.querySelector(".rules__btn");
+
+      
 
       //Создаем кнопку стрелку на второй странице
       const slide2Btn = document.createElement("button");
@@ -553,6 +554,7 @@ export const createPicture = () => {
         questionWrap.style.display = "block";
         gameBtnSkipMobile.style.display = "block";
         rulesBtnImg.style.display = "block";
+      
       });
 
       slide2Btn.addEventListener("click", () => {
@@ -648,4 +650,4 @@ export const createPicture = () => {
   return game;
 };
 
-createPicture();
+// createPicture();

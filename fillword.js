@@ -89,6 +89,7 @@ export function createFillword() {
   let isActivelySelecting = false;
   let currHoverTarget = null;
   console.log("script loaded");
+
   document.addEventListener("DOMContentLoaded", () => {
     console.log("loaded");
     let correctWords = ["павлова", "яковлев", "николаев"];
@@ -171,8 +172,10 @@ export function createFillword() {
             const deniska = createDeniska(
               "Отлично! Задание выполнено. Тебе начислен 1 балл."
             );
+
             setTimeout(() => {
               document.body.append(deniska.deniska);
+              deniska.deniska.classList.add("deniska-fillword");
               document.querySelector(".game__btn--skip").style.display = "none";
               document.querySelector(".game__btn--next").style.display =
                 "block";
@@ -187,6 +190,7 @@ export function createFillword() {
               deniska.rulesDeniska.src = "img/deniska-sad.webp";
               setTimeout(() => {
                 document.body.append(deniska.deniska);
+                deniska.deniska.classList.add("deniska-fillword");
                 document.querySelector(".game__btn--skip").style.display =
                   "none";
                 document.querySelector(".game__btn--next").style.display =
@@ -225,7 +229,7 @@ export function createFillword() {
             correctGuessCount++;
           } else {
             nodeAr.forEach((el) => {
-              el.className = "wrong";
+              el.classList.add("wrong");
             });
           }
 
@@ -277,6 +281,7 @@ export function createFillword() {
       nodeAr.push(node);
     }
   });
+  
 
   //Наполняем таблицу буквами
   for (let i = 0; i < 5; i++) {

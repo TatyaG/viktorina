@@ -8,12 +8,14 @@ body {
 }
 
 .fillword-game {
+  margin: 0;
+  position: relative;
   background: url(../img/background_fillword.png) no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
 }
 
-.game.fillword-game {
+.fillword-game {
   height: 100vh;
 }
 
@@ -98,7 +100,9 @@ body {
   .game__block-fillword {
     flex-direction: column;
   }
-
+  .fillword-game {
+    height: auto;
+  }
   .game__btn--next-fillword {
     margin-top: 5rem;
     margin-left: 1rem;
@@ -128,6 +132,9 @@ body {
   /* .rules__bottom-fillword {
     bottom: 9rem;
   } */
+  .fillword-game {
+    height: auto;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -135,7 +142,9 @@ body {
     max-width: 412px;
     max-height: 600px;
   }
-
+  .fillword-game {
+    height: auto;
+  }
   .question_list_fillword {
     left: 4rem;
     top: 5rem;
@@ -156,6 +165,12 @@ body {
   .game__btn--next-picture {
     margin-top: 7rem;
   }
+  .fillword-game {
+    height: 100vh;
+  }
+  .deniska-fillword {
+    padding-top: 12rem;
+  }
   .game__center-fillword {
     z-index: 3;
     display: flex;
@@ -164,12 +179,18 @@ body {
     height: 100vh;
   }
 
+  .game__btn--next-fillword {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
   .cells {
     width: 34px;
     height: 34px;
   }
   .game__title-fillword {
-    min-width: 102%;
+    font-size: 18px;
+    max-width: 360px;
   }
 
   .question_wrap_fillword {
