@@ -2,7 +2,7 @@ import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
-import {createFindExtra} from './find-extra.js';
+import { createFindExtra } from './find-extra.js';
 
 
 export function createGameSymbols() {
@@ -140,6 +140,11 @@ export function createGameSymbols() {
                     if (inputsTrue.length < 2) {
                         const deniska = createDeniska('К сожалению, угаданы не не все значения символов!');
                         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
+                        deniska.gameBtnNext.addEventListener('click', (e) => {
+                            const find = createFindExtra();
+                            document.body.innerHTML = '';
+                            document.body.append(find);
+                        })
 
                         setTimeout(() => {
                             document.body.append(deniska.deniska);
@@ -157,6 +162,12 @@ export function createGameSymbols() {
                         point.classList.add('animation');
 
                         const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
+
+                        deniska.gameBtnNext.addEventListener('click', (e) => {
+                            const find = createFindExtra();
+                            document.body.innerHTML = '';
+                            document.body.append(find);
+                        })
 
                         setTimeout(() => {
                             document.querySelector('.game__btn--skip').style.display = 'none';
@@ -185,46 +196,46 @@ export function createGameSymbols() {
         const deniska = createDeniska('При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?');
         document.body.append(deniska.deniska);
         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
-    game.classList.add('game-blur');
+        game.classList.add('game-blur');
         const btns = document.createElement('div');
-    const yesBtn = document.createElement('button');
-    const noBtn = document.createElement('button');
+        const yesBtn = document.createElement('button');
+        const noBtn = document.createElement('button');
 
-    yesBtn.textContent = 'Да';
-    noBtn.textContent = 'Нет';
+        yesBtn.textContent = 'Да';
+        noBtn.textContent = 'Нет';
 
-    btns.classList.add('btns-group');
-    yesBtn.classList.add('btn-reset', 'game__btn', 'game__btn--yes', 'game__btn--next');
-    noBtn.classList.add('btn-reset', 'game__btn', 'game__btn--no', 'game__btn--next');
-    btns.append(yesBtn, noBtn);
-    deniska.rulesText.append(btns);
+        btns.classList.add('btns-group');
+        yesBtn.classList.add('btn-reset', 'game__btn', 'game__btn--yes', 'game__btn--next');
+        noBtn.classList.add('btn-reset', 'game__btn', 'game__btn--no', 'game__btn--next');
+        btns.append(yesBtn, noBtn);
+        deniska.rulesText.append(btns);
 
-    yesBtn.addEventListener('click', (e) => {
+        yesBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.innerHTML = '';
+            const findExtra = createFindExtra();
+            document.body.append(findExtra);
+        })
+
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            deniska.deniska.remove();
+            game.classList.remove('game-blur');
+        })
+
+
+
+    })
+
+
+    gameBtnNext.addEventListener('click', (e) => {
         e.preventDefault();
         document.body.innerHTML = '';
+        // const puzzle = createPuzzleGame();
+        // document.body.append(puzzle);
         const findExtra = createFindExtra();
         document.body.append(findExtra);
     })
-
-    noBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        deniska.deniska.remove();
-        game.classList.remove('game-blur');
-    })
-
-
-
-})
-
-
-gameBtnNext.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.body.innerHTML = '';
-    // const puzzle = createPuzzleGame();
-    // document.body.append(puzzle);
-    const findExtra = createFindExtra();
-    document.body.append(findExtra);
-})
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
@@ -259,7 +270,7 @@ gameBtnNext.addEventListener('click', (e) => {
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-            // gameBtnNext.remove()
+        gameBtnNext.remove()
 
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 

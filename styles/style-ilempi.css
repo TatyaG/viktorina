@@ -928,6 +928,7 @@ body {
 
     .ilempi .game__left {
         grid-row: 2;
+        z-index: 4;
     }
 
     .ilempi .game__right {
@@ -937,7 +938,7 @@ body {
 
     .game__podium {
         left: 50%;
-        width: 42%;
+        width: 38%;
         transform: translateX(-50%);
     }
 
