@@ -2,7 +2,8 @@ import createTalker from "./talker.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
 
-export const createFillword = () => {
+export function createFillword() {
+  console.log("213213");
   // Данные для заполнения таблицы
   const data = [
     "Я",
@@ -87,8 +88,10 @@ export const createFillword = () => {
   let isTouchDevice = "ontouchstart" in document.documentElement;
   let isActivelySelecting = false;
   let currHoverTarget = null;
+  console.log("script loaded");
 
-  window.onload = () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("loaded");
     let correctWords = ["павлова", "яковлев", "николаев"];
 
     let isMouseDown = false;
@@ -96,8 +99,11 @@ export const createFillword = () => {
     let nodeAr = [];
     let countTouch = 0;
 
+    const cells = document.querySelectorAll(".cells");
+
     if (isTouchDevice) {
-      for (let node of document.querySelectorAll("td")) {
+      console.log("touch");
+      for (let node of document.querySelectorAll(".cells")) {
         node.addEventListener(
           "touchstart",
           (evt) => {
@@ -142,7 +148,7 @@ export const createFillword = () => {
             correctGuessCount++;
           } else {
             nodeAr.forEach((el) => {
-              el.className = "wrong";
+              el.classList.add("wrong");
             });
           }
 
@@ -166,11 +172,16 @@ export const createFillword = () => {
             const deniska = createDeniska(
               "Отлично! Задание выполнено. Тебе начислен 1 балл."
             );
+
             setTimeout(() => {
               document.body.append(deniska.deniska);
+              deniska.deniska.classList.add("deniska-fillword");
               document.querySelector(".game__btn--skip").style.display = "none";
               document.querySelector(".game__btn--next").style.display =
                 "block";
+              document
+                .querySelector(".game__btn--next")
+                .classList.add("game__btn--next-fillword");
             }, 800);
             return;
           } else {
@@ -179,10 +190,14 @@ export const createFillword = () => {
               deniska.rulesDeniska.src = "img/deniska-sad.webp";
               setTimeout(() => {
                 document.body.append(deniska.deniska);
+                deniska.deniska.classList.add("deniska-fillword");
                 document.querySelector(".game__btn--skip").style.display =
                   "none";
                 document.querySelector(".game__btn--next").style.display =
                   "block";
+                document
+                  .querySelector(".game__btn--next")
+                  .classList.add("game__btn--next-fillword");
               }, 800);
             }
           }
@@ -190,7 +205,8 @@ export const createFillword = () => {
         });
       }
     } else {
-      for (let node of document.querySelectorAll("td")) {
+      console.log("click");
+      for (let node of document.querySelectorAll(".cells")) {
         node.addEventListener("mousedown", function (event) {
           console.log("PK");
           event.preventDefault();
@@ -213,7 +229,7 @@ export const createFillword = () => {
             correctGuessCount++;
           } else {
             nodeAr.forEach((el) => {
-              el.className = "wrong";
+              el.classList.add("wrong");
             });
           }
 
@@ -251,6 +267,8 @@ export const createFillword = () => {
                   "none";
                 document.querySelector(".game__btn--next").style.display =
                   "block";
+                gameBtnNext.classList.add("game__btn--next-fillword");
+                console.log();
               }, 800);
             }
           }
@@ -262,16 +280,20 @@ export const createFillword = () => {
       str += node.textContent;
       nodeAr.push(node);
     }
-  };
+  });
+  
 
   //Наполняем таблицу буквами
   for (let i = 0; i < 5; i++) {
     const row = table.insertRow(i);
+    row.classList.add("row");
 
     for (var j = 0; j < 9; j++) {
       const cell = row.insertCell(j);
       const index = i * 9 + j;
       cell.innerHTML = data[index];
+
+      cell.classList.add("cells");
     }
   }
 
@@ -296,11 +318,11 @@ export const createFillword = () => {
     "question_list_fillword"
   );
   const questionItem1 = document.createElement("li");
-  questionItem1.classList.add("question_item");
+  questionItem1.classList.add("question_item", "question_item-fillword");
   const questionItem2 = document.createElement("li");
-  questionItem2.classList.add("question_item");
+  questionItem2.classList.add("question_item", "question_item-fillword");
   const questionItem3 = document.createElement("li");
-  questionItem3.classList.add("question_item");
+  questionItem3.classList.add("question_item", "question_item-fillword");
   const answer1 = document.createElement("p");
   answer1.classList.add("question_answer", "hidden");
   const answer2 = document.createElement("p");
@@ -356,6 +378,8 @@ export const createFillword = () => {
     gameBlock.style.overflowY = "scroll";
   });
 
+  gameRules.rulesBottom.classList.add("rules__bottom-fillword");
+
   gameBtnSkip.addEventListener("click", (e) => {
     e.preventDefault();
     const deniska = createDeniska(
@@ -410,8 +434,9 @@ export const createFillword = () => {
     "game__btn",
     "game__btn--next",
     "btn-reset",
-    "game__btn--skip-fillword"
+    "game__btn--next-fillword"
   );
+  console.log(gameBtnNext);
 
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
@@ -699,7 +724,6 @@ export const createFillword = () => {
         infoImg.style.display = "block";
         gameCenter.append(gameBtnSkipMobile2);
         gameBtnSkipMobile2.style.display = "block";
-        gameBtnNext.classList.add("game-btn-next-fillword");
       });
     }
   }
@@ -708,6 +732,6 @@ export const createFillword = () => {
   handleTabletChange2(mediaQuery2);
 
   return game;
-};
+}
 
 createFillword();

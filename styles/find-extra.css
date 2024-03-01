@@ -152,7 +152,7 @@ body {
   justify-content: center;
 }
 
-.rules {
+.rules_find-extra {
   margin-bottom: 60px;
 }
 
@@ -536,7 +536,7 @@ body {
     padding: 12px 49.5px;
   }
 
-  .rules {
+  .rules_find-extra {
     max-width: 316px;
   }
 
@@ -594,7 +594,7 @@ body {
     padding-top: 212px;
   }
 
-  .rules {
+  .rules_find-extra {
     margin-bottom: 40px;
   }
 
@@ -985,7 +985,7 @@ body {
     top: 0;
     left: 0;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(0);
+    /* backdrop-filter: blur(0); */
     z-index: 10;
   }
 

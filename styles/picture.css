@@ -18,6 +18,9 @@ h2,
 ol {
   margin: 0;
 }
+.overflow {
+  overflow: hidden;
+}
 @font-face {
   font-family: "Mak";
   src: local("Mak"), url("../fonts/MAK-bold.woff") format("woff");
@@ -41,12 +44,20 @@ ol {
   font-style: normal;
   font-display: swap;
 }
-body {
+/* body {
   margin: 0;
   position: relative;
   background: url(../img/background_picture_desktop.png) no-repeat center center
     fixed;
   background-size: cover;
+} */
+.picture_game {
+  margin: 0;
+  position: relative;
+  background: url(../img/background_picture_desktop.png) no-repeat center center
+    fixed;
+  background-size: cover;
+  height: 100vh;
 }
 img {
   max-width: 100%;
@@ -263,6 +274,13 @@ h2 {
     flex-wrap: nowrap;
     max-width: fit-content;
   }
+
+  .picture_game {
+    height: auto;
+  }
+  .rules-bottom_picture {
+    bottom: 7rem;
+  }
   .game__block-picture {
     flex-direction: column;
   }
@@ -315,12 +333,18 @@ h2 {
   .fail-name-picture {
     left: 38%;
   }
+  .game__center-picture {
+    max-width: 100% !important;
+  }
 }
 
 @media (max-width: 1400px) {
   .rules__bottom-picture {
     top: 31%;
   }
+  /* .picture_game {
+    height: 100vh;
+  } */
   .modal_border {
     max-width: 627px;
   }
@@ -405,8 +429,20 @@ h2 {
   .pictures_wrapper {
     display: none;
   }
-  .game__rules {
+  .game__rules-picture {
     top: 6rem;
+  }
+
+  .rules-bottom_picture {
+    bottom: -1rem;
+  }
+  /* 
+  .picture_game {
+    height: initial;
+  } */
+
+  .picture_game {
+    height: 100vh;
   }
 
   /* ..deniska {
@@ -445,7 +481,8 @@ h2 {
     padding-top: 6rem;
   }
   .game__block-picture {
-    overflow-y: visible !important;
+    /* overflow:hidden !important; */
+    margin-top: 11rem;
   }
   .description {
     background-size: 257px;
@@ -647,7 +684,7 @@ h2 {
 
   .success_text-picture,
   .fail_text-picture {
-    left: 19%;
+    left: 18%;
   }
 }
 

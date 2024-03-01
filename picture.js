@@ -372,6 +372,8 @@ export const createPicture = () => {
     if (e.matches) {
       const slideBtn = document.querySelector(".rules__btn");
 
+      
+
       //Создаем кнопку стрелку на второй странице
       const slide2Btn = document.createElement("button");
       slide2Btn.classList.add("rules__btn", "rules__btn-picture");
@@ -552,6 +554,7 @@ export const createPicture = () => {
         questionWrap.style.display = "block";
         gameBtnSkipMobile.style.display = "block";
         rulesBtnImg.style.display = "block";
+      
       });
 
       slide2Btn.addEventListener("click", () => {
@@ -564,7 +567,6 @@ export const createPicture = () => {
         // gameCenter.append(gameBtnSkipMobile2);
         gameBtnSkipMobile2.style.display = "block";
       });
-  
 
       //Добавляем правила открытия модалки 'пропустить игру'
       gameBtnSkipMobile.addEventListener("click", (e) => {
