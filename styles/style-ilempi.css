@@ -924,6 +924,7 @@ body {
         display: none;
         padding: 16px 30px;
         font-size: 14px;
+        z-index: 2;
     }
 
     .ilempi .game__left {
@@ -937,7 +938,7 @@ body {
 
     .game__podium {
         left: 50%;
-        width: 42%;
+        width: 38%;
         transform: translateX(-50%);
     }
 
