@@ -1045,7 +1045,13 @@ body {
         font-size: 18px;
     }
 
+    .ilempi ~ .deniska .game__rules {
+        margin-top: 174px;
+        margin-bottom: 0;
+    }
+
     .game-blur~.deniska .game__rules {
+        margin-top: 0;
         top: 20%;
     }
     
@@ -1059,10 +1065,7 @@ body {
     
     }
 
-    .ilempi .deniska .game__rules {
-        margin-top: 174px;
-        margin-bottom: 0;
-    }
+  
 
 }
 
