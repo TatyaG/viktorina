@@ -206,6 +206,10 @@ input {
     .game.symbols .game__btn {
         z-index: 4;
     }
+
+    .symbols .game__rules {
+        top: 30%;
+    }
 }
 
 @media (max-width: 576px) {
