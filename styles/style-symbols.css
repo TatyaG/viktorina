@@ -210,6 +210,11 @@ input {
     .symbols .game__rules {
         top: 30%;
     }
+
+    .symbols .deniska .game__rules {
+        margin-top: 174px;
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 576px) {
