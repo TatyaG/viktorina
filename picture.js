@@ -119,11 +119,18 @@ export const createPicture = () => {
         setTimeout(() => {
           happyDeniska.classList.remove("hidden");
         }, 6000);
-        pointBlock.classList.add("animation");
+        // let pointsBlock = document.querySelector(".game__point");
+        // pointsBlock.classList.add("animation");
+        // let points = JSON.parse(localStorage.getItem("points"));
+        // points += 1;
+        // localStorage.setItem("points", points);
+        // pointsBlock.textContent = points;
         let points = JSON.parse(localStorage.getItem("points"));
         points += 1;
         localStorage.setItem("points", points);
-        pointBlock.textContent = points;
+        const point = document.querySelector(".game__point");
+        point.textContent = points;
+        point.classList.add("animation");
       } else {
         item.parentElement.parentElement.classList.add("incorrect");
         setTimeout(() => {
@@ -372,8 +379,6 @@ export const createPicture = () => {
     if (e.matches) {
       const slideBtn = document.querySelector(".rules__btn");
 
-      
-
       //Создаем кнопку стрелку на второй странице
       const slide2Btn = document.createElement("button");
       slide2Btn.classList.add("rules__btn", "rules__btn-picture");
@@ -554,7 +559,6 @@ export const createPicture = () => {
         questionWrap.style.display = "block";
         gameBtnSkipMobile.style.display = "block";
         rulesBtnImg.style.display = "block";
-      
       });
 
       slide2Btn.addEventListener("click", () => {
