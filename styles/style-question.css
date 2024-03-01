@@ -53,7 +53,7 @@
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
-    
+
 }
 
 .tv__play:hover {
@@ -196,7 +196,7 @@
         background-image: url(../img/background-question-tablet.webp);
     }
 
-    
+
 }
 
 
@@ -258,6 +258,10 @@
         right: 4%;
         top: 31%;
         width: 10%;
+    }
+
+    .question .game__left {
+        padding-top: 158px
     }
 
 
