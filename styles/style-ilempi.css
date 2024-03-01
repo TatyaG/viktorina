@@ -938,7 +938,7 @@ body {
 
     .game__podium {
         left: 50%;
-        width: 38%;
+        width: 58%;
         transform: translateX(-50%);
     }
 
@@ -956,14 +956,16 @@ body {
         display: flex;
         justify-content: center;
         height: 100%;
-        width: 94vw;
+        /* width: 94vw; */
         z-index: 1;
 
 
     }
 
     .ilempi .game__right {
+        margin: 0 auto;
         height: 60vh;
+        max-width: max-content;
     }
 
     .girl__head[data-code="head-two"] {
