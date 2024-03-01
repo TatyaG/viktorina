@@ -270,7 +270,7 @@ export function createGameSymbols() {
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        gameBtnNext.remove()
+        gameBtnNext.remove();
 
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
