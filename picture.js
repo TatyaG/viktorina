@@ -1,5 +1,5 @@
 import createTalker from "./talker.js";
-// import createRulesTablet from "./rules-tablet.js";
+import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
 import { createGameQuestion } from "./question.js";
@@ -76,10 +76,17 @@ export const createPicture = () => {
   questionImg.src = "img/crossword-questionWrap_desctop.png";
 
   const pictureWrapper = document.createElement("div");
+
+  //ОЧКИ
+  const pointBlock = createPoint();
+
+  let points = JSON.parse(localStorage.getItem("points"));
+  pointBlock.textContent = points;
+
   //Ставим game как главный section
   document.body.append(game);
   //Добавляем в section game все элементы
-  game.append(gameTitle, gameSubtitle, gameBlock);
+  game.append(gameTitle, gameSubtitle, gameBlock, pointBlock);
   //Добавляем в div gameblock правый, центральный и левый блок
   gameBlock.append(gameLeft, gameCenter, gameRight);
   //Добавляем в центральный блок div с картинами
@@ -119,12 +126,6 @@ export const createPicture = () => {
         setTimeout(() => {
           happyDeniska.classList.remove("hidden");
         }, 6000);
-        // let pointsBlock = document.querySelector(".game__point");
-        // pointsBlock.classList.add("animation");
-        // let points = JSON.parse(localStorage.getItem("points"));
-        // points += 1;
-        // localStorage.setItem("points", points);
-        // pointsBlock.textContent = points;
         let points = JSON.parse(localStorage.getItem("points"));
         points += 1;
         localStorage.setItem("points", points);
@@ -241,12 +242,6 @@ export const createPicture = () => {
     gameLeft.style.paddingTop = "0";
     gameBlock.style.overflowY = "scroll";
   });
-
-  //ОЧКИ
-
-  const pointBlock = createPoint();
-
-  game.append(pointBlock);
 
   // Веселый дениска
 
