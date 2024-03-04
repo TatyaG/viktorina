@@ -1,59 +1,176 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 img {
-    max-width: 100%;
-    display: block;
+  max-width: 100%;
+  display: block;
 }
 
 p,
 h1,
 h2,
 ol {
-    margin: 0;
+  margin: 0;
 }
+
 body {
-    margin: 0;
-    position: relative;
-    font-family: "Comfortaa", sans-serif;
-    font-weight: 500;
-    background-image: url(../img/puzzle_bg_desk.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+  margin: 0;
 }
+
+.pazzle {
+  padding: 50px 40px 106px 40px;
+  position: relative;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 500;
+  background-image: url(../img/puzzle_bg_desk.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.blur ~ .deniska .game__rules_pazzle {
+  position: absolute;
+  position: fixed;
+  left: 50%;
+  top: 60%;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+}
+
 img {
-    max-width: 100%;
-    display: block;
+  max-width: 100%;
+  display: block;
 }
+
+.pazzle__subtitle {
+  margin-bottom: 60px;
+}
+
+/* Слева */
+
+.pazzle__game-block {
+  gap: 85px;
+}
+
+.pazzle__left {
+  padding-top: 170px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game__rules_pazzle {
+  margin-bottom: 60px;
+}
+
+.rules__text_pazzle {
+  padding: 34px;
+  padding-top: 60px;
+  padding-bottom: 37px;
+}
+
+/* Справа */
+
 #board {
-    width: 945px;
-    height: 620px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+  width: 921px;
+  height: 596px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #board img {
-    width: 235px;
-    height: 205px;
+  width: 235px;
+  height: 205px;
 }
 
-
 #pieces {
-    width: 945px;
-    height: 620px;
-    border: 2px solid purple;
-
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+  width: 945px;
+  height: 620px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  background: linear-gradient(rgba(200, 170, 255, 1), rgba(111, 167, 243, 1));
+  padding: 12px;
+  border-radius: 10px;
 }
 
 #pieces img {
-    width: 235px;
-    height: 205px;
-    border: 0.5px solid lightblue;
+  width: 230.25px;
+  height: 198.68px;
+  border: 4px solid rgba(128, 167, 245, 1);
+}
+
+#pieces img:not(:nth-child(4n)) {
+  border-right: 0px;
+}
+
+#pieces img:not(:nth-last-child(-n + 4)) {
+  border-bottom: 0px;
+}
+
+#pieces img:nth-child(-n + 4) {
+  border-top: 0px;
+}
+
+#pieces img:nth-last-child(-n + 4) {
+  border-bottom: 0px;
+}
+
+#pieces img:nth-child(4n + 1) {
+  border-left: 0px;
+}
+
+#pieces img:nth-child(4n + 4) {
+  border-right: 0px;
+}
+
+.puzzle__wrap {
+  width: 1065px;
+  height: 740px;
+  background: linear-gradient(rgba(175, 108, 255, 1), rgba(54, 137, 247, 1));
+  padding: 60px;
+  border-radius: 20px;
+  box-shadow: inset 8px 8px 40px 0px rgba(65, 26, 120, 1),
+    inset -8px -8px 40px 0px rgba(255, 255, 255, 0.8);
+}
+
+.pazzle__name-wrap {
+  position: relative;
+  align-items: end;
+}
+
+.pazzle__name-img {
+  height: fit-content;
+}
+
+.pazzle__name-text {
+  position: absolute;
+  bottom: 57px;
+  left: 50px;
+  font-family: Comfortaa;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.pazzle__name-author {
+  position: absolute;
+  bottom: 20px;
+  right: 31px;
+  font-family: Comfortaa;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.deniska_pazzle {
+  bottom: -15px;
 }
