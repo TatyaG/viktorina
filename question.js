@@ -124,6 +124,13 @@ export function createGameQuestion() {
           "Отлично! Задание выполнено. Тебе начислен 1 балл."
         );
 
+        deniska.gameBtnNext.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.innerHTML = "";
+            const fillword = createFillword();
+            document.body.append(fillword);
+        })
+
         setTimeout(() => {
           document.querySelector(".game__btn--skip").style.display = "none";
           document.querySelector('.game__btn--next').style.display = 'block';
@@ -132,6 +139,13 @@ export function createGameQuestion() {
       } else {
         const deniska = createDeniska("К сожалению, это неправильный ответ.");
         deniska.rulesDeniska.src = "img/deniska-sad.webp";
+
+        deniska.gameBtnNext.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.innerHTML = "";
+            const fillword = createFillword();
+            document.body.append(fillword);
+        })
 
         setTimeout(() => {
           document.body.append(deniska.deniska);
