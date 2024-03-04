@@ -141,9 +141,10 @@ export function createGameSymbols() {
                         const deniska = createDeniska('К сожалению, угаданы не не все значения символов!');
                         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
                         deniska.gameBtnNext.addEventListener('click', (e) => {
-                            const find = createFindExtra();
+                            e.preventDefault();
                             document.body.innerHTML = '';
-                            document.body.append(find);
+                            const findExtra = createFindExtra();
+                            document.body.append(findExtra);
                         })
 
                         setTimeout(() => {
@@ -164,9 +165,10 @@ export function createGameSymbols() {
                         const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
 
                         deniska.gameBtnNext.addEventListener('click', (e) => {
-                            const find = createFindExtra();
+                            e.preventDefault();
                             document.body.innerHTML = '';
-                            document.body.append(find);
+                            const findExtra = createFindExtra();
+                            document.body.append(findExtra);
                         })
 
                         setTimeout(() => {
@@ -270,7 +272,7 @@ export function createGameSymbols() {
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        gameBtnNext.remove();
+        // gameBtnNext.remove();
 
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
