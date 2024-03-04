@@ -1,7 +1,7 @@
-import createPoint from "./point";
-import createDeniska from "./deniska";
-import createTalker from "./talker";
-import createRulesTablet from "./rules-tablet";
+import createPoint from "./point.js";
+import createDeniska from "./deniska.js";
+import createTalker from "./talker.js";
+import createRulesTablet from "./rules-tablet.js";
 import {createFindExtra} from './find-extra.js';
 
 

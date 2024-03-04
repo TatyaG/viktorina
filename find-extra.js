@@ -2,7 +2,7 @@ import createTalker from "./talker.js";
 import createDeniska from "./deniska.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
-import {createPicture} from './picture.js';
+import { createPicture } from "./picture.js";
 
 export function createFindExtra() {
   const game = document.createElement("section");
@@ -11,15 +11,15 @@ export function createFindExtra() {
   const gameBlock = document.createElement("div");
   const gameLeft = document.createElement("div");
   const gameRight = document.createElement("div");
-  const pointBlock = createPoint();
+  const pointDiv = createPoint();
   let points = JSON.parse(localStorage.getItem("points") ?? 0);
-  pointBlock.textContent = points;
+  pointDiv.textContent = points;
 
   gameTitle.textContent = "Художественная галерея";
   gameSubtitle.innerHTML = `Что лишнее?`;
 
   game.classList.add("game_find", "find-extra");
-  pointBlock.classList.add("points");
+  pointDiv.classList.add("points", "points_find-extra");
   gameTitle.classList.add("find-extra__title");
   gameSubtitle.classList.add("find-extra__subtitle");
   gameBlock.classList.add("find-extra__block", "flex");
@@ -27,7 +27,7 @@ export function createFindExtra() {
   gameRight.classList.add("find-extra__right", "flex");
 
   document.body.append(game);
-  game.append(pointBlock, gameTitle, gameSubtitle, gameBlock);
+  game.append(pointDiv, gameTitle, gameSubtitle, gameBlock);
   gameBlock.append(gameLeft, gameRight);
 
   //   Слева
@@ -43,6 +43,10 @@ export function createFindExtra() {
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
   gameBtnAccept.textContent = "Принять ответ";
+
+  assistantPerrot.rulesText.classList.add("rules__text_find-extra");
+  assistantPerrot.rulesBtn.classList.add("rules__btn_find-extra");
+  assistantPerrot.gameRules.classList.add("rules_find-extra");
 
   btnWrap.classList.add("btn-wrap", "flex");
   gameBtnSkip.classList.add(
@@ -67,11 +71,11 @@ export function createFindExtra() {
   gameLeft.append(assistantPerrot.gameRules, btnWrap);
   btnWrap.append(gameBtnSkip, gameBtnAccept, gameBtnNext);
 
-   gameBtnNext.addEventListener("click", (e) => {
-     document.body.innerHTML = "";
-     const picture = createPicture();
-     document.body.append(picture);
-   });
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const picture = createPicture();
+    document.body.append(picture);
+  });
 
   // Справа
 
@@ -290,6 +294,7 @@ export function createFindExtra() {
       const deniskaSuccess = createDeniska(
         "Отлично! Задание выполнено. Тебе начислен 1 балл."
       );
+      deniskaSuccess.gameRules.classList.add("game__rules_find-extra");
 
       // Очки
       let points = JSON.parse(localStorage.getItem("points"));
@@ -315,6 +320,7 @@ export function createFindExtra() {
         "К сожалению, не найдены все лишние элементы."
       );
       deniskaFail.rulesDeniska.src = "img/deniska-sad.webp";
+      deniskaFail.gameRules.classList.add("game__rules_find-extra");
 
       setTimeout(() => {
         if (mobileMediaQueryList.matches) {
@@ -356,6 +362,7 @@ export function createFindExtra() {
     yesBtn.textContent = "Да";
     noBtn.textContent = "Нет";
 
+    deniska.gameRules.classList.add("game__rules_find-extra");
     btns.classList.add("btns-group");
     yesBtn.classList.add(
       "btn-reset",
@@ -375,12 +382,12 @@ export function createFindExtra() {
     btns.append(yesBtn, noBtn);
     deniska.rulesText.append(btns);
 
-     yesBtn.addEventListener("click", (e) => {
-       e.preventDefault();
-       document.body.innerHTML = "";
-       const picture = createPicture();
-       document.body.append(picture);
-     });
+    yesBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.body.innerHTML = "";
+      const picture = createPicture();
+      document.body.append(picture);
+    });
 
     noBtn.addEventListener("click", (e) => {
       e.preventDefault();

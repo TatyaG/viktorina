@@ -1,7 +1,8 @@
 import createTalker from "./talker.js";
-import createRulesTablet from "./rules-tablet.js";
+// import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
+import { createGameQuestion } from "./question.js";
 
 export const createPicture = () => {
   //Массив с игрой и картинами
@@ -75,13 +76,19 @@ export const createPicture = () => {
   questionImg.src = "img/crossword-questionWrap_desctop.png";
 
   const pictureWrapper = document.createElement("div");
+  //ОЧКИ
+  const pointBlock = createPoint();
+
+  let points = JSON.parse(localStorage.getItem("points"));
+  pointBlock.textContent = points;
+
   //Ставим game как главный section
   document.body.append(game);
   //Добавляем в section game все элементы
-  game.append(gameTitle, gameSubtitle, gameBlock);
+  game.append(gameTitle, gameSubtitle, gameBlock, pointBlock);
   //Добавляем в div gameblock правый, центральный и левый блок
   gameBlock.append(gameLeft, gameCenter, gameRight);
-  //Добавляем в правый блок div с картинами
+  //Добавляем в центральный блок div с картинами
   gameCenter.append(pictureWrapper);
 
   //Создание шаблона одной карточки с картинкой
@@ -118,11 +125,18 @@ export const createPicture = () => {
         setTimeout(() => {
           happyDeniska.classList.remove("hidden");
         }, 6000);
-        pointBlock.classList.add("animation");
+        // let pointsBlock = document.querySelector(".game__point");
+        // pointsBlock.classList.add("animation");
+        // let points = JSON.parse(localStorage.getItem("points"));
+        // points += 1;
+        // localStorage.setItem("points", points);
+        // pointsBlock.textContent = points;
         let points = JSON.parse(localStorage.getItem("points"));
         points += 1;
         localStorage.setItem("points", points);
-        pointBlock.textContent = points;
+        const point = document.querySelector(".game__point");
+        point.textContent = points;
+        point.classList.add("animation");
       } else {
         item.parentElement.parentElement.classList.add("incorrect");
         setTimeout(() => {
@@ -179,6 +193,8 @@ export const createPicture = () => {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
+      const question = createGameQuestion();
+      document.body.append(question);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -204,22 +220,25 @@ export const createPicture = () => {
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
 
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const questionGame = createGameQuestion();
+    document.body.append(questionGame);
+  });
+
   //ГОВОРУША
   const gameRules = createTalker(
     "Ознакомься с описанием картины. Выбери правильный фрагмент."
   );
 
   gameRules.rulesBottom.classList.add("rules-bottom_picture");
+  gameRules.rulesText.classList.add("rules__text_picture");
 
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
 
   gameRules.rulesBtn.addEventListener("click", (e) => {
     e.preventDefault();
     gameBtnNext.remove();
-    // const rulesBlock = createRulesTablet(
-    //   "Что обозначают эти символы? Выбери правильный вариант ответа."
-    // );
-    // game.append(rulesBlock);
     gameCenter.style.display = "block";
     gameRules.gameRules.style.display = "none";
     gameBtnSkip.style.display = "block";
@@ -228,12 +247,6 @@ export const createPicture = () => {
     gameLeft.style.paddingTop = "0";
     gameBlock.style.overflowY = "scroll";
   });
-
-  //ОЧКИ
-
-  const pointBlock = createPoint();
-
-  game.append(pointBlock);
 
   // Веселый дениска
 
@@ -477,11 +490,69 @@ export const createPicture = () => {
         "game__btn",
         "game__btn--skip",
         "btn-reset",
-        "game__btn--skip-picture"
+        "game__btn--skip-picture",
+        "adaptive"
       );
       gameBtnSkipMobile.textContent = "Пропустить игру";
 
       questionWrap.append(slide2Btn, gameBtnSkipMobile);
+
+      //Создаем кнопку "Пропустить игру 2" для мобилки
+
+      const gameBtnSkipMobile2 = document.createElement("button");
+      gameBtnSkipMobile2.classList.add(
+        "game__btn",
+        "game__btn--skip",
+        "btn-reset",
+        "game__btn--skip-fillword2"
+      );
+
+      gameBtnSkipMobile2.textContent = "Пропустить игру";
+
+      gameCenter.append(gameBtnSkipMobile2);
+
+      gameBtnSkipMobile2.addEventListener("click", (e) => {
+        e.preventDefault();
+        const deniska = createDeniska(
+          "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+        );
+        document.body.append(deniska.deniska);
+        deniska.rulesDeniska.src = "img/deniska-sad.webp";
+        game.classList.add("game-blur");
+        const btns = document.createElement("div");
+        const yesBtn = document.createElement("button");
+        const noBtn = document.createElement("button");
+
+        yesBtn.textContent = "Да";
+        noBtn.textContent = "Нет";
+
+        btns.classList.add("btns-group");
+        yesBtn.classList.add(
+          "btn-reset",
+          "game__btn",
+          "game__btn--yes",
+          "game__btn--next"
+        );
+        noBtn.classList.add(
+          "btn-reset",
+          "game__btn",
+          "game__btn--no",
+          "game__btn--next"
+        );
+        btns.append(yesBtn, noBtn);
+        deniska.rulesText.append(btns);
+
+        yesBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+        });
+
+        noBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          deniska.deniska.remove();
+          game.classList.remove("game-blur");
+        });
+      });
 
       //Отображаем описание по клику на стрелку
       slideBtn.addEventListener("click", () => {
@@ -493,11 +564,12 @@ export const createPicture = () => {
       slide2Btn.addEventListener("click", () => {
         pictureWrapper.style.display = "block";
         questionWrap.style.display = "none";
-        pictureWrapper.append(gameBtnSkipMobile);
+        pictureWrapper.append(gameBtnSkipMobile2);
         infoImg.style.display = "block";
-        gameBtnSkipMobile.style.position = "fixed";
-        gameBtnSkipMobile.style.bottom = "0";
-        // gameBtnSkipMobile.style.right = "20%";
+        // gameBtnSkipMobile.style.position = "fixed";
+        // gameBtnSkipMobile.style.bottom = "0";
+        // gameCenter.append(gameBtnSkipMobile2);
+        gameBtnSkipMobile2.style.display = "block";
       });
 
       //Добавляем правила открытия модалки 'пропустить игру'
@@ -535,6 +607,9 @@ export const createPicture = () => {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          console.log("aa");
+          const question = createGameQuestion();
+          document.body.append(question);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -578,3 +653,5 @@ export const createPicture = () => {
 
   return game;
 };
+
+// createPicture();

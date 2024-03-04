@@ -149,7 +149,8 @@ body {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 70px;
-    margin-top: auto;
+    /* margin: auto 0; */
+    /* margin-top: auto; */
 }
 
 .ilempi .game__left {
@@ -556,13 +557,15 @@ body {
 }
 
 .girl__dress[data-code="dress-one"] {
-    left: 8px;
+    left: 52%;
+    transform: translateX(-50%);
     top: 31%;
     width: 97%;
 }
 
 .girl__dress[data-code="dress-two"] {
-    left: 15px;
+    left: 50%;
+    transform: translateX(-50%);
     top: 29.5%;
     width: 83%;
 }
@@ -594,19 +597,22 @@ body {
 .girl__shoes[data-code="shoes-one"] {
     width: 86%;
     bottom: 3px;
-    left: 15px;
+    left: 51%;
+    transform: translateX(-50%);
 }
 
 .girl__shoes[data-code="shoes-two"] {
     width: 73%;
-    bottom: 3px;
-    left: 28px;
+    bottom: 0;
+    left: 52%;
+    transform: translateX(-50%);
 }
 
 .girl__shoes[data-code="shoes-three"] {
     width: 69%;
-    bottom: 3px;
-    left: 31px;
+    bottom: 0;
+    left: 52%;
+    transform: translateX(-49%);
 }
 
 .game__clothes {
@@ -798,25 +804,23 @@ body {
 
 
     .girl__dress[data-code="dress-two"] {
-        left: 9%;
         top: 30.5%;
     }
 
     .girl__dress[data-code="dress-one"] {
-        left: 4%;
+
     }
 
     .girl__shoes[data-code="shoes-two"] {
         width: 75%;
-        left: 15%;
     }
 
     .girl__shoes[data-code="shoes-three"] {
-        left: 19%;
+        width: 65%;
     }
 
     .girl__shoes[data-code="shoes-one"] {
-        left: 9%;
+        width: 84%;
     }
 
     .shine {
@@ -858,7 +862,7 @@ body {
 
     .game__point::before {
         top: -15%;
-        left: -53% !;
+        left: -53%;
         width: 40px;
         height: 40px;
         background-size: 40px;
@@ -900,7 +904,7 @@ body {
     }
 
     .ilempi .game__block {
-        padding-bottom: 200px;
+        /* padding-bottom: 200px; */
         padding-top: 0;
         gap: 15px;
     }
@@ -920,6 +924,7 @@ body {
         display: none;
         padding: 16px 30px;
         font-size: 14px;
+        z-index: 2;
     }
 
     .ilempi .game__left {
@@ -933,7 +938,7 @@ body {
 
     .game__podium {
         left: 50%;
-        width: 42%;
+        width: 58%;
         transform: translateX(-50%);
     }
 
@@ -951,14 +956,16 @@ body {
         display: flex;
         justify-content: center;
         height: 100%;
-        width: 94vw;
+        /* width: 94vw; */
         z-index: 1;
 
 
     }
 
     .ilempi .game__right {
+        margin: 0 auto;
         height: 60vh;
+        max-width: max-content;
     }
 
     .girl__head[data-code="head-two"] {
@@ -1041,13 +1048,27 @@ body {
         font-size: 18px;
     }
 
+    .ilempi ~ .deniska .game__rules {
+        margin-top: 174px;
+        margin-bottom: 0;
+    }
+
     .game-blur~.deniska .game__rules {
+        margin-top: 0;
         top: 20%;
     }
     
     .girl__head[data-code="head-three"] {
         left: 7px;
     }
+
+
+    .ilempi .game__rules {
+        top: 30%;
+    
+    }
+
+  
 
 }
 

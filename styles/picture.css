@@ -7,15 +7,19 @@
 img {
   max-width: 100%;
   display: block;
+}
+.picture_border img {
   cursor: pointer;
   border-radius: 20px;
 }
-
 p,
 h1,
 h2,
 ol {
   margin: 0;
+}
+.overflow {
+  overflow: hidden;
 }
 @font-face {
   font-family: "Mak";
@@ -40,12 +44,20 @@ ol {
   font-style: normal;
   font-display: swap;
 }
-body {
+/* body {
   margin: 0;
   position: relative;
   background: url(../img/background_picture_desktop.png) no-repeat center center
     fixed;
   background-size: cover;
+} */
+.picture_game {
+  margin: 0;
+  position: relative;
+  background: url(../img/background_picture_desktop.png) no-repeat center center
+    fixed;
+  background-size: cover;
+  /* height: 100vh; */
 }
 img {
   max-width: 100%;
@@ -129,11 +141,11 @@ h2 {
   box-shadow: 2px 2px 8px #d72c2c inset !important;
 }
 
-.game__block {
+.game__block-picture {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5%;
+  margin-top: 28px;
 }
 
 .game__left {
@@ -166,6 +178,7 @@ h2 {
   line-height: 24px;
   text-align: left;
   max-width: 367px;
+  color: #232962;
 }
 
 .description {
@@ -178,7 +191,7 @@ h2 {
   top: -1rem;
   width: 110%;
   height: 100px;
-  font-size: 28px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
@@ -261,6 +274,13 @@ h2 {
     flex-wrap: nowrap;
     max-width: fit-content;
   }
+
+  .picture_game {
+    height: auto;
+  }
+  .rules-bottom_picture {
+    bottom: 7rem;
+  }
   .game__block-picture {
     flex-direction: column;
   }
@@ -268,10 +288,10 @@ h2 {
     display: flex;
     flex-direction: row;
   }
-  .rules-bottom_picture {
+  .rules__bottom-picture {
     top: 9rem;
   }
-  .question_wrap {
+  .question_wrap-picture {
     margin-bottom: 7rem;
   }
   .game__btn--skip-picture,
@@ -313,12 +333,18 @@ h2 {
   .fail-name-picture {
     left: 38%;
   }
+  .game__center-picture {
+    max-width: 100% !important;
+  }
 }
 
 @media (max-width: 1400px) {
-  .rules-bottom_picture {
+  .rules__bottom-picture {
     top: 31%;
   }
+  /* .picture_game {
+    height: 100vh;
+  } */
   .modal_border {
     max-width: 627px;
   }
@@ -403,8 +429,28 @@ h2 {
   .pictures_wrapper {
     display: none;
   }
-  .game__rules {
+  .game__rules-picture {
     top: 6rem;
+  }
+
+  .rules-bottom_picture {
+    bottom: -1rem;
+  }
+  /* 
+  .picture_game {
+    height: initial;
+  } */
+
+  .picture_game {
+    height: 100vh;
+  }
+
+  /* ..deniska {
+    height: 120%;
+  } */
+
+  .pictures_wrapper {
+    margin-top: 7%;
   }
 
   .wrap {
@@ -418,24 +464,25 @@ h2 {
   .game__title-picture {
     max-width: 320px;
     width: 320px;
-    margin-top: 18%;
+    /* margin-top: 18%; */
   }
 
   .rules_text-picture {
     width: 289px;
   }
 
-  .rules__bottom {
+  .rules__bottom-picture {
     top: auto;
   }
   .question_img-picture {
     width: 320px;
   }
   .game__left-picture {
-    padding-top: 2rem;
+    padding-top: 6rem;
   }
   .game__block-picture {
-    overflow-y: visible !important;
+    /* overflow:hidden !important; */
+    margin-top: 11rem;
   }
   .description {
     background-size: 257px;
@@ -452,15 +499,15 @@ h2 {
   }
   .rules__btn-picture {
     position: absolute;
-    bottom: 8rem;
+    bottom: 15rem;
     right: 1rem;
     background-color: transparent;
     border: none;
   }
   .game__btn--skip-picture {
-    margin: 30px auto;
+    margin: 28% auto;
   }
-  .rules__text {
+  .rules__text_picture {
     font-size: 16px;
   }
   .hidden {
@@ -535,7 +582,22 @@ h2 {
     width: 100%;
     height: 120%;
     padding-top: 11rem;
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 10;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -moz-transform: translate3d(0, 0, 0);
+    will-change: transform;
   }
+
+  @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .backdrop-blur {
+      background-color: rgba(255, 255, 255, 0.1);
+      -webkit-backdrop-filter: blur(9px);
+      backdrop-filter: blur(9px);
+    }
+  }
+
   .fail-name-picture,
   .success_name-picture {
     display: flex;
@@ -552,21 +614,21 @@ h2 {
     /* top: 34%; */
     padding-top: 18px;
     font-size: 18px;
-    top: 47%;
-    left: 43%;
+    top: 46%;
+    left: 43.5%;
   }
 
-  .fail-name-picture {
+  /* .fail-name-picture {
     bottom: 27%;
     left: 44%;
     width: 277px;
-  }
+  } */
   .fail_text-picture {
     left: 32%;
-    bottom: 38%;
+    bottom: 39%;
   }
   .success_text-picture {
-    bottom: 36%;
+    bottom: 37%;
     left: 32%;
     width: 277px;
   }
@@ -622,7 +684,7 @@ h2 {
 
   .success_text-picture,
   .fail_text-picture {
-    left: 19%;
+    left: 18%;
   }
 }
 

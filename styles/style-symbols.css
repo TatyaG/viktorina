@@ -23,6 +23,7 @@ input {
 
 .symbols__item {
     padding: 40px;
+    padding-bottom: 60px;
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -43,7 +44,8 @@ input {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 70px;
-    margin-top: auto;
+    /* margin: auto 0; */
+    /* margin-top: auto; */
 }
 
 .symbol__block {
@@ -51,7 +53,7 @@ input {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
     
 
 }
@@ -60,7 +62,12 @@ input {
     display: none;
 }
 
+.symbol__label {
+    position: relative;
+}
+
 .symbol__radio {
+    position: relative;
     padding: 15px 12px;
     display: flex;
     justify-content: center;
@@ -79,6 +86,32 @@ input {
     border-image-slice: 40%;
     border-image-width: 100%;
     cursor: pointer;
+    z-index: 3;
+}
+
+
+.symbol__label::before {
+    position: absolute;
+    content: '';
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 100px;
+    background: linear-gradient(180deg, #814073 0%, #976E9D 100%);
+    z-index: 2;
+}
+
+.symbol__label::after {
+    position: absolute;
+    content: '';
+    top: -4px;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    border-radius: 100px;
+    background: linear-gradient(90.23deg, #B171C5 -0.71%, #BD97CB 47.47%, #B574D0 99.83%);
+    z-index: 1;
 }
 
 .symbol__input--true:checked~.symbol__radio {
@@ -156,14 +189,36 @@ input {
 
     
     .symbols .game__block {
-        padding-bottom: 86px;
+        /* padding-bottom: 86px; */
         padding-top: 0;
         gap: 15px;
     }
     
     .symbols .game__block {
-        padding-bottom: 200px;
+        /* padding-bottom: 200px; */
         padding-top: 0;
+    }
+
+    .game.symbols {
+        background-image: url(../img/background-symbols-phone.webp);
+    }
+
+    .game.symbols .game__btn {
+        z-index: 4;
+    }
+
+    .symbols .game__rules {
+        top: 30%;
+    }
+    
+
+    .symbols ~ .deniska .game__rules {
+        margin-top: 174px;
+        margin-bottom: 0;
+    }
+
+    .symbols.game-blur~.deniska .game__rules {
+        margin-top: 0;
     }
 }
 
