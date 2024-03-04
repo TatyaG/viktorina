@@ -145,9 +145,9 @@ export const createPicture = () => {
       }
       gameBtnSkip.style.display = "none";
       gameBtnNext.style.display = "block";
-      setTimeout(() => {
-        modalWrapper.style.display = "none";
-      }, 6000);
+      // setTimeout(() => {
+      //   modalWrapper.style.display = "none";
+      // }, 6000);
 
       document.querySelectorAll("img").forEach((item) => {
         item.style.pointerEvents = "none";
