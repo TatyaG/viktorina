@@ -1,5 +1,5 @@
 import createTalker from "./talker.js";
-import createRulesTablet from "./rules-tablet.js";
+// import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
 import { createGameQuestion } from "./question.js";
@@ -76,7 +76,6 @@ export const createPicture = () => {
   questionImg.src = "img/crossword-questionWrap_desctop.png";
 
   const pictureWrapper = document.createElement("div");
-
   //ОЧКИ
   const pointBlock = createPoint();
 
@@ -126,6 +125,12 @@ export const createPicture = () => {
         setTimeout(() => {
           happyDeniska.classList.remove("hidden");
         }, 6000);
+        // let pointsBlock = document.querySelector(".game__point");
+        // pointsBlock.classList.add("animation");
+        // let points = JSON.parse(localStorage.getItem("points"));
+        // points += 1;
+        // localStorage.setItem("points", points);
+        // pointsBlock.textContent = points;
         let points = JSON.parse(localStorage.getItem("points"));
         points += 1;
         localStorage.setItem("points", points);

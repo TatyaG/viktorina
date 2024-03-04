@@ -75,12 +75,6 @@ export default function createFillword() {
   const gameLeft = document.createElement("div");
   gameLeft.classList.add("game__left", "game__left-fillword");
 
-  //ОЧКИ
-  const pointBlock = createPoint();
-
-  let points = JSON.parse(localStorage.getItem("points"));
-  pointBlock.textContent = points;
-
   //Для филворда div
   const gameCenter = document.createElement("div");
   gameCenter.classList.add("game__center", "game__center-fillword");
@@ -90,21 +84,43 @@ export default function createFillword() {
   const table = document.createElement("table");
   table.classList.add("table");
 
+  //ОЧКИ
+  const pointBlock = createPoint();
+
+  let points = JSON.parse(localStorage.getItem("points"));
+  pointBlock.textContent = points;
+
   let correctGuessCount = 0;
   let isTouchDevice = "ontouchstart" in document.documentElement;
   let isActivelySelecting = false;
   let currHoverTarget = null;
-  console.log("script loaded");
 
-  window.onload = () => {
-    console.log("loaded");
-    let correctWords = ["павлова", "яковлев", "николаев"];
+  let correctWords = ["павлова", "яковлев", "николаев"];
 
-    let isMouseDown = false;
-    let str = "";
-    let nodeAr = [];
-    let countTouch = 0;
+  let isMouseDown = false;
+  let str = "";
+  let nodeAr = [];
+  let countTouch = 0;
 
+  //Наполняем таблицу буквами
+  for (let i = 0; i < 5; i++) {
+    const row = table.insertRow(i);
+    row.classList.add("row");
+
+    for (var j = 0; j < 9; j++) {
+      const cell = row.insertCell(j);
+      const index = i * 9 + j;
+      cell.innerHTML = data[index];
+
+      cell.classList.add("cells");
+    }
+  }
+
+  //Добавляем в GAMECENTER div с филвордом
+  gameCenter.append(fillwordWrapper);
+  fillwordWrapper.append(table);
+
+  setTimeout(() => {
     if (isTouchDevice) {
       console.log("touch");
       for (let node of document.querySelectorAll(".cells")) {
@@ -167,12 +183,11 @@ export default function createFillword() {
             answer3.classList.remove("hidden");
 
             questionImg.src = "img/Roll-tablet-fillword.png";
+            pointBlock.classList.add("animation");
             let points = JSON.parse(localStorage.getItem("points"));
             points += 1;
             localStorage.setItem("points", points);
-            const point = document.querySelector(".game__point");
-            point.textContent = points;
-            point.classList.add("animation");
+            pointBlock.textContent = points;
 
             const deniska = createDeniska(
               "Отлично! Задание выполнено. Тебе начислен 1 балл."
@@ -285,25 +300,7 @@ export default function createFillword() {
       str += node.textContent;
       nodeAr.push(node);
     }
-  };
-
-  //Наполняем таблицу буквами
-  for (let i = 0; i < 5; i++) {
-    const row = table.insertRow(i);
-    row.classList.add("row");
-
-    for (var j = 0; j < 9; j++) {
-      const cell = row.insertCell(j);
-      const index = i * 9 + j;
-      cell.innerHTML = data[index];
-
-      cell.classList.add("cells");
-    }
-  }
-
-  //Добавляем в GAMECENTER div с филвордом
-  gameCenter.append(fillwordWrapper);
-  fillwordWrapper.append(table);
+  }, 500);
 
   //div правый GAMERIGHT
   const gameRight = document.createElement("div");
@@ -733,4 +730,4 @@ export default function createFillword() {
   return game;
 }
 
-// createFillword();
+/* createFillword(); */

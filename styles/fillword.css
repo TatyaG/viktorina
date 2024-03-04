@@ -168,6 +168,9 @@ body {
   .fillword-game {
     height: 100vh;
   }
+  .game__block-fillword {
+    margin-top: 0;
+  }
   .deniska-fillword {
     padding-top: 12rem;
   }

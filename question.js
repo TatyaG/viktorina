@@ -2,7 +2,7 @@ import createTalker from "./talker.js";
 import createDeniska from "./deniska.js";
 import createPoint from "./point.js";
 import createRulesTablet from "./rules-tablet.js";
- import createFillword  from "./fillword.js";
+import createFillword from "./fillword.js";
 
 export function createGameQuestion() {
   const game = document.createElement("section");
