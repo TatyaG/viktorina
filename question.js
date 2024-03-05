@@ -132,9 +132,10 @@ export function createGameQuestion() {
         })
 
         setTimeout(() => {
+          document.body.append(deniska.deniska);
           document.querySelector(".game__btn--skip").style.display = "none";
           document.querySelector('.game__btn--next').style.display = 'block';
-          document.body.append(deniska.deniska);
+          
         }, 800);
       } else {
         const deniska = createDeniska("К сожалению, это неправильный ответ.");
