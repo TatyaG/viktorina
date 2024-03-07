@@ -173,7 +173,7 @@ export function createGameSymbols() {
 
                         setTimeout(() => {
                             document.querySelector('.game__btn--skip').style.display = 'none';
-                            // document.querySelector('.game__btn--next').style.display = 'block';
+                            document.querySelector('.game__btn--next').style.display = 'block';
                             document.body.append(deniska.deniska);
                         }, 800)
 
