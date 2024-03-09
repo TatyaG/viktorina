@@ -548,6 +548,10 @@ body {
 }
 
 @media (max-width: 375px) {
+  body {
+    height: 100vh;
+  }
+
   .title {
     left: -2%;
     top: 26%;
@@ -568,6 +572,7 @@ body {
 
   .title_container {
     left: 2px;
+    top: -45px;
   }
 }
 
