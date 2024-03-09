@@ -71,7 +71,7 @@ export function createFinal() {
   perrotButtonMobile.textContent = "Далее";
 
   perrotButton.setAttribute("href", "docs/Известные_личности_и_музеи_Чувашии.pdf");
-  perrotButton.setAttribute("download", "Известные личности и музеи Чувашии");
+  perrotButton.setAttribute("download", "Известные личности и музеи Чувашии.pdf");
 
   // Центр
   const centerDiv = document.createElement("div");
@@ -81,8 +81,8 @@ export function createFinal() {
   centerText.textContent = "Конец игры";
 
   const pointBlock = createPoint();
-    let points = JSON.parse(localStorage.getItem("points") ?? 0);
-  // let points = 8;
+    // let points = JSON.parse(localStorage.getItem("points") ?? 0);
+  let points = 18;
   pointBlock.textContent = points + ` из 9`;
   pointBlock.classList.add("game__point_final");
 
@@ -353,7 +353,7 @@ export function createFinal() {
       buttonDownload.classList.add("btn-download", "hidden");
       final.append(buttonDownload);
       buttonDownload.setAttribute("href", "docs/Известные_личности_и_музеи_Чувашии.pdf");
-      buttonDownload.setAttribute("download", "Известные личности и музеи Чувашии");
+      buttonDownload.setAttribute("download", "Известные личности и музеи Чувашии.pdf");
 
       perrotButtonMobile.addEventListener("click", (e) => {
         e.preventDefault();
@@ -459,4 +459,4 @@ export function createFinal() {
   return final;
 }
 
-// createFinal();
+createFinal();
