@@ -28,6 +28,7 @@ body {
   background-image: url(../img/puzzle_bg_desk.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .blur ~ .deniska .game__rules_pazzle {
@@ -134,8 +135,13 @@ body {
 }
 
 .pazzle__name-wrap {
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+}
+
+.pazzle__game-block {
   position: relative;
-  align-items: end;
 }
 
 .pazzle__name-img {
@@ -145,7 +151,7 @@ body {
 .pazzle__name-text {
   position: absolute;
   bottom: 57px;
-  left: 50px;
+  left: 18%;
   font-family: Comfortaa;
   font-size: 16px;
   font-weight: 500;
@@ -157,7 +163,7 @@ body {
 .pazzle__name-author {
   position: absolute;
   bottom: 20px;
-  right: 31px;
+  right: 11%;
   font-family: Comfortaa;
   font-size: 14px;
   font-weight: 500;
@@ -168,4 +174,231 @@ body {
 
 .deniska_pazzle {
   bottom: -15px;
+}
+
+/* Адаптив */
+
+@media (max-width: 1780px) {
+  .pazzle {
+    padding: 50px 20px 96px 20px;
+  }
+
+  .pazzle__game-block {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1750px) {
+  .pazzle__game-block,
+  .pazzle__right {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pazzle__right {
+    position: relative;
+  }
+
+  .pazzle__name-wrap {
+    position: relative;
+    right: auto;
+  }
+
+  .pazzle__game-block {
+    gap: 0;
+  }
+
+  .pazzle__name-text {
+    left: 18%;
+    bottom: 57px;
+  }
+
+  .game__rules_pazzle {
+    margin-bottom: 40px;
+  }
+
+  .rules__text_pazzle {
+    padding-top: 50px;
+  }
+
+  .pazzle__left {
+    margin-bottom: 50px;
+    padding-top: 250px;
+  }
+
+  .puzzle__wrap {
+    margin-bottom: 10px;
+  }
+
+  .pazzle__btn-skip,
+  .pazzle__btn-next {
+    padding: 12px 40px;
+  }
+
+  .deniska_pazzle-text {
+    max-width: 317px;
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-top: 50px;
+    padding-bottom: 34px;
+  }
+
+  .deniska .deniska_pazzle {
+    right: -120px;
+    bottom: -30px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .pazzle__left {
+    padding-top: 215px;
+  }
+
+  .deniska .deniska_pazzle {
+    right: -50px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pazzle {
+    background-image: url(../img/pazzle-bg-tablet.jpg);
+  }
+
+  #pieces img {
+    width: 150.5px;
+    height: 129px;
+  }
+
+  #pieces {
+    padding: 10px;
+    width: 622px;
+    height: 407px;
+  }
+
+  .puzzle__wrap {
+    width: 702px;
+    height: 487px;
+    padding: 40px;
+  }
+
+  .pazzle {
+    padding: 40px 20px 85px 20px;
+  }
+
+  .pazzle__left {
+    padding-top: 195px;
+    margin-bottom: 45px;
+  }
+
+  .rules__text_pazzle {
+    padding-top: 40px;
+    padding-bottom: 25px;
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+
+  .deniska .deniska_pazzle {
+    right: -135px;
+    bottom: -50px;
+  }
+
+  .pazzle__subtitle {
+    margin-bottom: 55px;
+  }
+}
+
+@media (max-width: 992px) {
+  .deniska .deniska_pazzle {
+    right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pazzle__right {
+    display: none;
+  }
+
+  .pazzle__title {
+    max-width: fit-content;
+  }
+
+  #pieces img {
+    width: 68px;
+    height: 58.67px;
+    border: 2px solid rgba(128, 167, 245, 1);
+  }
+
+  #pieces {
+    padding: 4px;
+    width: 280px;
+    height: 184px;
+  }
+
+  .puzzle__wrap {
+    width: 320px;
+    height: 224px;
+    padding: 20px;
+  }
+
+  #pieces img:nth-child(1) {
+    border-top-left-radius: 10px;
+  }
+
+  #pieces img:nth-child(4) {
+    border-top-right-radius: 10px;
+  }
+
+  #pieces img:nth-child(9) {
+    border-bottom-left-radius: 10px;
+  }
+
+  #pieces img:nth-child(12) {
+    border-bottom-right-radius: 10px;
+  }
+
+  .pazzle__subtitle {
+    margin-bottom: 30px;
+  }
+
+  .pazzle__name-text {
+    font-size: 14px;
+  }
+
+  .pazzle__name-author {
+    bottom: 30px;
+    right: 16%;
+    font-size: 12px;
+  }
+
+  .deniska .deniska_pazzle {
+    right: 0;
+    bottom: 0;
+    margin-bottom: 40px;
+  }
+
+  .pazzle__btn-skip {
+    display: block;
+  }
+
+  .pazzle__name-wrap {
+    margin-bottom: 71px;
+  }
+
+  .pazzle {
+    padding: 56px 20px 10px 20px;
+  }
+
+  .game__rules_pazzle {
+    margin-bottom: 0;
+  }
+
+  .blur ~ .deniska .game__rules_pazzle {
+    right: auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .pazzle {
+    background-image: url(../img/pazzle-bg-mobile.jpg);
+  }
 }

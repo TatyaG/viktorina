@@ -1031,7 +1031,7 @@ body {
 
 @media (max-width: 480px) {
   .rules--tablet .rules__text {
-    width: 295px;
+    width: 305px;
   }
 
   .find-extra__title {
