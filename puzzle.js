@@ -81,7 +81,7 @@ export const createPuzzleGame = () => {
   gameSubtitle.classList.add("game__subtitle", "pazzle__subtitle");
   gameBlock.classList.add("game__block", "pazzle__game-block", "flex");
   gameLeft.classList.add("pazzle__left", "flex");
-  gameRight.classList.add("pazzle__right", "flex");
+  gameRight.classList.add("pazzle__right");
   gameBtnSkip.classList.add(
     "game__btn",
     "game__btn--skip",
@@ -262,7 +262,7 @@ export const createPuzzleGame = () => {
   const mediaQuery = window.matchMedia("(max-width: 768px)");
   function handleTabletChange(e) {
     if (e.matches) {
-      document.querySelector(".rules__btn_pazzle").addEventListener("click", (e) => {
+      document.querySelector(".rules__btn").addEventListener("click", (e) => {
           gameLeft.classList.add("hidden");
           gameRight.style.display = "flex";
 

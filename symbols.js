@@ -2,7 +2,7 @@ import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
-import { createFindExtra } from './find-extra.js';
+import { createPuzzleGame } from './puzzle.js';
 
 
 export function createGameSymbols() {
@@ -143,8 +143,8 @@ export function createGameSymbols() {
                         deniska.gameBtnNext.addEventListener('click', (e) => {
                             e.preventDefault();
                             document.body.innerHTML = '';
-                            const findExtra = createFindExtra();
-                            document.body.append(findExtra);
+                            const puzzle = createPuzzleGame();
+                            document.body.append(puzzle);
                         })
 
                         setTimeout(() => {
@@ -167,8 +167,8 @@ export function createGameSymbols() {
                         deniska.gameBtnNext.addEventListener('click', (e) => {
                             e.preventDefault();
                             document.body.innerHTML = '';
-                            const findExtra = createFindExtra();
-                            document.body.append(findExtra);
+                            const puzzle = createPuzzleGame();
+                            document.body.append(puzzle);
                         })
 
                         setTimeout(() => {
@@ -215,8 +215,8 @@ export function createGameSymbols() {
         yesBtn.addEventListener('click', (e) => {
             e.preventDefault();
             document.body.innerHTML = '';
-            const findExtra = createFindExtra();
-            document.body.append(findExtra);
+            const puzzle = createPuzzleGame();
+            document.body.append(puzzle);
         })
 
         noBtn.addEventListener('click', (e) => {
@@ -233,10 +233,8 @@ export function createGameSymbols() {
     gameBtnNext.addEventListener('click', (e) => {
         e.preventDefault();
         document.body.innerHTML = '';
-        // const puzzle = createPuzzleGame();
-        // document.body.append(puzzle);
-        const findExtra = createFindExtra();
-        document.body.append(findExtra);
+        const puzzle = createPuzzleGame();
+        document.body.append(puzzle);
     })
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
