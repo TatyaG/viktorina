@@ -92,10 +92,11 @@ export const createPuzzleGame = () => {
     "game__btn",
     "game__btn--next",
     "btn-reset",
-    "pazzle__btn-skip"
+    "pazzle__btn-next"
   );
   assistantPerrot.gameRules.classList.add("game__rules_pazzle");
   assistantPerrot.rulesText.classList.add("rules__text_pazzle");
+  assistantPerrot.rulesBtn.classList.add("rules__btn_pazzle");
 
   gameTitle.textContent = "Художественная галерея";
   gameSubtitle.innerHTML = "Собери картину";
@@ -114,21 +115,6 @@ export const createPuzzleGame = () => {
   gameLeft.append(assistantPerrot.gameRules, gameBtnSkip, gameBtnNext);
   gameRight.append(boardPuzzleWrap);
   boardPuzzleWrap.append(boardPuzzle);
-
-  // gameRules.rulesBtn.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     gameBtnNext.remove()
-  //     const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
-  //     game.append(rulesBlock);
-  //     gameRight.style.display = 'block';
-  //     gameRules.gameRules.style.display = 'none';
-  //     gameBtnSkip.style.display = 'block';
-  //     gameBlock.style.paddingBottom = '0';
-  //     gameBlock.style.marginTop = '0';
-  //     gameLeft.style.paddingTop = '0';
-  //     gameBlock.style.overflowY = 'scroll';
-
-  // })
 
   // Справа
   const pazzleImg = document.createElement("img");
@@ -223,6 +209,8 @@ export const createPuzzleGame = () => {
       checkPazzle();
     }
 
+    const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
+
     // Функция для проверки правильного порядка изображений
     function checkPuzzleCompletion() {
       return originalPieces.every((item, index) => pieces[index] === item);
@@ -239,9 +227,14 @@ export const createPuzzleGame = () => {
           "Отлично! Задание выполнено. Тебе начислен 1 балл."
         );
         deniskaSuccess.gameRules.classList.add("deniska_pazzle");
+        deniskaSuccess.rulesText.classList.add("deniska_pazzle-text");
 
         setTimeout(() => {
-          gameRight.append(deniskaSuccess.deniska);
+          if (mobileMediaQueryList.matches) {
+            game.append(deniskaSuccess.deniska);
+          } else {
+            gameRight.append(deniskaSuccess.deniska);
+          }          
         }, 4000);
 
         // Очки
@@ -252,7 +245,7 @@ export const createPuzzleGame = () => {
         point.textContent = points;
         point.classList.add("animation");
 
-        gameBtnSkip.classList.add('hidden');
+        gameBtnSkip.classList.add("hidden");
         gameBtnNext.style.display = "block";
       }
     }
@@ -264,6 +257,26 @@ export const createPuzzleGame = () => {
     boardPuzzle.removeChild(pazzleImg);
     puzzleGame();
   }, 2000);
+
+  // Адаптив
+  const mediaQuery = window.matchMedia("(max-width: 768px)");
+  function handleTabletChange(e) {
+    if (e.matches) {
+      document.querySelector(".rules__btn_pazzle").addEventListener("click", (e) => {
+          gameLeft.classList.add("hidden");
+          gameRight.style.display = "flex";
+
+          const rulesBlock = createRulesTablet("Наш пазл состоит из 12 фрагментов. Собери его и ты увидишь известную картину.");
+          game.append(rulesBlock);
+        });
+      gameRight.append(gameBtnSkip);
+      pointBlock.style.position = "absolute";
+      pointBlock.style.top = "12px";
+      pointBlock.style.right = "20px";
+    }
+  }
+  mediaQuery.addListener(handleTabletChange);
+  handleTabletChange(mediaQuery);
 };
 
-createPuzzleGame();
+// createPuzzleGame();
