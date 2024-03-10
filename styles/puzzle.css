@@ -124,6 +124,10 @@ body {
   border-right: 0px;
 }
 
+.pazzle__right {
+  display: flex;
+}
+
 .puzzle__wrap {
   width: 1065px;
   height: 740px;
@@ -172,8 +176,9 @@ body {
   text-align: left;
 }
 
-.deniska_pazzle {
+.deniska .deniska_pazzle {
   bottom: -15px;
+  right: 0;
 }
 
 /* Адаптив */
