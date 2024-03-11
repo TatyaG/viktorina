@@ -12,12 +12,12 @@ body {
   position: relative;
   background: url(../img/background_fillword.png) no-repeat center center fixed;
   background-size: cover;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
-.fillword-game {
+/* .fillword-game {
   height: 100vh;
-}
+} */
 
 .table {
   border-collapse: collapse;
@@ -34,7 +34,9 @@ body {
 /* .game__btn {
   top: 17%;
 } */
-
+.animation {
+  background: gray;
+}
 .cells {
   width: 100px;
   height: 100px;
@@ -96,6 +98,14 @@ body {
   left: 4rem;
 }
 
+.question_img_fillword {
+  max-height: 687px;
+}
+
+.question_wrap_fillword {
+  margin-bottom: 0 !important;
+}
+
 @media (max-width: 1800px) {
   .game__block-fillword {
     flex-direction: column;
@@ -109,7 +119,7 @@ body {
   }
 
   .rules__bottom-fillword {
-    bottom: 7rem;
+    bottom: 9rem;
   }
 
   .question_wrap_fillword {
@@ -123,7 +133,7 @@ body {
 
   .game__left-fillword {
     display: flex;
-    flex-direction: row;
+    flex-direction: row !important;
     padding-top: 0;
   }
 }
@@ -261,6 +271,15 @@ body {
     margin-right: auto;
     max-width: 234px;
   }
+
+  /* @supports (-webkit-touch-callout: none) {
+    .question_wrap_fillword {
+      visibility: hidden;
+      opacity: 0;
+      -webkit-visibility: hidden;
+      -webkit-opacity: 0;
+    }
+  } */
 }
 
 @media (max-width: 400px) {
