@@ -582,6 +582,71 @@ export function createCrossword() {
       perrotImg.src = "img/perrot_tablet.png";
       perrotText.textContent =
         "Разгадай кроссворд (каждой клетке соответствует одна буква).";
+
+        gameBtnAccept.onclick = () => {
+          const errorWords = checkWords();
+  
+          answer1.classList.remove("hidden");
+          answer2.classList.remove("hidden");
+          answer3.classList.remove("hidden");
+          answer4.classList.remove("hidden");
+          questionImg.src = "img/crossword-questionWrap_desctop2.png";
+  
+          if (errorWords.length > 0) {
+            errorWords.forEach((index) => {
+              switch (index) {
+                case 1:
+                  answer1.classList.add("question_answer--error");
+  
+                  break;
+  
+                case 2:
+                  answer2.classList.add("question_answer--error");
+  
+                  break;
+  
+                case 3:
+                  answer3.classList.add("question_answer--error");
+  
+                  break;
+  
+                case 4:
+                  answer4.classList.add("question_answer--error");
+  
+                  break;
+  
+                default:
+                  break;
+              }
+            });
+  
+            setTimeout(() => {
+              fail.classList.remove("hidden");
+              fail.style.marginTop = "-170px";
+              gameBlock.style.marginBottom = "0";              
+            }, 4000);
+          } else {
+            pointsImg.classList.add("points_img__shine");
+  
+            let pointsSucsess = JSON.parse(localStorage.getItem("points"));
+            pointsSucsess += 1;
+            localStorage.setItem("points", pointsSucsess);
+            pointsScore.textContent = pointsSucsess;
+  
+            setTimeout(() => {
+              success.classList.remove("hidden");
+              success.style.marginTop = "-170px";
+              gameBlock.style.marginBottom = "0";
+            }, 4000);
+          }
+          // Показываем кнопку "Перейти к следующей игре"
+          gameBtnNext.classList.remove("hidden");
+  
+          // Скрываем кнопку "Принять ответы"
+          gameBtnAccept.classList.add("hidden");
+  
+          setDisabled()
+        };
     }
   }
   mediaQuery.addListener(handleTabletChange);
@@ -634,6 +699,8 @@ export function createCrossword() {
 
           setTimeout(() => {
             fail.classList.remove("hidden");
+            gameBlock.style.marginBottom = "0";  
+            game.style.paddingBottom = "16px";
           }, 4000);
         } else {
           pointsImg.classList.add("points_img__shine");
@@ -645,6 +712,8 @@ export function createCrossword() {
 
           setTimeout(() => {
             success.classList.remove("hidden");
+            gameBlock.style.marginBottom = "0";  
+            game.style.paddingBottom = "16px";
           }, 4000);
         }
         // Показываем кнопку "Перейти к следующей игре"

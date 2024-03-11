@@ -2,175 +2,281 @@ import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
 import createTalker from "./talker.js";
 import createRulesTablet from "./rules-tablet.js";
-import {createFindExtra} from './find-extra.js';
+import { createFindExtra } from "./find-extra.js";
 
+export const createPuzzleGame = () => {
+  const game = document.createElement("section");
+  const boardPuzzle = document.createElement("div");
+  const boardPuzzleWrap = document.createElement("div");
+  boardPuzzle.id = "pieces";
+  boardPuzzleWrap.classList.add("puzzle__wrap");
+  const gameTitle = document.createElement("h1");
+  const gameSubtitle = document.createElement("h2");
+  const gameBlock = document.createElement("div");
+  const gameLeft = document.createElement("div");
+  const gameRight = document.createElement("div");
+  const gameBtnSkip = document.createElement("button");
+  const gameBtnNext = document.createElement("button");
 
-let puzzleGame = () => {
-    console.log('my')
+  const pointBlock = createPoint();
+  let points = JSON.parse(localStorage.getItem("points") ?? 0);
+  pointBlock.textContent = points;
+
+  // Слева
+  gameBtnSkip.addEventListener("click", (e) => {
+    e.preventDefault();
+    const deniska = createDeniska(
+      "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+    );
+    document.body.append(deniska.deniska);
+    deniska.rulesDeniska.src = "img/deniska-sad.webp";
+    game.classList.add("blur");
+    const btns = document.createElement("div");
+    const yesBtn = document.createElement("button");
+    const noBtn = document.createElement("button");
+
+    yesBtn.textContent = "Да";
+    noBtn.textContent = "Нет";
+
+    deniska.gameRules.classList.add("game__rules_pazzle");
+    btns.classList.add("btns-group");
+    yesBtn.classList.add(
+      "btn-reset",
+      "game__btn",
+      "game__btn--yes",
+      "game__btn--next",
+      "pazzle-yes"
+    );
+    noBtn.classList.add(
+      "btn-reset",
+      "game__btn",
+      "game__btn--no",
+      "game__btn--next",
+      "pazzle-no"
+    );
+    btns.append(yesBtn, noBtn);
+    deniska.rulesText.append(btns);
+
+    yesBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.body.innerHTML = "";
+      const findExtra = createFindExtra();
+      document.body.append(findExtra);
+    });
+
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      deniska.deniska.remove();
+      game.classList.remove("blur");
+    });
+  });
+
+  const assistantPerrot = createTalker(
+    "Наш пазл состоит из 12 фрагментов. Собери его и ты увидишь известную картину."
+  );
+
+  //   Добавление элементов
+  game.classList.add("game", "pazzle");
+  gameTitle.classList.add("game__title", "pazzle__title");
+  gameSubtitle.classList.add("game__subtitle", "pazzle__subtitle");
+  gameBlock.classList.add("game__block", "pazzle__game-block", "flex");
+  gameLeft.classList.add("pazzle__left", "flex");
+  gameRight.classList.add("pazzle__right");
+  gameBtnSkip.classList.add(
+    "game__btn",
+    "game__btn--skip",
+    "btn-reset",
+    "pazzle__btn-skip"
+  );
+  gameBtnNext.classList.add(
+    "game__btn",
+    "game__btn--next",
+    "btn-reset",
+    "pazzle__btn-next"
+  );
+  assistantPerrot.gameRules.classList.add("game__rules_pazzle");
+  assistantPerrot.rulesText.classList.add("rules__text_pazzle");
+  assistantPerrot.rulesBtn.classList.add("rules__btn_pazzle");
+
+  gameTitle.textContent = "Художественная галерея";
+  gameSubtitle.innerHTML = "Собери картину";
+  gameBtnSkip.textContent = "Пропустить игру";
+  gameBtnNext.textContent = "Следующая игра";
+
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const findExtra = createFindExtra();
+    document.body.append(findExtra);
+  });
+
+  document.body.append(game);
+  game.append(gameTitle, gameSubtitle, gameBlock, pointBlock);
+  gameBlock.append(gameLeft, gameRight);
+  gameLeft.append(assistantPerrot.gameRules, gameBtnSkip, gameBtnNext);
+  gameRight.append(boardPuzzleWrap);
+  boardPuzzleWrap.append(boardPuzzle);
+
+  // Справа
+  const pazzleImg = document.createElement("img");
+  const pazzleNameWrap = document.createElement("div");
+  const pazzleNameImg = document.createElement("img");
+  const pazzleNameText = document.createElement("p");
+  const pazzleNameAuthor = document.createElement("p");
+
+  pazzleNameImg.src = "img/pazzle-nameImg.png";
+  pazzleImg.src = "img/pazzle.jpg";
+  pazzleImg.style.width = "100%";
+  pazzleImg.style.height = "100%";
+  pazzleNameText.textContent = "Утро в сосновом лесу";
+  pazzleNameAuthor.textContent = "И. И. Шишкин";
+
+  pazzleNameWrap.classList.add("pazzle__name-wrap", "flex");
+  pazzleNameImg.classList.add("pazzle__name-img");
+  pazzleNameText.classList.add("pazzle__name-text");
+  pazzleNameAuthor.classList.add("pazzle__name-author");
+
+  boardPuzzle.append(pazzleImg);
+  gameRight.append(pazzleNameWrap);
+  pazzleNameWrap.append(pazzleNameImg, pazzleNameText, pazzleNameAuthor);
+
+  // Логика паззла
+  const puzzleGame = () => {
     //pieces
-    const rows = 4;
-    const columns = 3;
+    const rows = 3;
+    const columns = 4;
     let currTile;
     let otherTile;
     let pieces = [];
     for (let i = 1; i <= rows * columns; i++) {
-        pieces.push(i.toString());
+      pieces.push(i.toString());
     }
+
+    const originalPieces = [...pieces];
+
     pieces.reverse();
     for (let i = 0; i < pieces.length; i++) {
-        let j = Math.floor(Math.random() * pieces.length);
-        let tmp = pieces[i];
-        pieces[i] = pieces[j];
-        pieces[j] = tmp;
+      let j = Math.floor(Math.random() * pieces.length);
+      let tmp = pieces[i];
+      pieces[i] = pieces[j];
+      pieces[j] = tmp;
     }
 
     for (let i = 0; i < pieces.length; i++) {
-        let tile = document.createElement("img");
-        tile.src = "./img/puzzle" + pieces[i] + ".jpg";
-        tile.addEventListener("dragstart", dragStart); //click on image to drag
-        tile.addEventListener("dragover", dragOver);   //drag an image
-        tile.addEventListener("dragenter", dragEnter); //dragging an image into another one
-        tile.addEventListener("drop", dragDrop);       //drop an image onto another one
-        tile.addEventListener("dragend", dragEnd);      //after you completed dragDrop
-        document.getElementById("pieces").append(tile);
+      let tile = document.createElement("img");
+      tile.src = "./img/puzzle" + pieces[i] + ".jpg";
+      tile.addEventListener("dragstart", dragStart); //click on image to drag
+      tile.addEventListener("dragover", dragOver); //drag an image
+      tile.addEventListener("dragenter", dragEnter); //dragging an image into another one
+      tile.addEventListener("drop", dragDrop); //drop an image onto another one
+      tile.addEventListener("dragend", dragEnd); //after you completed dragDrop
+      document.getElementById("pieces").append(tile);
     }
 
-
-//DRAG TILES
+    //DRAG TILES
     function dragStart() {
-        currTile = this; //this refers to image that was clicked on for dragging
+      currTile = this; //this refers to image that was clicked on for dragging
     }
 
     function dragOver(e) {
-        e.preventDefault();
+      e.preventDefault();
     }
 
     function dragEnter(e) {
-        e.preventDefault();
+      e.preventDefault();
     }
 
     function dragDrop() {
-        otherTile = this; //this refers to image that is being dropped on
+      otherTile = this; //this refers to image that is being dropped on
     }
 
     function dragEnd() {
-        let currImg = currTile.src;
-        let currElem = pieces.indexOf(currImg.split('puzzle')[1].split('.')[0])
-        let otherImg = otherTile.src;
+      let currImg = currTile.src;
+      let currIndex = pieces.indexOf(currImg.split("puzzle")[1].split(".")[0]);
+      let otherImg = otherTile.src;
 
-        let otherElem = pieces.indexOf(otherImg.split('puzzle')[1].split('.')[0])
-        currTile.src = otherImg;
-        otherTile.src = currImg;
-        /*  pieces[currElem] = pieces[otherElem]
-          pieces[otherElem] = pieces[currElem]*/
-        console.log(currElem, otherElem)
-        console.log(pieces)
+      let otherIndex = pieces.indexOf(
+        otherImg.split("puzzle")[1].split(".")[0]
+      );
+      currTile.src = otherImg;
+      otherTile.src = currImg;
 
+      const currentElement = pieces[currIndex];
+      const otherElement = pieces[otherIndex];
+
+      pieces[otherIndex] = currentElement;
+      pieces[currIndex] = otherElement;
+
+      checkPazzle();
     }
 
-}
-export const createPuzzleGame = () => {
-    console.log('start')
-    const game = document.createElement('section');
-    const boardPuzzle = document.createElement('div')
-    boardPuzzle.id = 'pieces'
-    const gameTitle = document.createElement('h1');
-    const gameSubtitle = document.createElement('h2');
-    const gameBlock = document.createElement('div');
-    const gameLeft = document.createElement('div');
-    const gameRight = document.createElement('div');
-    const gameBtnSkip = document.createElement('button');
-    const gameBtnNext = document.createElement('button');
-    const symbolsBlock = document.createElement('form');
+    const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
 
+    // Функция для проверки правильного порядка изображений
+    function checkPuzzleCompletion() {
+      return originalPieces.every((item, index) => pieces[index] === item);
+    }
 
-    const pointBlock = createPoint();
-    let points = JSON.parse(localStorage.getItem('points'));
-    pointBlock.textContent = points;
-    gameBtnSkip.addEventListener('click', (e) => {
-        e.preventDefault();
-        const deniska = createDeniska('При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?');
-        document.body.append(deniska.deniska);
-        deniska.rulesDeniska.src = 'img/deniska-sad.webp';
-        game.classList.add('game-blur');
-        const btns = document.createElement('div');
-        const yesBtn = document.createElement('button');
-        const noBtn = document.createElement('button');
+    function checkPazzle() {
+      if (checkPuzzleCompletion()) {
+        const images = document.querySelectorAll("#pieces img");
+        images.forEach((image) => {
+          image.style.border = "none";
+        });
 
-        yesBtn.textContent = 'Да';
-        noBtn.textContent = 'Нет';
+        const deniskaSuccess = createDeniska(
+          "Отлично! Задание выполнено. Тебе начислен 1 балл."
+        );
+        deniskaSuccess.gameRules.classList.add("deniska_pazzle");
+        deniskaSuccess.rulesText.classList.add("deniska_pazzle-text");
 
-        btns.classList.add('btns-group');
-        yesBtn.classList.add('btn-reset', 'game__btn', 'game__btn--yes', 'game__btn--next');
-        noBtn.classList.add('btn-reset', 'game__btn', 'game__btn--no', 'game__btn--next');
-        btns.append(yesBtn, noBtn);
-        deniska.rulesText.append(btns);
+        setTimeout(() => {
+          if (mobileMediaQueryList.matches) {
+            game.append(deniskaSuccess.deniska);
+          } else {
+            gameRight.append(deniskaSuccess.deniska);
+          }          
+        }, 4000);
 
-        yesBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.body.innerHTML = '';
-            const findExtra = createFindExtra();
-            document.body.append(findExtra);
-        })
+        // Очки
+        let points = JSON.parse(localStorage.getItem("points"));
+        points += 1;
+        localStorage.setItem("points", points);
+        const point = document.querySelector(".game__point");
+        point.textContent = points;
+        point.classList.add("animation");
 
-        noBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            deniska.deniska.remove();
-            game.classList.remove('game-blur');
-        })
-    })
-    const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
+        gameBtnSkip.classList.add("hidden");
+        gameBtnNext.style.display = "block";
+      }
+    }
+  };
 
-    game.classList.add('game', 'symbols');
-    gameTitle.classList.add('game__title');
-    gameSubtitle.classList.add('game__subtitle');
-    gameBlock.classList.add('game__block');
-    gameLeft.classList.add('game__left');
-    gameRight.classList.add('game__right');
-    gameBtnSkip.classList.add('game__btn', 'game__btn--skip', 'btn-reset');
-    gameBtnNext.classList.add('game__btn', 'game__btn--next', 'btn-reset');
-    symbolsBlock.classList.add('symbols__form');
+  // -----------------
 
+  setTimeout(() => {
+    boardPuzzle.removeChild(pazzleImg);
+    puzzleGame();
+  }, 2000);
 
-    gameTitle.textContent = 'Краеведческий калейдоскоп';
-    gameSubtitle.innerHTML = `Символы <span class="blue-text">Чувашии</span> и их значение`;
-    gameBtnSkip.textContent = 'Пропустить игру';
-    gameBtnNext.textContent = 'Следующая игра';
+  // Адаптив
+  const mediaQuery = window.matchMedia("(max-width: 768px)");
+  function handleTabletChange(e) {
+    if (e.matches) {
+      document.querySelector(".rules__btn").addEventListener("click", (e) => {
+          gameLeft.classList.add("hidden");
+          gameRight.style.display = "flex";
 
+          const rulesBlock = createRulesTablet("Наш пазл состоит из 12 фрагментов. Собери его и ты увидишь известную картину.");
+          game.append(rulesBlock);
+        });
+      gameRight.append(gameBtnSkip);
+      pointBlock.style.position = "absolute";
+      pointBlock.style.top = "12px";
+      pointBlock.style.right = "20px";
+    }
+  }
+  mediaQuery.addListener(handleTabletChange);
+  handleTabletChange(mediaQuery);
+};
 
-    gameBtnNext.addEventListener("click", (e) => {
-        document.body.innerHTML = "";
-        const findExtra = createFindExtra();
-        document.body.append(findExtra);
-      });
-
-
-    game.classList.add('game', 'symbols')
-
-
-    document.body.append(game);
-    game.append(gameTitle, gameSubtitle, gameBlock, pointBlock);
-    gameBlock.append(gameLeft, gameRight);
-    gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
-    gameRight.append(boardPuzzle);
-
-
-    gameRules.rulesBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        gameBtnNext.remove()
-        const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
-        game.append(rulesBlock);
-        gameRight.style.display = 'block';
-        gameRules.gameRules.style.display = 'none';
-        gameBtnSkip.style.display = 'block';
-        gameBlock.style.paddingBottom = '0';
-        gameBlock.style.marginTop = '0';
-        gameLeft.style.paddingTop = '0';
-        gameBlock.style.overflowY = 'scroll';
-
-    })
-    puzzleGame()
-}
-createPuzzleGame()
-
-
+// createPuzzleGame();

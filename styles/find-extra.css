@@ -45,12 +45,6 @@ body {
 
 /* global */
 
-/* .list-reset {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-} */
-
 .find-btn-reset {
   padding: 0;
   border: none;
@@ -1037,7 +1031,7 @@ body {
 
 @media (max-width: 480px) {
   .rules--tablet .rules__text {
-    width: 295px;
+    width: 305px;
   }
 
   .find-extra__title {
