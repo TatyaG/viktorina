@@ -473,7 +473,16 @@ export default function createFillword() {
       const slideBtn = document.querySelector(".rules__btn");
 
       questionWrap.style.display = "none";
+      // //Айфоны, как я вас обожаю
+      // questionWrap.style.display = "-webkit-box";
+      // questionWrap.style.visibility = "hidden";
+      // questionWrap.style.opacity = "0";
+
       gameCenter.style.display = "none";
+      // //Айфоны, как я вас обожаю 2
+      // gameCenter.style.display = "-webkit-box";
+      // gameCenter.style.visibility = "hidden";
+      // gameCenter.style.opacity = "0";
 
       //Создаем кнопку стрелку на второй странице
       const slide2Btn = document.createElement("button");
@@ -712,6 +721,18 @@ export default function createFillword() {
         questionList.classList.remove("question_list-scroll");
         rulesBtnImg.style.display = "block";
         questionWrap.append(slide2Btn);
+        // questionWrap.style.display = "block";
+        // questionWrap.style.visibility = "visible";
+        // questionWrap.style.opacity = "1";
+
+        // gameCenter.style.display = "-webkit-box"; // Используем -webkit-box вместо none
+        // gameCenter.style.visibility = "hidden";
+        // gameCenter.style.opacity = "0";
+
+        // gameBtnSkipMobile.style.display = "block";
+        // questionList.classList.remove("question_list-scroll");
+        // rulesBtnImg.style.display = "block";
+        // questionWrap.append(slide2Btn);
       });
 
       slide2Btn.addEventListener("click", () => {
@@ -720,6 +741,18 @@ export default function createFillword() {
         infoImg.style.display = "block";
         gameCenter.append(gameBtnSkipMobile2);
         gameBtnSkipMobile2.style.display = "block";
+
+        // questionWrap.style.display = "-webkit-box"; // Используем -webkit-box вместо none
+        // questionWrap.style.visibility = "hidden";
+        // questionWrap.style.opacity = "0";
+
+        // gameCenter.style.display = "block";
+        // gameCenter.style.visibility = "visible";
+        // gameCenter.style.opacity = "1";
+
+        // infoImg.style.display = "block";
+        // gameCenter.append(gameBtnSkipMobile2);
+        // gameBtnSkipMobile2.style.display = "block";
       });
     }
   }
