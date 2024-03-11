@@ -267,8 +267,11 @@ body {
 }
 
 .question_wrap {
-  margin-bottom: 308px;
   position: relative;
+}
+
+.question_wrap-crossword {
+  margin-bottom: 308px;
 }
 
 .question_list {
@@ -675,9 +678,10 @@ table {
     font-size: 20px;
   }
 
-  .fail-crossword, .success-crossword {
+  .fail-crossword,
+  .success-crossword {
     margin-top: -132px;
-}
+  }
 
   .fail_name,
   .success_name {
