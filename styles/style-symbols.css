@@ -58,6 +58,10 @@ input {
 
 }
 
+.symbols .deniska .game__rules {
+    z-index: 5;
+}
+
 .symbol__input {
     display: none;
 }

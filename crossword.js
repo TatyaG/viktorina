@@ -175,7 +175,7 @@ export function createCrossword() {
     "hidden"
   );
 
-  questionWrap.classList.add("question_wrap");
+  questionWrap.classList.add("question_wrap", "question_wrap-crossword");
   questionImg.classList.add("question_img");
   questionList.classList.add(
     "question_list",
