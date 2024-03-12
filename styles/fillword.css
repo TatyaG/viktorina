@@ -34,9 +34,9 @@ body {
 /* .game__btn {
   top: 17%;
 } */
-.animation {
+/* .animation {
   background: gray;
-}
+} */
 .cells {
   width: 100px;
   height: 100px;
@@ -274,12 +274,21 @@ body {
 
   /* @supports (-webkit-touch-callout: none) {
     .question_wrap_fillword {
-      visibility: hidden;
+      visibility: visible;
       opacity: 0;
       -webkit-visibility: hidden;
       -webkit-opacity: 0;
     }
   } */
+}
+
+.display-block {
+  display: -webkit-box;
+  /* display: block !important;
+  visibility: visible;
+  opacity: 1; */
+  -webkit-visibility: visible;
+  -webkit-opacity: 1;
 }
 
 @media (max-width: 400px) {

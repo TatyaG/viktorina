@@ -466,23 +466,15 @@ export default function createFillword() {
   handleTabletChange(mediaQuery);
 
   //Правила для мобилки
-  const mediaQuery2 = window.matchMedia("(max-width: 768px");
+  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
 
   function handleTabletChange2(e) {
     if (e.matches) {
       const slideBtn = document.querySelector(".rules__btn");
 
       questionWrap.style.display = "none";
-      // //Айфоны, как я вас обожаю
-      // questionWrap.style.display = "-webkit-box";
-      // questionWrap.style.visibility = "hidden";
-      // questionWrap.style.opacity = "0";
 
       gameCenter.style.display = "none";
-      // //Айфоны, как я вас обожаю 2
-      // gameCenter.style.display = "-webkit-box";
-      // gameCenter.style.visibility = "hidden";
-      // gameCenter.style.opacity = "0";
 
       //Создаем кнопку стрелку на второй странице
       const slide2Btn = document.createElement("button");
@@ -720,10 +712,15 @@ export default function createFillword() {
         gameBtnSkipMobile.style.display = "block";
         questionList.classList.remove("question_list-scroll");
         rulesBtnImg.style.display = "block";
-        questionWrap.append(slide2Btn);
-        // questionWrap.style.display = "block";
+
+        // questionWrap.classList.add("display-block");
+
+        // questionWrap.style.display = "-webkit-box";
         // questionWrap.style.visibility = "visible";
         // questionWrap.style.opacity = "1";
+
+        questionWrap.append(slide2Btn);
+        // questionWrap.style.display = "block";
 
         // gameCenter.style.display = "-webkit-box"; // Используем -webkit-box вместо none
         // gameCenter.style.visibility = "hidden";
