@@ -4,7 +4,7 @@ import createTalker from "./talker.js";
 import createRulesTablet from "./rules-tablet.js";
 import { createFindExtra } from "./find-extra.js";
 
-export const createPuzzleGame = () => {
+export function createPuzzleGame() {
   const game = document.createElement("section");
   const boardPuzzle = document.createElement("div");
   const boardPuzzleWrap = document.createElement("div");
@@ -124,7 +124,7 @@ export const createPuzzleGame = () => {
   const pazzleNameAuthor = document.createElement("p");
 
   pazzleNameImg.src = "img/pazzle-nameImg.png";
-  pazzleImg.src = "img/pazzle.jpg";
+  pazzleImg.src = "img/pazzle.webp";
   pazzleImg.style.width = "100%";
   pazzleImg.style.height = "100%";
   pazzleNameText.textContent = "Утро в сосновом лесу";
@@ -142,7 +142,7 @@ export const createPuzzleGame = () => {
   const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
 
   // Логика паззла
-  const puzzleGame = () => {
+  function puzzleGame() {
     //pieces
     const rows = 3;
     const columns = 4;
@@ -278,6 +278,11 @@ export const createPuzzleGame = () => {
           setTimeout(() => {
             if (mobileMediaQueryList.matches) {
               game.append(deniskaSuccess.deniska);
+              deniskaSuccess.gameBtnNext.addEventListener("click", (e) => {
+                document.body.innerHTML = "";
+                const findExtra = createFindExtra();
+                document.body.append(findExtra);
+              });
             } else {
               gameRight.append(deniskaSuccess.deniska);
             }
@@ -319,6 +324,7 @@ export const createPuzzleGame = () => {
         );
         game.append(rulesBlock);
       });
+
       gameRight.append(gameBtnSkip);
       pointBlock.style.position = "absolute";
       pointBlock.style.top = "12px";

@@ -66,7 +66,7 @@ export function createFinal() {
 
   perrotName.textContent = "Говоруша";
   perrotText.textContent =
-    "Хочешь узнать больше об известных личностях и музеях Чувашии?";
+    "Хочешь узнать больше о Чувашии?";
   perrotButtonText.textContent = "Жми сюда";
   perrotButtonMobile.textContent = "Далее";
 
@@ -83,7 +83,7 @@ export function createFinal() {
   const pointBlock = createPoint();
     let points = JSON.parse(localStorage.getItem("points") ?? 0);
   // let points = 18;
-  pointBlock.textContent = points + ` из 9`;
+  pointBlock.textContent = points + ` баллов`;
   pointBlock.classList.add("game__point_final");
 
   const centerButtons = document.createElement("div");
@@ -164,7 +164,7 @@ export function createFinal() {
     gameBtnTakePrize.classList.add("hidden");
     deniskaImg.src = "img/final-boySad.png";
     deniskaText.textContent =
-      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру снова.";
+      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру заново.";
     deniska.style.marginBottom = "40px";
     centerImg.style.height = "140%";
     centerImg.style.top = "-21%";
@@ -194,7 +194,7 @@ export function createFinal() {
       e.preventDefault();
       downloadPrize ("docs/Phone wallpaper_3.zip", "Phone wallpaper_3.zip");
     });
-  } else if (points >= 7 && points <= 9) {
+  } else if (points >= 7) {
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
       downloadPrize ("docs/Phone wallpaper_9.zip", "Phone wallpaper_9.zip");

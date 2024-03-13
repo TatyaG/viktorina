@@ -52,7 +52,7 @@ body {
 }
 
 .final_assistent-text {
-  top: 50%;
+  top: 53%;
   left: 15%;
   max-width: 312px;
   color: #232962;
@@ -137,7 +137,7 @@ body {
 }
 
 .game__point_final::before {
-  left: -30%;
+  left: -20%;
 }
 
 .final-right {
@@ -224,6 +224,7 @@ body {
   }
 
   .game__point_final::before {
+    left: -25%;
     width: 60px;
     height: 60px;
     top: -33.5%;
@@ -250,7 +251,7 @@ body {
   }
 
   .deniska_text {
-    left: 12%;
+    left: 15%;
   }
 
   .logo-img {
@@ -423,7 +424,7 @@ body {
   }
 
   .final_assistent-text {
-    top: 43%;
+    top: 47%;
     max-width: 281px;
     font-size: 14px;
   }
@@ -474,7 +475,7 @@ body {
   }
 
   .game__point_final::before {
-    left: -40%;
+    left: -30%;
     top: -37%;
   }
 
