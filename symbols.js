@@ -143,8 +143,7 @@ export function createGameSymbols() {
                         deniska.gameBtnNext.addEventListener('click', (e) => {
                             e.preventDefault();
                             document.body.innerHTML = '';
-                            const puzzle = createPuzzleGame();
-                            document.body.append(puzzle);
+                            createPuzzleGame();
                         })
 
                         setTimeout(() => {
@@ -167,8 +166,7 @@ export function createGameSymbols() {
                         deniska.gameBtnNext.addEventListener('click', (e) => {
                             e.preventDefault();
                             document.body.innerHTML = '';
-                            const puzzle = createPuzzleGame();
-                            document.body.append(puzzle);
+                            createPuzzleGame();
                         })
 
                         setTimeout(() => {
@@ -215,8 +213,7 @@ export function createGameSymbols() {
         yesBtn.addEventListener('click', (e) => {
             e.preventDefault();
             document.body.innerHTML = '';
-            const puzzle = createPuzzleGame();
-            document.body.append(puzzle);
+            createPuzzleGame();
         })
 
         noBtn.addEventListener('click', (e) => {
@@ -233,8 +230,7 @@ export function createGameSymbols() {
     gameBtnNext.addEventListener('click', (e) => {
         e.preventDefault();
         document.body.innerHTML = '';
-        const puzzle = createPuzzleGame();
-        document.body.append(puzzle);
+        createPuzzleGame();
     })
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');

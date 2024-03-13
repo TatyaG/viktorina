@@ -139,6 +139,8 @@ export const createPuzzleGame = () => {
   gameRight.append(pazzleNameWrap);
   pazzleNameWrap.append(pazzleNameImg, pazzleNameText, pazzleNameAuthor);
 
+  const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
+
   // Логика паззла
   const puzzleGame = () => {
     //pieces
@@ -164,90 +166,136 @@ export const createPuzzleGame = () => {
     for (let i = 0; i < pieces.length; i++) {
       let tile = document.createElement("img");
       tile.src = "./img/puzzle" + pieces[i] + ".jpg";
-      tile.addEventListener("dragstart", dragStart); //click on image to drag
-      tile.addEventListener("dragover", dragOver); //drag an image
-      tile.addEventListener("dragenter", dragEnter); //dragging an image into another one
-      tile.addEventListener("drop", dragDrop); //drop an image onto another one
-      tile.addEventListener("dragend", dragEnd); //after you completed dragDrop
-      document.getElementById("pieces").append(tile);
-    }
 
-    //DRAG TILES
-    function dragStart() {
-      currTile = this; //this refers to image that was clicked on for dragging
-    }
+      if (mobileMediaQueryList.matches) {
+        tile.addEventListener("touchstart", touchStart, false); // Начало касания на изображении
+        tile.addEventListener("touchmove", touchMove, false); // Движение изображением
+        tile.addEventListener("touchend", touchEnd, false); // Конец касания на изображении
 
-    function dragOver(e) {
-      e.preventDefault();
-    }
+        // Новые функции для касания
+        function touchStart(e) {
+          e.preventDefault();
+          currTile = this;
+        }
 
-    function dragEnter(e) {
-      e.preventDefault();
-    }
+        function touchMove(e) {
+          e.preventDefault();
+        }
 
-    function dragDrop() {
-      otherTile = this; //this refers to image that is being dropped on
-    }
+        function touchEnd(e) {
+          e.preventDefault();
+          const touch = e.changedTouches[0];
 
-    function dragEnd() {
-      let currImg = currTile.src;
-      let currIndex = pieces.indexOf(currImg.split("puzzle")[1].split(".")[0]);
-      let otherImg = otherTile.src;
+          // Получение элемента по координатам
+          otherTile = document.elementFromPoint(touch?.clientX, touch?.clientY);
 
-      let otherIndex = pieces.indexOf(
-        otherImg.split("puzzle")[1].split(".")[0]
-      );
-      currTile.src = otherImg;
-      otherTile.src = currImg;
+          // Логика обработки перетаскивания, аналогичная dragEnd
+          let currImg = currTile.src;
+          let currIndex = pieces.indexOf(
+            currImg.split("puzzle")[1].split(".")[0]
+          );
+          let otherImg = otherTile.src;
+          let otherIndex = pieces.indexOf(
+            otherImg.split("puzzle")[1].split(".")[0]
+          );
 
-      const currentElement = pieces[currIndex];
-      const otherElement = pieces[otherIndex];
+          currTile.src = otherImg;
+          otherTile.src = currImg;
 
-      pieces[otherIndex] = currentElement;
-      pieces[currIndex] = otherElement;
+          const currentElement = pieces[currIndex];
+          const otherElement = pieces[otherIndex];
 
-      checkPazzle();
-    }
+          pieces[otherIndex] = currentElement;
+          pieces[currIndex] = otherElement;
 
-    const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
+          checkPazzle();
+        }
+      } else {
+        tile.addEventListener("dragstart", dragStart); //click on image to drag
+        tile.addEventListener("dragover", dragOver); //drag an image
+        tile.addEventListener("dragenter", dragEnter); //dragging an image into another one
+        tile.addEventListener("drop", dragDrop); //drop an image onto another one
+        tile.addEventListener("dragend", dragEnd); //after you completed dragDrop
 
-    // Функция для проверки правильного порядка изображений
-    function checkPuzzleCompletion() {
-      return originalPieces.every((item, index) => pieces[index] === item);
-    }
+        //DRAG TILES
+        function dragStart() {
+          currTile = this; //this refers to image that was clicked on for dragging
+        }
 
-    function checkPazzle() {
-      if (checkPuzzleCompletion()) {
-        const images = document.querySelectorAll("#pieces img");
-        images.forEach((image) => {
-          image.style.border = "none";
-        });
+        function dragOver(e) {
+          e.preventDefault();
+        }
 
-        const deniskaSuccess = createDeniska(
-          "Отлично! Задание выполнено. Тебе начислен 1 балл."
-        );
-        deniskaSuccess.gameRules.classList.add("deniska_pazzle");
-        deniskaSuccess.rulesText.classList.add("deniska_pazzle-text");
+        function dragEnter(e) {
+          e.preventDefault();
+        }
 
-        setTimeout(() => {
-          if (mobileMediaQueryList.matches) {
-            game.append(deniskaSuccess.deniska);
-          } else {
-            gameRight.append(deniskaSuccess.deniska);
-          }          
-        }, 4000);
+        function dragDrop() {
+          otherTile = this; //this refers to image that is being dropped on
+        }
 
-        // Очки
-        let points = JSON.parse(localStorage.getItem("points"));
-        points += 1;
-        localStorage.setItem("points", points);
-        const point = document.querySelector(".game__point");
-        point.textContent = points;
-        point.classList.add("animation");
+        function dragEnd() {
+          let currImg = currTile.src;
+          let currIndex = pieces.indexOf(
+            currImg.split("puzzle")[1].split(".")[0]
+          );
+          let otherImg = otherTile.src;
 
-        gameBtnSkip.classList.add("hidden");
-        gameBtnNext.style.display = "block";
+          let otherIndex = pieces.indexOf(
+            otherImg.split("puzzle")[1].split(".")[0]
+          );
+          currTile.src = otherImg;
+          otherTile.src = currImg;
+
+          const currentElement = pieces[currIndex];
+          const otherElement = pieces[otherIndex];
+
+          pieces[otherIndex] = currentElement;
+          pieces[currIndex] = otherElement;
+
+          checkPazzle();
+        }
       }
+
+      // Функция для проверки правильного порядка изображений
+      function checkPuzzleCompletion() {
+        return originalPieces.every((item, index) => pieces[index] === item);
+      }
+
+      function checkPazzle() {
+        if (checkPuzzleCompletion()) {
+          const images = document.querySelectorAll("#pieces img");
+          images.forEach((image) => {
+            image.style.border = "none";
+          });
+
+          const deniskaSuccess = createDeniska(
+            "Отлично! Задание выполнено. Тебе начислен 1 балл."
+          );
+          deniskaSuccess.gameRules.classList.add("deniska_pazzle");
+          deniskaSuccess.rulesText.classList.add("deniska_pazzle-text");
+
+          setTimeout(() => {
+            if (mobileMediaQueryList.matches) {
+              game.append(deniskaSuccess.deniska);
+            } else {
+              gameRight.append(deniskaSuccess.deniska);
+            }
+          }, 4000);
+
+          // Очки
+          let points = JSON.parse(localStorage.getItem("points"));
+          points += 1;
+          localStorage.setItem("points", points);
+          const point = document.querySelector(".game__point");
+          point.textContent = points;
+          point.classList.add("animation");
+
+          gameBtnSkip.classList.add("hidden");
+          gameBtnNext.style.display = "block";
+        }
+      }
+      document.getElementById("pieces").append(tile);
     }
   };
 
@@ -263,12 +311,14 @@ export const createPuzzleGame = () => {
   function handleTabletChange(e) {
     if (e.matches) {
       document.querySelector(".rules__btn").addEventListener("click", (e) => {
-          gameLeft.classList.add("hidden");
-          gameRight.style.display = "flex";
+        gameLeft.classList.add("hidden");
+        gameRight.style.display = "flex";
 
-          const rulesBlock = createRulesTablet("Наш пазл состоит из 12 фрагментов. Собери его и ты увидишь известную картину.");
-          game.append(rulesBlock);
-        });
+        const rulesBlock = createRulesTablet(
+          "Наш пазл состоит из 12 фрагментов. Собери его и ты увидишь известную картину."
+        );
+        game.append(rulesBlock);
+      });
       gameRight.append(gameBtnSkip);
       pointBlock.style.position = "absolute";
       pointBlock.style.top = "12px";
