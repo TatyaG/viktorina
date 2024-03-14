@@ -886,7 +886,7 @@ table {
     margin-top: 0;
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
@@ -895,7 +895,7 @@ table {
   .game-crossword__btn--next_mobile {
     position: fixed;
     left: 50.8%;
-    bottom: 175px;
+    bottom: 30%;
     transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
@@ -1115,10 +1115,6 @@ table {
     width: 252px;
     font-size: 10px;
   }
-
-  /* .rules {
-    width: 286px;
-  } */
 }
 
 @media (max-width: 375px) {
