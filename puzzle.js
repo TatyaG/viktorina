@@ -140,6 +140,7 @@ export function createPuzzleGame() {
   pazzleNameWrap.append(pazzleNameImg, pazzleNameText, pazzleNameAuthor);
 
   const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
+  const tabletMediaQueryList = window.matchMedia("(max-width: 1024px)");
 
   // Логика паззла
   function puzzleGame() {
@@ -167,7 +168,7 @@ export function createPuzzleGame() {
       let tile = document.createElement("img");
       tile.src = "./img/puzzle" + pieces[i] + ".jpg";
 
-      if (mobileMediaQueryList.matches) {
+      if (tabletMediaQueryList.matches) {
         tile.addEventListener("touchstart", touchStart, false); // Начало касания на изображении
         tile.addEventListener("touchmove", touchMove, false); // Движение изображением
         tile.addEventListener("touchend", touchEnd, false); // Конец касания на изображении
