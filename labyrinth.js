@@ -537,4 +537,6 @@ export const labyrinthGame = () => {
     mediaQuery2.addListener(handleTabletChange2);
     handleTabletChange2(mediaQuery2);
 };
+/*
 labyrinthGame();
+*/

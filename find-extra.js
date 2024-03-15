@@ -33,7 +33,7 @@ export function createFindExtra() {
   //   Слева
 
   const assistantPerrot = createTalker(
-    "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик». Мы спрятали на ней 5 лишних элементов. Найди их и получи монету."
+    "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик».  Мы спрятали на ней 5 лишних элементов. Твоя задача - найти их. "
   );
   const gameBtnSkip = document.createElement("button");
   const gameBtnNext = document.createElement("button");

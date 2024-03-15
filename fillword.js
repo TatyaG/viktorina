@@ -490,7 +490,7 @@ export default function createFillword() {
   handleTabletChange(mediaQuery);
 
   //Правила для мобилки
-  const mediaQuery2 = window.matchMedia("(max-width: 768px");
+  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
 
   function handleTabletChange2(e) {
     if (e.matches) {
@@ -740,7 +740,24 @@ export default function createFillword() {
         gameBtnSkipMobile.style.display = "block";
         questionList.classList.remove("question_list-scroll");
         rulesBtnImg.style.display = "block";
+
+        // questionWrap.classList.add("display-block");
+
+        // questionWrap.style.display = "-webkit-box";
+        // questionWrap.style.visibility = "visible";
+        // questionWrap.style.opacity = "1";
+
         questionWrap.append(slide2Btn);
+        // questionWrap.style.display = "block";
+
+        // gameCenter.style.display = "-webkit-box"; // Используем -webkit-box вместо none
+        // gameCenter.style.visibility = "hidden";
+        // gameCenter.style.opacity = "0";
+
+        // gameBtnSkipMobile.style.display = "block";
+        // questionList.classList.remove("question_list-scroll");
+        // rulesBtnImg.style.display = "block";
+        // questionWrap.append(slide2Btn);
       });
 
       slide2Btn.addEventListener("click", () => {
@@ -749,6 +766,18 @@ export default function createFillword() {
         infoImg.style.display = "block";
         gameCenter.append(gameBtnSkipMobile2);
         gameBtnSkipMobile2.style.display = "block";
+
+        // questionWrap.style.display = "-webkit-box"; // Используем -webkit-box вместо none
+        // questionWrap.style.visibility = "hidden";
+        // questionWrap.style.opacity = "0";
+
+        // gameCenter.style.display = "block";
+        // gameCenter.style.visibility = "visible";
+        // gameCenter.style.opacity = "1";
+
+        // infoImg.style.display = "block";
+        // gameCenter.append(gameBtnSkipMobile2);
+        // gameBtnSkipMobile2.style.display = "block";
       });
     }
   }
