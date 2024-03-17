@@ -142,39 +142,47 @@ export const labyrinthGame = () => {
     gameCenter.append(labyrinthWrap, museumStart, museumEnd);
     labyrinthWrap.append(canvasLab);
     let logicLabirint = (canvas) => {
-        let positionAdapt = 10
+        let mobile = false
+        let positionAdapt
+        let postionCollision
+        let collisionAreaSize
+        let positionX
+        let positionY
         let finished = false
         let trajectory = [];
+        let mazeImg = new Image()
+        let faceImg = new Image()
         let context = canvas.getContext("2d");
+        if (window.innerWidth < 768) {
+            mobile = true
+             positionX = 190
+            positionY = 10
+            mazeImg.src = "img/maze_mob.png";
+            faceImg.src = "img/face_mob.png";
+            positionAdapt = 10
+            postionCollision = 0
+            collisionAreaSize = 5
+        } else {
+            collisionAreaSize = 15
+            postionCollision = 22
+            positionAdapt = 20
+            positionX = 550
+            positionY = 40
+            mobile = false
+            mazeImg.src = "img/maze.png";
+            faceImg.src = "img/face.png";
+            positionX = 550
+            positionY = 40
+        }
 
-        let mazeImg = new Image();
-        mazeImg.src = "img/maze.png";
-
-        let faceImg = new Image();
-        faceImg.src = "img/face.png";
 
         // Начальная позиция
-        let x = 550;
-        let y = 35;
+        let x = positionX;
+        let y = positionY;
 
         // Флаг для отслеживания зажатой кнопки мыши
         let isMouseDown = false;
 
-        // Позиция мыши
-        let mouseX = 0;
-        let mouseY = 0;
-        // Позиция мыши относительно центра персонажа
-        let mouseXRelativeToFace = mouseX - x;
-        let mouseYRelativeToFace = mouseY - y;
-
-        // Обработка движения мыши
-        canvas.addEventListener("mousemove", function (e) {
-            mouseX = canvas.getBoundingClientRect().left;
-            mouseY = canvas.getBoundingClientRect().top;
-            if (isMouseDown) {
-                handleMovement(x + mouseXRelativeToFace, y + mouseYRelativeToFace);
-            }
-        });
 
         // Обработка начала движения мыши
         canvas.addEventListener("mousedown", function () {
@@ -202,7 +210,9 @@ export const labyrinthGame = () => {
         // Обработка начала движения мыши и тача
         canvas.addEventListener("mousedown", function () {
             isMouseDown = true;
-            gameBtnAccept.classList.remove("hidden");
+            /*
+                        gameBtnAccept.classList.remove("hidden");
+            */
         });
         gameBtnAccept.addEventListener("click", function () {
             const deniska = createDeniska("Увы, лабиринт не пройден.");
@@ -263,8 +273,8 @@ export const labyrinthGame = () => {
         function processMouseMove(e) {
             if (isMouseDown) {
                 handleMovement(
-                   e.clientX - canvas.getBoundingClientRect().left,
-                    e.clientY - canvas.getBoundingClientRect().top - 20
+                    e.clientX - canvas.getBoundingClientRect().left -20,
+                    e.clientY - canvas.getBoundingClientRect().top -20
                 );
             }
         }
@@ -274,40 +284,53 @@ export const labyrinthGame = () => {
             if (isMouseDown) {
                 e.preventDefault();
                 let touch = e.touches[0];
-                handleMovement(
-                    touch.clientX - canvas.getBoundingClientRect().left,
-                    touch.clientY - canvas.getBoundingClientRect().top - 20
-                );
+                let rect = canvas.getBoundingClientRect();
+                let scaleX = canvas.width / rect.width;
+                let scaleY = canvas.height / rect.height;
+                let x = (touch.clientX - rect.left) * scaleX;
+                let y = (touch.clientY - rect.top) * scaleY;
+                handleMovement(x, y);
             }
         }
 
         // Обработка движения
         function handleMovement(newX, newY) {
-            console.log(newX)
+            console.log(y,newY)
             // Проверка столкновений в новой позиции
             if (
+                //Чтобы не было перескоков
                 !checkForCollision(newX, newY) &&
                 x - newX <= positionAdapt &&
                 newX - x <= positionAdapt &&
                 y - newY <= positionAdapt &&
                 newY - y <= positionAdapt
             ) {
+                console.log(positionAdapt)
                 canvas.style.cursor = "grab";
                 // Обновляем текущую позицию если игра не пройдена
-                if (!finished){
-                    x = newX ;
+                if (!finished) {
+                    x = newX;
                     y = newY;
                 }
 
 
-
                 // Добавляем текущую позицию в траекторию с расстоянием между точками
-                if (
-                    trajectory.length === 0 ||
-                    distance(trajectory[trajectory.length - 1], {x: x, y: y}) > 50
-                ) {
-                    trajectory.push({x: x, y: y});
+                if (mobile){
+                    if (
+                        trajectory.length === 0 ||
+                        distance(trajectory[trajectory.length - 1], {x: x, y: y}) > 25
+                    ) {
+                        trajectory.push({x: x, y: y});
+                    }
+                }else {
+                    if (
+                        trajectory.length === 0 ||
+                        distance(trajectory[trajectory.length - 1], {x: x, y: y}) > 50
+                    ) {
+                        trajectory.push({x: x, y: y});
+                    }
                 }
+
 
                 // Очищаем холст
                 context.clearRect(0, 0, canvas.width, canvas.height);
@@ -320,44 +343,68 @@ export const labyrinthGame = () => {
 
                 // Рисуем траекторию
                 drawTrajectory();
-
-                console.log(y);
                 // Проверяем, достиг ли пользователь финиша
-                if (y > 630 && x > 700) {
-                    // Ваш код для завершения игры
-                    isMouseDown = false;
+                if(mobile === true){
+                    if (y > 210 && x > 240) {
+                        // Ваш код для завершения игры
+                        isMouseDown = false;
 
-                    canvas.style.cursor = "not - allowed";
-                    if (!finished){
-                        pointBlock.classList.add("animation");
-                        let points = JSON.parse(localStorage.getItem("points"));
-                        points += 1;
+                        canvas.style.cursor = "not - allowed";
+                        if (!finished) {
+                            pointBlock.classList.add("animation");
+                            let points = JSON.parse(localStorage.getItem("points"));
+                            points += 1;
 
-                        localStorage.setItem("points", points);
-                        pointBlock.textContent = points;
-                        const deniska = createDeniska(
-                            "Отлично! Задание выполнено. Тебе начислен 1 балл."
-                        );
-                        gameBtnAccept.style.display = "none";
-                        setTimeout(() => {
-                            document.body.append(deniska.deniska);
-                            document.querySelector(".game__btn--skip").style.display = "none";
-                            document.querySelector(".game__btn--next").style.display = "block";
-                        }, 800);
+                            localStorage.setItem("points", points);
+                            pointBlock.textContent = points;
+                            const deniska = createDeniska(
+                                "Отлично! Задание выполнено. Тебе начислен 1 балл."
+                            );
+                            gameBtnAccept.style.display = "none";
+                            setTimeout(() => {
+                                document.body.append(deniska.deniska);
+                                document.querySelector(".game__btn--skip").style.display = "none";
+                                document.querySelector(".game__btn--next").style.display = "block";
+                            }, 800);
+                        }
+                        finished = true
                     }
-                    finished = true
+                }else {
+                    if (y > 630 && x > 700) {
+                        // Ваш код для завершения игры
+                        isMouseDown = false;
 
+                        canvas.style.cursor = "not - allowed";
+                        if (!finished) {
+                            pointBlock.classList.add("animation");
+                            let points = JSON.parse(localStorage.getItem("points"));
+                            points += 1;
+
+                            localStorage.setItem("points", points);
+                            pointBlock.textContent = points;
+                            const deniska = createDeniska(
+                                "Отлично! Задание выполнено. Тебе начислен 1 балл."
+                            );
+                            gameBtnAccept.style.display = "none";
+                            setTimeout(() => {
+                                document.body.append(deniska.deniska);
+                                document.querySelector(".game__btn--skip").style.display = "none";
+                                document.querySelector(".game__btn--next").style.display = "block";
+                            }, 800);
+                        }
+                        finished = true
+                    }
                 }
+
             }
         }
 
         // Проверка столкновений
         function checkForCollision(newX, newY) {
             // Определяем область для проверки столкновений
-            const collisionAreaSize = 20; // Размер области
             let checkArea = context.getImageData(
                 newX - collisionAreaSize / 2,
-                (newY - collisionAreaSize / 2) + 45,
+                newY - collisionAreaSize / 2 + postionCollision,
                 collisionAreaSize + 20,
                 collisionAreaSize
             );
@@ -400,14 +447,26 @@ export const labyrinthGame = () => {
         function drawTrajectory() {
             for (let i = 0; i < trajectory.length; i++) {
                 context.beginPath();
-                context.arc(
-                    trajectory[i].x,
-                    trajectory[i].y,
-                    10,
-                    0,
-                    2 * Math.PI,
-                    false
-                );
+                if (mobile===true){
+                    context.arc(
+                        trajectory[i].x,
+                        trajectory[i].y,
+                        5,
+                        0,
+                        2 * Math.PI,
+                        false
+                    );
+                }else {
+                    context.arc(
+                        trajectory[i].x,
+                        trajectory[i].y,
+                        10,
+                        0,
+                        2 * Math.PI,
+                        false
+                    );
+                }
+
                 context.fillStyle = "rgba(101, 76, 132, 1)";
                 context.fill();
             }
@@ -418,21 +477,9 @@ export const labyrinthGame = () => {
                 Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2)
             );
         }
-        const mediaQuery = window.matchMedia("(max-width: 1100px)");
-        mediaQuery.addListener(handleTabletChange);
-        handleTabletChange(mediaQuery);
-        function handleTabletChange(e) {
-            if (e.matches) {
-                console.log('12')
-                canvas.width = 703  ;
-                canvas.height = 506 ;
-                positionAdapt = 34
 
-
-            }
-        }
     };
-    logicLabirint(canvasLab);
+
 
     //GAMERIGHT для Дениски
     const gameRight = document.createElement("div");
@@ -448,8 +495,6 @@ export const labyrinthGame = () => {
     //АДАПТИВ
 
     //Правила для планшета
-
-
 
 
     //Правила для мобилки
@@ -536,7 +581,7 @@ export const labyrinthGame = () => {
 
     mediaQuery2.addListener(handleTabletChange2);
     handleTabletChange2(mediaQuery2);
+    logicLabirint(canvasLab);
+
 };
-/*
 labyrinthGame();
-*/

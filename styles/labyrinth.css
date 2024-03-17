@@ -104,8 +104,8 @@ body {
 
 @media (max-width: 1000px) {
     #canvas {
-        width: 100% !important;
-        height: 100% !important;
+        width: 703px !important;
+        height: 510px !important;
     }
 }
 
@@ -131,7 +131,7 @@ body {
         font-size: 8px;
         padding-top: 10px;
         right: 5rem;
-        top: -1rem;
+        top: -35px;
     }
     .museum-end {
         font-family: 'Comfortaa';
