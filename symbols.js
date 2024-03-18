@@ -138,7 +138,7 @@ export function createGameSymbols() {
                 if (inputs.length == 4) {
                     const inputsTrue = document.querySelectorAll('.symbol__input.checked.symbol__input--true');
                     if (inputsTrue.length < 2) {
-                        const deniska = createDeniska('К сожалению, угаданы не не все значения символов!');
+                        const deniska = createDeniska('К сожалению, угаданы не все значения символов!');
                         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
                         deniska.gameBtnNext.addEventListener('click', (e) => {
                             e.preventDefault();

@@ -312,7 +312,7 @@ export default function createFillword() {
     }
 
     function toggleHighlight(node) {
-     node.style.background = '#D3D3D3'
+      node.style.background = "#D3D3D3";
       str += node.textContent;
       nodeAr.push(node);
     }

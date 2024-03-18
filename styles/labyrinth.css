@@ -4,6 +4,7 @@ body {
 
 }
 
+<<<<<<< HEAD
 .canvas {
     width: 938px;
     height: 721px;
@@ -157,3 +158,41 @@ body {
     }
 
 }
+=======
+.game__block-labyrinth {
+  display: flex;
+  justify-content: space-around;
+}
+
+.game__left-labyrinth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 60px;
+  padding-top: 16rem;
+}
+
+@media (max-width: 1500px) {
+  .game__block-labyrinth {
+    flex-direction: column;
+    margin-top: 4rem;
+  }
+  .game__center-labyrinth {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 780px) {
+  .game__title-labyrinth {
+    max-width: 360px !important;
+  }
+  .game__left-labyrinth {
+    padding-top: 8rem;
+  }
+  .game__block-labyrinth {
+    flex-direction: column-reverse;
+  }
+}
+>>>>>>> e4873bbe6dd53cb4eef74538ad101d28d09b49a0

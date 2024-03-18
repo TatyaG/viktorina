@@ -126,7 +126,6 @@ export const createPicture = () => {
           "Отлично! Задание выполнено. Тебе начислен 1 балл."
         );
         setTimeout(() => {
-          // happyDeniska.classList.remove("hidden");
           document.body.append(deniska.deniska);
           deniska.deniska.classList.add("deniska-fillword");
           document.querySelector(".game__btn--skip").style.display = "none";
@@ -146,7 +145,6 @@ export const createPicture = () => {
         const deniska = createDeniska("Увы, выбран неверный фрагмент.");
         deniska.rulesDeniska.src = "img/deniska-sad.webp";
         setTimeout(() => {
-          // sadDeniska.classList.remove("hidden");
           document.body.append(deniska.deniska);
           deniska.deniska.classList.add("deniska-fillword");
           document.querySelector(".game__btn--skip").style.display = "none";
@@ -296,8 +294,6 @@ export const createPicture = () => {
   modalDescription.append(modalDescriptionText, modalDescriptionTextAuthor);
   modal.append(modalImgWrapper);
   modalImgWrapper.append(modalImg);
-
-  // picture();
 
   // АДАПТИВ
 
@@ -503,24 +499,6 @@ export const createPicture = () => {
         });
       });
 
-      //Отображаем описание по клику на стрелку
-      slideBtn.addEventListener("click", () => {
-        questionWrap.style.display = "block";
-        gameBtnSkipMobile.style.display = "block";
-        rulesBtnImg.style.display = "block";
-      });
-
-      slide2Btn.addEventListener("click", () => {
-        pictureWrapper.style.display = "block";
-        questionWrap.style.display = "none";
-        pictureWrapper.append(gameBtnSkipMobile2);
-        infoImg.style.display = "block";
-        // gameBtnSkipMobile.style.position = "fixed";
-        // gameBtnSkipMobile.style.bottom = "0";
-        // gameCenter.append(gameBtnSkipMobile2);
-        gameBtnSkipMobile2.style.display = "block";
-      });
-
       //Добавляем правила открытия модалки 'пропустить игру'
       gameBtnSkipMobile.addEventListener("click", (e) => {
         e.preventDefault();
@@ -556,7 +534,6 @@ export const createPicture = () => {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          console.log("aa");
           const question = createGameQuestion();
           document.body.append(question);
         });
@@ -568,6 +545,23 @@ export const createPicture = () => {
         });
       });
 
+      //Отображаем описание по клику на стрелку
+      slideBtn.addEventListener("click", () => {
+        questionWrap.style.display = "block";
+        gameBtnSkipMobile.style.display = "block";
+        rulesBtnImg.style.display = "block";
+        gameBlock.style.overflow = "hidden";
+      });
+
+      slide2Btn.addEventListener("click", () => {
+        pictureWrapper.style.display = "block";
+        questionWrap.style.display = "none";
+        pictureWrapper.append(gameBtnSkipMobile2);
+        infoImg.style.display = "block";
+        gameBtnSkipMobile2.style.display = "block";
+        gameBlock.style.overflowY = "scroll";
+      });
+
       correctPicture.forEach((item) => {
         item.addEventListener("click", () => {
           setTimeout(() => {
@@ -576,10 +570,8 @@ export const createPicture = () => {
 
           if (item.getAttribute("data-crt") === "true") {
             item.parentElement.parentElement.classList.add("correct");
-            // happyDeniska.append(gameBtnNext);
           } else {
             item.parentElement.parentElement.classList.add("incorrect");
-            // sadDeniska.append(gameBtnNext);
           }
 
           setTimeout(() => {
@@ -590,7 +582,14 @@ export const createPicture = () => {
             modalWrapper.style.display = "none";
             pictureWrapper.style.display = "block";
             gameBtnSkipMobile.style.display = "none";
-            gameBtnNext.style.display = "block";
+            document.querySelector(".game__btn--next").style.display = "block";
+            document
+              .querySelector(".game__btn--next")
+              .addEventListener("click", (e) => {
+                document.body.innerHTML = "";
+                const questionGame = createGameQuestion();
+                document.body.append(questionGame);
+              });
           }, 6000);
         });
       });
