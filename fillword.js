@@ -1,6 +1,7 @@
 import createTalker from "./talker.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
+import { labyrinthGame } from "./labyrinth.js";
 
 export default function createFillword() {
   console.log("213213");
@@ -202,6 +203,13 @@ export default function createFillword() {
               document
                 .querySelector(".game__btn--next")
                 .classList.add("game__btn--next-fillword");
+              document
+                .querySelector(".game__btn--next")
+                .addEventListener("click", (e) => {
+                  document.body.innerHTML = "";
+                  const labyrinth = labyrinthGame();
+                  document.body.append(labyrinth);
+                });
             }, 800);
             return;
           } else {
@@ -218,6 +226,13 @@ export default function createFillword() {
                 document
                   .querySelector(".game__btn--next")
                   .classList.add("game__btn--next-fillword");
+                document
+                  .querySelector(".game__btn--next")
+                  .addEventListener("click", (e) => {
+                    document.body.innerHTML = "";
+                    const labyrinth = labyrinthGame();
+                    document.body.append(labyrinth);
+                  });
               }, 800);
             }
           }
@@ -297,6 +312,7 @@ export default function createFillword() {
     }
 
     function toggleHighlight(node) {
+      node.style.background = "#D3D3D3";
       str += node.textContent;
       nodeAr.push(node);
     }
@@ -416,6 +432,8 @@ export default function createFillword() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
+      const labyrinth = labyrinthGame();
+      document.body.append(labyrinth);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -441,6 +459,12 @@ export default function createFillword() {
 
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
+
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const labyrinth = labyrinthGame();
+    document.body.append(labyrinth);
+  });
 
   //Добавляем questionWrap в GAMERIGHT
   gameRight.append(questionWrap);
@@ -653,6 +677,8 @@ export default function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          const labyrinth = labyrinthGame();
+          document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -697,6 +723,8 @@ export default function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          const labyrinth = labyrinthGame();
+          document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -760,4 +788,6 @@ export default function createFillword() {
   return game;
 }
 
-/* createFillword(); */
+/*
+ createFillword();
+*/

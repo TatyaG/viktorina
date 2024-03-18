@@ -70,7 +70,7 @@ body {
       rgba(18, 227, 0, 0.5) 0%,
       rgba(18, 227, 0, 0.5) 100%
     ),
-    #d7bdf1;
+    #d7bdf1!important;
 }
 
 .cells.wrong {
@@ -79,7 +79,7 @@ body {
       rgba(255, 0, 15, 0.5) 0%,
       rgba(255, 0, 15, 0.5) 100%
     ),
-    #d7bdf1;
+    #d7bdf1!important;
 }
 
 .game__block-fillword {
@@ -274,12 +274,18 @@ body {
 
   /* @supports (-webkit-touch-callout: none) {
     .question_wrap_fillword {
+<<<<<<< HEAD
+      visibility: hidden;
+=======
       visibility: visible;
+>>>>>>> e4873bbe6dd53cb4eef74538ad101d28d09b49a0
       opacity: 0;
       -webkit-visibility: hidden;
       -webkit-opacity: 0;
     }
   } */
+<<<<<<< HEAD
+=======
 }
 
 .display-block {
@@ -289,6 +295,7 @@ body {
   opacity: 1; */
   -webkit-visibility: visible;
   -webkit-opacity: 1;
+>>>>>>> e4873bbe6dd53cb4eef74538ad101d28d09b49a0
 }
 
 @media (max-width: 400px) {
