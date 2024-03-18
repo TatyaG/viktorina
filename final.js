@@ -66,12 +66,12 @@ export function createFinal() {
 
   perrotName.textContent = "Говоруша";
   perrotText.textContent =
-    "Хочешь узнать больше об известных личностях и музеях Чувашии?";
+    "Хочешь узнать больше о Чувашии?";
   perrotButtonText.textContent = "Жми сюда";
   perrotButtonMobile.textContent = "Далее";
 
   perrotButton.setAttribute("href", "docs/Известные_личности_и_музеи_Чувашии.pdf");
-  perrotButton.setAttribute("download", "Известные личности и музеи Чувашии");
+  perrotButton.setAttribute("download", "Известные личности и музеи Чувашии.pdf");
 
   // Центр
   const centerDiv = document.createElement("div");
@@ -82,8 +82,8 @@ export function createFinal() {
 
   const pointBlock = createPoint();
     let points = JSON.parse(localStorage.getItem("points") ?? 0);
-  // let points = 8;
-  pointBlock.textContent = points + ` из 9`;
+  // let points = 18;
+  pointBlock.textContent = points + ` баллов`;
   pointBlock.classList.add("game__point_final");
 
   const centerButtons = document.createElement("div");
@@ -164,7 +164,7 @@ export function createFinal() {
     gameBtnTakePrize.classList.add("hidden");
     deniskaImg.src = "img/final-boySad.png";
     deniskaText.textContent =
-      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру снова.";
+      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру заново.";
     deniska.style.marginBottom = "40px";
     centerImg.style.height = "140%";
     centerImg.style.top = "-21%";
@@ -194,7 +194,7 @@ export function createFinal() {
       e.preventDefault();
       downloadPrize ("docs/Phone wallpaper_3.zip", "Phone wallpaper_3.zip");
     });
-  } else if (points >= 7 && points <= 9) {
+  } else if (points >= 7) {
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
       downloadPrize ("docs/Phone wallpaper_9.zip", "Phone wallpaper_9.zip");
@@ -353,7 +353,7 @@ export function createFinal() {
       buttonDownload.classList.add("btn-download", "hidden");
       final.append(buttonDownload);
       buttonDownload.setAttribute("href", "docs/Известные_личности_и_музеи_Чувашии.pdf");
-      buttonDownload.setAttribute("download", "Известные личности и музеи Чувашии");
+      buttonDownload.setAttribute("download", "Известные личности и музеи Чувашии.pdf");
 
       perrotButtonMobile.addEventListener("click", (e) => {
         e.preventDefault();

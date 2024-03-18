@@ -2,7 +2,7 @@ import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
-import { createFindExtra } from './find-extra.js';
+import { createPuzzleGame } from './puzzle.js';
 
 
 export function createGameSymbols() {
@@ -141,9 +141,9 @@ export function createGameSymbols() {
                         const deniska = createDeniska('К сожалению, угаданы не не все значения символов!');
                         deniska.rulesDeniska.src = 'img/deniska-sad.webp';
                         deniska.gameBtnNext.addEventListener('click', (e) => {
-                            const find = createFindExtra();
+                            e.preventDefault();
                             document.body.innerHTML = '';
-                            document.body.append(find);
+                            createPuzzleGame();
                         })
 
                         setTimeout(() => {
@@ -164,14 +164,14 @@ export function createGameSymbols() {
                         const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
 
                         deniska.gameBtnNext.addEventListener('click', (e) => {
-                            const find = createFindExtra();
+                            e.preventDefault();
                             document.body.innerHTML = '';
-                            document.body.append(find);
+                            createPuzzleGame();
                         })
 
                         setTimeout(() => {
                             document.querySelector('.game__btn--skip').style.display = 'none';
-                            // document.querySelector('.game__btn--next').style.display = 'block';
+                            document.querySelector('.game__btn--next').style.display = 'block';
                             document.body.append(deniska.deniska);
                         }, 800)
 
@@ -213,8 +213,7 @@ export function createGameSymbols() {
         yesBtn.addEventListener('click', (e) => {
             e.preventDefault();
             document.body.innerHTML = '';
-            const findExtra = createFindExtra();
-            document.body.append(findExtra);
+            createPuzzleGame();
         })
 
         noBtn.addEventListener('click', (e) => {
@@ -231,10 +230,7 @@ export function createGameSymbols() {
     gameBtnNext.addEventListener('click', (e) => {
         e.preventDefault();
         document.body.innerHTML = '';
-        // const puzzle = createPuzzleGame();
-        // document.body.append(puzzle);
-        const findExtra = createFindExtra();
-        document.body.append(findExtra);
+        createPuzzleGame();
     })
 
     const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
@@ -270,7 +266,7 @@ export function createGameSymbols() {
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        gameBtnNext.remove();
+        // gameBtnNext.remove();
 
         const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 

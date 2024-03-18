@@ -489,12 +489,16 @@ body {
 }
 
 @media (max-width: 576px) {
+  body {
+    height: 100vh;
+  }
+
   .rules_title {
     font-size: 32px;
   }
 
   .rules_img2 {
-    /* height: 100vh; */
+    height: 88vh;
     object-fit: cover;
   }
 
@@ -558,7 +562,7 @@ body {
   }
 
   .rules_img2 {
-    height: 102%;
+    height: 85vh;
   }
 }
 
@@ -582,6 +586,6 @@ body {
   }
 
   .rules_img2 {
-    height: 101%;
+    height: 88vh;
   }
 }

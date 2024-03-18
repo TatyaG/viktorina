@@ -2,7 +2,7 @@ import createTalker from "./talker.js";
 import createDeniska from "./deniska.js";
 import createPoint from "./point.js";
 import createRulesTablet from "./rules-tablet.js";
- import createFillword  from "./fillword.js";
+import createFillword from "./fillword.js";
 
 export function createGameQuestion() {
   const game = document.createElement("section");
@@ -124,14 +124,28 @@ export function createGameQuestion() {
           "Отлично! Задание выполнено. Тебе начислен 1 балл."
         );
 
+        deniska.gameBtnNext.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+          const fillword = createFillword();
+          document.body.append(fillword);
+        });
+
         setTimeout(() => {
-          document.querySelector(".game__btn--skip").style.display = "none";
-          // document.querySelector('.game__btn--next').style.display = 'block';
           document.body.append(deniska.deniska);
+          document.querySelector(".game__btn--skip").style.display = "none";
+          document.querySelector(".game__btn--next").style.display = "block";
         }, 800);
       } else {
         const deniska = createDeniska("К сожалению, это неправильный ответ.");
         deniska.rulesDeniska.src = "img/deniska-sad.webp";
+
+        deniska.gameBtnNext.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+          const fillword = createFillword();
+          document.body.append(fillword);
+        });
 
         setTimeout(() => {
           document.body.append(deniska.deniska);
