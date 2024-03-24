@@ -4,7 +4,6 @@ body {
 
 }
 
-<<<<<<< HEAD
 .canvas {
     width: 938px;
     height: 721px;
@@ -158,7 +157,6 @@ body {
     }
 
 }
-=======
 .game__block-labyrinth {
   display: flex;
   justify-content: space-around;
@@ -195,4 +193,3 @@ body {
     flex-direction: column-reverse;
   }
 }
->>>>>>> e4873bbe6dd53cb4eef74538ad101d28d09b49a0

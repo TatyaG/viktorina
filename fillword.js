@@ -1,7 +1,7 @@
 import createTalker from "./talker.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
-// import { labyrinthGame } from "./labyrinth.js";
+import { labyrinthGame } from "./labyrinth.js";
 
 export default function createFillword() {
   console.log("213213");
@@ -203,13 +203,13 @@ export default function createFillword() {
               document
                 .querySelector(".game__btn--next")
                 .classList.add("game__btn--next-fillword");
-              // document
-              //   .querySelector(".game__btn--next")
-              //   .addEventListener("click", (e) => {
-              //     document.body.innerHTML = "";
-              //     const labyrinth = labyrinthGame();
-              //     document.body.append(labyrinth);
-              //   });
+              document
+                .querySelector(".game__btn--next")
+                .addEventListener("click", (e) => {
+                  document.body.innerHTML = "";
+                  const labyrinth = labyrinthGame();
+                  document.body.append(labyrinth);
+                });
             }, 800);
             return;
           } else {
@@ -226,13 +226,13 @@ export default function createFillword() {
                 document
                   .querySelector(".game__btn--next")
                   .classList.add("game__btn--next-fillword");
-                // document
-                //   .querySelector(".game__btn--next")
-                //   .addEventListener("click", (e) => {
-                //     document.body.innerHTML = "";
-                //     const labyrinth = labyrinthGame();
-                //     document.body.append(labyrinth);
-                //   });
+                document
+                  .querySelector(".game__btn--next")
+                  .addEventListener("click", (e) => {
+                    document.body.innerHTML = "";
+                    const labyrinth = labyrinthGame();
+                    document.body.append(labyrinth);
+                  });
               }, 800);
             }
           }
@@ -429,12 +429,12 @@ export default function createFillword() {
     btns.append(yesBtn, noBtn);
     deniska.rulesText.append(btns);
 
-    // yesBtn.addEventListener("click", (e) => {
-    //   e.preventDefault();
-    //   document.body.innerHTML = "";
-    //   const labyrinth = labyrinthGame();
-    //   document.body.append(labyrinth);
-    // });
+    yesBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.body.innerHTML = "";
+      const labyrinth = labyrinthGame();
+      document.body.append(labyrinth);
+    });
 
     noBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -460,11 +460,11 @@ export default function createFillword() {
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
 
-  // gameBtnNext.addEventListener("click", (e) => {
-  //   document.body.innerHTML = "";
-  //   const labyrinth = labyrinthGame();
-  //   document.body.append(labyrinth);
-  // });
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const labyrinth = labyrinthGame();
+    document.body.append(labyrinth);
+  });
 
   //Добавляем questionWrap в GAMERIGHT
   gameRight.append(questionWrap);
@@ -674,12 +674,12 @@ export default function createFillword() {
         btns.append(yesBtn, noBtn);
         deniska.rulesText.append(btns);
 
-        // yesBtn.addEventListener("click", (e) => {
-        //   e.preventDefault();
-        //   document.body.innerHTML = "";
-        //   const labyrinth = labyrinthGame();
-        //   document.body.append(labyrinth);
-        // });
+        yesBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+          const labyrinth = labyrinthGame();
+          document.body.append(labyrinth);
+        });
 
         noBtn.addEventListener("click", (e) => {
           e.preventDefault();
@@ -720,12 +720,12 @@ export default function createFillword() {
         btns.append(yesBtn, noBtn);
         deniska.rulesText.append(btns);
 
-        // yesBtn.addEventListener("click", (e) => {
-        //   e.preventDefault();
-        //   document.body.innerHTML = "";
-        //   const labyrinth = labyrinthGame();
-        //   document.body.append(labyrinth);
-        // });
+        yesBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+          const labyrinth = labyrinthGame();
+          document.body.append(labyrinth);
+        });
 
         noBtn.addEventListener("click", (e) => {
           e.preventDefault();
@@ -741,23 +741,7 @@ export default function createFillword() {
         questionList.classList.remove("question_list-scroll");
         rulesBtnImg.style.display = "block";
 
-        // questionWrap.classList.add("display-block");
-
-        // questionWrap.style.display = "-webkit-box";
-        // questionWrap.style.visibility = "visible";
-        // questionWrap.style.opacity = "1";
-
         questionWrap.append(slide2Btn);
-        // questionWrap.style.display = "block";
-
-        // gameCenter.style.display = "-webkit-box"; // Используем -webkit-box вместо none
-        // gameCenter.style.visibility = "hidden";
-        // gameCenter.style.opacity = "0";
-
-        // gameBtnSkipMobile.style.display = "block";
-        // questionList.classList.remove("question_list-scroll");
-        // rulesBtnImg.style.display = "block";
-        // questionWrap.append(slide2Btn);
       });
 
       slide2Btn.addEventListener("click", () => {
@@ -766,18 +750,6 @@ export default function createFillword() {
         infoImg.style.display = "block";
         gameCenter.append(gameBtnSkipMobile2);
         gameBtnSkipMobile2.style.display = "block";
-
-        // questionWrap.style.display = "-webkit-box"; // Используем -webkit-box вместо none
-        // questionWrap.style.visibility = "hidden";
-        // questionWrap.style.opacity = "0";
-
-        // gameCenter.style.display = "block";
-        // gameCenter.style.visibility = "visible";
-        // gameCenter.style.opacity = "1";
-
-        // infoImg.style.display = "block";
-        // gameCenter.append(gameBtnSkipMobile2);
-        // gameBtnSkipMobile2.style.display = "block";
       });
     }
   }
