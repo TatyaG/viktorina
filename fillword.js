@@ -4,7 +4,7 @@ import createDeniska from "./deniska.js";
 import { labyrinthGame } from "./labyrinth.js";
 
 export default function createFillword() {
-  console.log("213213");
+  // console.log("213213");
   // Данные для заполнения таблицы
   const data = [
     "Я",
@@ -207,8 +207,9 @@ export default function createFillword() {
                 .querySelector(".game__btn--next")
                 .addEventListener("click", (e) => {
                   document.body.innerHTML = "";
-                  const labyrinth = labyrinthGame();
-                  document.body.append(labyrinth);
+                  labyrinthGame();
+                  // const labyrinth = labyrinthGame();
+                  // document.body.append(labyrinth);
                 });
             }, 800);
             return;
@@ -230,8 +231,9 @@ export default function createFillword() {
                   .querySelector(".game__btn--next")
                   .addEventListener("click", (e) => {
                     document.body.innerHTML = "";
-                    const labyrinth = labyrinthGame();
-                    document.body.append(labyrinth);
+                    labyrinthGame();
+                    // const labyrinth = labyrinthGame();
+                    // document.body.append(labyrinth);
                   });
               }, 800);
             }
@@ -240,7 +242,7 @@ export default function createFillword() {
         });
       }
     } else {
-      console.log("click");
+      // console.log("click");
       for (let node of document.querySelectorAll(".cells")) {
         node.addEventListener("mousedown", function (event) {
           console.log("PK");
@@ -432,8 +434,9 @@ export default function createFillword() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const labyrinth = labyrinthGame();
-      document.body.append(labyrinth);
+      labyrinthGame();
+      // const labyrinth = labyrinthGame();
+      // document.body.append(labyrinth);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -455,15 +458,16 @@ export default function createFillword() {
     "btn-reset",
     "game__btn--next-fillword"
   );
-  console.log(gameBtnNext);
+  // console.log(gameBtnNext);
 
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const labyrinth = labyrinthGame();
-    document.body.append(labyrinth);
+    labyrinthGame();
+    // const labyrinth = labyrinthGame();
+    // document.body.append(labyrinth);
   });
 
   //Добавляем questionWrap в GAMERIGHT
@@ -677,8 +681,9 @@ export default function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          const labyrinth = labyrinthGame();
-          document.body.append(labyrinth);
+          labyrinthGame();
+          // const labyrinth = labyrinthGame();
+          // document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -723,8 +728,9 @@ export default function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          const labyrinth = labyrinthGame();
-          document.body.append(labyrinth);
+          labyrinthGame();
+          // const labyrinth = labyrinthGame();
+          // document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
