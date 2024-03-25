@@ -114,7 +114,7 @@ body {
 }
 
 .game__point_final {
-  width: fit-content;
+  width: max-content;
   top: 28%;
   left: 30px;
   right: 0;
@@ -697,6 +697,7 @@ body {
 
   .game__point_final {
     top: 25%;
+    left: 18px;
   }
 
   .center_buttons {
