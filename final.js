@@ -86,8 +86,8 @@ export function createFinal() {
   centerText.textContent = "Конец игры";
 
   const pointBlock = createPoint();
-  // let points = JSON.parse(localStorage.getItem("points") ?? 0);
-  let points = 18;
+  let points = JSON.parse(localStorage.getItem("points") ?? 0);
+  // let points = 18;
   pointBlock.textContent = points + ` баллов`;
   pointBlock.classList.add("game__point_final");
 
