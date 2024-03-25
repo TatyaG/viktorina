@@ -86,8 +86,8 @@ export function createFinal() {
   centerText.textContent = "Конец игры";
 
   const pointBlock = createPoint();
-  // let points = JSON.parse(localStorage.getItem("points") ?? 0);
-  let points = 18;
+  let points = JSON.parse(localStorage.getItem("points") ?? 0);
+  // let points = 18;
   pointBlock.textContent = points + ` баллов`;
   pointBlock.classList.add("game__point_final");
 
@@ -431,11 +431,11 @@ export function createFinal() {
         centerImg.style.top = "24.5%";
         deniska.style.marginBottom = "71px";
         finalRight.style.paddingTop = "27px";
-        centerDiv.style.marginTop = "130px";
+        // centerDiv.style.marginTop = "130px";
         centerText.style.marginBottom = "172px";
-        pointBlock.style.top = "45%";
+        pointBlock.style.top = "30%";
         finalCenter.style.marginBottom = "160px";
-        gameBtnPlayAgain.style.top = "70%";
+        gameBtnPlayAgain.style.top = "80%";
       }
     }
   }
@@ -451,7 +451,7 @@ export function createFinal() {
         centerText.style.marginBottom = "144px";
         centerImg.style.top = "21.5%";
         gameBtnPlayAgain.style.top = "73%";
-        pointBlock.style.top = "50%";
+        pointBlock.style.top = "35%";
       }
     }
   }
