@@ -15,7 +15,8 @@ body {
 }
 
 .logo {
-  top: 0;
+  position: absolute;
+  top: 40px;
   padding-left: 0;
 }
 
@@ -42,6 +43,7 @@ body {
 }
 
 .final_assistent-name {
+  position: absolute;
   top: 34.5%;
   left: 34.5%;
   color: #f7eafc;
@@ -52,6 +54,7 @@ body {
 }
 
 .final_assistent-text {
+  position: absolute;
   top: 53%;
   left: 15%;
   max-width: 312px;
@@ -173,13 +176,55 @@ body {
 }
 
 .footer {
-  position: static;
+  width: 100%;
+  bottom: 0;
+  justify-content: space-between;
+  position: relative;
   padding: 0;
+  z-index: 1;
 }
 
-.footer {
-  position: relative;
-  z-index: 1;
+.footer__text {
+  color: #fff;
+  font-family: Comfortaa;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.IT-logo {
+  align-items: center;
+}
+
+.IT-logo__text {
+  margin-right: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: Comfortaa;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.IT-logo img {
+  margin-right: 8px;
+}
+
+.IT-logo__title a {
+  color: #fff;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.IT-logo__title span {
+  color: #fff;
+  font-family: Inter;
+  font-size: 16px;
 }
 
 /* Адаптив */
@@ -347,6 +392,15 @@ body {
   .final-center {
     width: 60%;
   }
+
+  .footer__text,
+  .IT-logo__text {
+    font-size: 12px;
+  }
+
+  .IT-logo__title {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -384,6 +438,14 @@ body {
   .game__point_final {
     top: 70%;
   }
+
+  .footer__container {
+    max-width: 221px;
+  }
+
+  .footer {
+    padding-bottom: 14px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -403,7 +465,8 @@ body {
   }
 
   .logo {
-    padding-top: 12px;
+    position: absolute;
+    top: 12px;
   }
 
   .final {
@@ -414,7 +477,7 @@ body {
   }
 
   .final_assistent-name {
-    top: 28.5%;
+    top: 25%;
     left: 36%;
   }
 
@@ -424,30 +487,30 @@ body {
   }
 
   .final_assistent-text {
-    top: 47%;
+    top: 42%;
     max-width: 281px;
     font-size: 14px;
   }
 
   .deniska_text {
-    top: 55%;
+    top: 50%;
     left: 10%;
   }
 
   .perrot-btn {
-    bottom: 27.5%;
+    bottom: 36%;
     left: 30%;
   }
 
   .perrot-btn_mobile {
     position: absolute;
-    bottom: 7%;
+    bottom: 17.5%;
     left: 30%;
   }
 
   .deniska-btn_mobile {
     position: absolute;
-    bottom: 13%;
+    bottom: 20.5%;
     left: 30%;
   }
 
@@ -529,6 +592,37 @@ body {
   .footer__text,
   .IT-logo__text {
     font-size: 10px;
+    line-height: 120%;
+  }
+
+  .footer {
+    position: static;
+    padding: 0 20px 30px 20px;
+    align-items: center;
+  }
+
+  .footer__text {
+    line-height: 12px;
+    display: inline-block;
+  }
+
+  .footer__container {
+    max-width: 147px;
+  }
+
+  .IT-logo__text {
+    margin-right: 0;
+    margin-bottom: 4px;
+    font-size: 10px;
+  }
+
+  .IT-logo {
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .IT-logo img {
+    width: 57px;
   }
 
   .final_deniska,
@@ -552,13 +646,17 @@ body {
 @media (max-width: 480px) {
   .center_img {
     height: 80%;
-    top: 25%;
+    /* top: 25%; */
   }
 }
 
 @media (max-width: 375px) {
   .center_img {
-    top: 20.5%;
+    top: 29%;
+  }
+
+  .title_h1 {
+    margin-bottom: 0;
   }
 
   .final_assistant-perrot {
@@ -566,9 +664,9 @@ body {
     margin-bottom: 25px;
   }
 
-  .final {
+  /* .final {
     min-height: auto;
-  }
+  } */
 
   .final_deniska {
     margin-bottom: 80px;
@@ -579,7 +677,7 @@ body {
   }
 
   .final_assistent-name {
-    top: 30%;
+    top: 26.5%;
   }
 
   .final-center {
@@ -587,7 +685,10 @@ body {
   }
 
   .center_div {
-    margin-top: 88px;
+    margin-bottom: 0;
+    margin-top: 0;
+    position: absolute;
+    top: 45%;
   }
 
   .center_text {
@@ -595,11 +696,15 @@ body {
   }
 
   .game__point_final {
-    top: 42%;
+    top: 25%;
   }
 
   .center_buttons {
     gap: 8px;
+  }
+
+  .footer {
+    padding: 0 20px 24px 20px;
   }
 }
 
@@ -630,6 +735,6 @@ body {
   }
 
   .center_div {
-    margin-top: 73px;
+    top: 35%;
   }
 }
