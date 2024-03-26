@@ -209,8 +209,16 @@ export function createCrossword() {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const symbols = createGameSymbols();
-    document.body.append(symbols);
+    axios.get('php/get_symbols.php')
+    .then(response => {
+        console.log(response)
+         const symbols = createGameSymbols(response.data);
+        document.body.append(symbols);
+    })
+    .catch(error => {
+        console.log(error)
+    })
+   
     // const final = createFinal();
     // document.body.append(final);
   });
@@ -306,8 +314,16 @@ export function createCrossword() {
 
   askButtonYes.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const symbols = createGameSymbols();
-    document.body.append(symbols);
+
+    axios.get('php/get_symbols.php')
+    .then(response => {
+        console.log(response)
+         const symbols = createGameSymbols(response.data);
+        document.body.append(symbols);
+    })
+    .catch(error => {
+        console.log(error)
+    })
   });
 
   // Кроссворд
