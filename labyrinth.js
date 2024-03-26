@@ -255,8 +255,11 @@ export const labyrinthGame = () => {
       isMouseDown = false;
     });
     window.onload = function () {
-      context.drawImage(faceImg, x, y);
-      faceImg.classList.add("faceimg");
+      setTimeout(()=>{
+        context.drawImage(faceImg, x, y);
+        faceImg.classList.add("faceimg");
+      },500)
+
     };
 
     // Отрисовка фона
@@ -269,7 +272,10 @@ export const labyrinthGame = () => {
         // Рисуем лабиринт
         context.drawImage(mazeImg, 0, 0);
         // Рисуем значок
-        context.drawImage(faceImg, x, y);
+        setTimeout(()=>{
+          context.drawImage(faceImg, x, y);
+        },500)
+
       };
     }
 
@@ -454,7 +460,7 @@ export const labyrinthGame = () => {
           context.arc(
             trajectory[i].x,
             trajectory[i].y,
-            5,
+            2,
             0,
             2 * Math.PI,
             false
@@ -590,4 +596,4 @@ export const labyrinthGame = () => {
   logicLabirint(canvasLab);
 };
 
-// labyrinthGame();
+/*labyrinthGame();*/
