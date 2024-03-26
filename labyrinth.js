@@ -1,6 +1,7 @@
 import createTalker from "./talker.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
+import { createFinal } from "./final.js";
 
 export const labyrinthGame = () => {
   //Создаем section game и присваиваем классы
@@ -87,6 +88,8 @@ export const labyrinthGame = () => {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
+      const finalGame = createFinal();
+      document.body.append(finalGame);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -116,6 +119,12 @@ export const labyrinthGame = () => {
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Продолжить";
   gameBtnAccept.textContent = "Принять ответ";
+
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    const finalGame = createFinal();
+    document.body.append(finalGame);
+  });
 
   //GAMECENTER с лабиринтом
   const gameCenter = document.createElement("div");
@@ -159,8 +168,8 @@ export const labyrinthGame = () => {
       positionY = 10;
       mazeImg.src = "img/maze_mob.png";
       faceImg.src = "img/face_mob.png";
-      positionAdapt = 10;
-      postionCollision = 0;
+      positionAdapt = 15;
+      postionCollision = 10;
       collisionAreaSize = 5;
     } else {
       collisionAreaSize = 15;
@@ -207,9 +216,7 @@ export const labyrinthGame = () => {
     // Обработка начала движения мыши и тача
     canvas.addEventListener("mousedown", function () {
       isMouseDown = true;
-      /*
-                        gameBtnAccept.classList.remove("hidden");
-            */
+      gameBtnAccept.classList.remove("hidden");
     });
     gameBtnAccept.addEventListener("click", function () {
       const deniska = createDeniska("Увы, лабиринт не пройден.");
@@ -292,7 +299,6 @@ export const labyrinthGame = () => {
 
     // Обработка движения
     function handleMovement(newX, newY) {
-      console.log(y, newY);
       // Проверка столкновений в новой позиции
       if (
         //Чтобы не было перескоков
@@ -302,7 +308,6 @@ export const labyrinthGame = () => {
         y - newY <= positionAdapt &&
         newY - y <= positionAdapt
       ) {
-        console.log(positionAdapt);
         canvas.style.cursor = "grab";
         // Обновляем текущую позицию если игра не пройдена
         if (!finished) {
@@ -568,6 +573,12 @@ export const labyrinthGame = () => {
 
       slideBtn.addEventListener("click", () => {
         gameBtnNext.textContent = "Продолжить";
+        gameBtnNext.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+          const finalGame = createFinal();
+          document.body.append(finalGame);
+        });
         gameBtnSkip.style.display = "block";
         rulesBtnImg.style.display = "block";
       });
@@ -578,6 +589,5 @@ export const labyrinthGame = () => {
   handleTabletChange2(mediaQuery2);
   logicLabirint(canvasLab);
 };
-/*
-labyrinthGame();
-*/
+
+// labyrinthGame();
