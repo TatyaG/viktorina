@@ -72,9 +72,10 @@ export function createFindExtra() {
   btnWrap.append(gameBtnSkip, gameBtnAccept, gameBtnNext);
 
   gameBtnNext.addEventListener("click", (e) => {
-    document.body.innerHTML = "";
-    axios.get('php/get_artgallery.php')
+    
+    axios.get('php/get_getpicture.php')
       .then(response => {
+        document.body.innerHTML = "";
         const picture = createPicture(response.data, 0);
         document.body.append(picture);
       })
@@ -391,9 +392,10 @@ export function createFindExtra() {
 
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      document.body.innerHTML = "";
-      axios.get('php/get_artgallery.php')
+      
+      axios.get('php/get_getpicture.php')
         .then(response => {
+          document.body.innerHTML = "";
           const picture = createPicture(response.data, 0);
           document.body.append(picture);
         })
