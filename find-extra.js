@@ -73,8 +73,12 @@ export function createFindExtra() {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const picture = createPicture();
-    document.body.append(picture);
+    axios.get('php/get_artgallery.php')
+      .then(response => {
+        const picture = createPicture(response.data, 0);
+        document.body.append(picture);
+      })
+
   });
 
   // Справа
@@ -385,8 +389,11 @@ export function createFindExtra() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const picture = createPicture();
-      document.body.append(picture);
+      axios.get('php/get_artgallery.php')
+        .then(response => {
+          const picture = createPicture(response.data, 0);
+          document.body.append(picture);
+        })
     });
 
     noBtn.addEventListener("click", (e) => {
