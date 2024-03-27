@@ -4,8 +4,10 @@ import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
 import { createGameQuestion } from "./question.js";
 
-export const createPicture = () => {
+export const createPicture = (info, number) => {
   //Массив с игрой и картинами
+
+  console.log(info)
   const pictureGame = [
     {
       name: "Картина «Богатыри»",
@@ -203,9 +205,17 @@ export const createPicture = () => {
 
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      document.body.innerHTML = "";
-      const question = createGameQuestion();
-      document.body.append(question);
+
+      axios.get('php/get_question.php')
+        .then(response => {
+          document.body.innerHTML = "";
+          const question = createGameQuestion(response.data, 0);
+          document.body.append(question);
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -232,9 +242,15 @@ export const createPicture = () => {
   gameBtnNext.textContent = "Следующая игра";
 
   gameBtnNext.addEventListener("click", (e) => {
-    document.body.innerHTML = "";
-    const questionGame = createGameQuestion();
-    document.body.append(questionGame);
+    axios.get('php/get_question.php')
+      .then(response => {
+        document.body.innerHTML = "";
+        const question = createGameQuestion(response.data, 0);
+        document.body.append(question);
+      })
+      .catch(error => {
+        console.log(error)
+      })
   });
 
   //ГОВОРУША
@@ -487,9 +503,15 @@ export const createPicture = () => {
 
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
-          document.body.innerHTML = "";
-          const question = createGameQuestion();
-          document.body.append(question);
+          axios.get('php/get_question.php')
+            .then(response => {
+              document.body.innerHTML = "";
+              const question = createGameQuestion(response.data, 0);
+              document.body.append(question);
+            })
+            .catch(error => {
+              console.log(error)
+            })
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -533,9 +555,15 @@ export const createPicture = () => {
 
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
-          document.body.innerHTML = "";
-          const question = createGameQuestion();
-          document.body.append(question);
+          axios.get('php/get_question.php')
+            .then(response => {
+              document.body.innerHTML = "";
+              const question = createGameQuestion(response.data, 0);
+              document.body.append(question);
+            })
+            .catch(error => {
+              console.log(error)
+            })
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -586,9 +614,15 @@ export const createPicture = () => {
             document
               .querySelector(".game__btn--next")
               .addEventListener("click", (e) => {
-                document.body.innerHTML = "";
-                const questionGame = createGameQuestion();
-                document.body.append(questionGame);
+                axios.get('php/get_question.php')
+                  .then(response => {
+                    document.body.innerHTML = "";
+                    const question = createGameQuestion(response.data, 0);
+                    document.body.append(question);
+                  })
+                  .catch(error => {
+                    console.log(error)
+                  })
               });
           }, 6000);
         });
