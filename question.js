@@ -4,7 +4,8 @@ import createPoint from "./point.js";
 import createRulesTablet from "./rules-tablet.js";
 import createFillword from "./fillword.js";
 
-export function createGameQuestion() {
+export function createGameQuestion(info, number) {
+  console.log(info)
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
