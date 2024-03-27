@@ -79,6 +79,7 @@ body {
   background-image: url(../img/background-crossword.webp);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 /* ----------- */
@@ -250,7 +251,7 @@ body {
 }
 
 .game-crossword__block {
-  margin-bottom: 130px;
+  /* margin-bottom: 130px; */
   justify-content: space-between;
 }
 
@@ -267,6 +268,10 @@ body {
 
 .question_wrap {
   position: relative;
+}
+
+.question_wrap-crossword {
+  margin-bottom: 308px;
 }
 
 .question_list {
@@ -334,7 +339,8 @@ body {
 
 .success-crossword,
 .fail-crossword {
-  margin-top: -120px;
+  /* margin-top: -120px; */
+  margin-top: -459px;
   position: relative;
 }
 
@@ -534,6 +540,7 @@ table {
 
 @media (max-width: 1750px) {
   .game-crossword__block {
+    margin-bottom: 389px;
     flex-direction: column;
     align-items: center;
   }
@@ -575,21 +582,14 @@ table {
     font-size: 17px;
   }
 
-  /* .assistent-text {
-    font-size: 17px;
-  } */
-
-  /* .ask_text1 {
-    bottom: 30%;
-  }
-
-  .ask_text2 {
-    bottom: 25%;
-  } */
-
   .fail-crossword,
   .success-crossword {
+    margin-top: -120px;
     left: 100%;
+  }
+
+  .question_wrap {
+    margin-bottom: 0;
   }
 }
 
@@ -609,6 +609,10 @@ table {
   .crossword {
     background-image: url(../img/background-crossword_tablet.webp);
     padding: 40px;
+  }
+
+  .game-crossword__block {
+    margin-bottom: 214px;
   }
 
   .game-crossword__title {
@@ -674,6 +678,11 @@ table {
     font-size: 20px;
   }
 
+  .fail-crossword,
+  .success-crossword {
+    margin-top: -132px;
+  }
+
   .fail_name,
   .success_name {
     top: 46%;
@@ -721,7 +730,7 @@ table {
 @media (max-width: 900px) {
   .fail-crossword,
   .success-crossword {
-    left: 70%;
+    left: 75%;
   }
 
   .game-crossword__left {
@@ -746,10 +755,6 @@ table {
   .start_word {
     font-size: 14px;
   }
-
-  /* .game-crossword {
-    padding: 56px 15px;
-  } */
 }
 
 @media (max-width: 768px) {
@@ -881,7 +886,7 @@ table {
     margin-top: 0;
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
@@ -890,7 +895,7 @@ table {
   .game-crossword__btn--next_mobile {
     position: fixed;
     left: 50.8%;
-    bottom: 175px;
+    bottom: 30%;
     transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
@@ -1110,10 +1115,6 @@ table {
     width: 252px;
     font-size: 10px;
   }
-
-  /* .rules {
-    width: 286px;
-  } */
 }
 
 @media (max-width: 375px) {

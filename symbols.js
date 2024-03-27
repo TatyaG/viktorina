@@ -2,7 +2,7 @@ import createTalker from './talker.js';
 import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
-import { createFindExtra } from './find-extra.js';
+import { createPuzzleGame } from './puzzle.js';
 
 
 export function createGameSymbols(info, number) {
@@ -74,8 +74,11 @@ export function createGameSymbols(info, number) {
                             deniska.gameBtnNext.addEventListener('click', (e) => {
                                 e.preventDefault();
                                 document.body.innerHTML = '';
-                                const findExtra = createFindExtra();
-                                document.body.append(findExtra);
+                                if (info.length === 1 || number === info.length - 1) {
+                                    createPuzzleGame();
+                                } else {
+                                    createGameSymbols(info, number + 1);
+                                }
                             })
 
                             setTimeout(() => {
@@ -93,14 +96,15 @@ export function createGameSymbols(info, number) {
                             point.textContent = points;
                             point.classList.add('animation');
 
-                            const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
-
-                            deniska.gameBtnNext.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                document.body.innerHTML = '';
-                                const findExtra = createFindExtra();
-                                document.body.append(findExtra);
-                            })
+                        deniska.gameBtnNext.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            document.body.innerHTML = '';
+                            if (info.length === 1 || number === info.length - 1) {
+                                createPuzzleGame();
+                            } else {
+                                createGameSymbols(info, number + 1);
+                            }
+                        })
 
                             setTimeout(() => {
                                 document.querySelector('.game__btn--skip').style.display = 'none';

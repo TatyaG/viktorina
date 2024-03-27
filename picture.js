@@ -76,10 +76,16 @@ export const createPicture = () => {
   questionImg.src = "img/crossword-questionWrap_desctop.png";
 
   const pictureWrapper = document.createElement("div");
+  //ОЧКИ
+  const pointBlock = createPoint();
+
+  let points = JSON.parse(localStorage.getItem("points"));
+  pointBlock.textContent = points;
+
   //Ставим game как главный section
   document.body.append(game);
   //Добавляем в section game все элементы
-  game.append(gameTitle, gameSubtitle, gameBlock);
+  game.append(gameTitle, gameSubtitle, gameBlock, pointBlock);
   //Добавляем в div gameblock правый, центральный и левый блок
   gameBlock.append(gameLeft, gameCenter, gameRight);
   //Добавляем в центральный блок div с картинами
@@ -116,18 +122,36 @@ export const createPicture = () => {
       }, 3000);
       if (item.getAttribute("data-crt") === "true") {
         item.parentElement.parentElement.classList.add("correct");
+        const deniska = createDeniska(
+          "Отлично! Задание выполнено. Тебе начислен 1 балл."
+        );
         setTimeout(() => {
-          happyDeniska.classList.remove("hidden");
+          document.body.append(deniska.deniska);
+          deniska.deniska.classList.add("deniska-fillword");
+          document.querySelector(".game__btn--skip").style.display = "none";
+          document.querySelector(".game__btn--next").style.display = "block";
+          document
+            .querySelector(".game__btn--next")
+            .classList.add("game__btn--next-fillword");
         }, 6000);
-        pointBlock.classList.add("animation");
         let points = JSON.parse(localStorage.getItem("points"));
         points += 1;
         localStorage.setItem("points", points);
-        pointBlock.textContent = points;
+        const point = document.querySelector(".game__point");
+        point.textContent = points;
+        point.classList.add("animation");
       } else {
         item.parentElement.parentElement.classList.add("incorrect");
+        const deniska = createDeniska("Увы, выбран неверный фрагмент.");
+        deniska.rulesDeniska.src = "img/deniska-sad.webp";
         setTimeout(() => {
-          sadDeniska.classList.remove("hidden");
+          document.body.append(deniska.deniska);
+          deniska.deniska.classList.add("deniska-fillword");
+          document.querySelector(".game__btn--skip").style.display = "none";
+          document.querySelector(".game__btn--next").style.display = "block";
+          document
+            .querySelector(".game__btn--next")
+            .classList.add("game__btn--next-fillword");
         }, 6000);
       }
       gameBtnSkip.style.display = "none";
@@ -235,68 +259,6 @@ export const createPicture = () => {
     gameBlock.style.overflowY = "scroll";
   });
 
-  //ОЧКИ
-
-  const pointBlock = createPoint();
-
-  game.append(pointBlock);
-
-  // Веселый дениска
-
-  const happyDeniska = document.createElement("div");
-  happyDeniska.classList.add("success-crossword", "hidden", "success-picture");
-
-  const happyDeniskaImg = document.createElement("img");
-  happyDeniskaImg.classList.add("ha");
-  happyDeniskaImg.src = "img/deniska-funny.png";
-
-  const happyDeniskaName = document.createElement("p");
-  happyDeniskaName.classList.add(
-    "success_name",
-    "assistent-name",
-    "success_name-picture"
-  );
-  happyDeniskaName.textContent = "Дениска";
-
-  const happyDeniskaText = document.createElement("p");
-  happyDeniskaText.classList.add(
-    "success_text",
-    "assistent-text",
-    "success_text-picture"
-  );
-  happyDeniskaText.textContent =
-    "Отлично! Задание выполнено. Тебе начислен 1 балл.";
-
-  gameRight.append(happyDeniska);
-  happyDeniska.append(happyDeniskaImg, happyDeniskaName, happyDeniskaText);
-
-  // Грустный Дениска
-
-  const sadDeniska = document.createElement("div");
-  sadDeniska.classList.add("fail-crossword", "hidden", "fail-picture");
-
-  const sadDeniskaImg = document.createElement("img");
-  sadDeniskaImg.src = "img/deniska_sedd.png";
-
-  const sadDeniskaName = document.createElement("p");
-  sadDeniskaName.classList.add(
-    "fail_name",
-    "assistent-name",
-    "fail-name-picture"
-  );
-  sadDeniskaName.textContent = "Дениска";
-
-  const sadDeniskaText = document.createElement("p");
-  sadDeniskaText.classList.add(
-    "fail_text",
-    "fail_text-picture",
-    "assistent-text"
-  );
-  sadDeniskaText.textContent = "Увы, выбран неверный фрагмент.";
-
-  gameRight.append(sadDeniska);
-  sadDeniska.append(sadDeniskaImg, sadDeniskaName, sadDeniskaText);
-
   // Модалка с картиной
   const modalWrapper = document.createElement("div");
   modalWrapper.classList.add("modal-wrapper", "modal-wrapper-mobile");
@@ -333,27 +295,10 @@ export const createPicture = () => {
   modal.append(modalImgWrapper);
   modalImgWrapper.append(modalImg);
 
-  // picture();
-
   // АДАПТИВ
 
   //Правила для планшета
   const mediaQuery = window.matchMedia("(max-width: 1800px)");
-
-  //Напоминаем
-  // const questionWrap = document.querySelector(".question_wrap-picture");
-  // const gameLeft = document.querySelector(".game__left-picture");
-  // const gameRules = document.querySelector(".game__rules");
-  // const gameBtnSkip = document.querySelector(".game__btn--skip");
-  // const gameBtnNext = document.querySelector(".game__btn--next");
-  // const correctPicture = document.querySelectorAll(".picture_item");
-  // const modalWrapper = document.querySelector(".modal-wrapper-mobile");
-  // const gameBlock = document.querySelector(".game__block");
-  // const gameCenter = document.querySelector(".game__center");
-  // const sadDeniska = document.querySelector(".fail-picture");
-  // const happyDeniska = document.querySelector(".success-picture");
-  // const game = document.querySelector(".picture_game");
-  // const pictureWrapper = document.querySelector(".pictures_wrapper");
 
   function handleTabletChange(e) {
     if (e.matches) {
@@ -371,8 +316,6 @@ export const createPicture = () => {
   function handleTabletChange2(e) {
     if (e.matches) {
       const slideBtn = document.querySelector(".rules__btn");
-
-      
 
       //Создаем кнопку стрелку на второй странице
       const slide2Btn = document.createElement("button");
@@ -542,30 +485,18 @@ export const createPicture = () => {
           document.body.innerHTML = "";
         });
 
+        yesBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.innerHTML = "";
+          const question = createGameQuestion();
+          document.body.append(question);
+        });
+
         noBtn.addEventListener("click", (e) => {
           e.preventDefault();
           deniska.deniska.remove();
           game.classList.remove("game-blur");
         });
-      });
-
-      //Отображаем описание по клику на стрелку
-      slideBtn.addEventListener("click", () => {
-        questionWrap.style.display = "block";
-        gameBtnSkipMobile.style.display = "block";
-        rulesBtnImg.style.display = "block";
-      
-      });
-
-      slide2Btn.addEventListener("click", () => {
-        pictureWrapper.style.display = "block";
-        questionWrap.style.display = "none";
-        pictureWrapper.append(gameBtnSkipMobile2);
-        infoImg.style.display = "block";
-        // gameBtnSkipMobile.style.position = "fixed";
-        // gameBtnSkipMobile.style.bottom = "0";
-        // gameCenter.append(gameBtnSkipMobile2);
-        gameBtnSkipMobile2.style.display = "block";
       });
 
       //Добавляем правила открытия модалки 'пропустить игру'
@@ -603,7 +534,6 @@ export const createPicture = () => {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          console.log("aa");
           const question = createGameQuestion();
           document.body.append(question);
         });
@@ -615,6 +545,23 @@ export const createPicture = () => {
         });
       });
 
+      //Отображаем описание по клику на стрелку
+      slideBtn.addEventListener("click", () => {
+        questionWrap.style.display = "block";
+        gameBtnSkipMobile.style.display = "block";
+        rulesBtnImg.style.display = "block";
+        gameBlock.style.overflow = "hidden";
+      });
+
+      slide2Btn.addEventListener("click", () => {
+        pictureWrapper.style.display = "block";
+        questionWrap.style.display = "none";
+        pictureWrapper.append(gameBtnSkipMobile2);
+        infoImg.style.display = "block";
+        gameBtnSkipMobile2.style.display = "block";
+        gameBlock.style.overflowY = "scroll";
+      });
+
       correctPicture.forEach((item) => {
         item.addEventListener("click", () => {
           setTimeout(() => {
@@ -623,10 +570,8 @@ export const createPicture = () => {
 
           if (item.getAttribute("data-crt") === "true") {
             item.parentElement.parentElement.classList.add("correct");
-            happyDeniska.append(gameBtnNext);
           } else {
             item.parentElement.parentElement.classList.add("incorrect");
-            sadDeniska.append(gameBtnNext);
           }
 
           setTimeout(() => {
@@ -637,7 +582,14 @@ export const createPicture = () => {
             modalWrapper.style.display = "none";
             pictureWrapper.style.display = "block";
             gameBtnSkipMobile.style.display = "none";
-            gameBtnNext.style.display = "block";
+            document.querySelector(".game__btn--next").style.display = "block";
+            document
+              .querySelector(".game__btn--next")
+              .addEventListener("click", (e) => {
+                document.body.innerHTML = "";
+                const questionGame = createGameQuestion();
+                document.body.append(questionGame);
+              });
           }, 6000);
         });
       });

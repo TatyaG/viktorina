@@ -1,9 +1,10 @@
 import createTalker from "./talker.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
+import { labyrinthGame } from "./labyrinth.js";
 
-export function createFillword() {
-  console.log("213213");
+export default function createFillword() {
+  // console.log("213213");
   // Данные для заполнения таблицы
   const data = [
     "Я",
@@ -84,23 +85,43 @@ export function createFillword() {
   const table = document.createElement("table");
   table.classList.add("table");
 
+  //ОЧКИ
+  const pointBlock = createPoint();
+
+  let points = JSON.parse(localStorage.getItem("points"));
+  pointBlock.textContent = points;
+
   let correctGuessCount = 0;
   let isTouchDevice = "ontouchstart" in document.documentElement;
   let isActivelySelecting = false;
   let currHoverTarget = null;
-  console.log("script loaded");
 
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log("loaded");
-    let correctWords = ["павлова", "яковлев", "николаев"];
+  let correctWords = ["павлова", "яковлев", "николаев"];
 
-    let isMouseDown = false;
-    let str = "";
-    let nodeAr = [];
-    let countTouch = 0;
+  let isMouseDown = false;
+  let str = "";
+  let nodeAr = [];
+  let countTouch = 0;
 
-    const cells = document.querySelectorAll(".cells");
+  //Наполняем таблицу буквами
+  for (let i = 0; i < 5; i++) {
+    const row = table.insertRow(i);
+    row.classList.add("row");
 
+    for (var j = 0; j < 9; j++) {
+      const cell = row.insertCell(j);
+      const index = i * 9 + j;
+      cell.innerHTML = data[index];
+
+      cell.classList.add("cells");
+    }
+  }
+
+  //Добавляем в GAMECENTER div с филвордом
+  gameCenter.append(fillwordWrapper);
+  fillwordWrapper.append(table);
+
+  setTimeout(() => {
     if (isTouchDevice) {
       console.log("touch");
       for (let node of document.querySelectorAll(".cells")) {
@@ -182,6 +203,14 @@ export function createFillword() {
               document
                 .querySelector(".game__btn--next")
                 .classList.add("game__btn--next-fillword");
+              document
+                .querySelector(".game__btn--next")
+                .addEventListener("click", (e) => {
+                  document.body.innerHTML = "";
+                  labyrinthGame();
+                  // const labyrinth = labyrinthGame();
+                  // document.body.append(labyrinth);
+                });
             }, 800);
             return;
           } else {
@@ -198,6 +227,14 @@ export function createFillword() {
                 document
                   .querySelector(".game__btn--next")
                   .classList.add("game__btn--next-fillword");
+                document
+                  .querySelector(".game__btn--next")
+                  .addEventListener("click", (e) => {
+                    document.body.innerHTML = "";
+                    labyrinthGame();
+                    // const labyrinth = labyrinthGame();
+                    // document.body.append(labyrinth);
+                  });
               }, 800);
             }
           }
@@ -205,7 +242,7 @@ export function createFillword() {
         });
       }
     } else {
-      console.log("click");
+      // console.log("click");
       for (let node of document.querySelectorAll(".cells")) {
         node.addEventListener("mousedown", function (event) {
           console.log("PK");
@@ -277,29 +314,11 @@ export function createFillword() {
     }
 
     function toggleHighlight(node) {
+      node.style.background = "#D3D3D3";
       str += node.textContent;
       nodeAr.push(node);
     }
-  });
-  
-
-  //Наполняем таблицу буквами
-  for (let i = 0; i < 5; i++) {
-    const row = table.insertRow(i);
-    row.classList.add("row");
-
-    for (var j = 0; j < 9; j++) {
-      const cell = row.insertCell(j);
-      const index = i * 9 + j;
-      cell.innerHTML = data[index];
-
-      cell.classList.add("cells");
-    }
-  }
-
-  //Добавляем в GAMECENTER div с филвордом
-  gameCenter.append(fillwordWrapper);
-  fillwordWrapper.append(table);
+  }, 500);
 
   //div правый GAMERIGHT
   const gameRight = document.createElement("div");
@@ -350,7 +369,7 @@ export function createFillword() {
   document.body.append(game);
 
   //Добавляем в section game все элементы
-  game.append(gameTitle, gameSubtitle, gameBlock);
+  game.append(gameTitle, gameSubtitle, gameBlock, pointBlock);
 
   //Добавляем в div gameblock правый, центральный и левый блок
   gameBlock.append(gameLeft, gameCenter, gameRight);
@@ -415,6 +434,9 @@ export function createFillword() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
+      labyrinthGame();
+      // const labyrinth = labyrinthGame();
+      // document.body.append(labyrinth);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -436,10 +458,17 @@ export function createFillword() {
     "btn-reset",
     "game__btn--next-fillword"
   );
-  console.log(gameBtnNext);
+  // console.log(gameBtnNext);
 
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
+
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    labyrinthGame();
+    // const labyrinth = labyrinthGame();
+    // document.body.append(labyrinth);
+  });
 
   //Добавляем questionWrap в GAMERIGHT
   gameRight.append(questionWrap);
@@ -448,11 +477,6 @@ export function createFillword() {
   questionItem1.append(answer1);
   questionItem2.append(answer2);
   questionItem3.append(answer3);
-
-  //ОЧКИ
-
-  const pointBlock = createPoint();
-  game.append(pointBlock);
 
   // АДАПТИВ
 
@@ -470,13 +494,14 @@ export function createFillword() {
   handleTabletChange(mediaQuery);
 
   //Правила для мобилки
-  const mediaQuery2 = window.matchMedia("(max-width: 768px");
+  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
 
   function handleTabletChange2(e) {
     if (e.matches) {
       const slideBtn = document.querySelector(".rules__btn");
 
       questionWrap.style.display = "none";
+
       gameCenter.style.display = "none";
 
       //Создаем кнопку стрелку на второй странице
@@ -656,6 +681,9 @@ export function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          labyrinthGame();
+          // const labyrinth = labyrinthGame();
+          // document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -700,6 +728,9 @@ export function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          labyrinthGame();
+          // const labyrinth = labyrinthGame();
+          // document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -715,6 +746,7 @@ export function createFillword() {
         gameBtnSkipMobile.style.display = "block";
         questionList.classList.remove("question_list-scroll");
         rulesBtnImg.style.display = "block";
+
         questionWrap.append(slide2Btn);
       });
 
@@ -734,4 +766,6 @@ export function createFillword() {
   return game;
 }
 
-createFillword();
+/*
+ createFillword();
+*/
