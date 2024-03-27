@@ -4,7 +4,7 @@ import createTalker from "./talker.js";
 import createRulesTablet from "./rules-tablet.js";
 import { createFindExtra } from "./find-extra.js";
 
-export function createPuzzleGame() {
+export function createPuzzleGame(info, number) {
   const game = document.createElement("section");
   const boardPuzzle = document.createElement("div");
   const boardPuzzleWrap = document.createElement("div");
@@ -21,6 +21,8 @@ export function createPuzzleGame() {
   const pointBlock = createPoint();
   let points = JSON.parse(localStorage.getItem("points") ?? 0);
   pointBlock.textContent = points;
+
+  console.log(info)
 
   // Слева
   gameBtnSkip.addEventListener("click", (e) => {
