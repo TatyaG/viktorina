@@ -21,8 +21,6 @@ export function createGameSymbols(info, number) {
     let points = JSON.parse(localStorage.getItem('points'));
     pointBlock.textContent = points;
 
-    console.log(info)
-
     const questions = Object.values(info[number].questions)
 
     questions.forEach(item => {
@@ -75,7 +73,11 @@ export function createGameSymbols(info, number) {
                                 e.preventDefault();
                                 document.body.innerHTML = '';
                                 if (info.length === 1 || number === info.length - 1) {
-                                    createPuzzleGame();
+                                    axios.get('php/get_artgallery.php')
+                                        .then(response => {
+                                            createPuzzleGame(response.data);
+                                        })
+                                        .catch(error => console.log(error))
                                 } else {
                                     createGameSymbols(info, number + 1);
                                 }
@@ -96,15 +98,19 @@ export function createGameSymbols(info, number) {
                             point.textContent = points;
                             point.classList.add('animation');
 
-                        deniska.gameBtnNext.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            document.body.innerHTML = '';
-                            if (info.length === 1 || number === info.length - 1) {
-                                createPuzzleGame();
-                            } else {
-                                createGameSymbols(info, number + 1);
-                            }
-                        })
+                            deniska.gameBtnNext.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                document.body.innerHTML = '';
+                                if (info.length === 1 || number === info.length - 1) {
+                                    axios.get('php/get_artgallery.php')
+                                    .then(response => {
+                                        createPuzzleGame(response.data);
+                                    })
+                                    .catch(error => console.log(error))
+                                } else {
+                                    createGameSymbols(info, number + 1);
+                                }
+                            })
 
                             setTimeout(() => {
                                 document.querySelector('.game__btn--skip').style.display = 'none';
@@ -321,9 +327,13 @@ export function createGameSymbols(info, number) {
 
         yesBtn.addEventListener('click', (e) => {
             document.body.innerHTML = '';
-            console.log(info.length, number)
             if (info.length === 1 || number === info.length - 1) {
-                createPuzzleGame();
+                axios.get('php/get_artgallery.php')
+                    .then(response => {
+                        createPuzzleGame(response.data);
+                    })
+                    .catch(error => console.log(error))
+
             } else {
                 createGameSymbols(info, number + 1);
             }
@@ -345,7 +355,11 @@ export function createGameSymbols(info, number) {
         document.body.innerHTML = '';
         console.log(info.length, number)
         if (info.length === 1 || number === info.length - 1) {
-            createPuzzleGame();
+            axios.get('php/get_artgallery.php')
+            .then(response => {
+                createPuzzleGame(response.data);
+            })
+            .catch(error => console.log(error))
         } else {
             createGameSymbols(info, number + 1);
         }
