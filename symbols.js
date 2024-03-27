@@ -75,7 +75,7 @@ export function createGameSymbols(info, number) {
                                 if (info.length === 1 || number === info.length - 1) {
                                     axios.get('php/get_artgallery.php')
                                         .then(response => {
-                                            createPuzzleGame(response.data);
+                                            createPuzzleGame(response.data, 0);
                                         })
                                         .catch(error => console.log(error))
                                 } else {
@@ -104,7 +104,7 @@ export function createGameSymbols(info, number) {
                                 if (info.length === 1 || number === info.length - 1) {
                                     axios.get('php/get_artgallery.php')
                                     .then(response => {
-                                        createPuzzleGame(response.data);
+                                        createPuzzleGame(response.data, 0);
                                     })
                                     .catch(error => console.log(error))
                                 } else {
@@ -330,7 +330,7 @@ export function createGameSymbols(info, number) {
             if (info.length === 1 || number === info.length - 1) {
                 axios.get('php/get_artgallery.php')
                     .then(response => {
-                        createPuzzleGame(response.data);
+                        createPuzzleGame(response.data, 0);
                     })
                     .catch(error => console.log(error))
 
@@ -357,7 +357,7 @@ export function createGameSymbols(info, number) {
         if (info.length === 1 || number === info.length - 1) {
             axios.get('php/get_artgallery.php')
             .then(response => {
-                createPuzzleGame(response.data);
+                createPuzzleGame(response.data, 0);
             })
             .catch(error => console.log(error))
         } else {
