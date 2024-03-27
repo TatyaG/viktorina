@@ -212,7 +212,7 @@ export function createCrossword() {
     axios.get('php/get_symbols.php')
     .then(response => {
         console.log(response)
-         const symbols = createGameSymbols(response.data);
+         const symbols = createGameSymbols(response.data, 0);
         document.body.append(symbols);
     })
     .catch(error => {
@@ -318,7 +318,7 @@ export function createCrossword() {
     axios.get('php/get_symbols.php')
     .then(response => {
         console.log(response)
-         const symbols = createGameSymbols(response.data);
+         const symbols = createGameSymbols(response.data, 0);
         document.body.append(symbols);
     })
     .catch(error => {
