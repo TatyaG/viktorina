@@ -78,6 +78,9 @@ export function createFindExtra() {
         const picture = createPicture(response.data, 0);
         document.body.append(picture);
       })
+      .catch(error => {
+        console.log(error)
+      })
 
   });
 
@@ -393,6 +396,9 @@ export function createFindExtra() {
         .then(response => {
           const picture = createPicture(response.data, 0);
           document.body.append(picture);
+        })
+        .catch(error => {
+          console.log(error)
         })
     });
 
