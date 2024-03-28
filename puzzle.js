@@ -22,7 +22,7 @@ export function createPuzzleGame(info, number) {
   let points = JSON.parse(localStorage.getItem("points") ?? 0);
   pointBlock.textContent = points;
 
-  console.log(info)
+  console.log(info);
 
   // Слева
   gameBtnSkip.addEventListener("click", (e) => {
@@ -62,8 +62,12 @@ export function createPuzzleGame(info, number) {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const findExtra = createFindExtra();
-      document.body.append(findExtra);
+      if (info.length === 1 || number === info.length - 1) {
+        const findExtra = createFindExtra();
+        document.body.append(findExtra);
+      } else {
+        createPuzzleGame(info, number + 1);
+      }
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -107,8 +111,13 @@ export function createPuzzleGame(info, number) {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const findExtra = createFindExtra();
-    document.body.append(findExtra);
+    console.log(info.length, number);
+    if (info.length === 1 || number === info.length - 1) {
+      const findExtra = createFindExtra();
+      document.body.append(findExtra);
+    } else {
+      createPuzzleGame(info, number + 1);
+    }
   });
 
   document.body.append(game);
@@ -125,12 +134,15 @@ export function createPuzzleGame(info, number) {
   const pazzleNameText = document.createElement("p");
   const pazzleNameAuthor = document.createElement("p");
 
-  pazzleNameImg.src = "img/pazzle-nameImg.png";
-  pazzleImg.src = "img/pazzle.webp";
+  // pazzleNameImg.src = "img/pazzle-nameImg.png";
+  pazzleImg.src =  info[number].picture;
+  // pazzleImg.src = "img/pazzle.webp";
   pazzleImg.style.width = "100%";
   pazzleImg.style.height = "100%";
-  pazzleNameText.textContent = "Утро в сосновом лесу";
-  pazzleNameAuthor.textContent = "И. И. Шишкин";
+  pazzleNameText.innerHTML = info[number].name;
+  pazzleNameAuthor.innerHTML = info[number].artist;
+  // pazzleNameText.textContent = "Утро в сосновом лесу";
+  // pazzleNameAuthor.textContent = "И. И. Шишкин";
 
   pazzleNameWrap.classList.add("pazzle__name-wrap", "flex");
   pazzleNameImg.classList.add("pazzle__name-img");
@@ -168,7 +180,8 @@ export function createPuzzleGame(info, number) {
 
     for (let i = 0; i < pieces.length; i++) {
       let tile = document.createElement("img");
-      tile.src = "./img/puzzle" + pieces[i] + ".jpg";
+      tile.src = `./img/puzzle/${info[number].ID}puzzle${pieces[i]}.webp`;
+      // tile.src = "./img/puzzle" + pieces[i] + ".jpg";
 
       if (tabletMediaQueryList.matches) {
         tile.addEventListener("touchstart", touchStart, false); // Начало касания на изображении
@@ -283,8 +296,12 @@ export function createPuzzleGame(info, number) {
               game.append(deniskaSuccess.deniska);
               deniskaSuccess.gameBtnNext.addEventListener("click", (e) => {
                 document.body.innerHTML = "";
-                const findExtra = createFindExtra();
-                document.body.append(findExtra);
+                if (info.length === 1 || number === info.length - 1) {
+                  const findExtra = createFindExtra();
+                  document.body.append(findExtra);
+                } else {
+                  createPuzzleGame(info, number + 1);
+                }
               });
             } else {
               gameRight.append(deniskaSuccess.deniska);
@@ -305,7 +322,7 @@ export function createPuzzleGame(info, number) {
       }
       document.getElementById("pieces").append(tile);
     }
-  };
+  }
 
   // -----------------
 
@@ -336,6 +353,6 @@ export function createPuzzleGame(info, number) {
   }
   mediaQuery.addListener(handleTabletChange);
   handleTabletChange(mediaQuery);
-};
+}
 
-// createPuzzleGame();
+createPuzzleGame();
