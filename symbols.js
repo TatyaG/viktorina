@@ -97,6 +97,7 @@ export function createGameSymbols(info, number) {
 
                         }
                         else {
+                            const deniska = createDeniska('Отлично! Задание выполнено. Тебе начислен 1 балл.');
                             let points = JSON.parse(localStorage.getItem('points'));
                             points += 1;
                             localStorage.setItem('points', points)
@@ -124,9 +125,9 @@ export function createGameSymbols(info, number) {
                             })
 
                             setTimeout(() => {
-                                document.querySelector('.game__btn--skip').style.display = 'none';
-                                document.querySelector('.game__btn--next').style.display = 'block';
                                 document.body.append(deniska.deniska);
+                                document.querySelector('.game__btn--skip').style.display = 'none';
+                                document.querySelector('.game__btn--next').style.display = 'block';                              
                             }, 800)
 
 
