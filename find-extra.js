@@ -33,7 +33,7 @@ export function createFindExtra() {
   //   Слева
 
   const assistantPerrot = createTalker(
-    "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик». Мы спрятали на ней 5 лишних элементов. Найди их и получи монету."
+    "Перед тобой картина известного русского художника В.Д. Поленова «Московский дворик».  Мы спрятали на ней 5 лишних элементов. Твоя задача - найти их. "
   );
   const gameBtnSkip = document.createElement("button");
   const gameBtnNext = document.createElement("button");
@@ -72,9 +72,17 @@ export function createFindExtra() {
   btnWrap.append(gameBtnSkip, gameBtnAccept, gameBtnNext);
 
   gameBtnNext.addEventListener("click", (e) => {
-    document.body.innerHTML = "";
-    const picture = createPicture();
-    document.body.append(picture);
+    
+    axios.get('php/get_getpicture.php')
+      .then(response => {
+        document.body.innerHTML = "";
+        const picture = createPicture(response.data, 0);
+        document.body.append(picture);
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
   });
 
   // Справа
@@ -384,9 +392,16 @@ export function createFindExtra() {
 
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      document.body.innerHTML = "";
-      const picture = createPicture();
-      document.body.append(picture);
+      
+      axios.get('php/get_getpicture.php')
+        .then(response => {
+          document.body.innerHTML = "";
+          const picture = createPicture(response.data, 0);
+          document.body.append(picture);
+        })
+        .catch(error => {
+          console.log(error)
+        })
     });
 
     noBtn.addEventListener("click", (e) => {

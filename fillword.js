@@ -1,9 +1,10 @@
 import createTalker from "./talker.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
+import { labyrinthGame } from "./labyrinth.js";
 
 export default function createFillword() {
-  console.log("213213");
+  // console.log("213213");
   // Данные для заполнения таблицы
   const data = [
     "Я",
@@ -202,6 +203,14 @@ export default function createFillword() {
               document
                 .querySelector(".game__btn--next")
                 .classList.add("game__btn--next-fillword");
+              document
+                .querySelector(".game__btn--next")
+                .addEventListener("click", (e) => {
+                  document.body.innerHTML = "";
+                  labyrinthGame();
+                  // const labyrinth = labyrinthGame();
+                  // document.body.append(labyrinth);
+                });
             }, 800);
             return;
           } else {
@@ -218,6 +227,14 @@ export default function createFillword() {
                 document
                   .querySelector(".game__btn--next")
                   .classList.add("game__btn--next-fillword");
+                document
+                  .querySelector(".game__btn--next")
+                  .addEventListener("click", (e) => {
+                    document.body.innerHTML = "";
+                    labyrinthGame();
+                    // const labyrinth = labyrinthGame();
+                    // document.body.append(labyrinth);
+                  });
               }, 800);
             }
           }
@@ -225,7 +242,7 @@ export default function createFillword() {
         });
       }
     } else {
-      console.log("click");
+      // console.log("click");
       for (let node of document.querySelectorAll(".cells")) {
         node.addEventListener("mousedown", function (event) {
           console.log("PK");
@@ -297,6 +314,7 @@ export default function createFillword() {
     }
 
     function toggleHighlight(node) {
+      node.style.background = "#D3D3D3";
       str += node.textContent;
       nodeAr.push(node);
     }
@@ -416,6 +434,9 @@ export default function createFillword() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
+      labyrinthGame();
+      // const labyrinth = labyrinthGame();
+      // document.body.append(labyrinth);
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -437,10 +458,17 @@ export default function createFillword() {
     "btn-reset",
     "game__btn--next-fillword"
   );
-  console.log(gameBtnNext);
+  // console.log(gameBtnNext);
 
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
+
+  gameBtnNext.addEventListener("click", (e) => {
+    document.body.innerHTML = "";
+    labyrinthGame();
+    // const labyrinth = labyrinthGame();
+    // document.body.append(labyrinth);
+  });
 
   //Добавляем questionWrap в GAMERIGHT
   gameRight.append(questionWrap);
@@ -466,13 +494,14 @@ export default function createFillword() {
   handleTabletChange(mediaQuery);
 
   //Правила для мобилки
-  const mediaQuery2 = window.matchMedia("(max-width: 768px");
+  const mediaQuery2 = window.matchMedia("(max-width: 768px)");
 
   function handleTabletChange2(e) {
     if (e.matches) {
       const slideBtn = document.querySelector(".rules__btn");
 
       questionWrap.style.display = "none";
+
       gameCenter.style.display = "none";
 
       //Создаем кнопку стрелку на второй странице
@@ -652,6 +681,9 @@ export default function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          labyrinthGame();
+          // const labyrinth = labyrinthGame();
+          // document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -696,6 +728,9 @@ export default function createFillword() {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
+          labyrinthGame();
+          // const labyrinth = labyrinthGame();
+          // document.body.append(labyrinth);
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -711,6 +746,7 @@ export default function createFillword() {
         gameBtnSkipMobile.style.display = "block";
         questionList.classList.remove("question_list-scroll");
         rulesBtnImg.style.display = "block";
+
         questionWrap.append(slide2Btn);
       });
 
@@ -730,4 +766,6 @@ export default function createFillword() {
   return game;
 }
 
-/* createFillword(); */
+/*
+ createFillword();
+*/

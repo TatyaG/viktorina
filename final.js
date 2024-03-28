@@ -51,10 +51,10 @@ export function createFinal() {
   perrotImg.src = "img/final-parrot.png";
 
   assistantPerrot.classList.add("final_assistant-perrot");
-  perrotName.classList.add("perrot_name", "final_assistent-name");
-  perrotText.classList.add("perrot_text", "final_assistent-text");
+  perrotName.classList.add("final_assistent-name");
+  perrotText.classList.add("final_assistent-text");
   perrotButtonDiv.classList.add("perrot-btn", "flex");
-  perrotButtonText.classList.add("perrot_textbtn", "final_assistent-text");
+  perrotButtonText.classList.add("perrot_textbtn");
   perrotButton.classList.add("perrot-btn_img");
   perrotButtonMobile.classList.add(
     "btn-reset",
@@ -65,13 +65,18 @@ export function createFinal() {
   );
 
   perrotName.textContent = "Говоруша";
-  perrotText.textContent =
-    "Хочешь узнать больше об известных личностях и музеях Чувашии?";
+  perrotText.textContent = "Хочешь узнать больше о Чувашии?";
   perrotButtonText.textContent = "Жми сюда";
   perrotButtonMobile.textContent = "Далее";
 
-  perrotButton.setAttribute("href", "docs/Известные_личности_и_музеи_Чувашии.pdf");
-  perrotButton.setAttribute("download", "Известные личности и музеи Чувашии");
+  perrotButton.setAttribute(
+    "href",
+    "docs/Известные_личности_и_музеи_Чувашии.pdf"
+  );
+  perrotButton.setAttribute(
+    "download",
+    "Известные личности и музеи Чувашии.pdf"
+  );
 
   // Центр
   const centerDiv = document.createElement("div");
@@ -81,9 +86,9 @@ export function createFinal() {
   centerText.textContent = "Конец игры";
 
   const pointBlock = createPoint();
-    let points = JSON.parse(localStorage.getItem("points") ?? 0);
-  // let points = 8;
-  pointBlock.textContent = points + ` из 9`;
+  let points = JSON.parse(localStorage.getItem("points") ?? 0);
+  // let points = 18;
+  pointBlock.textContent = points + ` баллов`;
   pointBlock.classList.add("game__point_final");
 
   const centerButtons = document.createElement("div");
@@ -144,11 +149,12 @@ export function createFinal() {
   deniska.classList.add("final_deniska");
   deniskaName.classList.add("deniska_name", "final_assistent-name");
   deniskaText.classList.add("deniska_text", "final_assistent-text");
-    deniskaButtonMobile.classList.add(
+  deniskaButtonMobile.classList.add(
     "btn-reset",
     "game-crossword__btn",
     "game-crossword__btn--next",
-    "deniska-btn_mobile", "hidden"
+    "deniska-btn_mobile",
+    "hidden"
   );
 
   deniskaName.textContent = "Дениска";
@@ -164,7 +170,7 @@ export function createFinal() {
     gameBtnTakePrize.classList.add("hidden");
     deniskaImg.src = "img/final-boySad.png";
     deniskaText.textContent =
-      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру снова.";
+      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру заново.";
     deniska.style.marginBottom = "40px";
     centerImg.style.height = "140%";
     centerImg.style.top = "-21%";
@@ -179,11 +185,11 @@ export function createFinal() {
   }
 
   // Скачивание файла по клику на кнопку
-  function downloadPrize (srcFile, fileName) {
-    let element = document.createElement('a');
-    element.setAttribute('href', srcFile);
-    element.setAttribute('download', fileName);
-    element.style.display = 'none';
+  function downloadPrize(srcFile, fileName) {
+    let element = document.createElement("a");
+    element.setAttribute("href", srcFile);
+    element.setAttribute("download", fileName);
+    element.style.display = "none";
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
@@ -192,12 +198,12 @@ export function createFinal() {
   if (points >= 4 && points <= 6) {
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
-      downloadPrize ("docs/Phone wallpaper_3.zip", "Phone wallpaper_3.zip");
+      downloadPrize("docs/Phone wallpaper_3.zip", "Phone wallpaper_3.zip");
     });
-  } else if (points >= 7 && points <= 9) {
+  } else if (points >= 7) {
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
-      downloadPrize ("docs/Phone wallpaper_9.zip", "Phone wallpaper_9.zip");
+      downloadPrize("docs/Phone wallpaper_9.zip", "Phone wallpaper_9.zip");
     });
   }
 
@@ -257,7 +263,6 @@ export function createFinal() {
   mediaQuery1.addListener(handleTabletChange1);
   handleTabletChange1(mediaQuery1);
 
-
   const mediaQuery = window.matchMedia("(max-width: 1600px)");
   function handleTabletChange(e) {
     if (e.matches) {
@@ -277,7 +282,6 @@ export function createFinal() {
   mediaQuery.addListener(handleTabletChange);
   handleTabletChange(mediaQuery);
 
-
   const mediaQuery2 = window.matchMedia("(max-width: 1440px)");
   function handleTabletChange2(e) {
     if (e.matches) {
@@ -292,7 +296,6 @@ export function createFinal() {
   }
   mediaQuery2.addListener(handleTabletChange2);
   handleTabletChange2(mediaQuery2);
-
 
   const mediaQuery3 = window.matchMedia("(max-width: 1366px)");
   function handleTabletChange3(e) {
@@ -311,7 +314,6 @@ export function createFinal() {
   mediaQuery3.addListener(handleTabletChange3);
   handleTabletChange3(mediaQuery3);
 
-
   const mediaQuery4 = window.matchMedia("(max-width: 1300px)");
   function handleTabletChange4(e) {
     if (e.matches) {
@@ -322,7 +324,6 @@ export function createFinal() {
   }
   mediaQuery4.addListener(handleTabletChange4);
   handleTabletChange4(mediaQuery4);
-
 
   const mediaQuery5 = window.matchMedia("(max-width: 1024px)");
   function handleTabletChange5(e) {
@@ -338,7 +339,6 @@ export function createFinal() {
   mediaQuery5.addListener(handleTabletChange5);
   handleTabletChange5(mediaQuery5);
 
-
   const mediaQuery6 = window.matchMedia("(max-width: 768px)");
   function handleTabletChange6(e) {
     if (e.matches) {
@@ -352,8 +352,14 @@ export function createFinal() {
       const buttonDownload = document.createElement("a");
       buttonDownload.classList.add("btn-download", "hidden");
       final.append(buttonDownload);
-      buttonDownload.setAttribute("href", "docs/Известные_личности_и_музеи_Чувашии.pdf");
-      buttonDownload.setAttribute("download", "Известные личности и музеи Чувашии");
+      buttonDownload.setAttribute(
+        "href",
+        "docs/Известные_личности_и_музеи_Чувашии.pdf"
+      );
+      buttonDownload.setAttribute(
+        "download",
+        "Известные личности и музеи Чувашии.pdf"
+      );
 
       perrotButtonMobile.addEventListener("click", (e) => {
         e.preventDefault();
@@ -375,20 +381,19 @@ export function createFinal() {
         finalContent.style.marginBottom = "auto";
         finalCenter.append(gameBtnPlayAgain);
 
-        deniskaName.style.top = "36%";
-        deniskaText.style.top = "53%";
+        deniskaName.style.top = "31.5%";
+        deniskaText.style.top = "48%";
         deniskaText.style.left = "10%";
         gameBtnPlayAgain.style.right = "auto";
         pointBlock.style.top = "41%";
       } else {
         deniskaImg.src = "img/final-boySmile_mobile.png";
-        deniskaName.style.top = "38%";
+        deniskaName.style.top = "33%";
       }
     }
   }
   mediaQuery6.addListener(handleTabletChange6);
   handleTabletChange6(mediaQuery6);
-
 
   const mediaQuery7 = window.matchMedia("(max-width: 576px)");
   function handleTabletChange7(e) {
@@ -398,47 +403,44 @@ export function createFinal() {
       finalContent.append(centerImg);
 
       if (points >= 0 && points <= 3) {
-        pointBlock.style.top = "31%";
-        gameBtnPlayAgain.style.top = "45%";
+        pointBlock.style.top = "35%";
+        gameBtnPlayAgain.style.top = "50%";
         finalCenter.style.width = "80%";
         gameBtnPlayAgain.style.padding = "16px 35.5px";
-      } 
+      }
     }
   }
   mediaQuery7.addListener(handleTabletChange7);
   handleTabletChange7(mediaQuery7);
 
-
-  const mediaQuery10 = window.matchMedia("(max-width: 480px)");
-  function handleTabletChange10(e) {
-    if (e.matches) {
-      if (points >= 0 && points <= 3) {
-        centerImg.style.top = "23%";
-      } 
-    }
-  }
-  mediaQuery10.addListener(handleTabletChange10);
-  handleTabletChange10(mediaQuery10);
-
+  // const mediaQuery10 = window.matchMedia("(max-width: 480px)");
+  // function handleTabletChange10(e) {
+  //   if (e.matches) {
+  //     if (points >= 0 && points <= 3) {
+  //       centerImg.style.top = "23%";
+  //     }
+  //   }
+  // }
+  // mediaQuery10.addListener(handleTabletChange10);
+  // handleTabletChange10(mediaQuery10);
 
   const mediaQuery8 = window.matchMedia("(max-width: 375px)");
   function handleTabletChange8(e) {
     if (e.matches) {
       if (points >= 0 && points <= 3) {
-        centerImg.style.top = "20.5%";
+        centerImg.style.top = "24.5%";
         deniska.style.marginBottom = "71px";
         finalRight.style.paddingTop = "27px";
-        centerDiv.style.marginTop = "79px";
+        // centerDiv.style.marginTop = "130px";
         centerText.style.marginBottom = "172px";
-        pointBlock.style.top = "45%";
+        pointBlock.style.top = "30%";
         finalCenter.style.marginBottom = "160px";
-        gameBtnPlayAgain.style.top = "70%";
-      } 
+        gameBtnPlayAgain.style.top = "80%";
+      }
     }
   }
   mediaQuery8.addListener(handleTabletChange8);
   handleTabletChange8(mediaQuery8);
-
 
   const mediaQuery9 = window.matchMedia("(max-width: 360px)");
   function handleTabletChange9(e) {
@@ -448,9 +450,9 @@ export function createFinal() {
         finalRight.style.paddingTop = "16.6px";
         centerText.style.marginBottom = "144px";
         centerImg.style.top = "21.5%";
-        gameBtnPlayAgain.style.top = "82%";
-        pointBlock.style.top = "54%";
-      } 
+        gameBtnPlayAgain.style.top = "73%";
+        pointBlock.style.top = "35%";
+      }
     }
   }
   mediaQuery9.addListener(handleTabletChange9);

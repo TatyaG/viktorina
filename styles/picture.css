@@ -206,7 +206,7 @@ h2 {
 .modal-wrapper {
   position: fixed;
   right: 0;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -429,6 +429,9 @@ h2 {
   .pictures_wrapper {
     display: none;
   }
+  /* .game__block-picture{
+    overflow-y: hidden;
+  } */
   .game__rules-picture {
     top: 6rem;
   }
