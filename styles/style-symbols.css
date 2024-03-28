@@ -254,8 +254,10 @@ input {
     .symbol__radio {
         padding: 15px 8px;
         font-size: 12px;
-        border-image-slice: 50%;
         border: 1px solid #814073;
+        border-image: url(../img/border-btn.webp);
+        border-image-slice: 50%;
+        border-image-width: 100%;
     }
 
 
