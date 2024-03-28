@@ -367,7 +367,7 @@ export function createGameSymbols(info, number) {
     })
 
     // const gameRules = createTalker('Что обозначают эти символы? Выбери правильный вариант ответа.');
-    const gameRules = createTalker(info[number].title);
+    const gameRules = createTalker(info[number].description);
 
     game.classList.add('game', 'symbols');
     gameTitle.classList.add('game__title');
@@ -403,7 +403,9 @@ export function createGameSymbols(info, number) {
 
         // gameBtnNext.remove();
 
-        const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
+        const rulesBlock = createRulesTablet(info[number].description);
+
+        // const rulesBlock = createRulesTablet('Что обозначают эти символы? Выбери правильный вариант ответа.');
 
         game.append(rulesBlock);
         gameRight.style.display = 'block';
