@@ -189,6 +189,10 @@
     .question__radio {
         font-size: 16px;
     }
+
+    .game.question {
+        height: auto;
+    }
 }
 
 @media (max-width: 1024px) {
