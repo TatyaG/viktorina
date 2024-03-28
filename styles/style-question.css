@@ -276,6 +276,8 @@
     }
 
     .game.question .game__btn {
+        position: absolute;
+        bottom: 20px;
         z-index: 4;
     }
 
