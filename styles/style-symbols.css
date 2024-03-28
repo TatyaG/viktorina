@@ -244,6 +244,7 @@ input {
 
     .symbols__item {
         padding: 60px 28px;
+        padding-top: 40px;
     }
 
     .symbol__img {
@@ -253,7 +254,11 @@ input {
     .symbol__radio {
         padding: 15px 8px;
         font-size: 12px;
+        border-image-slice: 50%;
+        border: 1px solid #814073;
     }
+
+
 
 }
 
