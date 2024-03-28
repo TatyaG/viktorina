@@ -136,9 +136,9 @@ input {
     box-shadow: 6px 11px 4px 0px #A72F2F inset, -6px -10px 4px 0px #FF9696 inset;
 }
 
-.symbol__img {
+/* .symbol__img {
     width: 35%;
-}
+} */
 
 @media (max-width: 1600px) {
     .symbols .game__block {
