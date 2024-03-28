@@ -72,17 +72,18 @@ export function createFindExtra() {
   btnWrap.append(gameBtnSkip, gameBtnAccept, gameBtnNext);
 
   gameBtnNext.addEventListener("click", (e) => {
-    
-    axios.get('php/get_getpicture.php')
-      .then(response => {
-        document.body.innerHTML = "";
-        const picture = createPicture(response.data, 0);
-        document.body.append(picture);
+    document.body.innerHTML = "";
+    axios
+      .get("php/get_getpicture.php")
+      .then((response) => {
+        if (response.data.length != 0) {
+          const picture = createPicture(response.data, 0);
+          document.body.append(picture);
+        } else createGameQuestion(response.data, 0);
       })
-      .catch(error => {
-        console.log(error)
-      })
-
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   // Справа
@@ -392,16 +393,18 @@ export function createFindExtra() {
 
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      
-      axios.get('php/get_getpicture.php')
-        .then(response => {
-          document.body.innerHTML = "";
-          const picture = createPicture(response.data, 0);
-          document.body.append(picture);
+      document.body.innerHTML = "";
+      axios
+        .get("php/get_getpicture.php")
+        .then((response) => {
+          if (response.data.length != 0) {
+            const picture = createPicture(response.data, 0);
+            document.body.append(picture);
+          } else createGameQuestion(response.data, 0);
         })
-        .catch(error => {
-          console.log(error)
-        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
 
     noBtn.addEventListener("click", (e) => {

@@ -355,4 +355,4 @@ export function createPuzzleGame(info, number) {
   handleTabletChange(mediaQuery);
 }
 
-createPuzzleGame();
+// createPuzzleGame();
