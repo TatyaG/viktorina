@@ -3,6 +3,7 @@ import createDeniska from './deniska.js';
 import createPoint from './point.js';
 import createRulesTablet from './rules-tablet.js';
 import { createPuzzleGame } from './puzzle.js';
+import { createFindExtra } from "./find-extra.js";
 
 
 export function createGameSymbols(info, number) {
@@ -74,8 +75,13 @@ export function createGameSymbols(info, number) {
                                 document.body.innerHTML = '';
                                 if (info.length === 1 || number === info.length - 1) {
                                     axios.get('php/get_artgallery.php')
-                                        .then(response => {
-                                            createPuzzleGame(response.data, 0);
+                                        .then(response => {                                          
+                                            if (response.data.length != 0) {
+                                                createPuzzleGame(response.data, 0);
+                                            } else {
+                                                const findExtra = createFindExtra();
+                                                document.body.append(findExtra);
+                                            }                                           
                                         })
                                         .catch(error => console.log(error))
                                 } else {
@@ -103,10 +109,15 @@ export function createGameSymbols(info, number) {
                                 document.body.innerHTML = '';
                                 if (info.length === 1 || number === info.length - 1) {
                                     axios.get('php/get_artgallery.php')
-                                    .then(response => {
-                                        createPuzzleGame(response.data, 0);
-                                    })
-                                    .catch(error => console.log(error))
+                                        .then(response => {
+                                            if (response.data.length != 0) {
+                                                createPuzzleGame(response.data, 0);
+                                            } else {
+                                                const findExtra = createFindExtra();
+                                                document.body.append(findExtra);
+                                            }  
+                                        })
+                                        .catch(error => console.log(error))
                                 } else {
                                     createGameSymbols(info, number + 1);
                                 }
@@ -330,10 +341,14 @@ export function createGameSymbols(info, number) {
             if (info.length === 1 || number === info.length - 1) {
                 axios.get('php/get_artgallery.php')
                     .then(response => {
-                        createPuzzleGame(response.data, 0);
+                        if (response.data.length != 0) {
+                            createPuzzleGame(response.data, 0);
+                        } else {
+                            const findExtra = createFindExtra();
+                            document.body.append(findExtra);
+                        }  
                     })
                     .catch(error => console.log(error))
-
             } else {
                 createGameSymbols(info, number + 1);
             }
@@ -356,10 +371,15 @@ export function createGameSymbols(info, number) {
         console.log(info.length, number)
         if (info.length === 1 || number === info.length - 1) {
             axios.get('php/get_artgallery.php')
-            .then(response => {
-                createPuzzleGame(response.data, 0);
-            })
-            .catch(error => console.log(error))
+                .then(response => {
+                    if (response.data.length != 0) {
+                        createPuzzleGame(response.data, 0);
+                    } else {
+                        const findExtra = createFindExtra();
+                        document.body.append(findExtra);
+                    }  
+                })
+                .catch(error => console.log(error))
         } else {
             createGameSymbols(info, number + 1);
         }
