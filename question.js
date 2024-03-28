@@ -22,20 +22,20 @@ export function createGameQuestion(info, number) {
   const questionBlock = document.createElement("form");
   const name = document.createElement("p");
 
-  const inputs = [
-    {
-      correct: true,
-      name: "Василий Иванович Чапаев",
-    },
-    {
-      correct: false,
-      name: "Иван Антонович Кочубей",
-    },
-    {
-      correct: false,
-      name: "Семен Михайлович Буденный",
-    },
-  ];
+  // const inputs = [
+  //   {
+  //     correct: true,
+  //     name: "Василий Иванович Чапаев",
+  //   },
+  //   {
+  //     correct: false,
+  //     name: "Иван Антонович Кочубей",
+  //   },
+  //   {
+  //     correct: false,
+  //     name: "Семен Михайлович Буденный",
+  //   },
+  // ];
 
   tv.src = "img/tv.svg";
   video.src = info[number].video;
@@ -50,7 +50,7 @@ export function createGameQuestion(info, number) {
   let points = JSON.parse(localStorage.getItem("points"));
   pointBlock.textContent = points;
 
-  const gameRules = createTalker(info[number].description);
+  const gameRules = createTalker(info[number].task);
 
   // const gameRules = createTalker(
   //   "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
@@ -99,19 +99,21 @@ export function createGameQuestion(info, number) {
     }
   });
 
+  const inputs = Object.values(info[number].variant);
+
   inputs.forEach((el) => {
     const label = document.createElement("label");
     const input = document.createElement("input");
     const button = document.createElement("span");
 
-    button.textContent = el.name;
+    button.textContent = el;
 
     label.classList.add("question__label");
     input.classList.add("question__input");
     button.classList.add("question__radio");
 
-    if (el.correct == true) input.classList.add("question__input--true");
-    if (el.correct == false) input.classList.add("question__input--false");
+    if (el === info[number].rightanswer) input.classList.add("question__input--true")
+    else input.classList.add("question__input--false");
 
     input.type = "radio";
     input.name = "question";
@@ -249,7 +251,7 @@ export function createGameQuestion(info, number) {
 
     gameBtnNext.remove();
 
-    const rulesBlock = createRulesTablet(info[number].description);
+    const rulesBlock = createRulesTablet(info[number].task);
 
     // const rulesBlock = createRulesTablet(
     //   "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
