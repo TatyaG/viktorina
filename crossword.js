@@ -1,4 +1,5 @@
 import {createGameSymbols} from './symbols.js';
+import { createPuzzleGame } from './puzzle.js';
 
 export function createCrossword() {
   const game = document.createElement("section");
@@ -212,8 +213,11 @@ export function createCrossword() {
     axios.get('php/get_symbols.php')
     .then(response => {
         console.log(response)
-         const symbols = createGameSymbols(response.data, 0);
-        document.body.append(symbols);
+        if (response.data.length != 0) {
+          const symbols = createGameSymbols(response.data, 0);
+          document.body.append(symbols);
+        } else createPuzzleGame(response.data, 0);
+            
     })
     .catch(error => {
         console.log(error)
@@ -318,8 +322,10 @@ export function createCrossword() {
     axios.get('php/get_symbols.php')
     .then(response => {
         console.log(response)
-         const symbols = createGameSymbols(response.data, 0);
-        document.body.append(symbols);
+        if (response.data.length != 0) {
+          const symbols = createGameSymbols(response.data, 0);
+          document.body.append(symbols);
+        } else createPuzzleGame(response.data, 0);
     })
     .catch(error => {
         console.log(error)
