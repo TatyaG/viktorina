@@ -38,16 +38,23 @@ export function createGameQuestion(info, number) {
   ];
 
   tv.src = "img/tv.svg";
-  video.src = "img/question.mp4";
+  video.src = info[number].video;
+
+
+
+  // tv.src = "img/tv.svg";
+  // video.src = "img/question.mp4";
 
   const pointBlock = createPoint();
 
   let points = JSON.parse(localStorage.getItem("points"));
   pointBlock.textContent = points;
 
-  const gameRules = createTalker(
-    "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
-  );
+  const gameRules = createTalker(info[number].description);
+
+  // const gameRules = createTalker(
+  //   "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
+  // );
 
   game.classList.add("game", "symbols");
   gameTitle.classList.add("game__title");
@@ -83,8 +90,13 @@ export function createGameQuestion(info, number) {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const fillword = createFillword();
-    document.body.append(fillword);
+    if (info.length === 1 || number === info.length - 1) {
+      const fillword = createFillword();
+      document.body.append(fillword);
+    } else {
+      const question = createGameQuestion(info, number + 1);
+      document.body.append(question);
+    }
   });
 
   inputs.forEach((el) => {
@@ -126,27 +138,37 @@ export function createGameQuestion(info, number) {
         );
 
         deniska.gameBtnNext.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.body.innerHTML = "";
+          e.preventDefault();
+          document.body.innerHTML = "";
+          if (info.length === 1 || number === info.length - 1) {
             const fillword = createFillword();
             document.body.append(fillword);
+          } else {
+            const question = createGameQuestion(info, number + 1);
+            document.body.append(question);
+          }
         })
 
         setTimeout(() => {
           document.body.append(deniska.deniska);
           document.querySelector(".game__btn--skip").style.display = "none";
           document.querySelector('.game__btn--next').style.display = 'block';
-          
+
         }, 800);
       } else {
         const deniska = createDeniska("К сожалению, это неправильный ответ.");
         deniska.rulesDeniska.src = "img/deniska-sad.webp";
 
         deniska.gameBtnNext.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.body.innerHTML = "";
+          e.preventDefault();
+          document.body.innerHTML = "";
+          if (info.length === 1 || number === info.length - 1) {
             const fillword = createFillword();
             document.body.append(fillword);
+          } else {
+            const question = createGameQuestion(info, number + 1);
+            document.body.append(question);
+          }
         })
 
         setTimeout(() => {
@@ -205,8 +227,14 @@ export function createGameQuestion(info, number) {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const fillword = createFillword();
-      document.body.append(fillword);
+      if (info.length === 1 || number === info.length - 1) {
+        const fillword = createFillword();
+        document.body.append(fillword);
+      } else {
+        const question = createGameQuestion(info, number + 1);
+        document.body.append(question);
+      }
+
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -221,9 +249,11 @@ export function createGameQuestion(info, number) {
 
     gameBtnNext.remove();
 
-    const rulesBlock = createRulesTablet(
-      "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
-    );
+    const rulesBlock = createRulesTablet(info[number].description);
+
+    // const rulesBlock = createRulesTablet(
+    //   "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
+    // );
 
     game.append(rulesBlock);
     gameRight.style.display = "block";
