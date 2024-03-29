@@ -3,6 +3,7 @@ import createDeniska from "./deniska.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import { createPicture } from "./picture.js";
+import { createGameQuestion } from "./question.js";
 
 export function createFindExtra() {
   const game = document.createElement("section");

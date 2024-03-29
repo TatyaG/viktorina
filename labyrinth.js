@@ -88,8 +88,13 @@ export const labyrinthGame = () => {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const finalGame = createFinal();
-      document.body.append(finalGame);
+      axios
+        .get("php/get_prize.php")
+        .then((response) => {
+          const finalGame = createFinal(response.data, 0);
+          document.body.append(finalGame);
+        })
+        .catch((error) => console.log(error));
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -121,9 +126,15 @@ export const labyrinthGame = () => {
   gameBtnAccept.textContent = "Принять ответ";
 
   gameBtnNext.addEventListener("click", (e) => {
+    e.preventDefault();
     document.body.innerHTML = "";
-    const finalGame = createFinal();
-    document.body.append(finalGame);
+    axios
+      .get("php/get_prize.php")
+      .then((response) => {
+        const finalGame = createFinal(response.data);
+        document.body.append(finalGame);
+      })
+      .catch((error) => console.log(error));
   });
 
   //GAMECENTER с лабиринтом
@@ -573,12 +584,19 @@ export const labyrinthGame = () => {
 
       slideBtn.addEventListener("click", () => {
         gameBtnNext.textContent = "Продолжить";
+
         gameBtnNext.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          const finalGame = createFinal();
-          document.body.append(finalGame);
+          axios
+            .get("php/get_prize.php")
+            .then((response) => {
+              const finalGame = createFinal(response.data, 0);
+              document.body.append(finalGame);
+            })
+            .catch((error) => console.log(error));
         });
+
         gameBtnSkip.style.display = "block";
         rulesBtnImg.style.display = "block";
       });
