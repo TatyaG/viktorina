@@ -222,7 +222,7 @@
         margin: 0;
     }
 
-    .game__block.active {
+    .question .game__block.active {
         margin-bottom: 70px;
         overflow-y: auto;
     }
