@@ -248,7 +248,7 @@ export function createGameQuestion(info, number) {
 
   gameRules.rulesBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
+    gameBlock.classList.add('active');
     gameBtnNext.remove();
 
     const rulesBlock = createRulesTablet(info[number].task);
