@@ -139,7 +139,7 @@ export function createGameIlempi() {
 
     gameRules.rulesBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        gameBlock.classList('active');
+        gameBlock.classList.add('active');
         const rulesBlock = createRulesTablet('Необходимо из представленных вариантов выбрать элементы национального костюма Чувашии и одеть их на Илемпи.');
 
         game.append(rulesBlock);
