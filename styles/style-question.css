@@ -9,6 +9,7 @@
 
 .game.question {
     height: 100vh;
+    height: 100dvh;
     background-image: url(../img/background-question.webp);
 }
 
@@ -276,6 +277,7 @@
 
     .game.question {
         height: 100vh;
+        height: 100dvh;
     }
 
     .game.question .game__btn {
