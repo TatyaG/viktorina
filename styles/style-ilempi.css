@@ -1075,6 +1075,10 @@ body {
         overflow-x: hidden;
     }
 
+    .ilempi .game__left .game__btn {
+        margin-bottom: 20px;
+    }
+
   
 
 }
