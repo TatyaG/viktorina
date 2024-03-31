@@ -188,6 +188,10 @@ body {
     display: flex;
     justify-content: center;
   }
+    .labyrinth-game {
+        background: url(../img/lab_tab_png.png) no-repeat center center fixed;
+        background-size: 100% 100% !important;
+    }
 }
 
 @media (max-width: 780px) {
@@ -200,4 +204,9 @@ body {
   .game__block-labyrinth {
     flex-direction: column-reverse;
   }
+    .labyrinth-game {
+        background: url(../img/lab_mob_png.png) no-repeat center center fixed;
+        background-size: 100% 100% !important;
+    }
 }
+

@@ -57,8 +57,9 @@ export const labyrinthGame = () => {
   gameBtnSkip.addEventListener("click", (e) => {
     e.preventDefault();
     const deniska = createDeniska(
-      "При переходе на следующую страницу ты не получишь балл за эту игру.Продолжать?"
+      "При переходе на следующую страницу ты не получишь балл за эту игру.\n Продолжать?"
     );
+
     document.body.append(deniska.deniska);
     deniska.rulesDeniska.src = "img/deniska-sad.webp";
     game.classList.add("game-blur");
@@ -304,7 +305,7 @@ export const labyrinthGame = () => {
         let scaleY = canvas.height / rect.height;
         let x = (touch.clientX - rect.left) * scaleX;
         let y = (touch.clientY - rect.top) * scaleY;
-        handleMovement(x, y);
+        handleMovement(x, y-40);
       }
     }
 
@@ -608,4 +609,6 @@ export const labyrinthGame = () => {
   logicLabirint(canvasLab);
 };
 
-// labyrinthGame();
+/*
+ labyrinthGame();
+*/
