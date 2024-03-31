@@ -4,7 +4,7 @@ import createTalker from "./talker.js";
 import createRulesTablet from "./rules-tablet.js";
 import { createFindExtra } from "./find-extra.js";
 
-export function createPuzzleGame() {
+export function createPuzzleGame(info, number) {
   const game = document.createElement("section");
   const boardPuzzle = document.createElement("div");
   const boardPuzzleWrap = document.createElement("div");
@@ -21,6 +21,8 @@ export function createPuzzleGame() {
   const pointBlock = createPoint();
   let points = JSON.parse(localStorage.getItem("points") ?? 0);
   pointBlock.textContent = points;
+
+  console.log(info);
 
   // Слева
   gameBtnSkip.addEventListener("click", (e) => {
@@ -60,8 +62,12 @@ export function createPuzzleGame() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const findExtra = createFindExtra();
-      document.body.append(findExtra);
+      if (info.length === 1 || number === info.length - 1) {
+        const findExtra = createFindExtra();
+        document.body.append(findExtra);
+      } else {
+        createPuzzleGame(info, number + 1);
+      }
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -105,8 +111,13 @@ export function createPuzzleGame() {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const findExtra = createFindExtra();
-    document.body.append(findExtra);
+    console.log(info.length, number);
+    if (info.length === 1 || number === info.length - 1) {
+      const findExtra = createFindExtra();
+      document.body.append(findExtra);
+    } else {
+      createPuzzleGame(info, number + 1);
+    }
   });
 
   document.body.append(game);
@@ -124,11 +135,14 @@ export function createPuzzleGame() {
   const pazzleNameAuthor = document.createElement("p");
 
   pazzleNameImg.src = "img/pazzle-nameImg.png";
-  pazzleImg.src = "img/pazzle.webp";
+  pazzleImg.src =  info[number].picture;
+  // pazzleImg.src = "img/pazzle.webp";
   pazzleImg.style.width = "100%";
   pazzleImg.style.height = "100%";
-  pazzleNameText.textContent = "Утро в сосновом лесу";
-  pazzleNameAuthor.textContent = "И. И. Шишкин";
+  pazzleNameText.innerHTML = info[number].name;
+  pazzleNameAuthor.innerHTML = info[number].artist;
+  // pazzleNameText.textContent = "Утро в сосновом лесу";
+  // pazzleNameAuthor.textContent = "И. И. Шишкин";
 
   pazzleNameWrap.classList.add("pazzle__name-wrap", "flex");
   pazzleNameImg.classList.add("pazzle__name-img");
@@ -166,7 +180,8 @@ export function createPuzzleGame() {
 
     for (let i = 0; i < pieces.length; i++) {
       let tile = document.createElement("img");
-      tile.src = "./img/puzzle" + pieces[i] + ".jpg";
+      tile.src = `./img/puzzle/${info[number].ID}puzzle${pieces[i]}.webp`;
+      // tile.src = "./img/puzzle" + pieces[i] + ".jpg";
 
       if (tabletMediaQueryList.matches) {
         tile.addEventListener("touchstart", touchStart, false); // Начало касания на изображении
@@ -192,13 +207,9 @@ export function createPuzzleGame() {
 
           // Логика обработки перетаскивания, аналогичная dragEnd
           let currImg = currTile.src;
-          let currIndex = pieces.indexOf(
-            currImg.split("puzzle")[1].split(".")[0]
-          );
+          let currIndex = pieces.indexOf(currImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
           let otherImg = otherTile.src;
-          let otherIndex = pieces.indexOf(
-            otherImg.split("puzzle")[1].split(".")[0]
-          );
+          let otherIndex = pieces.indexOf(otherImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
 
           currTile.src = otherImg;
           otherTile.src = currImg;
@@ -237,19 +248,19 @@ export function createPuzzleGame() {
 
         function dragEnd() {
           let currImg = currTile.src;
-          let currIndex = pieces.indexOf(
-            currImg.split("puzzle")[1].split(".")[0]
-          );
+          let currIndex = pieces.indexOf(currImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
+
           let otherImg = otherTile.src;
 
-          let otherIndex = pieces.indexOf(
-            otherImg.split("puzzle")[1].split(".")[0]
-          );
+          let otherIndex = pieces.indexOf(otherImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
+          
           currTile.src = otherImg;
           otherTile.src = currImg;
 
           const currentElement = pieces[currIndex];
           const otherElement = pieces[otherIndex];
+          
+          console.log(currentElement, otherElement)
 
           pieces[otherIndex] = currentElement;
           pieces[currIndex] = otherElement;
@@ -260,10 +271,12 @@ export function createPuzzleGame() {
 
       // Функция для проверки правильного порядка изображений
       function checkPuzzleCompletion() {
+          console.log(originalPieces, pieces)
         return originalPieces.every((item, index) => pieces[index] === item);
       }
 
       function checkPazzle() {
+          console.log(checkPuzzleCompletion())
         if (checkPuzzleCompletion()) {
           const images = document.querySelectorAll("#pieces img");
           images.forEach((image) => {
@@ -281,8 +294,12 @@ export function createPuzzleGame() {
               game.append(deniskaSuccess.deniska);
               deniskaSuccess.gameBtnNext.addEventListener("click", (e) => {
                 document.body.innerHTML = "";
-                const findExtra = createFindExtra();
-                document.body.append(findExtra);
+                if (info.length === 1 || number === info.length - 1) {
+                  const findExtra = createFindExtra();
+                  document.body.append(findExtra);
+                } else {
+                  createPuzzleGame(info, number + 1);
+                }
               });
             } else {
               gameRight.append(deniskaSuccess.deniska);
@@ -303,7 +320,7 @@ export function createPuzzleGame() {
       }
       document.getElementById("pieces").append(tile);
     }
-  };
+  }
 
   // -----------------
 
@@ -334,6 +351,6 @@ export function createPuzzleGame() {
   }
   mediaQuery.addListener(handleTabletChange);
   handleTabletChange(mediaQuery);
-};
+}
 
-// createPuzzleGame();
+

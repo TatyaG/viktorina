@@ -236,6 +236,7 @@ body {
     position: absolute;
     right: 82px;
     bottom: 40px;
+    z-index: 3;
 }
 
 .deniska .rules__img {
@@ -901,6 +902,7 @@ body {
     .game {
         padding: 12px 20px;
         height: 100vh;
+        height: 100dvh;
     }
 
     .ilempi .game__block {
@@ -1066,6 +1068,15 @@ body {
     .ilempi .game__rules {
         top: 30%;
     
+    }
+
+    .ilempi .game__block.active {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .ilempi .game__left .game__btn {
+        margin-bottom: 20px;
     }
 
   

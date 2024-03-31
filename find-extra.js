@@ -3,6 +3,7 @@ import createDeniska from "./deniska.js";
 import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import { createPicture } from "./picture.js";
+import { createGameQuestion } from "./question.js";
 
 export function createFindExtra() {
   const game = document.createElement("section");
@@ -73,8 +74,17 @@ export function createFindExtra() {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const picture = createPicture();
-    document.body.append(picture);
+    axios
+      .get("php/get_getpicture.php")
+      .then((response) => {
+        if (response.data.length != 0) {
+          const picture = createPicture(response.data, 0);
+          document.body.append(picture);
+        } else createGameQuestion(response.data, 0);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   // Справа
@@ -385,8 +395,17 @@ export function createFindExtra() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const picture = createPicture();
-      document.body.append(picture);
+      axios
+        .get("php/get_getpicture.php")
+        .then((response) => {
+          if (response.data.length != 0) {
+            const picture = createPicture(response.data, 0);
+            document.body.append(picture);
+          } else createGameQuestion(response.data, 0);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
 
     noBtn.addEventListener("click", (e) => {

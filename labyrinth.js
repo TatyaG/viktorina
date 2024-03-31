@@ -88,8 +88,13 @@ export const labyrinthGame = () => {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const finalGame = createFinal();
-      document.body.append(finalGame);
+      axios
+        .get("php/get_prize.php")
+        .then((response) => {
+          const finalGame = createFinal(response.data, 0);
+          document.body.append(finalGame);
+        })
+        .catch((error) => console.log(error));
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -121,9 +126,15 @@ export const labyrinthGame = () => {
   gameBtnAccept.textContent = "Принять ответ";
 
   gameBtnNext.addEventListener("click", (e) => {
+    e.preventDefault();
     document.body.innerHTML = "";
-    const finalGame = createFinal();
-    document.body.append(finalGame);
+    axios
+      .get("php/get_prize.php")
+      .then((response) => {
+        const finalGame = createFinal(response.data);
+        document.body.append(finalGame);
+      })
+      .catch((error) => console.log(error));
   });
 
   //GAMECENTER с лабиринтом
@@ -255,11 +266,8 @@ export const labyrinthGame = () => {
       isMouseDown = false;
     });
     window.onload = function () {
-      setTimeout(()=>{
-        context.drawImage(faceImg, x, y);
-        faceImg.classList.add("faceimg");
-      },500)
-
+      context.drawImage(faceImg, x, y);
+      faceImg.classList.add("faceimg");
     };
 
     // Отрисовка фона
@@ -272,10 +280,7 @@ export const labyrinthGame = () => {
         // Рисуем лабиринт
         context.drawImage(mazeImg, 0, 0);
         // Рисуем значок
-        setTimeout(()=>{
-          context.drawImage(faceImg, x, y);
-        },500)
-
+        context.drawImage(faceImg, x, y);
       };
     }
 
@@ -460,7 +465,7 @@ export const labyrinthGame = () => {
           context.arc(
             trajectory[i].x,
             trajectory[i].y,
-            2,
+            5,
             0,
             2 * Math.PI,
             false
@@ -579,12 +584,19 @@ export const labyrinthGame = () => {
 
       slideBtn.addEventListener("click", () => {
         gameBtnNext.textContent = "Продолжить";
+
         gameBtnNext.addEventListener("click", (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          const finalGame = createFinal();
-          document.body.append(finalGame);
+          axios
+            .get("php/get_prize.php")
+            .then((response) => {
+              const finalGame = createFinal(response.data, 0);
+              document.body.append(finalGame);
+            })
+            .catch((error) => console.log(error));
         });
+
         gameBtnSkip.style.display = "block";
         rulesBtnImg.style.display = "block";
       });
@@ -596,4 +608,4 @@ export const labyrinthGame = () => {
   logicLabirint(canvasLab);
 };
 
-/*labyrinthGame();*/
+// labyrinthGame();

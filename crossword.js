@@ -1,4 +1,5 @@
 import {createGameSymbols} from './symbols.js';
+import { createPuzzleGame } from './puzzle.js';
 
 export function createCrossword() {
   const game = document.createElement("section");
@@ -212,13 +213,16 @@ export function createCrossword() {
     axios.get('php/get_symbols.php')
     .then(response => {
         console.log(response)
-         const symbols = createGameSymbols(response.data);
-        document.body.append(symbols);
+        if (response.data.length != 0) {
+          const symbols = createGameSymbols(response.data, 0);
+          document.body.append(symbols);
+        } else createPuzzleGame(response.data, 0);
+            
     })
     .catch(error => {
         console.log(error)
     })
-
+   
     // const final = createFinal();
     // document.body.append(final);
   });
@@ -315,15 +319,17 @@ export function createCrossword() {
   askButtonYes.addEventListener("click", (e) => {
     document.body.innerHTML = "";
 
-  /*  axios.get('php/get_symbols.php')
+    axios.get('php/get_symbols.php')
     .then(response => {
         console.log(response)
-         const symbols = createGameSymbols(response.data);
-        document.body.append(symbols);
+        if (response.data.length != 0) {
+          const symbols = createGameSymbols(response.data, 0);
+          document.body.append(symbols);
+        } else createPuzzleGame(response.data, 0);
     })
     .catch(error => {
         console.log(error)
-    })*/
+    })
   });
 
   // Кроссворд
@@ -601,54 +607,54 @@ export function createCrossword() {
 
         gameBtnAccept.onclick = () => {
           const errorWords = checkWords();
-
+  
           answer1.classList.remove("hidden");
           answer2.classList.remove("hidden");
           answer3.classList.remove("hidden");
           answer4.classList.remove("hidden");
           questionImg.src = "img/crossword-questionWrap_desctop2.png";
-
+  
           if (errorWords.length > 0) {
             errorWords.forEach((index) => {
               switch (index) {
                 case 1:
                   answer1.classList.add("question_answer--error");
-
+  
                   break;
-
+  
                 case 2:
                   answer2.classList.add("question_answer--error");
-
+  
                   break;
-
+  
                 case 3:
                   answer3.classList.add("question_answer--error");
-
+  
                   break;
-
+  
                 case 4:
                   answer4.classList.add("question_answer--error");
-
+  
                   break;
-
+  
                 default:
                   break;
               }
             });
-
+  
             setTimeout(() => {
               fail.classList.remove("hidden");
               fail.style.marginTop = "-170px";
-              gameBlock.style.marginBottom = "0";
+              gameBlock.style.marginBottom = "0";              
             }, 4000);
           } else {
             pointsImg.classList.add("points_img__shine");
-
+  
             let pointsSucsess = JSON.parse(localStorage.getItem("points"));
             pointsSucsess += 1;
             localStorage.setItem("points", pointsSucsess);
             pointsScore.textContent = pointsSucsess;
-
+  
             setTimeout(() => {
               success.classList.remove("hidden");
               success.style.marginTop = "-170px";
@@ -657,10 +663,10 @@ export function createCrossword() {
           }
           // Показываем кнопку "Перейти к следующей игре"
           gameBtnNext.classList.remove("hidden");
-
+  
           // Скрываем кнопку "Принять ответы"
           gameBtnAccept.classList.add("hidden");
-
+  
           setDisabled()
         };
     }
@@ -715,7 +721,7 @@ export function createCrossword() {
 
           setTimeout(() => {
             fail.classList.remove("hidden");
-            gameBlock.style.marginBottom = "0";
+            gameBlock.style.marginBottom = "0";  
             game.style.paddingBottom = "16px";
           }, 4000);
         } else {
@@ -728,7 +734,7 @@ export function createCrossword() {
 
           setTimeout(() => {
             success.classList.remove("hidden");
-            gameBlock.style.marginBottom = "0";
+            gameBlock.style.marginBottom = "0";  
             game.style.paddingBottom = "16px";
           }, 4000);
         }
@@ -789,10 +795,10 @@ export function createCrossword() {
       rulesBtnImg.onclick = function () {
         rules.classList.toggle("opacity");
       };
-
+    
       rulesBtnClose.onclick = function () {
         rules.classList.add("opacity");
-      };
+      };    
 
       // -------
 
