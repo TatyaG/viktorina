@@ -207,13 +207,9 @@ export function createPuzzleGame(info, number) {
 
           // Логика обработки перетаскивания, аналогичная dragEnd
           let currImg = currTile.src;
-          let currIndex = pieces.indexOf(
-            currImg.split("puzzle")[1].split(".")[0]
-          );
+          let currIndex = pieces.indexOf(currImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
           let otherImg = otherTile.src;
-          let otherIndex = pieces.indexOf(
-            otherImg.split("puzzle")[1].split(".")[0]
-          );
+          let otherIndex = pieces.indexOf(otherImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
 
           currTile.src = otherImg;
           otherTile.src = currImg;
