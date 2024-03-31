@@ -416,9 +416,9 @@ body {
 }
 
 @media (max-width: 576px) {
-  /* body {
+  body {
     height: 100vh;
-  } */
+  }
 
   .container {
     padding: 0 20px;

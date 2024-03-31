@@ -355,11 +355,11 @@ export function createFinal(info, number) {
       final.append(buttonDownload);
       buttonDownload.setAttribute(
         "href",
-        "docs/Известные_личности_и_музеи_Чувашии.pdf"
+        "docs/Все о Чувашии_.pdf"
       );
       buttonDownload.setAttribute(
         "download",
-        "Известные личности и музеи Чувашии.pdf"
+        "Все о Чувашии_.pdf"
       );
 
       perrotButtonMobile.addEventListener("click", (e) => {
