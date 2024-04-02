@@ -79,6 +79,7 @@ body {
 
 .perrot_textbtn {
   font-size: 16px;
+  color: rgba(35, 41, 98, 1);
 }
 
 .perrot-btn_img {
@@ -141,6 +142,10 @@ body {
 
 .game__point_final::before {
   left: -20%;
+}
+
+.game__point_mark::before {
+  left: -25%;
 }
 
 .final-right {
@@ -540,6 +545,10 @@ body {
   .game__point_final::before {
     left: -30%;
     top: -37%;
+  }
+
+  .game__point_mark::before {
+    left: -35%;
   }
 
   .final-content {

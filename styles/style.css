@@ -325,6 +325,7 @@ body {
 @media (max-width: 1024px) {
   body {
     background-image: url(../img/background_1_tablet.webp);
+    background-position: center;
   }
 
   .container {
@@ -393,6 +394,12 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   .container {
     padding: 0 20px;
     padding-top: 370px;
@@ -418,6 +425,7 @@ body {
 @media (max-width: 576px) {
   body {
     height: 100vh;
+    background-size: auto;
   }
 
   .container {
@@ -579,5 +587,6 @@ body {
 @media (max-width: 360px) {
   body {
     background-image: url(../img/background_1_mobile.webp);
+    background-size: cover;
   }
 }
