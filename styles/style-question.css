@@ -277,7 +277,7 @@
 
     .game.question {
         height: 100vh;
-        height: 100dvh;
+        /* height: 100dvh; */
     }
 
     .game.question .game__btn {
