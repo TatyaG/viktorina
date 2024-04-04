@@ -70,8 +70,8 @@ export function createFinal(info, number) {
   perrotButtonText.textContent = "Жми сюда";
   perrotButtonMobile.textContent = "Далее";
 
-  perrotButton.setAttribute("href","docs/Все о Чувашии_.pdf");
-  perrotButton.setAttribute("download","Все о Чувашии_.pdf");
+  perrotButton.setAttribute("href", "docs/Все о Чувашии_.pdf");
+  perrotButton.setAttribute("download", "Все о Чувашии_.pdf");
 
   // Центр
   const centerDiv = document.createElement("div");
@@ -84,16 +84,20 @@ export function createFinal(info, number) {
   let points = JSON.parse(localStorage.getItem("points") ?? 0);
   // let points = 18;
 
-   // Изменение слова "балл"
-   let wordForm;
-   if (points % 10 == 1 && points % 100 != 11) {
-     wordForm = "балл";
-     pointBlock.classList.add("game__point_mark");
-   } else if (points % 10 >= 2 && points % 10 <= 4 && (points % 100 < 10 || points % 100 >= 20)) {
-     wordForm = "балла";
-   } else {
-     wordForm = "баллов";
-   }
+  // Изменение слова "балл"
+  let wordForm;
+  if (points % 10 == 1 && points % 100 != 11) {
+    wordForm = "балл";
+    pointBlock.classList.add("game__point_mark");
+  } else if (
+    points % 10 >= 2 &&
+    points % 10 <= 4 &&
+    (points % 100 < 10 || points % 100 >= 20)
+  ) {
+    wordForm = "балла";
+  } else {
+    wordForm = "баллов";
+  }
   pointBlock.textContent = points + " " + wordForm;
 
   // pointBlock.textContent = points + ` баллов`;
@@ -173,6 +177,17 @@ export function createFinal(info, number) {
 
   //   -----------------
 
+  // Скачивание файла по клику на кнопку
+  function downloadPrize(srcFile, fileName) {
+    let element = document.createElement("a");
+    element.setAttribute("href", srcFile);
+    element.setAttribute("download", fileName);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  }
+
   // Логика
   if (points >= 0 && points < info[number].prize_from) {
     gameBtnTakePrize.classList.add("hidden");
@@ -185,35 +200,37 @@ export function createFinal(info, number) {
     finalCenter.style.width = "42%";
     finalRight.append(gameBtnPlayAgain);
     gameBtnPlayAgain.style.top = "-30%";
-  } else {
+  } else if (points >= info[number].prize_from && points <= info[number].prize_to) {
     deniskaImg.src = "img/final-boySmile.png";
     deniskaName.style.top = "47%";
     deniskaName.style.left = "35.5%";
     deniskaText.innerHTML = "Поздравляю! <br> Можешь теперь забрать свой приз!";
-  }
-
-  // Скачивание файла по клику на кнопку
-  function downloadPrize(srcFile, fileName) {
-    let element = document.createElement("a");
-    element.setAttribute("href", srcFile);
-    element.setAttribute("download", fileName);
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  }
-
-  if (points >= info[number].prize_from && points <= info[number].prize_to) {
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
       downloadPrize(info[number].prize, "Wallpaper_3.zip");
     });
   } else if (points >= info[number].superprize_from && points <= info[number].superprize_to) {
+    deniskaImg.src = "img/final-boySmile.png";
+    deniskaName.style.top = "47%";
+    deniskaName.style.left = "35.5%";
+    deniskaText.innerHTML = "Поздравляю! <br> Можешь теперь забрать свой приз!";
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
       downloadPrize(info[number].superprize, "Wallpaper_9.zip");
     });
   }
+
+  // if (points >= info[number].prize_from && points <= info[number].prize_to) {
+  //   gameBtnTakePrize.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     downloadPrize(info[number].prize, "Wallpaper_3.zip");
+  //   });
+  // } else if (points >= info[number].superprize_from && points <= info[number].superprize_to) {
+  //   gameBtnTakePrize.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     downloadPrize(info[number].superprize, "Wallpaper_9.zip");
+  //   });
+  // }
 
   //   Футер
   const footer = document.createElement("footer");
