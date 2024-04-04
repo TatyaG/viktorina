@@ -48,6 +48,7 @@ export function createFindExtra() {
   assistantPerrot.rulesText.classList.add("rules__text_find-extra");
   assistantPerrot.rulesBtn.classList.add("rules__btn_find-extra");
   assistantPerrot.gameRules.classList.add("rules_find-extra");
+  assistantPerrot.rulesTalker.classList.add("rules__img_find-extra");
 
   btnWrap.classList.add("btn-wrap", "flex");
   gameBtnSkip.classList.add(

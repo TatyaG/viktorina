@@ -135,7 +135,7 @@ export function createPuzzleGame(info, number) {
   const pazzleNameAuthor = document.createElement("p");
 
   pazzleNameImg.src = "img/pazzle-nameImg.png";
-  pazzleImg.src =  info[number].picture;
+  pazzleImg.src = info[number].picture;
   // pazzleImg.src = "img/pazzle.webp";
   pazzleImg.style.width = "100%";
   pazzleImg.style.height = "100%";
@@ -207,9 +207,13 @@ export function createPuzzleGame(info, number) {
 
           // Логика обработки перетаскивания, аналогичная dragEnd
           let currImg = currTile.src;
-          let currIndex = pieces.indexOf(currImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
+          let currIndex = pieces.indexOf(
+            currImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
+          );
           let otherImg = otherTile.src;
-          let otherIndex = pieces.indexOf(otherImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
+          let otherIndex = pieces.indexOf(
+            otherImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
+          );
 
           currTile.src = otherImg;
           otherTile.src = currImg;
@@ -248,19 +252,23 @@ export function createPuzzleGame(info, number) {
 
         function dragEnd() {
           let currImg = currTile.src;
-          let currIndex = pieces.indexOf(currImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
+          let currIndex = pieces.indexOf(
+            currImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
+          );
 
           let otherImg = otherTile.src;
 
-          let otherIndex = pieces.indexOf(otherImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
-          
+          let otherIndex = pieces.indexOf(
+            otherImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
+          );
+
           currTile.src = otherImg;
           otherTile.src = currImg;
 
           const currentElement = pieces[currIndex];
           const otherElement = pieces[otherIndex];
-          
-          console.log(currentElement, otherElement)
+
+          console.log(currentElement, otherElement);
 
           pieces[otherIndex] = currentElement;
           pieces[currIndex] = otherElement;
@@ -271,12 +279,12 @@ export function createPuzzleGame(info, number) {
 
       // Функция для проверки правильного порядка изображений
       function checkPuzzleCompletion() {
-          console.log(originalPieces, pieces)
+        console.log(originalPieces, pieces);
         return originalPieces.every((item, index) => pieces[index] === item);
       }
 
       function checkPazzle() {
-          console.log(checkPuzzleCompletion())
+        console.log(checkPuzzleCompletion());
         if (checkPuzzleCompletion()) {
           const images = document.querySelectorAll("#pieces img");
           images.forEach((image) => {
@@ -352,5 +360,3 @@ export function createPuzzleGame(info, number) {
   mediaQuery.addListener(handleTabletChange);
   handleTabletChange(mediaQuery);
 }
-
-
