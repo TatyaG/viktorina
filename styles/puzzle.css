@@ -332,6 +332,11 @@ body {
 }
 
 @media (max-width: 768px) {
+  .pazzle {
+    min-height: 100vh;
+    height: auto;
+    }
+
   .pazzle__right {
     display: none;
   }
@@ -394,6 +399,7 @@ body {
   }
 
   .pazzle__btn-skip {
+    margin-bottom: 10px;
     display: block;
   }
 
