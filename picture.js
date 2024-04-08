@@ -338,7 +338,7 @@ export const createPicture = (info, number) => {
 
   const modalDescriptionTextAuthor = document.createElement("p");
   modalDescriptionTextAuthor.classList.add("modal-text", "author");
-  modalDescriptionTextAuthor.textContent = pictureGame[number].author;
+  modalDescriptionTextAuthor.textContent = pictureGame[number].artist;
 
   game.append(modalWrapper);
   modalWrapper.append(modal, modalDescription);
