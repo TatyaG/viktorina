@@ -129,13 +129,14 @@ export function createPuzzleGame(info, number) {
 
   // Справа
   const pazzleImg = document.createElement("img");
+  const pazzleNameLeft = document.createElement("div");
   const pazzleNameWrap = document.createElement("div");
-  const pazzleNameImg = document.createElement("img");
+  const pazzleNameBottom = document.createElement("div");
   const pazzleNameText = document.createElement("p");
   const pazzleNameAuthor = document.createElement("p");
 
-  pazzleNameImg.src = "img/pazzle-nameImg.png";
-  pazzleImg.src = info[number].picture;
+ 
+  pazzleImg.src =  info[number].picture;
   // pazzleImg.src = "img/pazzle.webp";
   pazzleImg.style.width = "100%";
   pazzleImg.style.height = "100%";
@@ -145,13 +146,15 @@ export function createPuzzleGame(info, number) {
   // pazzleNameAuthor.textContent = "И. И. Шишкин";
 
   pazzleNameWrap.classList.add("pazzle__name-wrap", "flex");
-  pazzleNameImg.classList.add("pazzle__name-img");
+  pazzleNameBottom.classList.add("pazzle__name-bottom");
+  pazzleNameLeft.classList.add("pazzle__name-left");
   pazzleNameText.classList.add("pazzle__name-text");
   pazzleNameAuthor.classList.add("pazzle__name-author");
 
   boardPuzzle.append(pazzleImg);
-  gameRight.append(pazzleNameWrap);
-  pazzleNameWrap.append(pazzleNameImg, pazzleNameText, pazzleNameAuthor);
+  gameRight.append(pazzleNameLeft);
+  pazzleNameLeft.append(pazzleNameWrap);
+  pazzleNameWrap.append(pazzleNameText, pazzleNameAuthor, pazzleNameBottom);
 
   const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
   const tabletMediaQueryList = window.matchMedia("(max-width: 1024px)");
@@ -207,13 +210,9 @@ export function createPuzzleGame(info, number) {
 
           // Логика обработки перетаскивания, аналогичная dragEnd
           let currImg = currTile.src;
-          let currIndex = pieces.indexOf(
-            currImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
-          );
+          let currIndex = pieces.indexOf(currImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
           let otherImg = otherTile.src;
-          let otherIndex = pieces.indexOf(
-            otherImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
-          );
+          let otherIndex = pieces.indexOf(otherImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
 
           currTile.src = otherImg;
           otherTile.src = currImg;
@@ -252,23 +251,19 @@ export function createPuzzleGame(info, number) {
 
         function dragEnd() {
           let currImg = currTile.src;
-          let currIndex = pieces.indexOf(
-            currImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
-          );
+          let currIndex = pieces.indexOf(currImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
 
           let otherImg = otherTile.src;
 
-          let otherIndex = pieces.indexOf(
-            otherImg.split("puzzle/")[1].split("puzzle")[1].split(".")[0]
-          );
-
+          let otherIndex = pieces.indexOf(otherImg.split("puzzle/")[1].split('puzzle')[1].split(".")[0]);
+          
           currTile.src = otherImg;
           otherTile.src = currImg;
 
           const currentElement = pieces[currIndex];
           const otherElement = pieces[otherIndex];
-
-          console.log(currentElement, otherElement);
+          
+          console.log(currentElement, otherElement)
 
           pieces[otherIndex] = currentElement;
           pieces[currIndex] = otherElement;
@@ -279,12 +274,12 @@ export function createPuzzleGame(info, number) {
 
       // Функция для проверки правильного порядка изображений
       function checkPuzzleCompletion() {
-        console.log(originalPieces, pieces);
+          console.log(originalPieces, pieces)
         return originalPieces.every((item, index) => pieces[index] === item);
       }
 
       function checkPazzle() {
-        console.log(checkPuzzleCompletion());
+          console.log(checkPuzzleCompletion())
         if (checkPuzzleCompletion()) {
           const images = document.querySelectorAll("#pieces img");
           images.forEach((image) => {
@@ -360,3 +355,5 @@ export function createPuzzleGame(info, number) {
   mediaQuery.addListener(handleTabletChange);
   handleTabletChange(mediaQuery);
 }
+
+
