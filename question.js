@@ -22,28 +22,13 @@ export function createGameQuestion(info, number) {
   const questionBlock = document.createElement("form");
   const name = document.createElement("p");
 
-  // const inputs = [
-  //   {
-  //     correct: true,
-  //     name: "Василий Иванович Чапаев",
-  //   },
-  //   {
-  //     correct: false,
-  //     name: "Иван Антонович Кочубей",
-  //   },
-  //   {
-  //     correct: false,
-  //     name: "Семен Михайлович Буденный",
-  //   },
-  // ];
 
   tv.src = "img/tv.svg";
   video.src = info[number].video;
+  video.classList.add('tv__poster')
+  video.preload = 'metadata'
+  video.poster = 'img/poster.webp';
 
-
-
-  // tv.src = "img/tv.svg";
-  // video.src = "img/question.mp4";
 
   const pointBlock = createPoint();
 
@@ -71,10 +56,13 @@ export function createGameQuestion(info, number) {
   videoBlock.classList.add("video-block");
   name.classList.add("tv__name");
 
-  name.textContent = "Ксенофонтов Дмитрий, 4 класс";
+  name.textContent = info[number].description;
+  gameSubtitle.innerHTML = info[number].name;
+
+  // name.textContent = "Ксенофонтов Дмитрий, 4 класс";
 
   gameTitle.textContent = "Таланты Чувашской земли";
-  gameSubtitle.innerHTML = "Вопрос от школьника";
+  // gameSubtitle.innerHTML = "Вопрос от школьника";
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
 
@@ -85,8 +73,13 @@ export function createGameQuestion(info, number) {
   gameBlock.append(gameLeft, gameCenter, gameRight);
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
   gameRight.append(questionBlock);
-  gameCenter.append(videoBlock, tv, play);
-  videoBlock.append(video, name);
+
+
+  setTimeout(()=>{
+    gameCenter.append(videoBlock, tv, play);
+    videoBlock.append(video, name);
+  },1000)
+
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
@@ -248,7 +241,6 @@ export function createGameQuestion(info, number) {
 
   gameRules.rulesBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    gameBlock.classList.add('active');
     gameBtnNext.remove();
 
     const rulesBlock = createRulesTablet(info[number].task);
