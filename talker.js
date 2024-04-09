@@ -27,6 +27,7 @@ function createTalker(text) {
         rulesBtn,
         rulesBottom,
         rulesText,
+        rulesTalker
     };
 
 }

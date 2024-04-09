@@ -129,12 +129,13 @@ export function createPuzzleGame(info, number) {
 
   // Справа
   const pazzleImg = document.createElement("img");
+  const pazzleNameLeft = document.createElement("div");
   const pazzleNameWrap = document.createElement("div");
-  const pazzleNameImg = document.createElement("img");
+  const pazzleNameBottom = document.createElement("div");
   const pazzleNameText = document.createElement("p");
   const pazzleNameAuthor = document.createElement("p");
 
-  pazzleNameImg.src = "img/pazzle-nameImg.png";
+ 
   pazzleImg.src =  info[number].picture;
   // pazzleImg.src = "img/pazzle.webp";
   pazzleImg.style.width = "100%";
@@ -145,13 +146,15 @@ export function createPuzzleGame(info, number) {
   // pazzleNameAuthor.textContent = "И. И. Шишкин";
 
   pazzleNameWrap.classList.add("pazzle__name-wrap", "flex");
-  pazzleNameImg.classList.add("pazzle__name-img");
+  pazzleNameBottom.classList.add("pazzle__name-bottom");
+  pazzleNameLeft.classList.add("pazzle__name-left");
   pazzleNameText.classList.add("pazzle__name-text");
   pazzleNameAuthor.classList.add("pazzle__name-author");
 
   boardPuzzle.append(pazzleImg);
-  gameRight.append(pazzleNameWrap);
-  pazzleNameWrap.append(pazzleNameImg, pazzleNameText, pazzleNameAuthor);
+  gameRight.append(pazzleNameLeft);
+  pazzleNameLeft.append(pazzleNameWrap);
+  pazzleNameWrap.append(pazzleNameText, pazzleNameAuthor, pazzleNameBottom);
 
   const mobileMediaQueryList = window.matchMedia("(max-width: 768px)");
   const tabletMediaQueryList = window.matchMedia("(max-width: 1024px)");

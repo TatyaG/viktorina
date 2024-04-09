@@ -132,7 +132,7 @@ export const labyrinthGame = () => {
     axios
       .get("php/get_prize.php")
       .then((response) => {
-        const finalGame = createFinal(response.data);
+        const finalGame = createFinal(response.data, 0);
         document.body.append(finalGame);
       })
       .catch((error) => console.log(error));
