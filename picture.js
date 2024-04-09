@@ -2,7 +2,7 @@ import createTalker from "./talker.js";
 // import createRulesTablet from "./rules-tablet.js";
 import createPoint from "./point.js";
 import createDeniska from "./deniska.js";
-import { createGameQuestion } from "./question.js";
+import {createGameQuestion} from "./question.js";
 
 export const createPicture = (info, number) => {
   //Массив с игрой и картинами
@@ -127,7 +127,7 @@ export const createPicture = (info, number) => {
       if (item.getAttribute("data-crt") === "да") {
         item.parentElement.parentElement.classList.add("correct");
         const deniska = createDeniska(
-          "Отлично! Задание выполнено. Тебе начислен 1 балл."
+            "Отлично! Задание выполнено. Тебе начислен 1 балл."
         );
         setTimeout(() => {
           document.body.append(deniska.deniska);
@@ -135,8 +135,8 @@ export const createPicture = (info, number) => {
           document.querySelector(".game__btn--skip").style.display = "none";
           document.querySelector(".game__btn--next").style.display = "block";
           document
-            .querySelector(".game__btn--next")
-            .classList.add("game__btn--next-fillword");
+              .querySelector(".game__btn--next")
+              .classList.add("game__btn--next-fillword");
         }, 6000);
         let points = JSON.parse(localStorage.getItem("points"));
         points += 1;
@@ -154,8 +154,8 @@ export const createPicture = (info, number) => {
           document.querySelector(".game__btn--skip").style.display = "none";
           document.querySelector(".game__btn--next").style.display = "block";
           document
-            .querySelector(".game__btn--next")
-            .classList.add("game__btn--next-fillword");
+              .querySelector(".game__btn--next")
+              .classList.add("game__btn--next-fillword");
         }, 6000);
       }
       gameBtnSkip.style.display = "none";
@@ -177,7 +177,7 @@ export const createPicture = (info, number) => {
   gameBtnSkip.addEventListener("click", (e) => {
     e.preventDefault();
     const deniska = createDeniska(
-      "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+        "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
     );
     document.body.append(deniska.deniska);
     deniska.rulesDeniska.src = "img/deniska-sad.webp";
@@ -191,16 +191,16 @@ export const createPicture = (info, number) => {
 
     btns.classList.add("btns-group");
     yesBtn.classList.add(
-      "btn-reset",
-      "game__btn",
-      "game__btn--yes",
-      "game__btn--next"
+        "btn-reset",
+        "game__btn",
+        "game__btn--yes",
+        "game__btn--next"
     );
     noBtn.classList.add(
-      "btn-reset",
-      "game__btn",
-      "game__btn--no",
-      "game__btn--next"
+        "btn-reset",
+        "game__btn",
+        "game__btn--no",
+        "game__btn--next"
     );
     btns.append(yesBtn, noBtn);
     deniska.rulesText.append(btns);
@@ -212,16 +212,16 @@ export const createPicture = (info, number) => {
       if (info.length === 1 || number === info.length - 1) {
         console.log("if");
         axios
-          .get("php/get_question.php")
-          .then((response) => {
-            document.body.innerHTML = "";
-            const question = createGameQuestion(response.data, 0);
-            document.body.append(question);
-          })
+            .get("php/get_question.php")
+            .then((response) => {
+              document.body.innerHTML = "";
+              const question = createGameQuestion(response.data, 0);
+              document.body.append(question);
+            })
 
-          .catch((error) => {
-            console.log(error);
-          });
+            .catch((error) => {
+              console.log(error);
+            });
       } else {
         console.log("else");
         createPicture(info, number + 1);
@@ -236,16 +236,16 @@ export const createPicture = (info, number) => {
   });
 
   gameBtnSkip.classList.add(
-    "game__btn",
-    "game__btn--skip",
-    "btn-reset",
-    "game__btn--skip-picture"
+      "game__btn",
+      "game__btn--skip",
+      "btn-reset",
+      "game__btn--skip-picture"
   );
   gameBtnNext.classList.add(
-    "game__btn",
-    "game__btn--next",
-    "btn-reset",
-    "game__btn--next-picture"
+      "game__btn",
+      "game__btn--next",
+      "btn-reset",
+      "game__btn--next-picture"
   );
 
   gameBtnSkip.textContent = "Пропустить игру";
@@ -269,29 +269,29 @@ export const createPicture = (info, number) => {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    console.log("1", info, number);
+    console.log('1', info, number);
     if (info.length === 1 || number === info.length - 1) {
-      console.log("if");
+      console.log('if')
       axios
-        .get("php/get_question.php")
-        .then((response) => {
-          document.body.innerHTML = "";
-          const question = createGameQuestion(response.data, 0);
-          document.body.append(question);
-        })
+          .get("php/get_question.php")
+          .then((response) => {
+            document.body.innerHTML = "";
+            const question = createGameQuestion(response.data, 0);
+            document.body.append(question);
+          })
 
-        .catch((error) => {
-          console.log(error);
-        });
+          .catch((error) => {
+            console.log(error);
+          });
     } else {
-      console.log("else");
+      console.log('else')
       createPicture(info, number + 1);
     }
   });
 
   //ГОВОРУША
   const gameRules = createTalker(
-    "Ознакомься с описанием картины. Выбери правильный фрагмент."
+      "Ознакомься с описанием картины. Выбери правильный фрагмент."
   );
 
   gameRules.rulesBottom.classList.add("rules-bottom_picture");
@@ -346,7 +346,11 @@ export const createPicture = (info, number) => {
   modalDescription.append(modalDescriptionText, modalDescriptionTextAuthor);
   modal.append(modalImgWrapper);
   modalImgWrapper.append(modalImg);
+  console.log(pictureGame[number].name.length)
+  if (pictureGame[number].name.length > 20) {
+    modalDescriptionImg.style.minWidth='450px'
 
+  }
   // АДАПТИВ
 
   //Правила для планшета
@@ -408,7 +412,7 @@ export const createPicture = (info, number) => {
       rulesBtnClose.classList.add("rules_close");
 
       rulesText.textContent =
-        "Ознакомься с описанием картины. Выбери правильный фрагмент.";
+          "Ознакомься с описанием картины. Выбери правильный фрагмент.";
       rulesBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15 5L5 15M5 5L15 15" stroke="#9382C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
@@ -456,7 +460,7 @@ export const createPicture = (info, number) => {
       infoBtnClose.classList.add("rules_close");
 
       infoText.textContent =
-        "Картина повествует о временах, когда Древней Руси угрожало монголо-татарское иго. На ней изображены могучие, храбрые люди, защитники отечества. Они зорко смотрят вдаль, обозревают местность в поиске врага, который грозится напасть на Великую Русь.";
+          "Картина повествует о временах, когда Древней Руси угрожало монголо-татарское иго. На ней изображены могучие, храбрые люди, защитники отечества. Они зорко смотрят вдаль, обозревают местность в поиске врага, который грозится напасть на Великую Русь.";
 
       infoBtnClose.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M15 5L5 15M5 5L15 15" stroke="#9382C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -477,11 +481,11 @@ export const createPicture = (info, number) => {
       //Создаем кнопку "Пропустить игру" для мобилки
       const gameBtnSkipMobile = document.createElement("button");
       gameBtnSkipMobile.classList.add(
-        "game__btn",
-        "game__btn--skip",
-        "btn-reset",
-        "game__btn--skip-picture",
-        "adaptive"
+          "game__btn",
+          "game__btn--skip",
+          "btn-reset",
+          "game__btn--skip-picture",
+          "adaptive"
       );
       gameBtnSkipMobile.textContent = "Пропустить игру";
 
@@ -491,10 +495,10 @@ export const createPicture = (info, number) => {
 
       const gameBtnSkipMobile2 = document.createElement("button");
       gameBtnSkipMobile2.classList.add(
-        "game__btn",
-        "game__btn--skip",
-        "btn-reset",
-        "game__btn--skip-fillword2"
+          "game__btn",
+          "game__btn--skip",
+          "btn-reset",
+          "game__btn--skip-fillword2"
       );
 
       gameBtnSkipMobile2.textContent = "Пропустить игру";
@@ -504,7 +508,7 @@ export const createPicture = (info, number) => {
       gameBtnSkipMobile2.addEventListener("click", (e) => {
         e.preventDefault();
         const deniska = createDeniska(
-          "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+            "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
         );
         document.body.append(deniska.deniska);
         deniska.rulesDeniska.src = "img/deniska-sad.webp";
@@ -518,16 +522,16 @@ export const createPicture = (info, number) => {
 
         btns.classList.add("btns-group");
         yesBtn.classList.add(
-          "btn-reset",
-          "game__btn",
-          "game__btn--yes",
-          "game__btn--next"
+            "btn-reset",
+            "game__btn",
+            "game__btn--yes",
+            "game__btn--next"
         );
         noBtn.classList.add(
-          "btn-reset",
-          "game__btn",
-          "game__btn--no",
-          "game__btn--next"
+            "btn-reset",
+            "game__btn",
+            "game__btn--no",
+            "game__btn--next"
         );
         btns.append(yesBtn, noBtn);
         deniska.rulesText.append(btns);
@@ -540,15 +544,15 @@ export const createPicture = (info, number) => {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           axios
-            .get("php/get_question.php")
-            .then((response) => {
-              document.body.innerHTML = "";
-              const question = createGameQuestion(response.data, 0);
-              document.body.append(question);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+              .get("php/get_question.php")
+              .then((response) => {
+                document.body.innerHTML = "";
+                const question = createGameQuestion(response.data, 0);
+                document.body.append(question);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -562,7 +566,7 @@ export const createPicture = (info, number) => {
       gameBtnSkipMobile.addEventListener("click", (e) => {
         e.preventDefault();
         const deniska = createDeniska(
-          "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
+            "При переходе к следующей игре ты, к сожалению, не получишь балл за эту игру. Продолжать?"
         );
         document.body.append(deniska.deniska);
         deniska.rulesDeniska.src = "img/deniska-sad.webp";
@@ -576,16 +580,16 @@ export const createPicture = (info, number) => {
 
         btns.classList.add("btns-group");
         yesBtn.classList.add(
-          "btn-reset",
-          "game__btn",
-          "game__btn--yes",
-          "game__btn--next"
+            "btn-reset",
+            "game__btn",
+            "game__btn--yes",
+            "game__btn--next"
         );
         noBtn.classList.add(
-          "btn-reset",
-          "game__btn",
-          "game__btn--no",
-          "game__btn--next"
+            "btn-reset",
+            "game__btn",
+            "game__btn--no",
+            "game__btn--next"
         );
         btns.append(yesBtn, noBtn);
         deniska.rulesText.append(btns);
@@ -593,15 +597,15 @@ export const createPicture = (info, number) => {
         yesBtn.addEventListener("click", (e) => {
           e.preventDefault();
           axios
-            .get("php/get_question.php")
-            .then((response) => {
-              document.body.innerHTML = "";
-              const question = createGameQuestion(response.data, 0);
-              document.body.append(question);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+              .get("php/get_question.php")
+              .then((response) => {
+                document.body.innerHTML = "";
+                const question = createGameQuestion(response.data, 0);
+                document.body.append(question);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
         });
 
         noBtn.addEventListener("click", (e) => {
@@ -650,19 +654,19 @@ export const createPicture = (info, number) => {
             gameBtnSkipMobile.style.display = "none";
             document.querySelector(".game__btn--next").style.display = "block";
             document
-              .querySelector(".game__btn--next")
-              .addEventListener("click", (e) => {
-                axios
-                  .get("php/get_question.php")
-                  .then((response) => {
-                    document.body.innerHTML = "";
-                    const question = createGameQuestion(response.data, 0);
-                    document.body.append(question);
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-              });
+                .querySelector(".game__btn--next")
+                .addEventListener("click", (e) => {
+                  axios
+                      .get("php/get_question.php")
+                      .then((response) => {
+                        document.body.innerHTML = "";
+                        const question = createGameQuestion(response.data, 0);
+                        document.body.append(question);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                });
           }, 6000);
         });
       });
