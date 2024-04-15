@@ -232,6 +232,10 @@ body {
   font-size: 16px;
 }
 
+.footer__container {
+  max-width: 290px;
+}
+
 /* Адаптив */
 
 @media (max-width: 1800px) {
@@ -575,6 +579,11 @@ body {
   .title_h1 {
     font-size: 36px;
   }
+
+  .footer {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -616,7 +625,7 @@ body {
   }
 
   .footer__container {
-    max-width: 147px;
+    max-width: 150px;
   }
 
   .IT-logo__text {
@@ -714,7 +723,7 @@ body {
   }
 
   .footer {
-    padding: 0 20px 24px 20px;
+    padding: 0 5px 24px 5px;
   }
 }
 
