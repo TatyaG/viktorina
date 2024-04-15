@@ -253,7 +253,7 @@ export function createFinal(info, number) {
   footerLogo.classList.add("IT-logo__column", "flex");
   footerLogoTitle.classList.add("IT-logo__title", "flex");
 
-  footerText.textContent = "© 2023 Чебоксарская НОШ для обучающихся с ОВЗ № 1";
+  footerText.textContent = "© 2023 «Чебоксарская НОШ для обучающихся с ОВЗ №1» Минобразования Чувашии";
   footerLogoText.textContent = "Сделано в: ";
   footerSpan.textContent = " | ";
   footerSpan.style.marginRight = "7px";
@@ -480,4 +480,4 @@ export function createFinal(info, number) {
   return final;
 }
 
-// createFinal();
+createFinal();
