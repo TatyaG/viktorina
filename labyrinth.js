@@ -57,7 +57,7 @@ export const labyrinthGame = () => {
   gameBtnSkip.addEventListener("click", (e) => {
     e.preventDefault();
     const deniska = createDeniska(
-      "При переходе на следующую страницу ты не получишь балл за эту игру.Продолжать?"
+      "При переходе на следующую страницу ты не получишь балл за эту игру. Продолжать?"
     );
     document.body.append(deniska.deniska);
     deniska.rulesDeniska.src = "img/deniska-sad.webp";
