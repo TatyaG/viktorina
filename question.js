@@ -4,7 +4,8 @@ import createPoint from "./point.js";
 import createRulesTablet from "./rules-tablet.js";
 import createFillword from "./fillword.js";
 
-export function createGameQuestion() {
+export function createGameQuestion(info, number) {
+  console.log(info)
   const game = document.createElement("section");
   const gameTitle = document.createElement("h1");
   const gameSubtitle = document.createElement("h2");
@@ -21,32 +22,24 @@ export function createGameQuestion() {
   const questionBlock = document.createElement("form");
   const name = document.createElement("p");
 
-  const inputs = [
-    {
-      correct: true,
-      name: "Василий Иванович Чапаев",
-    },
-    {
-      correct: false,
-      name: "Иван Антонович Кочубей",
-    },
-    {
-      correct: false,
-      name: "Семен Михайлович Буденный",
-    },
-  ];
 
   tv.src = "img/tv.svg";
-  video.src = "img/question.mp4";
+  video.src = info[number].video;
+  video.classList.add('tv__poster')
+  video.preload = 'metadata'
+  video.poster = 'img/poster.webp';
+
 
   const pointBlock = createPoint();
 
   let points = JSON.parse(localStorage.getItem("points"));
   pointBlock.textContent = points;
 
-  const gameRules = createTalker(
-    "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
-  );
+  const gameRules = createTalker(info[number].task);
+
+  // const gameRules = createTalker(
+  //   "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
+  // );
 
   game.classList.add("game", "symbols");
   gameTitle.classList.add("game__title");
@@ -63,10 +56,13 @@ export function createGameQuestion() {
   videoBlock.classList.add("video-block");
   name.classList.add("tv__name");
 
-  name.textContent = "Ксенофонтов Дмитрий, 4 класс";
+  name.textContent = info[number].description;
+  gameSubtitle.innerHTML = info[number].name;
+
+  // name.textContent = "Ксенофонтов Дмитрий, 4 класс";
 
   gameTitle.textContent = "Таланты Чувашской земли";
-  gameSubtitle.innerHTML = "Вопрос от школьника";
+  // gameSubtitle.innerHTML = "Вопрос от школьника";
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
 
@@ -77,28 +73,40 @@ export function createGameQuestion() {
   gameBlock.append(gameLeft, gameCenter, gameRight);
   gameLeft.append(gameRules.gameRules, gameBtnSkip, gameBtnNext);
   gameRight.append(questionBlock);
-  gameCenter.append(videoBlock, tv, play);
-  videoBlock.append(video, name);
+
+
+  setTimeout(()=>{
+    gameCenter.append(videoBlock, tv, play);
+    videoBlock.append(video, name);
+  },1000)
+
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const fillword = createFillword();
-    document.body.append(fillword);
+    if (info.length === 1 || number === info.length - 1) {
+      const fillword = createFillword();
+      document.body.append(fillword);
+    } else {
+      const question = createGameQuestion(info, number + 1);
+      document.body.append(question);
+    }
   });
+
+  const inputs = Object.values(info[number].variant);
 
   inputs.forEach((el) => {
     const label = document.createElement("label");
     const input = document.createElement("input");
     const button = document.createElement("span");
 
-    button.textContent = el.name;
+    button.textContent = el;
 
     label.classList.add("question__label");
     input.classList.add("question__input");
     button.classList.add("question__radio");
 
-    if (el.correct == true) input.classList.add("question__input--true");
-    if (el.correct == false) input.classList.add("question__input--false");
+    if (el === info[number].rightanswer) input.classList.add("question__input--true")
+    else input.classList.add("question__input--false");
 
     input.type = "radio";
     input.name = "question";
@@ -124,28 +132,39 @@ export function createGameQuestion() {
           "Отлично! Задание выполнено. Тебе начислен 1 балл."
         );
 
-        deniska.gameBtnNext.addEventListener("click", (e) => {
+        deniska.gameBtnNext.addEventListener('click', (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          const fillword = createFillword();
-          document.body.append(fillword);
-        });
+          if (info.length === 1 || number === info.length - 1) {
+            const fillword = createFillword();
+            document.body.append(fillword);
+          } else {
+            const question = createGameQuestion(info, number + 1);
+            document.body.append(question);
+          }
+        })
 
         setTimeout(() => {
           document.body.append(deniska.deniska);
           document.querySelector(".game__btn--skip").style.display = "none";
-          document.querySelector(".game__btn--next").style.display = "block";
+          document.querySelector('.game__btn--next').style.display = 'block';
+
         }, 800);
       } else {
         const deniska = createDeniska("К сожалению, это неправильный ответ.");
         deniska.rulesDeniska.src = "img/deniska-sad.webp";
 
-        deniska.gameBtnNext.addEventListener("click", (e) => {
+        deniska.gameBtnNext.addEventListener('click', (e) => {
           e.preventDefault();
           document.body.innerHTML = "";
-          const fillword = createFillword();
-          document.body.append(fillword);
-        });
+          if (info.length === 1 || number === info.length - 1) {
+            const fillword = createFillword();
+            document.body.append(fillword);
+          } else {
+            const question = createGameQuestion(info, number + 1);
+            document.body.append(question);
+          }
+        })
 
         setTimeout(() => {
           document.body.append(deniska.deniska);
@@ -203,8 +222,14 @@ export function createGameQuestion() {
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.innerHTML = "";
-      const fillword = createFillword();
-      document.body.append(fillword);
+      if (info.length === 1 || number === info.length - 1) {
+        const fillword = createFillword();
+        document.body.append(fillword);
+      } else {
+        const question = createGameQuestion(info, number + 1);
+        document.body.append(question);
+      }
+
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -216,12 +241,13 @@ export function createGameQuestion() {
 
   gameRules.rulesBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
     gameBtnNext.remove();
 
-    const rulesBlock = createRulesTablet(
-      "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
-    );
+    const rulesBlock = createRulesTablet(info[number].task);
+
+    // const rulesBlock = createRulesTablet(
+    //   "Прослушай видеовопрос и выбери правильный ответ из предложенных вариантов. О какой известной исторической личности рассказывает школьник?"
+    // );
 
     game.append(rulesBlock);
     gameRight.style.display = "block";

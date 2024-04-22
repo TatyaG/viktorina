@@ -902,7 +902,7 @@ body {
     .game {
         padding: 12px 20px;
         height: 100vh;
-        /*height: 100dvh;*/
+        height: 100dvh;
     }
 
     .ilempi .game__block {
@@ -1070,8 +1070,9 @@ body {
     
     }
 
-    .ilempi.game.active {
-        height: auto;
+    .ilempi .game__block.active {
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .ilempi .game__left .game__btn {

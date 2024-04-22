@@ -79,6 +79,7 @@ body {
 
 .perrot_textbtn {
   font-size: 16px;
+  color: rgba(35, 41, 98, 1);
 }
 
 .perrot-btn_img {
@@ -141,6 +142,10 @@ body {
 
 .game__point_final::before {
   left: -20%;
+}
+
+.game__point_mark::before {
+  left: -25%;
 }
 
 .final-right {
@@ -225,6 +230,10 @@ body {
   color: #fff;
   font-family: Inter;
   font-size: 16px;
+}
+
+.footer__container {
+  max-width: 290px;
 }
 
 /* Адаптив */
@@ -542,6 +551,10 @@ body {
     top: -37%;
   }
 
+  .game__point_mark::before {
+    left: -35%;
+  }
+
   .final-content {
     margin-bottom: auto;
     flex-grow: 1;
@@ -565,6 +578,11 @@ body {
 
   .title_h1 {
     font-size: 36px;
+  }
+
+  .footer {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
 
@@ -607,7 +625,7 @@ body {
   }
 
   .footer__container {
-    max-width: 147px;
+    max-width: 150px;
   }
 
   .IT-logo__text {
@@ -705,7 +723,7 @@ body {
   }
 
   .footer {
-    padding: 0 20px 24px 20px;
+    padding: 0 5px 24px 5px;
   }
 }
 

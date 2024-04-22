@@ -138,24 +138,34 @@ body {
     inset -8px -8px 40px 0px rgba(255, 255, 255, 0.8);
 }
 
-.pazzle__name-wrap {
+.pazzle__name-left {
   position: absolute;
-  right: -20px;
+  right: -5px;
   bottom: 0;
+}
+
+.pazzle__name-wrap {
+  width: 272px;
+  flex-direction: column;
+  position: relative;
+  padding: 38px 28px 20px 28px;
+  border-radius: 20px;
+  border: 2px solid #9382c2;
+  background: linear-gradient(
+    180deg,
+    #eedbfd 0.03%,
+    #dbdefd 26.58%,
+    #e4d8fc 78.4%,
+    #d9b4ea 99.97%
+  );
 }
 
 .pazzle__game-block {
   position: relative;
 }
 
-.pazzle__name-img {
-  height: fit-content;
-}
-
 .pazzle__name-text {
-  position: absolute;
-  bottom: 57px;
-  left: 18%;
+  margin-bottom: 20px;
   font-family: Comfortaa;
   font-size: 16px;
   font-weight: 500;
@@ -165,15 +175,24 @@ body {
 }
 
 .pazzle__name-author {
-  position: absolute;
-  bottom: 20px;
-  right: 11%;
   font-family: Comfortaa;
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: right;
+}
+
+.pazzle__name-bottom {
+  position: absolute;
+  width: 118%;
+  height: 80px;
+  top: -25px;
+  right: -7.5%;
+  background-image: url(../img/pazzle__name-bottom.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: contain;
 }
 
 .deniska .deniska_pazzle {
@@ -204,18 +223,12 @@ body {
     position: relative;
   }
 
-  .pazzle__name-wrap {
-    position: relative;
-    right: auto;
+  .pazzle__name-left {
+    position: static;
   }
 
   .pazzle__game-block {
     gap: 0;
-  }
-
-  .pazzle__name-text {
-    left: 18%;
-    bottom: 57px;
   }
 
   .game__rules_pazzle {
@@ -232,7 +245,7 @@ body {
   }
 
   .puzzle__wrap {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
   }
 
   .pazzle__btn-skip,
@@ -319,6 +332,11 @@ body {
 }
 
 @media (max-width: 768px) {
+  .pazzle {
+    min-height: 100vh;
+    height: auto;
+    }
+
   .pazzle__right {
     display: none;
   }
@@ -366,12 +384,11 @@ body {
   }
 
   .pazzle__name-text {
+    margin-bottom: 12px;
     font-size: 14px;
   }
 
   .pazzle__name-author {
-    bottom: 30px;
-    right: 16%;
     font-size: 12px;
   }
 
@@ -382,10 +399,11 @@ body {
   }
 
   .pazzle__btn-skip {
+    margin-bottom: 10px;
     display: block;
   }
 
-  .pazzle__name-wrap {
+  .pazzle__name-left {
     margin-bottom: 71px;
   }
 

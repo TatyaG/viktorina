@@ -1,6 +1,7 @@
 import createPoint from "./point.js";
 
-export function createFinal() {
+export function createFinal(info, number) {
+  console.log(info);
   const final = document.createElement("section");
 
   //   Логотип
@@ -69,14 +70,8 @@ export function createFinal() {
   perrotButtonText.textContent = "Жми сюда";
   perrotButtonMobile.textContent = "Далее";
 
-  perrotButton.setAttribute(
-    "href",
-    "docs/Известные_личности_и_музеи_Чувашии.pdf"
-  );
-  perrotButton.setAttribute(
-    "download",
-    "Известные личности и музеи Чувашии.pdf"
-  );
+  perrotButton.setAttribute("href", "docs/Все о Чувашии_.pdf");
+  perrotButton.setAttribute("download", "Все о Чувашии_.pdf");
 
   // Центр
   const centerDiv = document.createElement("div");
@@ -88,7 +83,24 @@ export function createFinal() {
   const pointBlock = createPoint();
   let points = JSON.parse(localStorage.getItem("points") ?? 0);
   // let points = 18;
-  pointBlock.textContent = points + ` баллов`;
+
+  // Изменение слова "балл"
+  let wordForm;
+  if (points % 10 == 1 && points % 100 != 11) {
+    wordForm = "балл";
+    pointBlock.classList.add("game__point_mark");
+  } else if (
+    points % 10 >= 2 &&
+    points % 10 <= 4 &&
+    (points % 100 < 10 || points % 100 >= 20)
+  ) {
+    wordForm = "балла";
+  } else {
+    wordForm = "баллов";
+  }
+  pointBlock.textContent = points + " " + wordForm;
+
+  // pointBlock.textContent = points + ` баллов`;
   pointBlock.classList.add("game__point_final");
 
   const centerButtons = document.createElement("div");
@@ -165,25 +177,6 @@ export function createFinal() {
 
   //   -----------------
 
-  // Логика
-  if (points >= 0 && points <= 3) {
-    gameBtnTakePrize.classList.add("hidden");
-    deniskaImg.src = "img/final-boySad.png";
-    deniskaText.textContent =
-      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру заново.";
-    deniska.style.marginBottom = "40px";
-    centerImg.style.height = "140%";
-    centerImg.style.top = "-21%";
-    finalCenter.style.width = "42%";
-    finalRight.append(gameBtnPlayAgain);
-    gameBtnPlayAgain.style.top = "-30%";
-  } else {
-    deniskaImg.src = "img/final-boySmile.png";
-    deniskaName.style.top = "47%";
-    deniskaName.style.left = "35.5%";
-    deniskaText.innerHTML = "Поздравляю! <br> Можешь теперь забрать свой приз!";
-  }
-
   // Скачивание файла по клику на кнопку
   function downloadPrize(srcFile, fileName) {
     let element = document.createElement("a");
@@ -195,17 +188,49 @@ export function createFinal() {
     document.body.removeChild(element);
   }
 
-  if (points >= 4 && points <= 6) {
+  // Логика
+  if (points >= 0 && points < info[number].prize_from) {
+    gameBtnTakePrize.classList.add("hidden");
+    deniskaImg.src = "img/final-boySad.png";
+    deniskaText.textContent =
+      "Для получения приза необходимо набрать больше баллов. Попробуй пройти игру заново.";
+    deniska.style.marginBottom = "40px";
+    centerImg.style.height = "140%";
+    centerImg.style.top = "-21%";
+    finalCenter.style.width = "42%";
+    finalRight.append(gameBtnPlayAgain);
+    gameBtnPlayAgain.style.top = "-30%";
+  } else if (points >= info[number].prize_from && points <= info[number].prize_to) {
+    deniskaImg.src = "img/final-boySmile.png";
+    deniskaName.style.top = "47%";
+    deniskaName.style.left = "35.5%";
+    deniskaText.innerHTML = "Поздравляю! <br> Можешь теперь забрать свой приз!";
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
-      downloadPrize("docs/Phone wallpaper_3.zip", "Phone wallpaper_3.zip");
+      downloadPrize(info[number].prize, "Wallpaper_3.zip");
     });
-  } else if (points >= 7) {
+  } else if (points >= info[number].superprize_from && points <= info[number].superprize_to) {
+    deniskaImg.src = "img/final-boySmile.png";
+    deniskaName.style.top = "47%";
+    deniskaName.style.left = "35.5%";
+    deniskaText.innerHTML = "Поздравляю! <br> Можешь теперь забрать свой приз!";
     gameBtnTakePrize.addEventListener("click", (e) => {
       e.preventDefault();
-      downloadPrize("docs/Phone wallpaper_9.zip", "Phone wallpaper_9.zip");
+      downloadPrize(info[number].superprize, "Wallpaper_9.zip");
     });
   }
+
+  // if (points >= info[number].prize_from && points <= info[number].prize_to) {
+  //   gameBtnTakePrize.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     downloadPrize(info[number].prize, "Wallpaper_3.zip");
+  //   });
+  // } else if (points >= info[number].superprize_from && points <= info[number].superprize_to) {
+  //   gameBtnTakePrize.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     downloadPrize(info[number].superprize, "Wallpaper_9.zip");
+  //   });
+  // }
 
   //   Футер
   const footer = document.createElement("footer");
@@ -228,7 +253,7 @@ export function createFinal() {
   footerLogo.classList.add("IT-logo__column", "flex");
   footerLogoTitle.classList.add("IT-logo__title", "flex");
 
-  footerText.textContent = "© 2023 Чебоксарская НОШ для обучающихся с ОВЗ № 1";
+  footerText.textContent = "© 2023 «Чебоксарская НОШ для обучающихся с ОВЗ №1» Минобразования Чувашии";
   footerLogoText.textContent = "Сделано в: ";
   footerSpan.textContent = " | ";
   footerSpan.style.marginRight = "7px";
@@ -255,7 +280,7 @@ export function createFinal() {
   const mediaQuery1 = window.matchMedia("(max-width: 1800px)");
   function handleTabletChange1(e) {
     if (e.matches) {
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         gameBtnPlayAgain.style.top = "-15%";
       }
     }
@@ -269,7 +294,7 @@ export function createFinal() {
       perrotImg.src = "img/final-parrot_tablet.png";
       footerLogoImg.style.width = "62px";
 
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         deniskaImg.src = "img/final-boySad_tablet.png";
         deniskaText.style.left = "20%";
         centerImg.style.height = "150%";
@@ -288,7 +313,7 @@ export function createFinal() {
       titleImg.src = "img/final-text_tablet.png";
       deniskaName.style.left = "38%";
 
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         centerImg.style.top = "-8%";
         pointBlock.style.top = "58%";
       }
@@ -300,7 +325,7 @@ export function createFinal() {
   const mediaQuery3 = window.matchMedia("(max-width: 1366px)");
   function handleTabletChange3(e) {
     if (e.matches) {
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         gameBtnPlayAgain.style.position = "absolute";
         gameBtnPlayAgain.style.top = "76%";
         gameBtnPlayAgain.style.right = "5.5%";
@@ -317,7 +342,7 @@ export function createFinal() {
   const mediaQuery4 = window.matchMedia("(max-width: 1300px)");
   function handleTabletChange4(e) {
     if (e.matches) {
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         finalCenter.style.width = "55%";
       }
     }
@@ -328,7 +353,7 @@ export function createFinal() {
   const mediaQuery5 = window.matchMedia("(max-width: 1024px)");
   function handleTabletChange5(e) {
     if (e.matches) {
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         gameBtnPlayAgain.style.top = "61%";
         gameBtnPlayAgain.style.right = "4%";
         pointBlock.style.top = "85%";
@@ -352,14 +377,8 @@ export function createFinal() {
       const buttonDownload = document.createElement("a");
       buttonDownload.classList.add("btn-download", "hidden");
       final.append(buttonDownload);
-      buttonDownload.setAttribute(
-        "href",
-        "docs/Известные_личности_и_музеи_Чувашии.pdf"
-      );
-      buttonDownload.setAttribute(
-        "download",
-        "Известные личности и музеи Чувашии.pdf"
-      );
+      buttonDownload.setAttribute("href", "docs/Все о Чувашии_.pdf");
+      buttonDownload.setAttribute("download", "Все о Чувашии_.pdf");
 
       perrotButtonMobile.addEventListener("click", (e) => {
         e.preventDefault();
@@ -374,7 +393,7 @@ export function createFinal() {
         finalCenter.classList.remove("hidden");
       });
 
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         deniskaImg.src = "img/final-boySad_mobile.png";
         centerImg.style.height = "80%";
         centerImg.style.top = "30%";
@@ -402,7 +421,7 @@ export function createFinal() {
       centerImg.src = "img/final-arka_mobile.webp";
       finalContent.append(centerImg);
 
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         pointBlock.style.top = "35%";
         gameBtnPlayAgain.style.top = "50%";
         finalCenter.style.width = "80%";
@@ -416,7 +435,7 @@ export function createFinal() {
   // const mediaQuery10 = window.matchMedia("(max-width: 480px)");
   // function handleTabletChange10(e) {
   //   if (e.matches) {
-  //     if (points >= 0 && points <= 3) {
+  //     if (points >= 0 && points < info[number].prize_from) {
   //       centerImg.style.top = "23%";
   //     }
   //   }
@@ -427,7 +446,7 @@ export function createFinal() {
   const mediaQuery8 = window.matchMedia("(max-width: 375px)");
   function handleTabletChange8(e) {
     if (e.matches) {
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         centerImg.style.top = "24.5%";
         deniska.style.marginBottom = "71px";
         finalRight.style.paddingTop = "27px";
@@ -445,7 +464,7 @@ export function createFinal() {
   const mediaQuery9 = window.matchMedia("(max-width: 360px)");
   function handleTabletChange9(e) {
     if (e.matches) {
-      if (points >= 0 && points <= 3) {
+      if (points >= 0 && points < info[number].prize_from) {
         deniska.style.marginBottom = "62px";
         finalRight.style.paddingTop = "16.6px";
         centerText.style.marginBottom = "144px";

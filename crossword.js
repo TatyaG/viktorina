@@ -1,4 +1,5 @@
 import {createGameSymbols} from './symbols.js';
+import { createPuzzleGame } from './puzzle.js';
 
 export function createCrossword() {
   const game = document.createElement("section");
@@ -209,8 +210,19 @@ export function createCrossword() {
 
   gameBtnNext.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const symbols = createGameSymbols();
-    document.body.append(symbols);
+    axios.get('php/get_symbols.php')
+    .then(response => {
+        console.log(response)
+        if (response.data.length != 0) {
+          const symbols = createGameSymbols(response.data, 0);
+          document.body.append(symbols);
+        } else createPuzzleGame(response.data, 0);
+            
+    })
+    .catch(error => {
+        console.log(error)
+    })
+   
     // const final = createFinal();
     // document.body.append(final);
   });
@@ -306,8 +318,18 @@ export function createCrossword() {
 
   askButtonYes.addEventListener("click", (e) => {
     document.body.innerHTML = "";
-    const symbols = createGameSymbols();
-    document.body.append(symbols);
+
+    axios.get('php/get_symbols.php')
+    .then(response => {
+        console.log(response)
+        if (response.data.length != 0) {
+          const symbols = createGameSymbols(response.data, 0);
+          document.body.append(symbols);
+        } else createPuzzleGame(response.data, 0);
+    })
+    .catch(error => {
+        console.log(error)
+    })
   });
 
   // Кроссворд

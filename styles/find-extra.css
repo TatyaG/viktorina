@@ -534,7 +534,7 @@ body {
     max-width: 316px;
   }
 
-  .rules__img {
+  .rules__img_find-extra {
     bottom: 89%;
     left: 24%;
     width: 53%;
@@ -989,7 +989,7 @@ body {
     left: 50%;
   }
 
-  .talker .rules__img {
+  .rules__img_find-extra {
     bottom: 94%;
     left: 30%;
     width: 41%;
