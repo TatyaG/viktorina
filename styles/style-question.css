@@ -14,7 +14,7 @@
 
 .game.question {
     height: 100vh;
-    height: 100dvh;
+    /* height: 100dvh; */
     background-image: url(../img/background-question.webp);
 }
 
