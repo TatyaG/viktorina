@@ -371,6 +371,9 @@ export const labyrinthGame = () => {
               const deniska = createDeniska(
                 "Отлично! Задание выполнено. Тебе начислен 1 балл."
               );
+
+              deniskaBtn(deniska.gameBtnNext);
+
               gameBtnAccept.style.display = "none";
               setTimeout(() => {
                 document.body.append(deniska.deniska);
@@ -398,6 +401,9 @@ export const labyrinthGame = () => {
               const deniska = createDeniska(
                 "Отлично! Задание выполнено. Тебе начислен 1 балл."
               );
+
+              deniskaBtn(deniska.gameBtnNext);
+
               gameBtnAccept.style.display = "none";
               setTimeout(() => {
                 document.body.append(deniska.deniska);
@@ -607,5 +613,21 @@ export const labyrinthGame = () => {
   handleTabletChange2(mediaQuery2);
   logicLabirint(canvasLab);
 };
+
+
+function deniskaBtn(btn) {
+  btn.textContent = 'Продолжить';
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.innerHTML = "";
+    axios
+      .get("php/get_prize.php")
+      .then((response) => {
+        const finalGame = createFinal(response.data, 0);
+        document.body.append(finalGame);
+      })
+      .catch((error) => console.log(error));
+  })
+}
 
 // labyrinthGame();
