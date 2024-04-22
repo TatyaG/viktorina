@@ -70,8 +70,8 @@ export function createFinal(info, number) {
   perrotButtonText.textContent = "Жми сюда";
   perrotButtonMobile.textContent = "Далее";
 
-  perrotButton.setAttribute("href", "docs/Все о Чувашии_.pdf");
-  perrotButton.setAttribute("download", "Все о Чувашии_.pdf");
+  perrotButton.setAttribute("href", "docs/About_Chuvashia.pdf");
+  perrotButton.setAttribute("download", "About_Chuvashia.pdf");
 
   // Центр
   const centerDiv = document.createElement("div");
@@ -377,8 +377,8 @@ export function createFinal(info, number) {
       const buttonDownload = document.createElement("a");
       buttonDownload.classList.add("btn-download", "hidden");
       final.append(buttonDownload);
-      buttonDownload.setAttribute("href", "docs/Все о Чувашии_.pdf");
-      buttonDownload.setAttribute("download", "Все о Чувашии_.pdf");
+      buttonDownload.setAttribute("href", "docs/About_Chuvashia.pdf");
+      buttonDownload.setAttribute("download", "About_Chuvashia.pdf");
 
       perrotButtonMobile.addEventListener("click", (e) => {
         e.preventDefault();
