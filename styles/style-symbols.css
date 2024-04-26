@@ -138,6 +138,7 @@ input {
 
 .symbol__img {
     width: 146px;
+    height: 102px;
     object-fit: cover;
 }
 
