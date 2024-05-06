@@ -7,9 +7,8 @@ import { createGameQuestion } from "./question.js";
 export const createPicture = (info, number) => {
   //Массив с игрой и картинами
 
-  console.log(info);
   let pictureGame = info;
-  console.log("12321", pictureGame[0]);
+
   /*const pictureGame = [
     {
       name: "Картина «Богатыри»",
@@ -68,7 +67,7 @@ export const createPicture = (info, number) => {
   questionImg.classList.add("question_img", "question_img-picture");
   const questionDesc = document.createElement("p");
   questionDesc.classList.add("question_desc");
-  questionDesc.textContent = pictureGame[0].description;
+  questionDesc.textContent = pictureGame[number].description;
 
   const description = document.createElement("p");
   description.textContent = "Описание";
@@ -113,9 +112,8 @@ export const createPicture = (info, number) => {
   };
 
   //Перебираем массив и отображаем картинки
-  let pict = Object.values(pictureGame[0].images);
+  let pict = Object.values(pictureGame[number].images);
   pict.forEach((item) => {
-    console.log(item);
     createPictureGame(item.src, item.correct);
   });
 
@@ -209,17 +207,25 @@ export const createPicture = (info, number) => {
 
     yesBtn.addEventListener("click", (e) => {
       e.preventDefault();
+      document.body.innerHTML = "";
+      console.log("1", info, number);
+      if (info.length === 1 || number === info.length - 1) {
+        console.log("if");
+        axios
+          .get("php/get_question.php")
+          .then((response) => {
+            document.body.innerHTML = "";
+            const question = createGameQuestion(response.data, 0);
+            document.body.append(question);
+          })
 
-      axios
-        .get("php/get_question.php")
-        .then((response) => {
-          document.body.innerHTML = "";
-          const question = createGameQuestion(response.data, 0);
-          document.body.append(question);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        console.log("else");
+        createPicture(info, number + 1);
+      }
     });
 
     noBtn.addEventListener("click", (e) => {
@@ -245,17 +251,42 @@ export const createPicture = (info, number) => {
   gameBtnSkip.textContent = "Пропустить игру";
   gameBtnNext.textContent = "Следующая игра";
 
+  // gameBtnNext.addEventListener("click", (e) => {
+  //   axios
+  //     .get("php/get_question.php")
+  //     .then((response) => {
+  //       document.body.innerHTML = "";
+  //       const question = createGameQuestion(response.data, 0);
+  //       document.body.append(question);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  //
+  //
+  //
+  // });
+
   gameBtnNext.addEventListener("click", (e) => {
-    axios
-      .get("php/get_question.php")
-      .then((response) => {
-        document.body.innerHTML = "";
-        const question = createGameQuestion(response.data, 0);
-        document.body.append(question);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    document.body.innerHTML = "";
+    console.log("1", info, number);
+    if (info.length === 1 || number === info.length - 1) {
+      console.log("if");
+      axios
+        .get("php/get_question.php")
+        .then((response) => {
+          document.body.innerHTML = "";
+          const question = createGameQuestion(response.data, 0);
+          document.body.append(question);
+        })
+
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      console.log("else");
+      createPicture(info, number + 1);
+    }
   });
 
   //ГОВОРУША
@@ -292,7 +323,7 @@ export const createPicture = (info, number) => {
 
   const modalImg = document.createElement("img");
   modalImg.classList.add("modal-img");
-  modalImg.src = pictureGame[0].picture_whole;
+  modalImg.src = pictureGame[number].picture_whole;
 
   const modalDescription = document.createElement("div");
   modalDescription.classList.add("modal-description");
@@ -303,11 +334,11 @@ export const createPicture = (info, number) => {
 
   const modalDescriptionText = document.createElement("p");
   modalDescriptionText.classList.add("modal-text", "name");
-  modalDescriptionText.textContent = pictureGame[0].name;
+  modalDescriptionText.textContent = pictureGame[number].name;
 
   const modalDescriptionTextAuthor = document.createElement("p");
   modalDescriptionTextAuthor.classList.add("modal-text", "author");
-  modalDescriptionTextAuthor.textContent = pictureGame[0].artist;
+  modalDescriptionTextAuthor.textContent = pictureGame[number].artist;
 
   game.append(modalWrapper);
   modalWrapper.append(modal, modalDescription);
@@ -315,10 +346,6 @@ export const createPicture = (info, number) => {
   modalDescription.append(modalDescriptionText, modalDescriptionTextAuthor);
   modal.append(modalImgWrapper);
   modalImgWrapper.append(modalImg);
-
-  if (pictureGame[number].name.length > 25) {
-    modalDescriptionImg.style.minWidth = "450px";
-  }
 
   // АДАПТИВ
 
